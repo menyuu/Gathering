@@ -44,7 +44,8 @@ ___
 ## 設計書
 
 **ER図**
-![名称未設定ファイル drawio](https://user-images.githubusercontent.com/101458830/180654238-80e86502-73a7-4436-ac2f-cce5dc7c1037.png)
+![Gathering drawio](https://user-images.githubusercontent.com/101458830/180676175-70c25757-df81-4e99-b156-e79531cadeb5.png)
+
 
 
 ## 開発環境
