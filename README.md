@@ -44,7 +44,11 @@ ___
 ## 設計書
 
 **ER図**
-![Gathering drawio](https://user-images.githubusercontent.com/101458830/180677479-8cfce648-bceb-4014-b96a-cd6c952cb3be.png)
+![Gathering drawio](https://user-images.githubusercontent.com/101458830/180702674-a965a351-8763-4c37-82de-14681ecce3ca.png)
+___
+テーブル定義書
+[Gatheringテーブル定義書.pdf](https://github.com/menyuu/Gathering/files/9178166/Gathering.pdf)
+___
 
 ## 開発環境
 
