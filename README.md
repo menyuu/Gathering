@@ -44,7 +44,8 @@ ___
 ## 設計書
 
 **ER図**
-![Gathering drawio](https://user-images.githubusercontent.com/101458830/180676175-70c25757-df81-4e99-b156-e79531cadeb5.png)
+![Gathering drawio](https://user-images.githubusercontent.com/101458830/180676387-7453daf0-dd6b-4173-a266-a2d25bf2912d.png)
+
 
 
 
