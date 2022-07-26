@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_083013) do
+ActiveRecord::Schema.define(version: 2022_07_26_083330) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 2022_07_26_083013) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "group_chats", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "group_id", null: false
+    t.text "chat", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_group_chats_on_end_user_id"
+    t.index ["group_id"], name: "index_group_chats_on_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -110,6 +120,8 @@ ActiveRecord::Schema.define(version: 2022_07_26_083013) do
 
   add_foreign_key "favorites", "end_users"
   add_foreign_key "favorites", "posts"
+  add_foreign_key "group_chats", "end_users"
+  add_foreign_key "group_chats", "groups"
   add_foreign_key "groups", "owners"
   add_foreign_key "post_comments", "end_users"
   add_foreign_key "post_comments", "posts"
