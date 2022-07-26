@@ -58,6 +58,23 @@ ___
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
+### gems
+ ``` 
+   gem 'devise'
+   gem 'enum_help'
+   gem 'devise-i18n'
+   gem 'rails-i18n'
+ ```
+ 
+ **デバッグ用gem**
+ ```
+   gem 'pry-rails'
+   gem 'annotate'
+   gem 'better_errors'
+   gem 'binding_of_caller'
+   gem 'pry-byebug'  
+  ```
+
 ## 使用素材
 
 - 通常のSNSツールとして使用するためゲーム等の著作権を侵害する画像などは一切使用しません。
