@@ -61,6 +61,8 @@ ___
 ### gems
  ``` 
    gem 'devise'
+   gem 'slim-rails'
+   gem 'html2slim'
    gem 'enum_help'
    gem 'devise-i18n'
    gem 'rails-i18n'
