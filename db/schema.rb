@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_082154) do
+ActiveRecord::Schema.define(version: 2022_07_26_082608) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -69,6 +69,16 @@ ActiveRecord::Schema.define(version: 2022_07_26_082154) do
     t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
+  create_table "posting_comments", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "post_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_posting_comments_on_end_user_id"
+    t.index ["post_id"], name: "index_posting_comments_on_post_id"
+  end
+
   create_table "posting_tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -101,6 +111,8 @@ ActiveRecord::Schema.define(version: 2022_07_26_082154) do
   add_foreign_key "favorites", "end_users"
   add_foreign_key "favorites", "posts"
   add_foreign_key "groups", "owners"
+  add_foreign_key "posting_comments", "end_users"
+  add_foreign_key "posting_comments", "posts"
   add_foreign_key "posts", "end_users"
   add_foreign_key "relationships", "followeds"
   add_foreign_key "relationships", "followers"
