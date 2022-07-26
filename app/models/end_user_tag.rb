@@ -19,6 +19,6 @@
 #  tag_id       (tag_id => tags.id)
 #
 class EndUserTag < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser"
   belongs_to :tag
 end

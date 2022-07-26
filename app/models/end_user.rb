@@ -24,4 +24,7 @@ class EndUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :user_tags, class_name: "EndUserTag"
+  has_many :tags, through: :end_user_tags
 end
