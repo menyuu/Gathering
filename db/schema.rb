@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_083724) do
+ActiveRecord::Schema.define(version: 2022_07_26_084041) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2022_07_26_083724) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "end_user_groups", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_end_user_groups_on_end_user_id"
+    t.index ["group_id"], name: "index_end_user_groups_on_group_id"
   end
 
   create_table "end_user_tags", force: :cascade do |t|
@@ -127,6 +136,8 @@ ActiveRecord::Schema.define(version: 2022_07_26_083724) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "end_user_groups", "end_users"
+  add_foreign_key "end_user_groups", "groups"
   add_foreign_key "end_user_tags", "end_users"
   add_foreign_key "end_user_tags", "tags"
   add_foreign_key "favorites", "end_users"
