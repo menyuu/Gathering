@@ -1,6 +1,6 @@
 h2
   | Sign up
-= form_with model: @end_user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
+= form_with model: @end_user, url: end_user_sign_up_confirm_path(@end_user), id: "new_end_user", class: "new_end_user", local: true do |f|
   = render "end_user/shared/error_messages", resource: resource
   .field
     = f.label :name

@@ -1,0 +1,12 @@
+div
+  h2
+    | 確認画面
+  = form_with model: @end_user, url: end_user_registration_path, local: true do |f|
+    = f.label :name
+    = f.text_field :name, value: @end_user.name, readonly: true
+    = f.label :email
+    = f.email_field :email, value: @readonly:true
+    = f.label :password
+
+    = f.submit "修正する", name: :back
+    = f.submit "登録する"

@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   scope module: :end_user do
     root to: "home#top"
+    
+    resources :users
+    resources :tags
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
