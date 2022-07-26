@@ -10,4 +10,9 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', media: 'all', 'data-trubolinks-track': 'reload'
   body
+    = render "layouts/header"
+    h1
+      |
+      - if end_user_signed_in?
+        = current_end_user.name
     = yield

@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2022_07_26_124653) do
     t.string "name", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.text "introduction", null: false
+    t.text "introduction", default: "", null: false
     t.integer "public_status", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2022_07_26_124653) do
   create_table "groups", force: :cascade do |t|
     t.integer "owner_id", null: false
     t.string "name", null: false
-    t.text "introduction", null: false
+    t.text "introduction", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_groups_on_owner_id"
