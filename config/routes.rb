@@ -4,9 +4,13 @@ Rails.application.routes.draw do
     sessions: "end_user/sessions"
   }
 
+  devise_scope :end_user do
+    post "users/sign_up/confirm" => "end_user/registrations#confirm"
+    get "users/sign_up/complete" => "end_user/registrations#complete"
+  end
+
   scope module: :end_user do
     root to: "home#top"
-    
     resources :users
     resources :tags
   end

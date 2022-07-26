@@ -10,9 +10,11 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = EndUser.new(sign_up_params)
+    render :new and return if params[:back]
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -28,6 +30,17 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # def destroy
   #   super
   # end
+
+  def confirm
+    @user = EndUser.new(
+      name: params[:end_user][:name],
+      email: params[:end_user][:email],
+      password: params[:end_user][:password]
+      )
+  end
+
+  def complete
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -51,9 +64,9 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # end
 
   # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
-  # end
+  def after_sign_up_path_for(resource)
+    users_sign_up_complete_path(resource)
+  end
 
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
