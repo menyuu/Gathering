@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :users
     resources :posts, except: [:edit, :update] do
       resources :post_comments, only: [:create, :destroy], as: "comments"
+      resource :favorites, only: [:create, :destroy]
     end
     resources :tags, only: [:index, :create, :update, :destroy]
   end

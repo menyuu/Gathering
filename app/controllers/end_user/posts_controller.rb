@@ -15,7 +15,7 @@ class EndUser::PostsController < ApplicationController
   def create
     post = current_end_user.posts.new(post_params)
     post.save
-    redirect_to posts_path
+    redirect_to post_path(post)
   end
 
   def edit

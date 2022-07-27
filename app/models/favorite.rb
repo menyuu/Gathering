@@ -19,6 +19,6 @@
 #  post_id      (post_id => posts.id)
 #
 class Favorite < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :post
 end

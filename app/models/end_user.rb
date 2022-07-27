@@ -29,4 +29,5 @@ class EndUser < ApplicationRecord
   has_many :tags, through: :end_user_tags
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 end
