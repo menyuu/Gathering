@@ -14,11 +14,10 @@ div
       = tag.label do
         = tag.check_box
         = tag.text
-    = f.submit "タグを追加する"
 
 div
   | タグ新規作成
 = form_with model: @tag do |f|
   = f.label :name
-  = f.text_area :name
+  = f.text_field :name
   = f.submit "タグ登録"
