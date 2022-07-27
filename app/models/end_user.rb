@@ -26,5 +26,5 @@ class EndUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :user_tags, class_name: "EndUserTag"
-  has_many :tags, through: :end_user_tags
+  has_many :tags, through: :user_tags
 end
