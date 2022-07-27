@@ -33,14 +33,6 @@ class EndUser::TagsController < ApplicationController
     current_end_user.tags.delete(tag)
     current_end_user.tags << tag
     redirect_to request.referer
-
-    # has_tags = Tag.where(id: params[:name])
-    # tags = []
-    # has_tags.each do |tag|
-    #   tags << tag.name
-    # end
-    # current_end_user.tag_save(tags)
-    # redirect_to request.referer
   end
 
   def destroy
