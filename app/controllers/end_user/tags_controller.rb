@@ -18,8 +18,8 @@ class EndUser::TagsController < ApplicationController
     attach_object = current_end_user
     tags = params[:tag][:name].split(',')
     tags.each do |tag|
-      attach_object.tags.delete(Tag.find_by(name: tag))
       tag = Tag.find_or_create_by(name: tag)
+      attach_object.tags.delete(tag)
       attach_object.tags << tag
     end
     redirect_to request.referer
@@ -29,10 +29,8 @@ class EndUser::TagsController < ApplicationController
   end
 
   def update
-    puts "--------------------"
-    puts params[:name]
-
     tag = Tag.find_by(name: params[:name])
+    current_end_user.tags.delete(tag)
     current_end_user.tags << tag
     redirect_to request.referer
 
@@ -43,5 +41,11 @@ class EndUser::TagsController < ApplicationController
     # end
     # current_end_user.tag_save(tags)
     # redirect_to request.referer
+  end
+
+  def destroy
+    tag = Tag.find_by(name: params[:name])
+    current_end_user.tags.delete(tag)
+    redirect_to request.referer
   end
 end

@@ -2,7 +2,11 @@ div
   | タグ一覧
   div
   - @tags.each do |tag|
-    = link_to tag.name, tag_path(current_end_user, name: tag.name), method: :patch
+    = link_to tag.name, tag_path(current_end_user, name: tag.name), method: :patch, class: "btn btn-outline-primary"
+    = link_to tag.name, tag_path(current_end_user, name: tag.name), method: :delete, class: "btn btn-outline-danger"
+  div
+  - current_end_user.tags.each do |tag|
+    = tag.name
 
 div
   = form_with model: current_end_user, url: tag_path(current_end_user) do |f|

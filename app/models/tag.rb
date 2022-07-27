@@ -8,6 +8,6 @@
 #  updated_at :datetime         not null
 #
 class Tag < ApplicationRecord
-  has_many :user_tags, class_name: "EndUserTag"
-  has_many :users, through: :user_tags, source: :end_user
+  has_many :end_user_tags
+  has_many :users, through: :end_user_tags, source: :end_user
 end
