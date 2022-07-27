@@ -15,7 +15,7 @@
 #
 # Foreign Keys
 #
-#  owner_id  (owner_id => owners.id)
+#  owner_id  (owner_id => end_users.id)
 #
 
 one:

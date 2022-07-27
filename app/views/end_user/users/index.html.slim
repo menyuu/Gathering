@@ -1,2 +1,4 @@
-h1 EndUser::Users#index
-p Find me in app/views/end_user/users/index.html.slim
+div
+  - @users.each do |user|
+    div
+      = link_to user.name, user_path(user)

@@ -1,2 +1,6 @@
-h1 EndUser::Users#show
-p Find me in app/views/end_user/users/show.html.slim
+div
+  - unless current_end_user == @user
+    - if current_end_user.following?(@user)
+      = link_to "フォローを外す", user_follows_path(@user), method: :delete
+    - else
+      = link_to "フォローする", user_follows_path(@user), method: :post

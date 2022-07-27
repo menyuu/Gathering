@@ -15,10 +15,10 @@
 #
 # Foreign Keys
 #
-#  followed_id  (followed_id => followeds.id)
-#  follower_id  (follower_id => followers.id)
+#  followed_id  (followed_id => end_users.id)
+#  follower_id  (follower_id => end_users.id)
 #
 class Relationship < ApplicationRecord
-  belongs_to :follower
-  belongs_to :followed
+  belongs_to :follower, class_name: "EndUser"
+  belongs_to :followed, class_name: "EndUser"
 end

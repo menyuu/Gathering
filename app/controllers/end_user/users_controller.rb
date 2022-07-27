@@ -1,8 +1,10 @@
 class EndUser::UsersController < ApplicationController
   def index
+    @users = EndUser.all
   end
 
   def show
+    @user = EndUser.find(params[:id])
   end
 
   def new
