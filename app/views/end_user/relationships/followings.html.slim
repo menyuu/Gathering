@@ -1,0 +1,8 @@
+div
+  - if @users.exists?
+    - @users.each do |user|
+      div
+        = user.name
+  - else
+    p
+      | ユーザーはいません

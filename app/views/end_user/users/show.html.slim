@@ -4,3 +4,8 @@ div
       = link_to "フォローを外す", user_follows_path(@user), method: :delete
     - else
       = link_to "フォローする", user_follows_path(@user), method: :post
+
+div
+  = link_to "フォロー", user_followings_path(@user)
+  | |
+  = link_to "フォロワー", user_followers_path(@user)
