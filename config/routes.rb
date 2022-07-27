@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   scope module: :end_user do
     root to: "home#top"
     resources :users
+    resources :posts
     resources :tags, only: [:index, :create, :update, :destroy]
   end
 

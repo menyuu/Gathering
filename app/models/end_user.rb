@@ -27,4 +27,5 @@ class EndUser < ApplicationRecord
 
   has_many :end_user_tags
   has_many :tags, through: :end_user_tags
+  has_many :posts
 end

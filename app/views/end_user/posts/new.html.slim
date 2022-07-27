@@ -1,0 +1,10 @@
+div
+  | 新規投稿
+div
+  = form_with model: @post do |f|
+    = f.label :text
+    = f.text_area :text
+    = f.label :images
+    = f.file_field :images, name: "post[images][]", multiple: true
+    = f.submit "投稿する"
+

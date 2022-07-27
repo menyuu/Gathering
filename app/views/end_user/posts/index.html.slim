@@ -1,0 +1,8 @@
+div
+  | 投稿一覧
+div
+  - @posts.each do |post|
+    div
+    = post.text
+    - post.images.each do |image|
+      = image_tag image.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed
