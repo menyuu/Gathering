@@ -7,7 +7,18 @@ div
       = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
 div
   = @post.created_at.strftime("%H時%M分 %Y年%m月%d日")
-
+  - if @post.favorited_by?(current_end_user)
+    div
+      = link_to post_favorites_path(@post), method: :delete
+        | ♥
+        = @post.favorites.count
+        | いいね
+  - else
+    div
+      = link_to post_favorites_path(@post), method: :post
+        | ♡
+        = @post.favorites.count
+        | いいね
 div
   | コメント件数：
   = @post.post_comments.count

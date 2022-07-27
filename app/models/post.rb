@@ -19,7 +19,10 @@
 class Post < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many_attached :images
 
-
+  def favorited_by?(user)
+    favorites.exists?(end_user_id: user.id)
+  end
 end
