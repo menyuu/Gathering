@@ -17,6 +17,8 @@ div
       = comment.user.name
       = comment.text
       = comment.created_at.strftime("%H時%M分 %Y年%m月%d日")
+      - if comment.user == current_end_user
+        = link_to "削除", post_comment_path(comment.post, comment), method: :delete
 div
   = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
     = f.text_area :text
