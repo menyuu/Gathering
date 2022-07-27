@@ -17,8 +17,9 @@
 #  end_user_id  (end_user_id => end_users.id)
 #
 class Post < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
+  has_many :post_comments, dependent: :destroy
   has_many_attached :images
 
-  
+
 end

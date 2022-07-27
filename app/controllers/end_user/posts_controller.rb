@@ -4,6 +4,8 @@ class EndUser::PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def new
@@ -12,8 +14,7 @@ class EndUser::PostsController < ApplicationController
 
   def create
     post = current_end_user.posts.new(post_params)
-
-    post.save!
+    post.save
     redirect_to posts_path
   end
 

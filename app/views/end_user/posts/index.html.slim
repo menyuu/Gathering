@@ -2,7 +2,11 @@ div
   | 投稿一覧
 div
   - @posts.each do |post|
+    .mt-5
+    = link_to post.user.name, post_path(post)
     div
     = post.text
     - post.images.each do |image|
-      = image_tag image.variant(gravity: :center, resize:"300x300^", crop:"300x300+0+0").processed
+      .mt-2
+      = link_to image, "data-lightbox": image
+        = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
