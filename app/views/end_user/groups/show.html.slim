@@ -11,6 +11,26 @@ div
   div
   = @group.introduction
 div
+  - @tags.each do |tag|
+    = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
+    = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
+div
+  = form_with model: @group, url: tag_path(@group) do |f|
+    = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
+      = tag.label do
+        = tag.check_box
+        = tag.text
+
+div
+  | タグ新規作成
+= form_with model: @tag do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.hidden_field :id, value: @group.id
+  = f.hidden_field :model, value: "group"
+  = f.submit "タグ登録"
+
+div
   - if @group.is_ownerd_by?(current_end_user)
     = link_to "編集", edit_group_path(@group)
   - elsif @group.includesUser?(current_end_user)

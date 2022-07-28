@@ -2,8 +2,8 @@ div
   | タグ一覧
   div
   - @tags.each do |tag|
-    = link_to tag.name, tag_path(current_end_user, name: tag.name), method: :patch, class: "btn btn-outline-primary"
-    = link_to tag.name, tag_path(current_end_user, name: tag.name), method: :delete, class: "btn btn-outline-danger"
+    = link_to tag.name, tag_path(current_end_user, name: tag.name, model: "user"), method: :patch, class: "btn btn-outline-primary"
+    = link_to tag.name, tag_path(current_end_user, name: tag.name, model: "user"), method: :delete, class: "btn btn-outline-danger"
 
 div
   = form_with model: current_end_user, url: tag_path(current_end_user) do |f|
@@ -17,4 +17,5 @@ div
 = form_with model: @tag do |f|
   = f.label :name
   = f.text_field :name
+  = f.hidden_field :model, value: "user"
   = f.submit "タグ登録"
