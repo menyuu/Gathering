@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     resources :tags, only: [:index, :create, :update, :destroy]
+    resources :games, only: [:index, :create, :update, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

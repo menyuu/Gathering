@@ -1,0 +1,20 @@
+div
+  | ゲーム一覧
+  div
+    - @games.each do |game|
+      = link_to game.name, game_path(current_end_user, name: game.name), method: :patch, class: "btn btn-outline-primary"
+      = link_to game.name, game_path(current_end_user, name: game.name), method: :delete, class: "btn btn-outline-danger"
+
+div
+  = form_with model: current_end_user, url: game_path(current_end_user) do |f|
+    = f.collection_check_boxes :game_ids, Game.all, :id, :name, include_hidden: false do |game|
+      = game.label do
+        = game.check_box
+        = game.text
+
+div
+  | ゲーム新規作成
+= form_with model: @game do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.submit "ゲーム登録"

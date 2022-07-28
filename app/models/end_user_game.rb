@@ -19,6 +19,6 @@
 #  game_id      (game_id => games.id)
 #
 class EndUserGame < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :game
 end

@@ -34,6 +34,8 @@ class EndUser < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :end_user_games
+  has_many :games, through: :end_user_games
 
   def follow(user)
     relationships.create(followed_id: user.id)

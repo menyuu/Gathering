@@ -23,12 +23,12 @@ class EndUser::TagsController < ApplicationController
   end
 
   def destroy
-      tag = Tag.find_by(name: params[:name])
-      if current_end_user.tags.size > 1
-        current_end_user.tags.delete(tag)
-        redirect_to request.referer
-      else
-        redirect_to request.referer
-      end
+    tag = Tag.find_by(name: params[:name])
+    if current_end_user.tags.size > 1
+      current_end_user.tags.delete(tag)
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
   end
 end
