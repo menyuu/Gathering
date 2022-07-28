@@ -24,6 +24,10 @@ class Group < ApplicationRecord
   has_many :group_chats, dependent: :destroy
   has_many :group_tags, dependent: :destroy
   has_many :tags, through: :group_tags
+  has_many :group_genres, dependent: :destroy
+  has_many :genres, through: :group_genres
+  has_many :group_games, dependent: :destroy
+  has_many :games, through: :group_games
 
   has_one_attached :icon
 

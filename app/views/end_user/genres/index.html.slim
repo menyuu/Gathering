@@ -1,13 +1,13 @@
 div
   | タグ
   div
-  - @genres.each do |genre|
-    = link_to genre.name, genre_path(current_end_user, name: genre.name), method: :patch, class: "btn btn-outline-primary"
-    = link_to genre.name, genre_path(current_end_user, name: genre.name), method: :delete, class: "btn btn-outline-danger"
+    - @genres.each do |genre|
+      = link_to genre.name, genre_path(current_end_user, name: genre.name, model: "user"), method: :patch, class: "btn btn-outline-primary"
+      = link_to genre.name, genre_path(current_end_user, name: genre.name, model: "user"), method: :delete, class: "btn btn-outline-danger"
 
 div
   = form_with model: current_end_user, url: genre_path(current_end_user) do |f|
-     = f.collection_check_boxes :genre_ids, Genre.all, :id, :name, include_hidden: false do |genre|
+    = f.collection_check_boxes :genre_ids, Genre.all, :id, :name, include_hidden: false do |genre|
       = genre.label do
         = genre.check_box
         = genre.text
@@ -17,4 +17,5 @@ div
 = form_with model: @genre do |f|
   = f.label :name
   = f.text_field :name
+  = f.hidden_field :model, value: "user"
   = f.submit "ジャンル登録"

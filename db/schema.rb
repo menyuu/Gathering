@@ -136,10 +136,10 @@ ActiveRecord::Schema.define(version: 2022_07_27_135249) do
 
   create_table "group_games", force: :cascade do |t|
     t.integer "group_id", null: false
-    t.integer "genre_id", null: false
+    t.integer "game_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["genre_id"], name: "index_group_games_on_genre_id"
+    t.index ["game_id"], name: "index_group_games_on_game_id"
     t.index ["group_id"], name: "index_group_games_on_group_id"
   end
 
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_135249) do
   add_foreign_key "favorites", "posts"
   add_foreign_key "group_chats", "end_users"
   add_foreign_key "group_chats", "groups"
-  add_foreign_key "group_games", "genres"
+  add_foreign_key "group_games", "games"
   add_foreign_key "group_games", "groups"
   add_foreign_key "group_genres", "genres"
   add_foreign_key "group_genres", "groups"

@@ -8,6 +8,10 @@ class EndUser::GroupsController < ApplicationController
     @group_chat = GroupChat.new
     @tags = Tag.all
     @tag = Tag.new
+    @genres = Genre.all
+    @genre = Genre.new
+    @games = Game.all
+    @game = Game.new
   end
 
   def new

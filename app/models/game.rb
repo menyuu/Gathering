@@ -10,4 +10,6 @@
 class Game < ApplicationRecord
   has_many :end_user_games, dependent: :destroy
   has_many :users, through: :end_user_games, source: :end_user
+  has_many :group_games
+  has_many :groups, through: :group_games
 end
