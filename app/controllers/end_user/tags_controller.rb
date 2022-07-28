@@ -1,4 +1,6 @@
 class EndUser::TagsController < ApplicationController
+  # before_action :add_object, only: [:update]
+
   def index
     @tags = Tag.all
     @tag = Tag.new
