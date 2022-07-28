@@ -21,6 +21,8 @@ class Group < ApplicationRecord
   belongs_to :owner, class_name: "EndUser"
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :users, through: :user_groups, source: :user
+  has_many :group_chats, dependent: :destroy
+  
   has_one_attached :icon
 
   def group_icon(width, height)

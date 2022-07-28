@@ -5,6 +5,7 @@ class EndUser::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @group_chat = GroupChat.new
   end
 
   def new

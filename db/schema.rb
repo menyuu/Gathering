@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_135249) do
   create_table "group_chats", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "group_id", null: false
-    t.text "chat", null: false
+    t.text "text", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_group_chats_on_end_user_id"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_135249) do
   create_table "posts", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.text "text", null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_posts_on_end_user_id"

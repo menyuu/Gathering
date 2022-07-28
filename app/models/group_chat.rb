@@ -3,7 +3,7 @@
 # Table name: group_chats
 #
 #  id          :integer          not null, primary key
-#  chat        :text             not null
+#  text        :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  end_user_id :integer          not null
@@ -20,6 +20,6 @@
 #  group_id     (group_id => groups.id)
 #
 class GroupChat < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :group
 end

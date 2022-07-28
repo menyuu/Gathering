@@ -1,4 +1,6 @@
 div
+  = @post.user.name
+div
   = @post.text
 div
   - @post.images.each do |image|

@@ -21,7 +21,8 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     resources :groups do
-      resource :end_user_groups, only: [:create, :destroy], as: "user_group"
+      resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
+      resources :group_chats, only: [:create, :destroy], as: "chats"
     end
 
     resources :tags, only: [:index, :create, :update, :destroy]

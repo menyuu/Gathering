@@ -13,7 +13,22 @@ div
 div
   - if @group.is_ownerd_by?(current_end_user)
     = link_to "編集", edit_group_path(@group)
-  - if @group.includesUser?(current_end_user)
-    = link_to "グループを抜ける", group_user_group_path(@group), method: :delete, class: "btn btn-outline-danger"
+  - elsif @group.includesUser?(current_end_user)
+    = link_to "グループを抜ける", group_user_groups_path(@group), method: :delete, class: "btn btn-outline-danger"
   - else
-    = link_to "グループに入る", group_user_group_path(@group), method: :post, class: "btn btn-outline-primary"
+    = link_to "グループに入る", group_user_groups_path(@group), method: :post, class: "btn btn-outline-primary"
+div
+  | コメント件数：
+  = @group.group_chats.count
+div
+  - @group.group_chats.each do |chat|
+    div
+      = chat.user.name
+      = chat.text
+      = chat.created_at.strftime("%H時%M分 %Y年%m月%d日")
+      - if chat.user == current_end_user
+        = link_to "削除", group_chat_path(chat.group, chat), method: :delete
+div
+  = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
+    = f.text_area :text
+    = f.submit

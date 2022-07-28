@@ -1,0 +1,2 @@
+module EndUser::GroupChatsHelper
+end

@@ -3,7 +3,7 @@
 # Table name: group_chats
 #
 #  id          :integer          not null, primary key
-#  chat        :text             not null
+#  text        :text             not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  end_user_id :integer          not null
