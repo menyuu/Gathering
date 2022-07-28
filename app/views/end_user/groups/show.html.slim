@@ -1,0 +1,14 @@
+div
+  = image_tag @group.group_icon(200, 200)
+  div
+  = @group.name
+  div
+  = @group.owner.name
+  div
+  - @group.users.each do |user|
+    div
+    = user.name
+  div
+  = @group.introduction
+div
+  = link_to "編集", edit_group_path(@group)

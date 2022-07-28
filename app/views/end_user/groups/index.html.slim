@@ -1,0 +1,11 @@
+div
+  - @groups.each do |group|
+    div
+    = link_to group_path(group)
+      = image_tag group.group_icon(100, 100)
+    div
+    = link_to group.name, group_path(group)
+    div
+    = group.owner.name
+    div
+    = group.introduction

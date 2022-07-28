@@ -1,0 +1,9 @@
+div
+  = form_with model: @group do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.label :introduction
+    = f.text_area :introduction
+    = f.label :icon
+    = f.file_field :icon, accept: "image/*"
+    = f.submit "新規作成"
