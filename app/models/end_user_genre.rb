@@ -19,6 +19,6 @@
 #  genre_id     (genre_id => genres.id)
 #
 class EndUserGenre < ApplicationRecord
-  belongs_to :user, class_name: "EndUser", foreign_key: :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :genre
 end

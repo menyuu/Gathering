@@ -36,6 +36,8 @@ class EndUser < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :end_user_games
   has_many :games, through: :end_user_games
+  has_many :end_user_genres
+  has_many :genres, through: :end_user_genres
 
   def follow(user)
     relationships.create(followed_id: user.id)

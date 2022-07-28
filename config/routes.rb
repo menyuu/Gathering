@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
+    resources :genres, only: [:index, :create, :update, :destroy]
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
