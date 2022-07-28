@@ -11,4 +11,9 @@ div
   div
   = @group.introduction
 div
-  = link_to "編集", edit_group_path(@group)
+  - if @group.is_ownerd_by?(current_end_user)
+    = link_to "編集", edit_group_path(@group)
+  - if @group.includesUser?(current_end_user)
+    = link_to "グループを抜ける", group_user_group_path(@group), method: :delete, class: "btn btn-outline-danger"
+  - else
+    = link_to "グループに入る", group_user_group_path(@group), method: :post, class: "btn btn-outline-primary"

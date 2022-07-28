@@ -19,8 +19,8 @@
 #
 class Group < ApplicationRecord
   belongs_to :owner, class_name: "EndUser"
-  has_many :end_user_groups, dependent: :destroy
-  has_many :users, through: :end_user_groups, source: :user
+  has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
+  has_many :users, through: :user_groups, source: :user
   has_one_attached :icon
 
   def group_icon(width, height)
@@ -33,5 +33,9 @@ class Group < ApplicationRecord
 
   def is_ownerd_by?(user)
     owner.id == user.id
+  end
+
+  def includesUser?(user)
+    user_groups.exists?(end_user_id: user.id)
   end
 end

@@ -38,9 +38,9 @@ class EndUser < ApplicationRecord
   has_many :games, through: :end_user_games
   has_many :end_user_genres
   has_many :genres, through: :end_user_genres
-  has_many :end_user_groups, dependent: :destroy
-  has_many :groups, through: :end_user_groups
-  
+  has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
+  has_many :groups, through: :user_groups
+
 
   def follow(user)
     relationships.create(followed_id: user.id)

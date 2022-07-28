@@ -20,7 +20,10 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
     end
-    resources :groups
+    resources :groups do
+      resource :end_user_groups, only: [:create, :destroy], as: "user_group"
+    end
+
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
