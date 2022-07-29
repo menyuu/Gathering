@@ -22,6 +22,11 @@ div
         = @post.favorites.count
         | いいね
 div
+  - if @post.status == "draft"
+    = link_to "編集", edit_post_path
+  = link_to "削除", post_path(@post), method: :delete
+
+div
   | コメント件数：
   = @post.post_comments.count
 div

@@ -16,9 +16,10 @@ Rails.application.routes.draw do
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
     end
-    resources :posts, except: [:edit, :update] do
+    resources :posts do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
+      get "draft", on: :collection
     end
     resources :groups do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"

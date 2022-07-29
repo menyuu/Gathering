@@ -23,6 +23,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many_attached :images
 
+  enum status: { published: 0, draft: 1 }
+
   def favorited_by?(user)
     favorites.exists?(end_user_id: user.id)
   end
