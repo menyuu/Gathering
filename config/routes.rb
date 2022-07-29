@@ -18,8 +18,11 @@ Rails.application.routes.draw do
     end
     resources :posts do
       resources :post_comments, only: [:create, :destroy], as: "comments"
-      resource :favorites, only: [:create, :destroy]
-      get "draft", on: :collection
+      resource :favorites, only: [:favorite, :create, :destroy]
+      collection do
+        get "draft"
+        get "timeline"
+      end
     end
     resources :groups do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"

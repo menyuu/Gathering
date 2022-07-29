@@ -7,10 +7,10 @@
 #  encrypted_password     :string           default(""), not null
 #  introduction           :text             default(""), not null
 #  name                   :string           not null
-#  public_status          :integer          default(0), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  status                 :integer          default(0), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -41,6 +41,8 @@ class EndUser < ApplicationRecord
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :groups, through: :user_groups
   has_many :group_chats, dependent: :destroy
+
+  enum status: { published: 0, limited: "限定公開", privately: "非公開" }
 
   def follow(user)
     relationships.create(followed_id: user.id)

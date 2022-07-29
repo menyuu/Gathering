@@ -34,6 +34,12 @@ class EndUser::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def timeline
+    posts = Post.where(status: 0)
+    users = current_end_user.followings << current_end_user
+    @posts = posts.where(end_user_id: users).order(created_at: :DESC)
+  end
+
   def draft
     @posts = current_end_user.posts.where(status: 1)
   end
