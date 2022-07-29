@@ -8,6 +8,22 @@ div
     = link_to image, "data-lightbox": image
       = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
 div
+  - @post.tags.each do |tag|
+    div
+    = tag.name
+div
+  | 投稿タグ一覧
+  div
+  - @post_tags.each do |tag|
+    = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :patch, class: "btn btn-outline-primary"
+    = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :delete, class: "btn btn-outline-danger"
+div
+  | 投稿タグ新規作成
+= form_with model: [@post, @post_tag], url: post_tags_path(@post) do |f|
+  = f.label :name
+  = f.text_field :name
+  = f.submit "投稿タグ登録"
+div
   = @post.created_at.strftime("%H時%M分 %Y年%m月%d日")
   - if @post.favorited_by?(current_end_user)
     div

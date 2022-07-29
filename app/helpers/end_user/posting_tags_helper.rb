@@ -1,0 +1,2 @@
+module EndUser::PostingTagsHelper
+end

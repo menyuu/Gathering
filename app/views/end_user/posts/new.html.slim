@@ -7,4 +7,6 @@ div
     = f.label :images
     = f.file_field :images, name: "post[images][]", multiple: true
     = f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"), k] }
+    = f.label :name
+    = f.text_field :name
     = f.submit "投稿する"

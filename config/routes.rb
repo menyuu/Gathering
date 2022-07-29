@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :posts do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
+      resources :posting_tags, only: [:create, :update, :destroy], as: "tags"
       collection do
         get "draft"
         get "timeline"
