@@ -15,10 +15,11 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy], as: "follows"
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
+      get "favorite" => "favorites#index", as: "favorites"
     end
     resources :posts do
       resources :post_comments, only: [:create, :destroy], as: "comments"
-      resource :favorites, only: [:favorite, :create, :destroy]
+      resource :favorites, only: [:create, :destroy]
       collection do
         get "draft"
         get "timeline"
