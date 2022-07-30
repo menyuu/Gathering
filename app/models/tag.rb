@@ -12,4 +12,15 @@ class Tag < ApplicationRecord
   has_many :users, through: :end_user_tags, source: :end_user
   has_many :group_tags, dependent: :destroy
   has_many :groups, through: :group_tags
+
+  def self.search_for(word)
+    tags = []
+    perfect_match_tags = Tag.where(name: word)
+    backward_match_tags = Tag.where("name LIKE ?", "#{word}%")
+    prefix_match_tags = Tag.where("name LIKE ?", "%#{word}")
+    partial_match_tags = Tag.where("name LIKE ?", "%#{word}%")
+    tags.push(perfect_match_tags, backward_match_tags, prefix_match_tags, partial_match_tags)
+    tags.flatten!
+    return unique_tags = tags.uniq { |tag| tag.id }
+  end
 end

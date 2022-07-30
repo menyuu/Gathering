@@ -26,10 +26,21 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   enum status: { published: 0, draft: 1 }
-  
+
   before_create -> { self.id = SecureRandom.random_number(10000000000000000000) }
 
   def favorited_by?(user)
     favorites.exists?(end_user_id: user.id)
+  end
+
+  def self.search_for(word)
+    posts = []
+    perfect_match_posts = Post.where(text: word)
+    backward_match_posts = Post.where("text LIKE ?", "#{word}%")
+    prefix_match_posts = Post.where("text LIKE ?", "%#{word}")
+    partial_match_posts = Post.where("text LIKE ?", "%#{word}%")
+    posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
+    posts.flatten!
+    return unique_posts = posts.uniq { |post| post.id }
   end
 end

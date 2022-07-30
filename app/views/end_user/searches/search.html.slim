@@ -1,0 +1,22 @@
+div
+  | 検索結果
+  - @search_result.each do |result|
+    div
+    - if @object == "post"
+      = result.text
+    - else
+      = result.name
+div
+  = link_to "ユーザー", search_path(object: "user", word: @word)
+div
+  = link_to "id", search_path(object: "id", word: @word, user_id: @word)
+div
+  = link_to "グループ", search_path(object: "group", word: @word)
+div
+  = link_to "投稿タグ", search_path(object: "post_tag", word: @word)
+div
+  = link_to "タグ", search_path(object: "tag", word: @word)
+div
+  = link_to "ジャンル", search_path(object: "genre", word: @word)
+div
+  = link_to "ゲーム", search_path(object: "game", word: @word)

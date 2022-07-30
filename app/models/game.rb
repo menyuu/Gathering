@@ -12,4 +12,15 @@ class Game < ApplicationRecord
   has_many :users, through: :end_user_games, source: :end_user
   has_many :group_games
   has_many :groups, through: :group_games
+
+  def self.search_for(word)
+    games = []
+    perfect_match_games = Game.where(name: word)
+    backward_match_games = Game.where("name LIKE ?", "#{word}%")
+    prefix_match_games = Game.where("name LIKE ?", "%#{word}")
+    partial_match_games = Game.where("name LIKE ?", "%#{word}%")
+    games.push(perfect_match_games, backward_match_games, prefix_match_games, partial_match_games)
+    games.flatten!
+    return unique_games = games.uniq { |game| game.id }
+  end
 end

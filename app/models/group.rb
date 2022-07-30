@@ -48,4 +48,15 @@ class Group < ApplicationRecord
   def includesUser?(user)
     user_groups.exists?(end_user_id: user.id)
   end
+
+  def self.search_for(word)
+    groups = []
+    perfect_match_groups = Group.where(name: word)
+    backward_match_groups = Group.where("name LIKE ?", "#{word}%")
+    prefix_match_groups = Group.where("name LIKE ?", "%#{word}")
+    partial_match_groups = Group.where("name LIKE ?", "%#{word}%")
+    groups.push(perfect_match_groups, backward_match_groups, prefix_match_groups, partial_match_groups)
+    groups.flatten!
+    return unique_groups = groups.uniq { |group| group.id }
+  end
 end

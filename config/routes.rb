@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
-    get "search" => "end_user/searches#search"
+    get "search" => "searches#search"
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

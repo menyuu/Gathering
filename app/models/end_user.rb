@@ -59,4 +59,27 @@ class EndUser < ApplicationRecord
     followings.include?(user)
   end
 
+  def self.search_for(object, word, user_id)
+    case object
+    when "id"
+      if EndUser.exists?(word)
+        specific_user = []
+        user = EndUser.where(id: user_id)
+        specific_user << user
+        return user
+      else
+        EndUser.all
+      end
+    when "user"
+      users = []
+      perfect_match_users = EndUser.where(name: word)
+      backward_match_users = EndUser.where("name LIKE ?", "#{word}%")
+      prefix_match_users = EndUser.where("name LIKE ?", "%#{word}")
+      partial_match_users = EndUser.where("name LIKE ?", "%#{word}%")
+      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users)
+      users.flatten!
+      return unique_users = users.uniq { |user| user.id }
+    end
+  end
+
 end
