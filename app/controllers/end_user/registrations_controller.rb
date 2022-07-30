@@ -5,15 +5,20 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
   def create
     @user = EndUser.new(sign_up_params)
-    render :new and return if params[:back]
-    super
+      @name = params[:end_user][:name]
+      @email = params[:end_user][:email]
+    if params[:back]
+      render :new
+    else
+      super
+    end
   end
 
   # GET /resource/edit
@@ -32,11 +37,19 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # end
 
   def confirm
-    @user = EndUser.new(
-      name: params[:end_user][:name],
-      email: params[:end_user][:email],
-      password: params[:end_user][:password]
-      )
+    if params[:end_user]
+      @user = EndUser.new(
+        name: params[:end_user][:name],
+        email: params[:end_user][:email],
+        password: params[:end_user][:password]
+        )
+    else
+      @user = EndUser.new(
+        name: params[:name],
+        email: params[:email],
+        password: params[:password]
+        )
+    end
   end
 
   def complete

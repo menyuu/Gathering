@@ -1,2 +1,29 @@
-h1 EndUser::Home#top
-p Find me in app/views/end_user/home/top.html.slim
+.container
+  .row
+    .col-8.col-lg-6.col-xl-5
+      - @posts.each do |post|
+        .card.bg-black.border-white.rounded-0
+          .card-body
+            .card-title
+              = link_to post.user.name, post_path(post)
+            .card-text
+              = post.text
+            .card-img.text-center
+              - post.images.first(4).each do |image|
+                = link_to image, "data-lightbox": image
+                  = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+    .col-3.offset-1.sticky-top.h-100
+      h2
+        | Log in
+      = form_with model: @user, url: end_user_session_path, local: true do |f|
+        .field
+          = f.label :email
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .field
+          = f.label :password
+          br
+          = f.password_field :password, autocomplete: "current-password"
+        .actions
+          = f.submit "Log in"
+      = link_to "登録する", new_end_user_registration_path

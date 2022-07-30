@@ -21,11 +21,7 @@ class EndUser::PostingTagsController < ApplicationController
   def destroy
     post = Post.find(params[:post_id])
     tag = PostingTag.find_by(name: params[:name])
-    if post.tags.size > 1
-      post.tags.delete(tag)
-      redirect_to request.referer
-    else
-      redirect_to request.referer
-    end
+    post.tags.delete(tag)
+    redirect_to request.referer
   end
 end
