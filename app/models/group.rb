@@ -31,6 +31,8 @@ class Group < ApplicationRecord
 
   has_one_attached :icon
 
+  before_create -> { self.id = SecureRandom.random_number(1000000000) }
+
   def group_icon(width, height)
     unless icon.attached?
       file_path = Rails.root.join('app/assets/images/group_no_image.png')

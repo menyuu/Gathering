@@ -7,10 +7,10 @@
 #  encrypted_password     :string           default(""), not null
 #  introduction           :text             default(""), not null
 #  name                   :string           not null
+#  public_status          :integer          default(0), not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
-#  status                 :integer          default(0), not null
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -44,6 +44,8 @@ class EndUser < ApplicationRecord
   has_many :group_chats, dependent: :destroy
 
   enum status: { published: 0, privately: 1 }
+
+  before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
   def follow(user)
     relationships.create(followed_id: user.id)

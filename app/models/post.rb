@@ -26,6 +26,8 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   enum status: { published: 0, draft: 1 }
+  
+  before_create -> { self.id = SecureRandom.random_number(10000000000000000000) }
 
   def favorited_by?(user)
     favorites.exists?(end_user_id: user.id)
