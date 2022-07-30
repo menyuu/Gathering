@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_29_104625) do
+ActiveRecord::Schema.define(version: 2022_07_30_043722) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2022_07_29_104625) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.text "introduction", default: "", null: false
-    t.integer "status", default: 0, null: false
+    t.integer "public_status", default: 0, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2022_07_29_104625) do
   create_table "post_comments", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "post_id", null: false
-    t.text "text", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_post_comments_on_end_user_id"

@@ -30,10 +30,10 @@ Rails.application.routes.draw do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
       resources :group_chats, only: [:create, :destroy], as: "chats"
     end
-
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
+    get "search" => "end_user/searches#search"
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
