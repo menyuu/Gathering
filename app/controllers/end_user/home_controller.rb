@@ -1,6 +1,10 @@
 class EndUser::HomeController < ApplicationController
   def top
-    @posts = Post.with_attached_images.order(created_at: :DESC)
     @user = EndUser.new
+    @posts = Post.with_attached_images.limit(5).order(created_at: :DESC)
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 end

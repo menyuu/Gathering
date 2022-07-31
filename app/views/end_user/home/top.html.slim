@@ -1,29 +1,20 @@
 .container
-  .row
-    .col-8.col-lg-6.col-xl-5
-      - @posts.each do |post|
-        .card.bg-black.border-white.rounded-0
-          .card-body
-            .card-title
-              = link_to post.user.name, post_path(post)
-            .card-text
-              = post.text
-            .card-img.text-center
-              - post.images.first(4).each do |image|
-                = link_to image, "data-lightbox": image
-                  = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
-    .col-3.offset-1.sticky-top.h-100
-      h2
-        | Log in
-      = form_with model: @user, url: end_user_session_path, local: true do |f|
-        .field
-          = f.label :email
-          br
-          = f.email_field :email, autofocus: true, autocomplete: "email"
-        .field
-          = f.label :password
-          br
-          = f.password_field :password, autocomplete: "current-password"
-        .actions
-          = f.submit "Log in"
-      = link_to "登録する", new_end_user_registration_path
+  .row.mx-auto
+    .col-8
+      #posts
+        = render "top"
+    .col-4.sticky-top.h-100
+      .card.rounded-0
+        .card-body
+          = form_with model: @user, url: end_user_session_path, local: true do |f|
+            .card-text.field.form-group
+              = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control"
+            .card-text.field.form-group
+              = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
+            .actions
+              = f.submit "ログイン", class: "btn btn-outline-dark w-100 mt-3"
+          .mt-5
+            | 初めてご利用ですか？
+            = link_to "登録する", new_end_user_registration_path
+
+= javascript_pack_tag 'test'

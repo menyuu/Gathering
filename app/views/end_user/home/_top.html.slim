@@ -1,0 +1,13 @@
+.row
+  .col-9.col-md-8.mx-auto
+    - @posts.each do |post|
+      .card.rounded-0
+        .card-body
+          .card-title
+            = link_to post.user.name, post_path(post)
+          .card-text
+            = post.text
+          .card-img.text-center
+            - post.images.first(4).each do |image|
+              = link_to image, "data-lightbox": image
+                = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
