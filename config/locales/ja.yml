@@ -7,5 +7,4 @@ ja:
     end_user:
       status:
         published: "公開"
-        limited: "限定公開"
         privately: "非公開"

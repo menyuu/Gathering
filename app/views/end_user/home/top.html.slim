@@ -12,7 +12,7 @@
             .card-text.field.form-group
               = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
             .actions
-              = f.submit "ログイン", class: "btn btn-outline-dark w-100 mt-3"
+                = f.submit "ログイン", class: "btn btn-outline-dark w-100 mt-3"
           .mt-5
             | 初めてご利用ですか？
             = link_to "登録する", new_end_user_registration_path

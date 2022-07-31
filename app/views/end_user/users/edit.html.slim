@@ -48,6 +48,19 @@
           .modal-footer
             button.btn.btn-primary data-bs-target="#editUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
             button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-
-
-    button.btn.btn-primary data-bs-toggle="modal" data-bs-target="#editUserModalToggle" type="button" プロフィール編集
+  .row
+    .col-8
+      button.btn.btn-primary data-bs-toggle="modal" data-bs-target="#editUserModalToggle" type="button" プロフィール編集
+    .col-4
+      | 現在の状態：
+      = @user.status_i18n
+      - if current_end_user.published?
+        = link_to close_user_path(@user), method: :patch
+          = check_box_tag :status
+          i.fa-solid.fa-lock
+          | 非公開にする
+      - else
+        = link_to open_user_path(@user), method: :patch
+          = check_box_tag :status, {}, checked: "checked"
+          i.fa-solid.fa-globe
+          | 公開する

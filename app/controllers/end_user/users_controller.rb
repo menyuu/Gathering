@@ -23,6 +23,18 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  def open_user
+    @user = EndUser.find(params[:id])
+    @user.published! unless @user.published?
+    redirect_to request.referer
+  end
+
+  def close_user
+    @user = EndUser.find(params[:id])
+    @user.privately! unless @user.privately?
+    redirect_to request.referer
+  end
+
   private
 
   def user_params

@@ -17,6 +17,10 @@ Rails.application.routes.draw do
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"
       get "favorite" => "favorites#index", as: "favorites"
+      member do
+        patch "open" => "users#open_user"
+        patch "close" => "users#close_user"
+      end
     end
     resources :posts do
       resources :post_comments, only: [:create, :destroy], as: "comments"
