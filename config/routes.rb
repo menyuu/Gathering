@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :end_users, path: "users", skip: [:password], controllers: {
+  devise_for :end_users, path: "users", controllers: {
     registrations: "end_user/registrations",
-    sessions: "end_user/sessions"
+    sessions: "end_user/sessions",
+    passwords: "end_user/passwords"
   }
 
   devise_scope :end_user do
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
 
   scope module: :end_user do
     root to: "home#top"
-    resources :users do
+    resources :users, except: [:new] do
       resource :relationships, only: [:create, :destroy], as: "follows"
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"

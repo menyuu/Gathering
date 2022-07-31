@@ -42,10 +42,20 @@ class EndUser < ApplicationRecord
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :groups, through: :user_groups
   has_many :group_chats, dependent: :destroy
+  
+  has_one_attached :icon
 
   enum status: { published: 0, privately: 1 }
 
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
+  
+  def user_icon(width, height)
+    unless icon.attached?
+      file_path = Rails.root.join('app/assets/images/user_no_image.png')
+      icon.attach(io: File.open(file_path), filename: 'user-default-image.png', content_type: 'image/png')
+    end
+    icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0").processed
+  end
 
   def follow(user)
     relationships.create(followed_id: user.id)
