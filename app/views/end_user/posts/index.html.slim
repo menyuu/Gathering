@@ -1,6 +1,6 @@
 div
   | 投稿一覧
-div
+.scroll-list.jscroll
   - @posts.each do |post|
     .mt-5
     = link_to post.user.name, post_path(post)
@@ -10,3 +10,6 @@ div
       .mt-2
       = link_to image, "data-lightbox": image
         = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
+    .skill-list
+      = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+      = link_to_next_page @posts, "次のページ", class: "next d-none"

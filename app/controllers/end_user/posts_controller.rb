@@ -1,6 +1,6 @@
 class EndUser::PostsController < ApplicationController
   def index
-    @posts = Post.where(status: 0)
+    @posts = Post.where(status: 0).order(created_at: :DESC).page(params[:page]).without_count.per(1)
   end
 
   def show
