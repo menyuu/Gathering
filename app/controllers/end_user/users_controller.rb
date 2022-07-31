@@ -7,9 +7,6 @@ class EndUser::UsersController < ApplicationController
     @user = EndUser.find(params[:id])
   end
 
-  def new
-  end
-
   def edit
     @user = EndUser.find(params[:id])
   end

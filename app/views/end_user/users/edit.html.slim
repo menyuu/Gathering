@@ -17,8 +17,8 @@
                 = f.email_field :email, class: "form-control"
               = f.submit "保存", class: "btn btn-primary"
           .modal-footer
+            a.mr-auto href="" data-bs-target="#editPasswordModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" パスワードを変更する
             button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-            button.btn.btn-primary data-bs-target="#editPasswordModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" パスワードを変更する
     .modal.fade#editPasswordModalToggle tabindex="-1" aria-labelledby="editPasswordModalToggle" aria-hidden="true"
       .modal-dialog.modal-dialog-centered
         .modal-content
@@ -46,8 +46,8 @@
                 .actions
                   = f.submit "保存"
           .modal-footer
-            button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
             button.btn.btn-primary data-bs-target="#editUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
+            button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
 
 
     button.btn.btn-primary data-bs-toggle="modal" data-bs-target="#editUserModalToggle" type="button" プロフィール編集

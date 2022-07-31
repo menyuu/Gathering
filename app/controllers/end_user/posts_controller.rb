@@ -16,14 +16,23 @@ class EndUser::PostsController < ApplicationController
 
   def create
     post = current_end_user.posts.new(post_params)
-    post.save
-    tags = params[:post][:name].split(",")
-    tags.each do |tag|
-      tag = PostingTag.find_or_create_by(name: tag)
-      post.tags.delete(tag)
-      post.tags << tag
+    case params[:post][:status]
+    when "0"
+      post.status = "published"
+    when "1"
+      post.status = "draft"
     end
-    redirect_to post_path(post)
+    if post.save
+      tags = params[:post][:name].split(",")
+      tags.each do |tag|
+        tag = PostingTag.find_or_create_by(name: tag)
+        post.tags.delete(tag)
+        post.tags << tag
+      end
+      redirect_to post_path(post)
+    else
+      render :new
+    end
   end
 
   def edit
@@ -55,6 +64,6 @@ class EndUser::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:text, :status, :tag_name, images: [])
+    params.require(:post).permit(:text, :status, posting_tags: [:name], images: [])
   end
 end
