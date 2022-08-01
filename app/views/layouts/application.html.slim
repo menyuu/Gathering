@@ -12,11 +12,13 @@ html
     link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet"
     script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
     script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"
-  body
-    = render "layouts/header"
-    = render "end_user/searches/form"
-    h1
-      |
-      - if end_user_signed_in?
-        = current_end_user.name
-    = yield
+  body.d-flex.flex-column.vh-100
+    header.shadow-sm.sticky-top
+      = render "layouts/header"
+    main
+      .container-fluid
+        .row
+          .col-2.h-100.sidebar
+            = render "layouts/sidebar"
+          .col-10.mt-5
+            = yield

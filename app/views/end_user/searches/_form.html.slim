@@ -1,5 +1,6 @@
-div
-  = form_with url: search_path, method: :get, local: true do |f|
-    = f.text_field :word
+= form_with url: search_path, method: :get, local: true, class: "form-inline" do |f|
+  .input-group
+    = f.text_field :word, placeholder: "検索", class: "form-control rounded-pill"
     = f.hidden_field :object, value: "post"
-    = f.submit "検索"
+    = button_tag(type: "submit", class: "btn rounded-pill")
+      i.fas.fa-search

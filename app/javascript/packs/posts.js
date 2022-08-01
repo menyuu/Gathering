@@ -1,6 +1,6 @@
 /* global $*/
 /* global location $*/
-  const milliseconds = 10000;
+  const milliseconds = 300000;
   const sync = function() {
     $.ajax({
       type: 'GET',

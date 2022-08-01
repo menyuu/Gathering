@@ -1,15 +1,18 @@
-div
-  | 投稿一覧
-.scroll-list.jscroll
-  - @posts.each do |post|
-    .mt-5
-    = link_to post.user.name, post_path(post)
-    div
-    = post.text
-    - post.images.each do |image|
-      .mt-2
-      = link_to image, "data-lightbox": image
-        = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
-    .skill-list
-      = link_to_prev_page @posts, "前のページ", class: "prev d-none"
-      = link_to_next_page @posts, "次のページ", class: "next d-none"
+.container
+  .row
+    .col.mx-auto.mt-5
+      .scroll-list.jscroll
+        - @posts.each do |post|
+          .card.posts-area.col-6.offset-2
+            .card-body
+              .card-title
+                = link_to post.user.name, post_path(post)
+              .card-text
+                = post.text
+              .card-img.text-center
+                - post.images.first(4).each do |image|
+                  = link_to image, "data-lightbox": image
+                    = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+            .skill-list
+              = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+              = link_to_next_page @posts, "次のページ", class: "next d-none"

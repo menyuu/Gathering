@@ -1,13 +1,31 @@
-div
-  h2
-    | 確認画面
-  = form_with model: @user, url: end_user_registration_path, local: true do |f|
-    = f.label :name
-    = f.text_field :name, value: @user.name, readonly: true
-    = f.label :email
-    = f.email_field :email, value: @user.email, readonly: true
-    = f.label :password
-    = f.password_field :password, value: @user.password, readonly: true
-
-    = f.submit "修正する", name: :back
-    = f.submit "登録する"
+.container
+  .row
+    .col-12
+      .card.col-12.col-sm-10.col-md-8.col-lg-5.px-2.px-sm-0.mx-auto.shadow
+        .card-body
+          h2.card-title
+          | アカウントを作成
+          = form_with model: @user, url: end_user_registration_path, local: true do |f|
+            .card-text.field.form-group
+              = f.label :name, "名前"
+              = f.text_field :name, class: "form-control", id: "input-name", readonly: true
+            .form-froup
+              = f.label :email, "メールアドレス"
+              = f.email_field :email, class: "form-control", id: "input-email", readonly: true
+            .field.form-group
+              = f.label :password, "パスワード"
+              - if @minimum_password_length
+                em
+                  | (
+                  = @minimum_password_length
+                  |  characters minimum)
+              br
+              = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password", readonly: true
+            .field.form-group
+              = f.label :password_confirmation, "パスワード(確認)"
+              br
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation", readonly: true
+            .actions.mt-3
+              = f.submit "アカウントを作成する", class: "btn btn-primary w-100"
+            .mt-3
+              = f.submit "修正する", name: :back, class: "btn btn-secondary w-100"

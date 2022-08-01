@@ -16,6 +16,16 @@
 
 body {
   height: 100%;
+  background-color: white;
+}
+
+header {
+  z-index: 1080;
+}
+
+.sidebar {
+  position: sticky;
+  top: 160px;
 }
 
 .sign-in-area {
