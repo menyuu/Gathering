@@ -1,12 +1,30 @@
-div
-  | タイムライン
-div
-  - @posts.each do |post|
-    .mt-5
-    = link_to post.user.name, post_path(post)
-    div
-    = post.text
-    - post.images.each do |image|
-      .mt-2
-      = link_to image, "data-lightbox": image
-        = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
+.container
+  .row
+    .col.mx-auto.mt-5
+      .scroll-list.jscroll
+        - @posts.each do |post|
+          .card.posts-area.col-6.offset-2
+            = link_to post_path(post)
+              .card-body
+                .card-title
+                  span.post-link data-link="#{user_path(post.user)}"
+                  = post.user.name
+                .card-text
+                  = post.text
+                .card-img.text-center
+                  - post.images.each do |image|
+                    = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                .card-text
+                  - post.tags.each do |tag|
+                    button.btn.btn-outline-primary
+                      = tag.name
+                .card-text
+                  = time_ago_in_words(post.created_at)
+                  | 前
+                  = post.created_at.strftime("%H時%M分 %Y年%m月%d日")
+                .card-text
+                  div class="favorite_btn_#{post.id}"
+                    = render "end_user/favorites/favorite", post: post
+            .skill-list
+              = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+              = link_to_next_page @posts, "次のページ", class: "next d-none"

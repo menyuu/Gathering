@@ -1,10 +1,10 @@
 class EndUser::PostsController < ApplicationController
   def index
-    @posts = Post.where(status: 0).order(created_at: :DESC).page(params[:page]).without_count.per(1)
+    @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
     @post_tags = PostingTag.all
@@ -52,9 +52,9 @@ class EndUser::PostsController < ApplicationController
   end
 
   def timeline
-    posts = Post.where(status: 0)
+    posts = Post.where(status: "published")
     users = current_end_user.followings << current_end_user
-    @posts = posts.where(end_user_id: users).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users).with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def draft

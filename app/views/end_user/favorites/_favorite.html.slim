@@ -1,0 +1,12 @@
+- if signed_in?
+  - if post.favorited_by?(current_end_user)
+    = link_to post_favorites_path(post), method: :delete, remote: true
+      i.fa-solid.fa-heart
+    = post.favorites.count
+  - else
+    = link_to post_favorites_path(post), method: :post, remote: true
+      i.fa-regular.fa-heart
+    = post.favorites.count
+- else
+  = link_to new_end_user_session_path
+    i.fa-regular.fa-hart

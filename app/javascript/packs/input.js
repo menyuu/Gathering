@@ -1,6 +1,6 @@
 /* global $*/
 $(document).on('turbolinks:load', function() {
-  $('#form').click(function() {
+  $('#form').click(function(e) {
     const name = $('#input-name').val();
     const email = $('#input-email').val();
     const password = $('#input-password').val();
