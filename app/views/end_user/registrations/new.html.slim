@@ -1,28 +1,30 @@
-h2
-  | Sign up
-= form_with model: @end_user, url: users_sign_up_confirm_path(@user), id: "new_end_user", class: "new_end_user", local: true do |f|
-  = render "end_user/shared/error_messages", resource: resource
-  .field
-    = f.label :name,名前
-    br
-    = f.text_field :name, autofocus: true, autocomplete: "name", value: @name
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autocomplete: "email", value: @email
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "end_user/shared/links"
+.container
+  .row
+    .col-12
+      .card.col-6.mx-auto
+        .card-body
+          h2.card-title
+            | アカウントを作成
+          = form_with model: @user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
+            .card-text.field.form-group
+              = f.label :name, "名前"
+              = f.text_field :name, class: "form-control", id: "input-name"
+            .form-froup
+              = f.label :email, "メールアドレス"
+              = f.email_field :email, class: "form-control", id: "input-email"
+            .field.form-group
+              = f.label :password, "パスワード"
+              - if @minimum_password_length
+                em
+                  | (
+                  = @minimum_password_length
+                  |  characters minimum)
+              br
+              = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password"
+            .field
+              = f.label :password_confirmation, "パスワード(確認)"
+              br
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
+            .actions
+              = f.submit "保存", class: "btn btn-primary"
+            = link_to "ログイン", new_end_user_session_path
