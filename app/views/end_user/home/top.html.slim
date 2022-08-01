@@ -1,9 +1,82 @@
 .container
   .row.mx-auto
     .col-8
-      #posts
-        = render "top"
-    .col-4.sticky-top.h-100
+      h1
+        | ゲーム×趣味で広がるリング
+      h5
+        | Gatheringをはじめる
+      .modal.fade#newUserModalToggle tabindex="-1" aria-labelledby="newUserModalToggle" aria-hidden="true"
+        .modal-dialog.modal-dialog-centered
+          .modal-content
+            .modal-header
+              h5.modal-title#newUserModalToggle
+                | アカウントを作成
+              button.btn data-bs-dismiss="modal" aria-label="close" ×
+            .modal-body
+              = form_with model: @user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
+                .form-group
+                  = f.label :name, "名前"
+                  = f.text_field :name, class: "form-control", id: "input-name"
+                .form-froup
+                  = f.label :email, "メールアドレス"
+                  = f.email_field :email, class: "form-control", id: "input-email"
+                .field.form-group
+                  = f.label :password, "パスワード"
+                  - if @minimum_password_length
+                    em
+                      | (
+                      = @minimum_password_length
+                      |  characters minimum)
+                  br
+                  = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password"
+                .field
+                  = f.label :password_confirmation, "パスワード(確認)"
+                  br
+                  = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
+            .modal-footer
+              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+              button.btn.btn-primary.mr-auto#form data-bs-target="#newUserConfirmModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 確認
+      .modal.fade#newUserConfirmModalToggle tabindex="-1" aria-labelledby="newUserModalToggle" aria-hidden="true"
+        .modal-dialog.modal-dialog-centered
+          .modal-content
+            .modal-header
+              h5.modal-title#newUserConfirmModalToggle
+                | アカウントを作成(確認画面)
+              button.btn data-bs-dismiss="modal" aria-label="close" ×
+            .modal-body
+              = form_with model: @user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
+                .form-group
+                  = f.label :name, "名前"
+                  = f.text_field :name, class: "form-control", id: "output-name", readonly: true
+                .form-froup
+                  = f.label :email, "メールアドレス"
+                  = f.email_field :email, class: "form-control", id: "output-email", readonly: true
+                .field.form-group
+                  = f.label :password, "パスワード"
+                  - if @minimum_password_length
+                    em
+                      | (
+                      = @minimum_password_length
+                      |  characters minimum)
+                  br
+                  = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "output-password", readonly: true
+                .field
+                  = f.label :password_confirmation, "パスワード(確認)"
+                  br
+                  = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "output-password-confirmation", readonly: true
+                = f.submit "保存", class: "btn btn-primary"
+            .modal-footer
+              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+              button.btn.btn-primary.mr-auto#form href="" data-bs-target="#newUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
+      .row
+        .col-8
+          button.btn.btn-primary data-bs-toggle="modal" data-bs-target="#newUserModalToggle" type="button" メールアドレスで登録
+
+      .row
+        .col-9.col-md-8.mx-auto.mt-5
+          #posts
+            = render "top"
+    .col-4.sticky-top.h-100.sign-in-area
       .card.rounded-0
         .card-body
           = form_with model: @user, url: end_user_session_path, local: true do |f|
@@ -15,6 +88,6 @@
                 = f.submit "ログイン", class: "btn btn-outline-dark w-100 mt-3"
           .mt-5
             | 初めてご利用ですか？
-            = link_to "登録する", new_end_user_registration_path
+            a href="" data-bs-toggle="modal" data-bs-target="#newUserModalToggle" アカウントを作成する
 
 = javascript_pack_tag 'posts.js'

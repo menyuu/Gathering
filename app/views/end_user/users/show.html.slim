@@ -1,4 +1,6 @@
 div
+= image_tag @user.user_icon(200, 200)
+div
   - unless current_end_user == @user
     - if current_end_user.following?(@user)
       = link_to "フォローを外す", user_follows_path(@user), method: :delete
@@ -7,8 +9,10 @@ div
 
 div
   = link_to "フォロー", user_followings_path(@user)
+  = @user.followings.count
   | |
   = link_to "フォロワー", user_followers_path(@user)
+  = @user.followers.count
 
 div
   = link_to "いいね", user_favorites_path(@user)
