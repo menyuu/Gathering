@@ -53,7 +53,7 @@ class EndUser::PostsController < ApplicationController
 
   def timeline
     posts = Post.where(status: "published")
-    users = current_end_user.followings << current_end_user
+    users = current_end_user.followings
     @posts = posts.where(end_user_id: users).with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
