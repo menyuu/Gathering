@@ -1,5 +1,5 @@
 /* global $*/
-/* global location $*/
+/* global location */
   const milliseconds = 300000;
   const sync = function() {
     $.ajax({

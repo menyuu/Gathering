@@ -4,8 +4,10 @@ div
   = form_with model: @post do |f|
     = f.label :text
     = f.text_area :text
-    = f.label :images
-    = f.file_field :images, name: "post[images][]", multiple: true
+    .form-group
+      = f.label :images
+        i.fa-regular.fa-image
+      = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
     .form-check.form-switch
       = f.check_box :status, {class: "form-check-input"}, "published", "draft"
       = f.label :status, "公開する", class: "form-check-label"

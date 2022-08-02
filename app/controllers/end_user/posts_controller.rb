@@ -1,6 +1,7 @@
 class EndUser::PostsController < ApplicationController
   def index
     @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @post_comment = PostComment.new
   end
 
   def show
