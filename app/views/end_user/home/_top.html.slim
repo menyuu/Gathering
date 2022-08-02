@@ -6,9 +6,10 @@
         span.text-dark
           = post.user.name
     .card-body
-      = link_to new_end_user_session_path, class: "posts-area-text"
+      = link_to new_end_user_session_path, class: "posts-area-text-container"
         .card-text.text-dark
-          = post.text
+          .posts-area-text
+            = post.text
         .card-img.text-center
           - post.images.each do |image|
             = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"

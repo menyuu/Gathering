@@ -1,9 +1,7 @@
-.container
-  .row
-    .col.mx-auto
+
       .scroll-list.jscroll
         - posts.each do |post|
-          .card.posts-area.offset-2
+          .card.posts-area.offset-2.rounded-0
             .card-body.pb-0
               = link_to user_path(post.user), class: "posts-area-user"
                 = image_tag post.user.user_icon(50, 50), class: "rounded-circle"

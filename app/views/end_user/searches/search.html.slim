@@ -2,10 +2,15 @@
   .col-8
     - case @object
     - when "post"
-      - @search_result.each do |result|
-        = result.text
+     .container
+        .row
+          .col.mx-auto
+            = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
     - when "post_tag"
-      = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
+      .container
+        .row
+          .col.mx-auto
+            = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
   .col-2
     = link_to "投稿", search_path(object: "post", word: @word)
 

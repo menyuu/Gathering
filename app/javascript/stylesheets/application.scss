@@ -26,6 +26,22 @@ textarea {
   top: 30%;
 }
 
+.file-uploader-image {
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.post-input {
+  &-item {
+    margin-right: 16px;
+  }
+  &-area {
+    &::placeholder {
+      padding-top: 80px;
+    }
+  }
+}
+
 .post-comment-container {
   display: none;
 }
@@ -48,7 +64,6 @@ textarea {
     }
   }
 }
-
 
 .post-item {
   margin-bottom: 24px;

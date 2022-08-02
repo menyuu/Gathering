@@ -22,7 +22,7 @@ Rails.application.routes.draw do
         patch "close" => "users#close_user"
       end
     end
-    resources :posts do
+    resources :posts, except: [:new] do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
       resources :posting_tags, only: [:create, :update, :destroy], as: "tags"

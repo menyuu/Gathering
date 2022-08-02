@@ -1,5 +1,6 @@
 class EndUser::PostsController < ApplicationController
   def index
+    @post = Post.new
     @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @post_comment = PostComment.new
   end
@@ -9,10 +10,6 @@ class EndUser::PostsController < ApplicationController
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
     @post_tags = PostingTag.all
-  end
-
-  def new
-    @post = Post.new
   end
 
   def create
@@ -53,14 +50,16 @@ class EndUser::PostsController < ApplicationController
   end
 
   def timeline
+    @post = Post.new
     posts = Post.includes(:user)
-    users =[]
+    users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users).includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def draft
+    @post = Post.new
     @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
