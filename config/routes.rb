@@ -26,9 +26,10 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
       resources :posting_tags, only: [:create, :update, :destroy], as: "tags"
+      # get ""
       collection do
         get "draft"
-        get "timeline"
+        get "index_all"
       end
     end
     resources :groups do

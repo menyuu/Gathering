@@ -12,6 +12,8 @@
           .col.mx-auto
             = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
   .col-2
+    = link_to "マルチプレイ", index_all_posts_path
+
     = link_to "投稿", search_path(object: "post", word: @word)
 
     = link_to "ユーザー", search_path(object: "user", word: @word)

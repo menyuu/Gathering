@@ -1,8 +1,11 @@
 class EndUser::PostsController < ApplicationController
   def index
     @post = Post.new
-    @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @post_comment = PostComment.new
+    posts = Post.includes(:user)
+    users = []
+    users.push(current_end_user.followings, current_end_user)
+    users.flatten!
+    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def show
@@ -13,24 +16,26 @@ class EndUser::PostsController < ApplicationController
   end
 
   def create
-    post = current_end_user.posts.new(post_params)
+    @post = current_end_user.posts.new(post_params)
     case params[:post][:status]
     when "0"
-      post.status = "published"
+      @post.status = "published"
     when "1"
-      post.status = "draft"
+      @post.status = "draft"
     end
-    if post.save
+    if @post.save
       tags = params[:post][:name].split(",")
       tags.each do |tag|
         tag = PostingTag.find_or_create_by(name: tag)
-        post.tags.delete(tag)
-        post.tags << tag
+        @post.tags.delete(tag)
+        @post.tags << tag
       end
-      redirect_to post_path(post)
-    else
-      render :new
     end
+    posts = Post.includes(:user)
+    users = []
+    users.push(current_end_user.followings, current_end_user)
+    users.flatten!
+    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def edit
@@ -49,18 +54,15 @@ class EndUser::PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def timeline
+  def index_all
     @post = Post.new
-    posts = Post.includes(:user)
-    users = []
-    users.push(current_end_user.followings, current_end_user)
-    users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @post_comment = PostComment.new
   end
 
   def draft
     @post = Post.new
-    @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = current_end_user.posts.where(status: "draft").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   private
