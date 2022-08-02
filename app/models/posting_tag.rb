@@ -13,10 +13,10 @@ class PostingTag < ApplicationRecord
 
   def self.search_for(word)
     post_tags = []
-    perfect_match_post_tags = PostingTag.where(name: word)
-    backward_match_post_tags = PostingTag.where("name LIKE ?", "#{word}%")
-    prefix_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}")
-    partial_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}%")
+    perfect_match_post_tags = PostingTag.where(name: word).order(created_at: :DESC)
+    backward_match_post_tags = PostingTag.where("name LIKE ?", "#{word}%").order(created_at: :DESC)
+    prefix_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}").order(created_at: :DESC)
+    partial_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}%").order(created_at: :DESC)
     post_tags.push(perfect_match_post_tags, backward_match_post_tags, prefix_match_post_tags, partial_match_post_tags)
     post_tags.flatten!
     return unique_post_tags = post_tags.uniq { |post_tag| post_tag.id }

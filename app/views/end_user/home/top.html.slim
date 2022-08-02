@@ -74,8 +74,10 @@
           button.btn.btn-primary data-bs-toggle="modal" data-bs-target="#newUserModalToggle" type="button" メールアドレスで登録
       .row
         .col-9.col-md-8.mx-auto.mt-5
+          h1.text-center
+            | みんなの新着の投稿
           #posts
-            = render "top"
+            = render "top", posts: @posts, post_comment: PostComment.new
     .col-4.sticky-top.h-100.sign-in-area
       .card
         .card-body

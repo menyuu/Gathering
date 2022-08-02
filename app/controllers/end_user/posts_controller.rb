@@ -53,11 +53,11 @@ class EndUser::PostsController < ApplicationController
   end
 
   def timeline
-    posts = Post.where(status: "published")
+    posts = Post.includes(:user)
     users =[]
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users).with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users).includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def draft

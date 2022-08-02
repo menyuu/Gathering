@@ -16,10 +16,10 @@ class Genre < ApplicationRecord
 
   def self.search_for(word)
     genres = []
-    perfect_match_genres = Genre.where(name: word)
-    backward_match_genres = Genre.where("name LIKE ?", "#{word}%")
-    prefix_match_genres = Genre.where("name LIKE ?", "%#{word}")
-    partial_match_genres = Genre.where("name LIKE ?", "%#{word}%")
+    perfect_match_genres = Genre.where(name: word).order(created_at: :DESC)
+    backward_match_genres = Genre.where("name LIKE ?", "#{word}%").order(created_at: :DESC)
+    prefix_match_genres = Genre.where("name LIKE ?", "%#{word}").order(created_at: :DESC)
+    partial_match_genres = Genre.where("name LIKE ?", "%#{word}%").order(created_at: :DESC)
     genres.push(perfect_match_genres, backward_match_genres, prefix_match_genres, partial_match_genres)
     genres.flatten!
     return unique_genres = genres.uniq { |genre| genre.id }

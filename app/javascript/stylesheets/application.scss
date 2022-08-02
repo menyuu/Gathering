@@ -1,2 +1,60 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+body {
+  height: 100%;
+  background-color: white;
+  margin-bottom: 80px;
+}
+
+header {
+  z-index: 1080;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 160px;
+}
+
+.sign-in-area {
+  top: 30%;
+}
+
+.post-comment-container {
+  display: none;
+}
+
+.posts-area {
+  &-text {
+    text-decoration: none;
+  }
+  &-user {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+
+.post-item {
+  &-comment {
+    margin-right: 16px;
+  }
+  &-favorite {
+    margin-right: 16px;
+  }
+  &-time-path {
+    margin-right: 8px;
+  }
+}
+
+.tag-item {
+  margin-right: 16px;
+}

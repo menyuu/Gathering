@@ -16,10 +16,10 @@ class Tag < ApplicationRecord
 
   def self.search_for(word)
     tags = []
-    perfect_match_tags = Tag.where(name: word)
-    backward_match_tags = Tag.where("name LIKE ?", "#{word}%")
-    prefix_match_tags = Tag.where("name LIKE ?", "%#{word}")
-    partial_match_tags = Tag.where("name LIKE ?", "%#{word}%")
+    perfect_match_tags = Tag.where(name: word).order(created_at: :DESC)
+    backward_match_tags = Tag.where("name LIKE ?", "#{word}%").order(created_at: :DESC)
+    prefix_match_tags = Tag.where("name LIKE ?", "%#{word}").order(created_at: :DESC)
+    partial_match_tags = Tag.where("name LIKE ?", "%#{word}%").order(created_at: :DESC)
     tags.push(perfect_match_tags, backward_match_tags, prefix_match_tags, partial_match_tags)
     tags.flatten!
     return unique_tags = tags.uniq { |tag| tag.id }

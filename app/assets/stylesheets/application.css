@@ -13,31 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-body {
-  height: 100%;
-  background-color: white;
-  margin-bottom: 80px;
-}
-
-header {
-  z-index: 1080;
-}
-
-textarea {
-  resize: none;
-  height: 120px;
-}
-
-.sidebar {
-  position: sticky;
-  top: 160px;
-}
-
-.sign-in-area {
-  top: 30%;
-}
-
-.post-comment-container {
-  display: none;
-}

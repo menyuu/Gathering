@@ -1,0 +1,59 @@
+.container
+  .row
+    .col.mx-auto.mt-5
+      .scroll-list.jscroll
+        - posts.each do |post|
+          .card.posts-area.col-6.offset-2
+            .card-body
+              = link_to user_path(post.user), class: "posts-area-user"
+                = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+                span.text-dark
+                  = post.user.name
+            .card-body
+              = link_to post_path(post), class: "posts-area-text"
+                .card-text.text-dark
+                  = post.text
+                .card-img.text-center
+                  - post.images.each do |image|
+                    = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+            .card-dody
+              .container
+                .card-text
+                  - post.tags.each do |tag|
+                    = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-outline-dark"
+                .card-text
+                  = time_ago_in_words(post.created_at)
+                  | 前
+                  = post.created_at.strftime("%H時%M分 %Y年%m月%d日")
+                .card-text
+                  a data-bs-toggle="modal" data-bs-target="#postComment#{post.id}ModalToggle" data-link="postComment#{post.id}ModalToggle"
+                    i.fa-regular.fa-comment
+                    = post.post_comments.count
+                  .modal.fade id="postComment#{post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{post.id}ModalToggle" aria-hidden="true"
+                    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+                      .modal-content
+                        .modal-header
+                          div id="#postComment#{post.id}ModalToggle"
+                          button.btn data-bs-dismiss="modal" aria-label="close" ×
+                        .modal-body
+                          .row
+                            = link_to post.user.name, user_path(post.user)
+                          .row
+                          = post.text
+                          .row
+                          - post.images.first(4).each do |image|
+                            = link_to image, "data-lightbox": image
+                              = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                          = form_with model: post_comment, url: post_comments_path(post) do |f|
+                            .form-group.mt-5
+                            = f.text_area :text, class: "form-control"
+                            .text-end.mt-3
+                              = f.submit "コメントする", class: "btn btn-outline-dark"
+                        .modal-footer
+                          button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+                .card-text
+                  div class="favorite_btn_#{post.id}"
+                    = render "end_user/favorites/favorite", post: post
+            .skill-list
+              = link_to_prev_page posts, "前のページ", class: "prev d-none"
+              = link_to_next_page posts, "次のページ", class: "next d-none"
