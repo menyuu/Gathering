@@ -1,12 +1,3 @@
-div
-  | 下書き一覧
-div
-  - @posts.each do |post|
-    .mt-5
-    = link_to post.user.name, post_path(post)
-    div
-    = post.text
-    - post.images.each do |image|
-      .mt-2
-      = link_to image, "data-lightbox": image
-        = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
+.row
+  .col-8
+    = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment

@@ -3,7 +3,9 @@
     = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
   = current_end_user.name
 div
-  = link_to "home", root_path
+  = link_to timeline_posts_path
+    i.fa.fa-home
+    | タイムライン
 div
   = link_to "新規登録", new_end_user_registration_path
   = link_to "ログイン", new_end_user_session_path

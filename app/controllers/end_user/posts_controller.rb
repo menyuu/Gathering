@@ -61,7 +61,7 @@ class EndUser::PostsController < ApplicationController
   end
 
   def draft
-    @posts = current_end_user.posts.where(status: 1)
+    @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   private
