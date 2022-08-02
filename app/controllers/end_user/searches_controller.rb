@@ -12,6 +12,11 @@ class EndUser::SearchesController < ApplicationController
       @search_result = Post.search_for(@word)
     when "post_tag"
       @search_result = PostingTag.search_for(@word)
+      @post_comment = PostComment.new
+      @result = []
+      @search_result.each do |result|
+        @result = result.posts.includes(:user, :post_tags, :tags).with_attached_images.page(params[:page]).without_count.per(1)
+      end
     when "group"
       @search_result = Group.search_for(@word)
     when "tag"

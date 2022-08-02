@@ -1,22 +1,26 @@
+
+= link_to "投稿", search_path(object: "post", word: @word)
+
+= link_to "ユーザー", search_path(object: "user", word: @word)
+
+= link_to "id", search_path(object: "id", word: @word, user_id: @word)
+
+= link_to "グループ", search_path(object: "group", word: @word)
+
+= link_to "投稿タグ", search_path(object: "post_tag", word: @word)
+
+= link_to "タグ", search_path(object: "tag", word: @word)
+
+= link_to "ジャンル", search_path(object: "genre", word: @word)
+
+= link_to "ゲーム", search_path(object: "game", word: @word)
+
+
 div
-  | 検索結果
   - @search_result.each do |result|
     div
-    - if @object == "post"
+    - case @object
+    - when "post"
       = result.text
-    - else
-      = result.name
-div
-  = link_to "ユーザー", search_path(object: "user", word: @word)
-div
-  = link_to "id", search_path(object: "id", word: @word, user_id: @word)
-div
-  = link_to "グループ", search_path(object: "group", word: @word)
-div
-  = link_to "投稿タグ", search_path(object: "post_tag", word: @word)
-div
-  = link_to "タグ", search_path(object: "tag", word: @word)
-div
-  = link_to "ジャンル", search_path(object: "genre", word: @word)
-div
-  = link_to "ゲーム", search_path(object: "game", word: @word)
+    - when "post_tag"
+      = render "end_user/searches/search_post_tag", result: @result, post_comment: @post_comment
