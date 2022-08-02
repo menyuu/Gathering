@@ -114,12 +114,14 @@ ActiveRecord::Schema.define(version: 2022_07_30_043722) do
 
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -215,6 +217,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_043722) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
