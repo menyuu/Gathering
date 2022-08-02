@@ -32,12 +32,21 @@ textarea {
 
 .posts-area {
   &-text {
-    text-decoration: none;
+    margin-left: 56px;
+    margin-bottom: 32px;
+    &-container {
+      text-decoration: none;
+    }
+    @media screen and (max-width: 768px) {
+      margin-left: 16px;
+      margin-bottom: 16px;
+    }
   }
   &-user {
     text-decoration: none;
     &:hover {
       text-decoration: underline;
+      color: black;
     }
   }
 }
