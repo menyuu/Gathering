@@ -11,9 +11,9 @@ class EndUser::UsersController < ApplicationController
     @post_comment = PostComment.new
   end
 
-  def edit
-    @user = EndUser.find(params[:id])
-  end
+  # def edit
+  #   @user = EndUser.find(params[:id])
+  # end
 
   def update
     @user = EndUser.find(params[:id])
@@ -42,7 +42,7 @@ class EndUser::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:end_user).permit(:name, :introduction, :email, :image, :password, :password_confirmation, :reset_password_token)
+    params.require(:end_user).permit(:name, :introduction, :email, :icon, :password, :password_confirmation, :reset_password_token)
   end
 
   def ensure_correct_user

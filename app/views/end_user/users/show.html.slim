@@ -31,8 +31,8 @@
                           = link_to "フォローする", user_follows_path(@user), method: :post, class: "btn btn-outline-dark rounded-pill"
                       - else
                         = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-sm btn-outline-dark rounded-pill"
-                      .col-8.mt-3.text-end
-                        i.fa-solid.fa-user-gear.text-black data-bs-toggle="modal" data-bs-target="#editUserModalToggle"
+                        .col-8.mt-3.text-end
+                          i.fa-solid.fa-user-gear.text-black data-bs-toggle="modal" data-bs-target="#editUserModalToggle"
                       .modal.fade#editUserModalToggle tabindex="-1" aria-labelledby="editUserModalToggle" aria-hidden="true"
                         .modal-dialog.modal-dialog-centered
                           .modal-content
@@ -42,12 +42,16 @@
                               button.btn data-bs-dismiss="modal" aria-label="close" ×
                             .modal-body
                               = form_with model: @user, url: user_path(@user), method: :patch do |f|
+                                .form-group.mt-3.text-center
+                                  = f.label :icon, class: "mb-2"
+                                    = image_tag @user.user_icon(80, 80), class: "rounded-circle pt-2"
+                                  = f.file_field :icon, accept: "image/*", class: "form-control"
                                 .form-group.mt-3
-                                  = f.text_field :name, class: "form-control"
+                                  = f.text_field :name, placeholder: "名前", class: "form-control"
                                 .form-group.mt-3
-                                  = f.email_field :email, class: "form-control"
+                                  = f.email_field :email, placeholder: "メールアドレス", class: "form-control"
                                 .form-group.mt-3
-                                  = f.text_area :introduction, placeholder: "プロフィール紹介文", class: "form-control"
+                                  = f.text_area :introduction, placeholder: "自己紹介文", class: "form-control"
                                 .text-end
                                   = f.submit "保存", class: "btn btn-primary mt-3"
                             .modal-footer
@@ -98,11 +102,11 @@
                   = @user.introduction
               .row.ms-5
                 .col-12.mb-1
-                  | タグ：
+                  | 趣味タグ：
                   - @user.tags.each do |tag|
                     = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
                 .col-12.mb-1
-                  | ジャンル：
+                  | ゲームジャンル：
                   - @user.genres.each do |genre|
                     = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
                 .col-12.mb-1
@@ -110,16 +114,17 @@
                   - @user.games.each do |game|
                     = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
               .row.text-center.mt-3.mb-2
-                .col-4
-                  = link_to posts_path, class: "text-black user-show-item"
-                    i.fa.fa-home
-                    | タイムライン
-                .col-4
-                  = link_to user_favorites_path(@user), class: "text-black user-show-item"
-                    i.fa-solid.fa-heart.text-danger
-                    | いいね
-                .col-4
-                  = link_to draft_posts_path, class: "text-black user-show-item"
-                    i.fa-solid.fa-pen-to-square
-                    | 下書き
+               - if current_end_user == @user
+                  .col-4
+                    = link_to posts_path, class: "text-black user-show-item"
+                      i.fa.fa-home
+                      | タイムライン
+                  .col-4
+                    = link_to user_favorites_path(@user), class: "text-black user-show-item"
+                      i.fa-solid.fa-heart.text-danger
+                      | いいね
+                  .col-4
+                    = link_to draft_posts_path, class: "text-black user-show-item"
+                      i.fa-solid.fa-pen-to-square
+                      | 下書き
         = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment
