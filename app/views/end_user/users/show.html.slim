@@ -51,6 +51,17 @@
                                 .text-end
                                   = f.submit "保存", class: "btn btn-primary mt-3"
                             .modal-footer
+                              .col-4.user-show-edit-status.me-auto
+                                - if current_end_user.published?
+                                  = link_to close_user_path(@user), method: :patch, class: "user-show-edit-status-open text-dark"
+                                    = check_box_tag :status
+                                    i.fa-solid.fa-lock
+                                    | 非公開にする
+                                - else
+                                  = link_to open_user_path(@user), method: :patch, class: "user-show-edit-status-close text-dark"
+                                    = check_box_tag :status, {}, checked: "checked"
+                                    i.fa-solid.fa-globe
+                                    | 公開する
                               a.mr-auto.user-show-edit-password href="" data-bs-target="#editPasswordModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" パスワードを変更する
                               button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
                       .modal.fade#editPasswordModalToggle tabindex="-1" aria-labelledby="editPasswordModalToggle" aria-hidden="true"
