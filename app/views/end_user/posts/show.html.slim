@@ -25,18 +25,8 @@ div
   = f.submit "投稿タグ登録"
 div
   = @post.created_at.strftime("%H時%M分 %Y年%m月%d日")
-  - if @post.favorited_by?(current_end_user)
-    div
-      = link_to post_favorites_path(@post), method: :delete
-        | ♥
-        = @post.favorites.count
-        | いいね
-  - else
-    div
-      = link_to post_favorites_path(@post), method: :post
-        | ♡
-        = @post.favorites.count
-        | いいね
+div class="favorite_btn_#{@post.id}"
+  = render "end_user/favorites/favorite", post: @post
 div
   - if @post.status == "draft"
     = link_to "編集", edit_post_path
@@ -46,7 +36,7 @@ div
   | コメント件数：
   = @post.post_comments.count
 div
-  - @post.post_comments.each do |comment|
+  - @post.post_comments.includes(:user).each do |comment|
     div
       = comment.user.name
       = comment.text
