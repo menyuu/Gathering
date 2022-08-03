@@ -93,10 +93,23 @@
                             .modal-footer
                               button.btn.btn-primary data-bs-target="#editUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
                               button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              .row.ms-5
+              .row.ms-5.mb-3
                 .col-10.ms-3.user-show-text
                   = @user.introduction
-              .row.text-center.mt-5.mb-2
+              .row.ms-5
+                .col-12.mb-1
+                  | タグ：
+                  - @user.tags.each do |tag|
+                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+                .col-12.mb-1
+                  | ジャンル：
+                  - @user.genres.each do |genre|
+                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+                .col-12.mb-1
+                  | ゲーム：
+                  - @user.games.each do |game|
+                    = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+              .row.text-center.mt-3.mb-2
                 .col-4
                   = link_to posts_path, class: "text-black user-show-item"
                     i.fa.fa-home
