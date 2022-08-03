@@ -1,10 +1,14 @@
 class EndUser::UsersController < ApplicationController
+  before_action :ensure_correct_user, only: [:edit, :update, :open_user, :close_user]
+
   def index
     @users = EndUser.all
   end
 
   def show
     @user = EndUser.find(params[:id])
+    @posts = Post.where(end_user_id: @user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -39,5 +43,11 @@ class EndUser::UsersController < ApplicationController
 
   def user_params
     params.require(:end_user).permit(:name, :introduction, :email, :image, :password, :password_confirmation, :reset_password_token)
+  end
+
+  def ensure_correct_user
+    unless current_end_user.id == params[:id].to_i
+      redirect_to posts_path, notice: "アカウントが違います"
+    end
   end
 end

@@ -19,13 +19,42 @@ textarea {
 
 .sidebar {
   position: sticky;
-  top: 160px;
+  top: 100px;
+  padding-left: 24px;
+  font-size: 24px;
 }
 
 .sign-in-area {
   top: 30%;
 }
 
+/* user */
+.user-show {
+  font-size: 20px;
+  &-follows {
+    border-right: 1px solid #343a40;
+    &-count {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &-item {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-text {
+    font-size: 16px;
+  }
+  &-edit-password {
+    font-size: 16px;
+  }
+}
+
+/* post */
 .file-uploader-image {
   font-size: 24px;
   margin-right: 16px;

@@ -1,7 +1,7 @@
 .container
   .row.mx-auto
     .col-8
-      h1
+      h1.pt-5
         | ゲーム×趣味で広がるフレンドの輪
       h5
         | Gatheringをはじめる
@@ -22,13 +22,8 @@
                   = f.email_field :email, class: "form-control", id: "input-email"
                 .field.form-group
                   = f.label :password, "パスワード"
-                  - if @minimum_password_length
-                    em
-                      | (
-                      = @minimum_password_length
-                      |  characters minimum)
                   br
-                  = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password"
+                  = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control", id: "input-password"
                 .field
                   = f.label :password_confirmation, "パスワード(確認)"
                   br
@@ -53,13 +48,8 @@
                   = f.email_field :email, class: "form-control", id: "output-email", readonly: true
                 .field.form-group
                   = f.label :password, "パスワード"
-                  - if @minimum_password_length
-                    em
-                      | (
-                      = @minimum_password_length
-                      |  characters minimum)
                   br
-                  = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "output-password", readonly: true
+                  = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control", id: "output-password", readonly: true
                 .field
                   = f.label :password_confirmation, "パスワード(確認)"
                   br
