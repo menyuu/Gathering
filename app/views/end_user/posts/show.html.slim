@@ -1,49 +1,91 @@
-div
-  = @post.user.name
-div
-  = @post.text
-div
-  - @post.images.each do |image|
-    .d-inline-block
-    = link_to image, "data-lightbox": image
-      = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
-div
-  - @post.tags.each do |tag|
-    div
-    = tag.name
-div
-  | 投稿タグ一覧
-  div
-  - @post_tags.each do |tag|
-    = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :patch, class: "btn btn-outline-primary"
-    = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :delete, class: "btn btn-outline-danger"
-div
-  | 投稿タグ新規作成
-= form_with model: [@post, @post_tag], url: post_tags_path(@post) do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.submit "投稿タグ登録"
-div
-  = @post.created_at.strftime("%H時%M分 %Y年%m月%d日")
-div class="favorite_btn_#{@post.id}"
-  = render "end_user/favorites/favorite", post: @post
-div
-  - if @post.status == "draft"
-    = link_to "編集", edit_post_path
-  = link_to "削除", post_path(@post), method: :delete
+.row
+  .col-8
+    .container
+      .row
+        .col.mx-auto
+          .col-10.ms-auto.border.p-3
+            .row.user-show
+              .col-2
+                = link_to user_path(@post.user)
+                  = image_tag @post.user.user_icon(80, 80), class: "rounded-circle pt-2"
+              .col-10.d-flex.align-items-center
+                .col-4.d-none.d-sm-block
+                  = link_to @post.user.name, user_path(@post.user), class: "text-black post-show-name"
+                .col-8.ms-auto.me-5
+                  .row
+                    .col.mt-3.me-2.text-end
+                      span.col-4
+                        - if current_end_user == @post.user
+                          - if @post.status == "draft"
+                            i.fa-solid.fa-pen-to-square.text-black data-bs-toggle="modal" data-bs-target="#editPostModalToggle"
+                          .modal.modal-lg.fade#editPostModalToggle tabindex="-1" aria-labelledby="editPostModalToggle" aria-hidden="true"
+                            .modal-dialog.modal-dialog-centered
+                              .modal-content
+                                .modal-header
+                                  #editPostModalToggle
+                                    button.btn data-bs-dismiss="modal" aria-label="close" ×
+                                .modal-body
+                                  = form_with model: @post, local: false do |f|
+                                    = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
+                                    .text-end.post-input-item
+                                      .form-group.file-uploader-image.d-sm-inline-block
+                                        = f.label :images
+                                          i.fa-regular.fa-image
+                                        = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
+                                      .form-check.form-switch.d-sm-inline-block
+                                        = f.check_box :status, {class: "form-check-input"}, "published", "draft"
+                                        = f.label :status, "投稿を公開", class: "form-check-label"
+                                    .col-10.form-group
+                                      = f.label :name, "タグ", class: "post-input-tag-label"
+                                      = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
+                                    .form-group.mt-3.text-end.post-input-item
+                                      = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+                                .modal-footer
+                                  button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+              .col-10.my-3
+                = @post.text
+              div
+                - @post.images.each do |image|
+                  .d-inline-block
+                  = link_to image, "data-lightbox": image
+                    = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
+              div
+                - @post.tags.each do |tag|
+                  div
+                  = tag.name
+              div
+                | 投稿タグ一覧
+                div
+                - @post_tags.each do |tag|
+                  = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :patch, class: "btn btn-outline-primary"
+                  = link_to tag.name, post_tag_path([@post, @post_tag], name: tag.name), method: :delete, class: "btn btn-outline-danger"
+              div
+                | 投稿タグ新規作成
+              = form_with model: [@post, @post_tag], url: post_tags_path(@post) do |f|
+                = f.label :name
+                = f.text_field :name
+                = f.submit "投稿タグ登録"
+              div
+                = @post.created_at.strftime("%H時%M分 %Y年%m月%d日")
+              div class="favorite_btn_#{@post.id}"
+                = render "end_user/favorites/favorite", post: @post
+              div
+                - if @post.status == "draft"
+                  = link_to "編集", edit_post_path
+                = link_to "削除", post_path(@post), method: :delete
 
-div
-  | コメント件数：
-  = @post.post_comments.count
-div
-  - @post.post_comments.includes(:user).each do |comment|
-    div
-      = comment.user.name
-      = comment.text
-      = comment.created_at.strftime("%H時%M分 %Y年%m月%d日")
-      - if comment.user == current_end_user
-        = link_to "削除", post_comment_path(comment.post, comment), method: :delete
-div
-  = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
-    = f.text_area :text
-    = f.submit "送信"
+              div
+                i.fa-regular.fa-comment.text-dark
+                = @post.post_comments.count
+              div
+                - @post.post_comments.includes(:user).each do |comment|
+                  div
+                    = comment.user.name
+                    = comment.text
+                    = comment.created_at.strftime("%H時%M分 %Y年%m月%d日")
+                    - if comment.user == current_end_user
+                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete
+              div
+                = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
+                  = f.text_area :text
+                  = f.submit "送信"

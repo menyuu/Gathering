@@ -3,7 +3,7 @@
     .container
       .row
         .col.mx-auto
-          .col-10.ms-auto.border.pt-3
+          .col-10.ms-auto.border.p-3
             .row.user-show
               .col-2
                 = link_to @user.icon, "data-lightbox": @user.icon
@@ -97,10 +97,10 @@
                             .modal-footer
                               button.btn.btn-primary data-bs-target="#editUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
                               button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              .row.ms-5.mb-3
-                .col-10.ms-3.user-show-text
+              .row.ms-2.mb-3
+                .col-11.ms-3.user-show-text
                   = @user.introduction
-              .row.ms-5
+              .row
                 .col-12.mb-1
                   | 趣味タグ：
                   - @user.tags.each do |tag|

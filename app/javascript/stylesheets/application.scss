@@ -124,3 +124,14 @@ textarea {
 .tag-item {
   margin-right: 8px;
 }
+
+.post-show-name {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post-item-edit {
+    font-size: 24px;
+}

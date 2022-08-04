@@ -33,7 +33,7 @@
                         accordion-item
                         .card-text.d-inline-block.post-item-edit.accordion-header id="heading#{post.id}"
                           i.fa-solid.fa-pen-to-square.text-dark data-bs-toggle="collapse" data-bs-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
-                        div id="collapse#{post.id}" class="accordion-collapse collapse" aria-labelledby="heading#{post.id}" data-bs-parent="#accordion#{post.id}"
+                        .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-bs-parent="#accordion#{post.id}"
                           .card-dody.accordion-body
                             = form_with model: post, local: false do |f|
                               .col-12.ms-auto.border
