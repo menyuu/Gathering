@@ -146,15 +146,15 @@ textarea {
       text-decoration: underline;
     }
   }
-  &-delete:hover {
-    color: #f4212e;
+  &-delete {
+    margin-left: 12px;
+    &:hover {
+      color: #f4212e;
+    }
   }
   &-icons {
     div:nth-child(2) {
-      margin-left: 12px;
-    }
-    div:nth-child(3) {
-      margin-left: 24px;
+      margin: 0 12px;
     }
   }
 }

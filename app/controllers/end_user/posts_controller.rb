@@ -12,6 +12,7 @@ class EndUser::PostsController < ApplicationController
     @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
+    @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
   end
 
   def create

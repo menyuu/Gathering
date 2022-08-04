@@ -5,10 +5,10 @@
         .col.mx-auto
           .col-10.ms-auto.border.p-3
             .row.user-show
-              .col-2
+              .col-2.text-center.p-0
                 = link_to @user.icon, "data-lightbox": @user.icon
                   = image_tag @user.user_icon(80, 80), class: "rounded-circle pt-2"
-              .col-10.d-flex.align-items-center
+              .col-10.d-flex.align-items-center.ps-0
                 .col-4.d-none.d-sm-block.user-show-name
                   = @user.name
                 .col-8.ms-auto.me-5

@@ -5,25 +5,26 @@
         .col.mx-auto
           .col-10.ms-auto.border.p-3
             .row
-              .col-2
+              .col-2.text-center.pe-0
                 = link_to user_path(@post.user)
                   = image_tag @post.user.user_icon(80, 80), class: "rounded-circle pt-2"
-              .col-10.d-flex.align-items-center
+              .col-10.d-flex.align-items-center.ps-0
                 .col-4.d-none.d-sm-block
                   = link_to @post.user.name, user_path(@post.user), class: "text-black post-show-name"
                 .col-8.ms-auto.me-5
                   .row
-                    .col.mt-3.me-2.text-end.d-flex.justify-content-end.post-item-edit-icons
+                    .col.mt-3.text-end.d-flex.justify-content-end.post-item-edit-icons
                       - if current_end_user == @post.user
                         - if @post.status == "draft"
                           .text-black.post-item-edit data-bs-toggle="modal" data-bs-target="#editPostModalToggle"
                             i.fa-solid.fa-pen-to-square data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を編集"
+                        - if @post.status == "published" or @post.status == "draft"
                           .text-end.text-black.post-item-edit
                             = link_to post_tags_path(@post), class: "post-item-edit-text text-black"
                               i.fa-solid.fa-tags.post-item-edit data-bs-toggle="tooltip" data-bs-placement="right" title="クリックしてタグを編集"
-                          .text-end.text-black.post-item-edit
-                              = link_to post_path(@post), method: :delete, class: "post-item-edit-text text-black", data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
-                                i.fa-solid.fa-trash-can.post-item-edit.post-item-edit-delete data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を削除"
+                          .text-end.text-black.post-item-edit.post-item-edit-delete
+                            = link_to post_path(@post), method: :delete, class: "post-item-edit-text text-black", data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
+                              i.fa-solid.fa-trash-can.post-item-edit.post-item-edit-delete data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を削除"
                           .modal.modal-lg.fade#editPostModalToggle tabindex="-1" aria-labelledby="editPostModalToggle" aria-hidden="true"
                             .modal-dialog.modal-dialog-centered
                               .modal-content
@@ -48,68 +49,85 @@
                                       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
                                 .modal-footer
                                   button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              .row.ms-2.mb-3
-                .col-10.my-3
+              .row.mb-3
+                .col-10.m-3
                   = @post.text
                 .text-center.py-3
                   - @post.images.each do |image|
                     .d-inline-block
                     = link_to image, "data-lightbox": image
                       = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
-                .row
-                  .col.m-3
-                    - @post.tags.each do |tag|
-                      = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                .col.mb-3
+                  - @post.tags.each do |tag|
+                    = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
                 .post-item-time
                     = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                .row.text-end.mb-3
-                  .post-item-comment
-                    .d-inline-block.post-item-comment
-                      a data-bs-toggle="modal" data-bs-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
-                        i.fa-regular.fa-comment.text-dark
-                      = @post.post_comments.count
-                      .modal.modal-lg.fade id="postComment#{@post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{@post.id}ModalToggle" aria-hidden="true"
-                        .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
-                          .modal-content
-                            .modal-header
-                              div id="#postComment#{@post.id}ModalToggle"
-                              button.btn data-bs-dismiss="modal" aria-label="close" ×
-                            .modal-body
-                              .row.text-start
-                                = link_to user_path(@post.user), class: "posts-area-user"
-                                  = image_tag @post.user.user_icon(50, 50), class: "rounded-circle"
-                                  span.text-dark
-                                    = @post.user.name
-                              .row.mt-3.text-start
-                                = link_to post_path(@post), class: "posts-area-text-container"
-                                  .posts-area-text.text-dark
-                                    = @post.text
-                              .row
-                                .col-12.text-center
-                                  - @post.images.first(4).each do |image|
-                                    = link_to image, "data-lightbox": image
-                                      = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
-                              = form_with model: @post_comment, url: post_comments_path(@post) do |f|
-                                .form-group.mt-5
-                                = f.text_area :text, class: "form-control"
-                                .text-end.mt-3
-                                  = f.submit "コメントする", class: "btn btn-outline-dark"
-                            .modal-footer
-                              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-                    .card-text.d-inline-block.post-item-favorite
-                      div class="favorite_btn_#{@post.id}"
-                        = render "end_user/favorites/favorite", post: @post
-                    .card-text.d-inline-block.post-item-time-path
-                      = time_ago_in_words(@post.created_at)
-                      | 前
+            .row.text-end.mb-3
+              .col-12.text-end
+                .d-inline-block.post-item-comment
+                  a data-bs-toggle="modal" data-bs-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
+                    i.fa-regular.fa-comment.text-dark
+                  = @post.post_comments.count
+                  .modal.modal-lg.fade id="postComment#{@post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{@post.id}ModalToggle" aria-hidden="true"
+                    .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
+                      .modal-content
+                        .modal-header.text-end
+                          div id="#postComment#{@post.id}ModalToggle"
+                            button.btn data-bs-dismiss="modal" aria-label="close" ×
+                        .modal-body
+                          .row.text-start
+                            = link_to user_path(@post.user), class: "posts-area-user"
+                              = image_tag @post.user.user_icon(50, 50), class: "rounded-circle"
+                              span.text-dark
+                                = @post.user.name
+                          .row.mt-3.text-start
+                            = link_to post_path(@post), class: "posts-area-text-container"
+                              .posts-area-text.text-dark
+                                = @post.text
+                          .row
+                            .col-12.text-center
+                              - @post.images.first(4).each do |image|
+                                = link_to image, "data-lightbox": image
+                                  = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                          = form_with model: @post_comment, url: post_comments_path(@post) do |f|
+                            .form-group.mt-5
+                            = f.text_area :text, class: "form-control"
+                            .text-end.mt-3
+                              = f.submit "コメントする", class: "btn btn-outline-dark"
+                        .modal-footer
+                          button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+                .d-inline-block.post-item-favorite
+                  div class="favorite_btn_#{@post.id}"
+                    = render "end_user/favorites/favorite", post: @post
+                .d-inline-block.post-item-time-path
+                  = time_ago_in_words(@post.created_at)
+                  | 前
             = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
               .form-group.text-end
                 = f.text_area :text, class: "form-control"
                 = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill mt-3"
-          - @post.post_comments.includes(:user).each do |comment|
-            div
-              = comment.user.name
-              = comment.text
-              = comment.created_at.strftime("%H時%M分 %Y年%m月%d日")
-              - if comment.user == current_end_user
-                = link_to "削除", post_comment_path(comment.post, comment), method: :delete
+          .scroll-list.jscroll
+            - @comments.each do |comment|
+              #post-index
+                .card.posts-area.offset-2.rounded-0
+                  .card-body.pb-0
+                    = link_to user_path(comment.user), class: "posts-area-user"
+                      = image_tag comment.user.user_icon(50, 50), class: "rounded-circle"
+                      span.text-dark.ms-3
+                        = comment.user.name
+                    .card-body.p-0
+                      .posts-area-text
+                        .card-text.text-dark
+                          = comment.text
+                    .card-dody.my-3.d-flex.justify-content-end
+                        .card-text
+                          = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                        .card-text.d-inline-block.post-item-time-path.ms-2
+                          = time_ago_in_words(@post.created_at)
+                          | 前
+                        .card-text.ms-2
+                          - if comment.user == current_end_user
+                            = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "post-item-edit-text text-danger", data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
+              .skill-list
+                = link_to_prev_page @comments, "前のページ", class: "prev d-none"
+                = link_to_next_page @comments, "次のページ", class: "next d-none"
