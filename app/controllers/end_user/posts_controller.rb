@@ -35,7 +35,7 @@ class EndUser::PostsController < ApplicationController
     users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def edit
@@ -44,7 +44,14 @@ class EndUser::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    @post.update(post_params)
+    if @post.update(post_params)
+      tags = params[:post][:name].split(",")
+      tags.each do |tag|
+        tag = PostingTag.find_or_create_by(name: tag)
+        @post.tags.delete(tag)
+        @post.tags << tag
+      end
+    end
     redirect_to post_path(@post)
   end
 
@@ -61,8 +68,16 @@ class EndUser::PostsController < ApplicationController
   end
 
   def draft
-    @post = Post.new
     @posts = current_end_user.posts.where(status: "draft").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @tag_names = []
+    @posts.each do |post|
+      tags = post.tags.all
+      if tags.count > 0
+        @tag_names = tags.pluck(:name).join(",") + ","
+      else
+        @tag_names = tags.pluck(:name).join(",")
+      end
+    end
   end
 
   private

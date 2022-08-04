@@ -29,36 +29,28 @@
                           = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
                       .card-text
                         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                      .col-12.text-end.post-item
-                        .card-text.d-inline-block.post-item-edit
-                          a data-bs-toggle="modal" data-bs-target="#postEdit#{post.id}ModalToggle" data-link="postEdit#{post.id}ModalToggle"
-                            i.fa-solid.fa-pen-to-square.text-dark
-                          .modal.modal-lg.fade id="postEdit#{post.id}ModalToggle" tabindex="-1" aria-labelledby="postEdit#{post.id}ModalToggle" aria-hidden="true"
-                            .modal-dialog.modal-dialog-centered.modal-dialog-scrollable
-                              .modal-content
-                                .modal-header
-                                  div id="#postEdit#{post.id}ModalToggle"
-                                  button.btn data-bs-dismiss="modal" aria-label="close" ×
-                                .modal-body
-                                  .row
-                                    = form_with model: @post, local: false do |f|
-                                      .col-10.ms-auto.border
-                                        = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
-                                        .text-end.post-input-item
-                                          .form-group.file-uploader-image.d-sm-inline-block
-                                            = f.label :images
-                                              i.fa-regular.fa-image
-                                            = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
-                                          .form-check.form-switch.d-sm-inline-block
-                                            = f.check_box :status, {class: "form-check-input"}, "published", "draft"
-                                            = f.label :status, "投稿を公開", class: "form-check-label"
-                                        .col-10.form-group
-                                          = f.label :name, "タグ", class: "post-input-tag-label"
-                                          = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
-                                        .form-group.mt-3.text-end.post-input-item
-                                          = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
-                                  .modal-footer
-                                    button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-                          .skill-list
-                            = link_to_prev_page @posts, "前のページ", class: "prev d-none"
-                            = link_to_next_page @posts, "次のページ", class: "next d-none"
+                      .col-12.text-end.post-item.accordion id="accordion#{post.id}"
+                        accordion-item
+                        .card-text.d-inline-block.post-item-edit.accordion-header id="heading#{post.id}"
+                          i.fa-solid.fa-pen-to-square.text-dark data-bs-toggle="collapse" data-bs-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                        div id="collapse#{post.id}" class="accordion-collapse collapse" aria-labelledby="heading#{post.id}" data-bs-parent="#accordion#{post.id}"
+                          .card-dody.accordion-body
+                            = form_with model: post, local: false do |f|
+                              .col-12.ms-auto.border
+                                = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
+                                .text-end.post-input-item
+                                  .form-group.file-uploader-image.d-sm-inline-block
+                                    = f.label :images
+                                      i.fa-regular.fa-image
+                                    = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
+                                  .form-check.form-switch.d-sm-inline-block
+                                    = f.check_box :status, {class: "form-check-input"}, "published", "draft"
+                                    = f.label :status, "投稿を公開", class: "form-check-label"
+                                .col-10.form-group
+                                  = f.label :name, "タグ", class: "post-input-tag-label"
+                                  = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
+                                .form-group.mt-3.text-end.post-input-item
+                                  = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+            .skill-list
+              = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+              = link_to_next_page @posts, "次のページ", class: "next d-none"
