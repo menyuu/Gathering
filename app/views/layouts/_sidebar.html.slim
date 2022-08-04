@@ -5,7 +5,8 @@
         td
           = link_to user_path(current_end_user)
             = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
-          = current_end_user.name
+          span.ms-3
+            = current_end_user.name
       tr
         td
           = link_to posts_path, class: "btn btn-dark rounded-pill"

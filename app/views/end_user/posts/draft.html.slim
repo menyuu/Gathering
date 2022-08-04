@@ -26,7 +26,7 @@
                     .container
                       .card-text.m-3
                         - post.tags.each do |tag|
-                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
                       .card-text
                         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
                       .col-12.text-end.post-item.accordion id="accordion#{post.id}"
@@ -43,12 +43,12 @@
                                 = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
                                 .text-end.post-input-item
                                   .form-group.file-uploader-image.d-sm-inline-block
-                                    = f.label :images
+                                    = f.label :images, for: "post_images_#{post.id}"
                                       i.fa-regular.fa-image
-                                    = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
+                                    = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{post.id}", style: "display: none;"
                                   .form-check.form-switch.d-sm-inline-block
-                                    = f.check_box :status, {class: "form-check-input"}, "published", "draft"
-                                    = f.label :status, "投稿を公開", class: "form-check-label"
+                                    = f.check_box :status, {class: "form-check-input", id: "post-status-#{post.id}"}, "published", "draft"
+                                    = f.label :status, "投稿を公開", class: "form-check-label", for: "post-status-#{post.id}"
                                 .col-10.form-group
                                   = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
                                 .form-group.mt-3.text-end.post-input-item
