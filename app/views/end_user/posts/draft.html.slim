@@ -24,19 +24,22 @@
                           = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
                   .card-dody
                     .container
-                      .card-text
+                      .card-text.m-3
                         - post.tags.each do |tag|
-                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
                       .card-text
                         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
                       .col-12.text-end.post-item.accordion id="accordion#{post.id}"
                         accordion-item
                         .card-text.d-inline-block.post-item-edit.accordion-header id="heading#{post.id}"
-                          i.fa-solid.fa-pen-to-square.text-dark data-bs-toggle="collapse" data-bs-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                          .text-dark data-bs-toggle="collapse" data-bs-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                            i.fa-solid.fa-pen-to-square
+                            span.post-item-edit-text
+                              | クリックして編集
                         .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-bs-parent="#accordion#{post.id}"
-                          .card-dody.accordion-body
+                          .accordion-body.p-0
                             = form_with model: post, local: false do |f|
-                              .col-12.ms-auto.border
+                              .col-12.ms-auto.border.rounded
                                 = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
                                 .text-end.post-input-item
                                   .form-group.file-uploader-image.d-sm-inline-block
@@ -47,7 +50,6 @@
                                     = f.check_box :status, {class: "form-check-input"}, "published", "draft"
                                     = f.label :status, "投稿を公開", class: "form-check-label"
                                 .col-10.form-group
-                                  = f.label :name, "タグ", class: "post-input-tag-label"
                                   = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
                                 .form-group.mt-3.text-end.post-input-item
                                   = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"

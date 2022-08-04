@@ -134,4 +134,11 @@ textarea {
 
 .post-item-edit {
     font-size: 24px;
+    cursor: pointer;
+    &-text {
+      font-size: 16px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
 }

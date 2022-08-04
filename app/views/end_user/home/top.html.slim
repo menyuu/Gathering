@@ -61,7 +61,7 @@
               button.btn.btn-primary.mr-auto#form href="" data-bs-target="#newUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
       .row
         .col-8
-          button.btn.btn-outline-dark data-bs-toggle="modal" data-bs-target="#newUserModalToggle" type="button" メールアドレスで登録
+          button.btn.btn-dark data-bs-toggle="modal" data-bs-target="#newUserModalToggle" type="button" メールアドレスで登録
       .row
         .col-9.col-md-8.mx-auto.mt-5
           h1.text-center
@@ -77,7 +77,7 @@
             .card-text.field.form-group
               = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
             .actions.mt-3
-                = f.submit "ログイン", class: "btn btn-outline-dark w-100"
+                = f.submit "ログイン", class: "btn btn-dark w-100"
           .mt-5
             | 初めてご利用ですか？
             a href="" data-bs-toggle="modal" data-bs-target="#newUserModalToggle" アカウントを作成する

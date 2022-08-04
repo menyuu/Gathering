@@ -12,7 +12,6 @@ class EndUser::PostsController < ApplicationController
     @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
-    @post_tags = PostingTag.all
   end
 
   def create

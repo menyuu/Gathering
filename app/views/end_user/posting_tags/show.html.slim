@@ -1,0 +1,13 @@
+div
+  - @post.tags.each do |tag|
+    = link_to tag.name, post_tags_path(@post, name: tag.name), method: :delete, class: "btn btn-sm btn-dark rounded-pill tag-item"
+
+div
+  - @post_tags.each do |tag|
+    = link_to tag.name, post_tags_path(@post, name: tag.name), method: :patch, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+div
+  | 投稿タグ新規作成
+  = form_with model: [@post, @post_tag], url: post_tags_path(@post) do |f|
+    = f.label :name
+    = f.text_field :name
+    = f.submit "投稿タグ登録"

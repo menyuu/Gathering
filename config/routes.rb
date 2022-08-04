@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:new] do
       resources :post_comments, only: [:create, :destroy], as: "comments"
       resource :favorites, only: [:create, :destroy]
-      resources :posting_tags, only: [:create, :update, :destroy], as: "tags"
+      resource :posting_tags, only: [:show, :create, :update, :destroy], as: "tags"
       collection do
         get "draft"
         get "index_all"

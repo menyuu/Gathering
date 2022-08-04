@@ -1,4 +1,10 @@
 class EndUser::PostingTagsController < ApplicationController
+  def show
+    @post = Post.find(params[:post_id])
+    @post_tags = PostingTag.all
+    @post_tag = PostingTag.new
+  end
+
   def create
     post = Post.find(params[:post_id])
     tags = params[:posting_tag][:name].split(",")
