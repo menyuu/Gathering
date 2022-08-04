@@ -14,3 +14,10 @@
  *= require_self
  */
 
+
+.post-item-edit-icons div:nth-child(2) {
+  margin-left: 8px;
+}
+.post-item-edit-icons div:nth-child(3) {
+  margin-left: 24px;
+}

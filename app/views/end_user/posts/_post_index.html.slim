@@ -19,7 +19,7 @@
                 = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
         .card-dody.my-3
           .container
-            .card-text
+            .card-text.mb-3
               - post.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill .m-1 tag-item"
             .card-text
@@ -48,13 +48,12 @@
                         .row
                           .col-12.text-center
                             - post.images.first(4).each do |image|
-                              = link_to image, "data-lightbox": image
-                                = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                              = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
                         = form_with model: post_comment, url: post_comments_path(post) do |f|
                           .form-group.mt-5
                           = f.text_area :text, class: "form-control"
                           .text-end.mt-3
-                            = f.submit "コメントする", class: "btn btn-outline-dark"
+                            = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill"
                       .modal-footer
                         button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
               .card-text.d-inline-block.post-item-favorite

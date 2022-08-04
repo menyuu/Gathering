@@ -52,7 +52,11 @@ textarea {
   &-edit {
     &-password {
       font-size: 16px;
-  }
+    }
+    &-icon {
+      font-size: 24px;
+      cursor: pointer;
+    }
     &-status {
       font-size: 16px;
       &-open, &-close {
@@ -133,12 +137,24 @@ textarea {
 }
 
 .post-item-edit {
-    font-size: 24px;
-    cursor: pointer;
-    &-text {
-      font-size: 16px;
-      &:hover {
-        text-decoration: underline;
-      }
+  font-size: 20px;
+  cursor: pointer;
+  &-text {
+    font-size: 16px;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
+  }
+  &-delete:hover {
+    color: #f4212e;
+  }
+  &-icons {
+    div:nth-child(2) {
+      margin-left: 12px;
+    }
+    div:nth-child(3) {
+      margin-left: 24px;
+    }
+  }
 }

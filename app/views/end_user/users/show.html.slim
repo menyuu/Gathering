@@ -32,7 +32,7 @@
                       - else
                         = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-sm btn-outline-dark rounded-pill"
                         .col-8.mt-3.text-end
-                          i.fa-solid.fa-user-gear.text-black data-bs-toggle="modal" data-bs-target="#editUserModalToggle"
+                          i.fa-solid.fa-user-gear.user-show-edit-icon.text-black data-bs-toggle="modal" data-bs-target="#editUserModalToggle"
                       .modal.fade#editUserModalToggle tabindex="-1" aria-labelledby="editUserModalToggle" aria-hidden="true"
                         .modal-dialog.modal-dialog-centered
                           .modal-content
@@ -59,12 +59,12 @@
                                 - if current_end_user.published?
                                   = link_to close_user_path(@user), method: :patch, class: "user-show-edit-status-open text-dark"
                                     = check_box_tag :status
-                                    i.fa-solid.fa-lock
+                                    i.fa-solid.fa-lock.ms-2
                                     | 非公開にする
                                 - else
                                   = link_to open_user_path(@user), method: :patch, class: "user-show-edit-status-close text-dark"
                                     = check_box_tag :status, {}, checked: "checked"
-                                    i.fa-solid.fa-globe
+                                    i.fa-solid.fa-globe.ms-2
                                     | 公開する
                               a.mr-auto.user-show-edit-password href="" data-bs-target="#editPasswordModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" パスワードを変更する
                               button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
