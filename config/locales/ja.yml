@@ -8,3 +8,15 @@ ja:
       status:
         published: "公開"
         privately: "非公開"
+    tag:
+      status:
+        prepared: "デフォルト"
+        self_made: "自作"
+    genre:
+      status:
+        prepared: "デフォルト"
+        self_made: "自作"
+    game:
+      status:
+        prepared: "デフォルト"
+        self_made: "自作"

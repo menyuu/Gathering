@@ -1,6 +1,6 @@
 class EndUser::GamesController < ApplicationController
   def index
-    @games = Game.all
+    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @game = Game.new
   end
 
@@ -16,7 +16,8 @@ class EndUser::GamesController < ApplicationController
       create_game_model.games.delete(game)
       create_game_model.games << game
     end
-    redirect_to request.referer
+    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @game = Game.new
   end
 
   def update
@@ -28,7 +29,8 @@ class EndUser::GamesController < ApplicationController
     game = Game.find_by(name: params[:name])
     add_game_model.games.delete(game)
     add_game_model.games << game
-    redirect_to request.referer
+    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @game = Game.new
   end
 
   def destroy
@@ -38,11 +40,9 @@ class EndUser::GamesController < ApplicationController
       remove_game_model = Group.find(params[:id])
     end
     game = Game.find_by(name: params[:name])
-    if remove_game_model.games.size > 1
-      remove_game_model.games.delete(game)
-      redirect_to request.referer
-    else
-      redirect_to request.referer
-    end
+    remove_game_model.games.size > 1
+    remove_game_model.games.delete(game)
+    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @game = Game.new
   end
 end

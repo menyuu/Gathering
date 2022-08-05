@@ -2,7 +2,7 @@ class EndUser::TagsController < ApplicationController
   # before_action :add_object, only: [:update]
 
   def index
-    @tags = Tag.all
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @tag = Tag.new
   end
 
@@ -18,7 +18,7 @@ class EndUser::TagsController < ApplicationController
       create_tag_model.tags.delete(tag)
       create_tag_model.tags << tag
     end
-    @tags = Tag.all
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @tag = Tag.new
   end
 
@@ -31,7 +31,7 @@ class EndUser::TagsController < ApplicationController
     tag = Tag.find_by(name: params[:name])
     add_tag_model.tags.delete(tag)
     add_tag_model.tags << tag
-    @tags = Tag.all
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @tag = Tag.new
   end
 
@@ -44,7 +44,7 @@ class EndUser::TagsController < ApplicationController
     tag = Tag.find_by(name: params[:name])
     remove_tag_model.tags.size > 1
     remove_tag_model.tags.delete(tag)
-    @tags = Tag.all
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @tag = Tag.new
   end
 end

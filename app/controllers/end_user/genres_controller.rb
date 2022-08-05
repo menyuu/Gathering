@@ -1,6 +1,6 @@
 class EndUser::GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
     @genre = Genre.new
   end
 
@@ -16,7 +16,8 @@ class EndUser::GenresController < ApplicationController
       create_genre_model.genres.delete(genre)
       create_genre_model.genres << genre
     end
-    redirect_to request.referer
+    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genre = Genre.new
   end
 
   def update
@@ -28,7 +29,8 @@ class EndUser::GenresController < ApplicationController
     genre = Genre.find_by(name: params[:name])
     add_genre_model.genres.delete(genre)
     add_genre_model.genres << genre
-    redirect_to request.referer
+    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genre = Genre.new
   end
 
   def destroy
@@ -38,11 +40,9 @@ class EndUser::GenresController < ApplicationController
       remove_genre_model = Group.find(params[:id])
     end
     genre = Genre.find_by(name: params[:name])
-    if remove_genre_model.genres.size > 1
-      remove_genre_model.genres.delete(genre)
-      redirect_to request.referer
-    else
-      redirect_to request.referer
-    end
+    remove_genre_model.genres.size > 1
+    remove_genre_model.genres.delete(genre)
+    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genre = Genre.new
   end
 end

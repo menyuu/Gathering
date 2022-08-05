@@ -10,9 +10,11 @@
 #
 class Tag < ApplicationRecord
   has_many :end_user_tags, dependent: :destroy
-  has_many :users, through: :end_user_tags, source: :end_user
+  has_many :users, through: :end_user_tags, source: :user
   has_many :group_tags, dependent: :destroy
   has_many :groups, through: :group_tags
+
+  enum status: { prepared: 0, self_made: 1 }
 
   def self.search_for(word)
     tags = []

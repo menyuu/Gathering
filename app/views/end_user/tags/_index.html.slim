@@ -13,7 +13,7 @@
 .card-body.border-bottom
   .card-header.mb-5.bg-white
     | 新しいタグを作成する
-  = form_with model: tag, url: tags_path, local: false do |f|
+  = form_with model: tag, local: false do |f|
     .d-flex.my-3
       = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-tag-area rounded-0 rounded-start"
       = f.hidden_field :model, value: user

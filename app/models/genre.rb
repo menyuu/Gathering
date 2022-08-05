@@ -10,9 +10,11 @@
 #
 class Genre < ApplicationRecord
   has_many :end_user_genres
-  has_many :users, through: :end_user_genres, source: :end_user
+  has_many :users, through: :end_user_genres, source: :user
   has_many :group_genres
   has_many :groups, through: :group_genres
+
+  enum status: { prepared: 0, self_made: 1 }
 
   def self.search_for(word)
     genres = []
