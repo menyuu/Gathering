@@ -1,21 +1,4 @@
-div
-  | タグ一覧
-  div
-  - @tags.each do |tag|
-    = link_to tag.name, tag_path(current_end_user, name: tag.name, model: "user"), method: :patch, class: "btn btn-outline-primary"
-    = link_to tag.name, tag_path(current_end_user, name: tag.name, model: "user"), method: :delete, class: "btn btn-outline-danger"
-
-div
-  = form_with model: current_end_user, url: tag_path(current_end_user) do |f|
-    = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
-      = tag.label do
-        = tag.check_box
-        = tag.text
-
-div
-  | タグ新規作成
-= form_with model: @tag do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.hidden_field :model, value: "user"
-  = f.submit "タグ登録"
+.col-9.mt-5.me-auto
+  .col-8.mx-auto
+    .card.offset-2.tag-area
+      = render "end_user/tags/index", object: current_end_user, tags: @tags, tag: @tag, user: "user"

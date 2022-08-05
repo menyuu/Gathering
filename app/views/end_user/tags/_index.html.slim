@@ -1,0 +1,23 @@
+.card-body.border-bottom
+  .card-header.mb-5.bg-white
+    | 現在のタグ
+  .card-text.my-3
+    - object.tags.each do |tag|
+      = link_to tag.name, tag_path(object, name: tag.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
+.card-body.border-bottom
+  .card-header.mb-5.bg-white
+    | 人気のタグ
+  .card-text.my-3
+    - tags.each do |tag|
+      = link_to tag.name, tag_path(object, name: tag.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item m-1"
+.card-body.border-bottom
+  .card-header.mb-5.bg-white
+    | 新しいタグを作成する
+  = form_with model: tag, url: tags_path, local: false do |f|
+    .d-flex.my-3
+      = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-tag-area rounded-0 rounded-start"
+      = f.hidden_field :model, value: user
+      = f.submit "投稿タグ登録", class: "btn btn-sm btn-outline-dark rounded-0 rounded-end"
+.card-body.ms-auto
+  .card-text
+    = link_to "戻る", :back, class: "btn btn-dark"

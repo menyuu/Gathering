@@ -113,18 +113,21 @@
                   | ゲーム：
                   - @user.games.each do |game|
                     = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .row.text-center.mt-3.mb-2
+              .row.text-center.mt-3.mb-2.user-show-items
                - if current_end_user == @user
                   .col-4
                     = link_to posts_path, class: "text-black user-show-item"
                       i.fa.fa-home
-                      | タイムライン
+                      span.user-show-item-text
+                        | タイムライン
                   .col-4
                     = link_to user_favorites_path(@user), class: "text-black user-show-item"
                       i.fa-solid.fa-heart.text-danger
-                      | いいね
+                      span.user-show-item-text
+                        | いいね
                   .col-4
                     = link_to draft_posts_path, class: "text-black user-show-item"
                       i.fa-solid.fa-pen-to-square
-                      | 下書き
+                      span.user-show-item-text
+                        | 下書き
         = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment
