@@ -1,0 +1,19 @@
+
+
+
+
+    div
+      | コメント件数：
+      = @group.group_chats.count
+    div
+      - @group.group_chats.each do |chat|
+        div
+          = chat.group.name
+          = chat.text
+          = chat.created_at.strftime("%H時%M分 %Y年%m月%d日")
+          - if chat.group == current_end_group
+            = link_to "削除", group_chat_path(chat.group, chat), method: :delete
+    div
+      = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
+        = f.text_area :text
+        = f.submit

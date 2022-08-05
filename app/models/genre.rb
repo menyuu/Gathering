@@ -9,9 +9,9 @@
 #  updated_at :datetime         not null
 #
 class Genre < ApplicationRecord
-  has_many :end_user_genres
+  has_many :end_user_genres, dependent: :destroy
   has_many :users, through: :end_user_genres, source: :user
-  has_many :group_genres
+  has_many :group_genres, dependent: :destroy
   has_many :groups, through: :group_genres
 
   enum status: { prepared: 0, self_made: 1 }

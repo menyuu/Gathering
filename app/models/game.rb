@@ -11,7 +11,7 @@
 class Game < ApplicationRecord
   has_many :end_user_games, dependent: :destroy
   has_many :users, through: :end_user_games, source: :user
-  has_many :group_games
+  has_many :group_games, dependent: :destroy
   has_many :groups, through: :group_games
   
   enum status: { prepared: 0, self_made: 1 }

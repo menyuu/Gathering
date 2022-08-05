@@ -1,6 +1,6 @@
 class EndUser::GenresController < ApplicationController
   def index
-    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genres = Genre.display_show_tags("user")
     @genre = Genre.new
   end
 
@@ -16,7 +16,7 @@ class EndUser::GenresController < ApplicationController
       create_genre_model.genres.delete(genre)
       create_genre_model.genres << genre
     end
-    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genres = Genre.display_show_tags(params[:genre][:model])
     @genre = Genre.new
   end
 
@@ -29,20 +29,21 @@ class EndUser::GenresController < ApplicationController
     genre = Genre.find_by(name: params[:name])
     add_genre_model.genres.delete(genre)
     add_genre_model.genres << genre
-    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @genres = Genre.display_show_tags(params[:model])
     @genre = Genre.new
   end
 
   def destroy
     if params[:model] == "user"
       remove_genre_model = current_end_user
-    elsif
+    elsif params[:model] == "group"
       remove_genre_model = Group.find(params[:id])
     end
     genre = Genre.find_by(name: params[:name])
-    remove_genre_model.genres.size > 1
-    remove_genre_model.genres.delete(genre)
-    @genres = Genre.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    if remove_genre_model.genres.size > 1
+      remove_genre_model.genres.delete(genre)
+    end
+    @genres = Genre.display_show_tags(params[:model])
     @genre = Genre.new
   end
 end

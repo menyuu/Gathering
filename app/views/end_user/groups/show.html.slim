@@ -1,4 +1,4 @@
-.container
+.container.mt-5
   .row
     .col-10.border.p-3
       .row.group-show
@@ -57,7 +57,7 @@
                             | ユーザーID：
                           .col-3
                             input.form-control.rounded-0.rounded-start type="text" id="copy_id" value="#{@group.id}" readonly="readonly"
-                          .col-7
+                          .col-6.text-start
                             button.btn.btn-dark.rounded-0.rounded-end#copy_btn type="button" コピーする
                       .modal-footer
                         button.btn.btn-outline-dark data-bs-dismiss="modal" 閉じる
@@ -86,104 +86,3 @@
                   | ゲーム：
             - @group.games.each do |game|
               = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-
-
-          .text-black.post-item-edit data-bs-toggle="modal" data-bs-target="#groupAddTagModalToggle"
-            i.fa-solid.fa-pen-to-square data-bs-toggle="tooltip" data-bs-placement="right" title="クリックしてタグを追加する"
-
-          .modal.modal.fade#groupAddTagModalToggle tabindex="-1" aria-labelledby="groupAddTagModalToggle" aria-hidden="true"
-            .modal-dialog.modal-dialog-centered
-              .modal-content
-                .modal-header
-                  .modal-body
-                    #groupAddTagModalToggle
-                      button.btn data-bs-dismiss="modal" aria-label="close" ×
-                .modal-body
-                .modal-footer
-                  button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-
-
-
-
-
-
-
-
-
-    div
-      | タグの追加
-      - @tags.each do |tag|
-        = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-        = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-    div
-      = form_with model: @group, url: tag_path(@group) do |f|
-        = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
-          = tag.label do
-            = tag.check_box
-            = tag.text
-    div
-      | タグ新規作成
-    = form_with model: @tag do |f|
-      = f.label :name
-      = f.text_field :name
-      = f.hidden_field :id, value: @group.id
-      = f.hidden_field :model, value: "group"
-      = f.submit "タグ登録"
-
-    div
-      | ジャンルの追加
-      - @genres.each do |genre|
-        = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-        = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-    div
-      = form_with model: @group, url: genre_path(@group) do |f|
-        = f.collection_check_boxes :genre_ids, Genre.all, :id, :name, include_hidden: false do |genre|
-          = genre.label do
-            = genre.check_box
-            = genre.text
-    div
-      | ジャンル新規作成
-    = form_with model: @genre do |f|
-      = f.label :name
-      = f.text_field :name
-      = f.hidden_field :id, value: @group.id
-      = f.hidden_field :model, value: "group"
-      = f.submit "ジャンル登録"
-
-    div
-      | ゲームの追加
-      - @games.each do |game|
-        = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-        = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-    div
-      = form_with model: @group, url: game_path(@group) do |f|
-        = f.collection_check_boxes :game_ids, Game.all, :id, :name, include_hidden: false do |game|
-          = game.label do
-            = game.check_box
-            = game.text
-    div
-      | ゲーム新規作成
-    = form_with model: @game do |f|
-      = f.label :name
-      = f.text_field :name
-      = f.hidden_field :id, value: @group.id
-      = f.hidden_field :model, value: "group"
-      = f.submit "ジャンル登録"
-
-
-
-    div
-      | コメント件数：
-      = @group.group_chats.count
-    div
-      - @group.group_chats.each do |chat|
-        div
-          = chat.group.name
-          = chat.text
-          = chat.created_at.strftime("%H時%M分 %Y年%m月%d日")
-          - if chat.group == current_end_group
-            = link_to "削除", group_chat_path(chat.group, chat), method: :delete
-    div
-      = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
-        = f.text_area :text
-        = f.submit

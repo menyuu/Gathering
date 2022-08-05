@@ -43,6 +43,21 @@ class EndUser::GroupsController < ApplicationController
     end
   end
 
+  def gtoup_tags
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.groups.size <=> a.groups.size}.first(30)
+    @tag = Tag.new
+  end
+
+  def group_genres
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.groups.size <=> a.groups.size}.first(30)
+    @tag = Tag.new
+  end
+
+  def group_games
+    @tags = Tag.where(status: "prepared").sort {|a,b| b.groups.size <=> a.groups.size}.first(30)
+    @tag = Tag.new
+  end
+
   def members
     group = Group.find(params[:group_id])
     @member = group.users

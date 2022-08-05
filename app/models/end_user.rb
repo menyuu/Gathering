@@ -25,8 +25,8 @@ class EndUser < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :end_user_tags
-  has_many :tags, through: :end_user_tags
+  has_many :end_user_tags, dependent: :destroy
+  has_many :tags, through: :end_user_tags, source: :tag
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -35,9 +35,9 @@ class EndUser < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  has_many :end_user_games
+  has_many :end_user_games, dependent: :destroy
   has_many :games, through: :end_user_games
-  has_many :end_user_genres
+  has_many :end_user_genres, dependent: :destroy
   has_many :genres, through: :end_user_genres
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :groups, through: :user_groups

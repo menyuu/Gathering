@@ -1,6 +1,6 @@
 class EndUser::GamesController < ApplicationController
   def index
-    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @games = Game.display_show_tags("user")
     @game = Game.new
   end
 
@@ -16,7 +16,7 @@ class EndUser::GamesController < ApplicationController
       create_game_model.games.delete(game)
       create_game_model.games << game
     end
-    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @games = Game.display_show_tags(params[:game][:model])
     @game = Game.new
   end
 
@@ -29,7 +29,7 @@ class EndUser::GamesController < ApplicationController
     game = Game.find_by(name: params[:name])
     add_game_model.games.delete(game)
     add_game_model.games << game
-    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    @games = Game.display_show_tags(params[:model])
     @game = Game.new
   end
 
@@ -40,9 +40,10 @@ class EndUser::GamesController < ApplicationController
       remove_game_model = Group.find(params[:id])
     end
     game = Game.find_by(name: params[:name])
-    remove_game_model.games.size > 1
-    remove_game_model.games.delete(game)
-    @games = Game.all.where(status: "prepared").sort {|a,b| b.users.size <=> a.users.size}.first(30)
+    if remove_game_model.games.size > 1
+      remove_game_model.games.delete(game)
+    end
+    @games = Game.display_show_tags(params[:model])
     @game = Game.new
   end
 end
