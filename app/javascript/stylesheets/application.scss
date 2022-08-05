@@ -30,9 +30,11 @@ textarea {
 
 /* user */
 .user-show {
-  font-size: 20px;
+  font-size: 16px;
   &-follows {
-    border-right: 1px solid #343a40;
+    &-text a, a:hover {
+      text-decoration: none;
+    }
     &-count {
       text-decoration: none;
       &:hover {
@@ -48,7 +50,6 @@ textarea {
     &:hover {
       text-decoration: underline;
     }
-
   }
   &-text {
     font-size: 16px;
@@ -161,4 +162,25 @@ textarea {
       margin: 0 12px;
     }
   }
+}
+
+
+/*group*/
+.group-show {
+  font-size: 16px;
+  &-members {
+    &-count {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+
+
+/*common*/
+.add-item a {
+  text-decoration: none;
 }

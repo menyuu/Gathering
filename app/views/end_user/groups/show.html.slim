@@ -1,95 +1,189 @@
-div
-  = image_tag @group.group_icon(200, 200), class: "rounded-circle"
-  div
-  = @group.name
-  div
-  = @group.owner.name
-  div
-  - @group.users.each do |user|
+.container
+  .row
+    .col-10.border.p-3
+      .row.group-show
+        .col-2.text-center.p-0
+          = link_to @group.icon, "data-lightbox": @group.icon
+            = image_tag @group.group_icon(160, 160), class: "rounded-circle pt-2"
+        .col-9.offset-1.d-flex.align-items-center.ps-0
+          .col-4.d-none.d-sm-block.group-show-name
+            = @group.name
+          .col-8.ms-3.me-5
+            .row
+              .col-6
+                table.table
+                  tbody
+                    tr
+                      td.group-show-members-text
+                        = link_to "オーナー：", user_path(@group.owner), class: "group-show-members-count text-black d-block w-100 h-100"
+                      td
+                        = link_to @group.owner.name, user_path(@group.owner), class: "group-show-members-count text-black d-block w-100 h-100"
+                    tr
+                      td.group-show-members-text
+                        | メンバー：
+                      td
+                        = link_to @member.count, group_members_path(@group), class: "group-show-members-count text-black"
+              span.col-6.text-center
+                - if @group.is_ownerd_by?(current_end_user)
+                  i.fa-solid.fa-user-gear.user-show-edit-icon.text-black data-bs-toggle="modal" data-bs-target="#editgroupModalToggle"
+                - else
+                  - if @group.sameHasTag?(current_end_user) or @group.sameHasGenre?(current_end_user) or @group.sameHasGame?(current_end_user) or (@group.tags.count == 0 and @group.genres.count == 0 and @group.games.count == 0)
+                    - if @group.includesUser?(current_end_user)
+                      = link_to "グループを抜ける", group_user_groups_path(@group), method: :delete, class: "btn btn-dark rounded-pill"
+                    - else
+                      = link_to "グループに入る", group_user_groups_path(@group), method: :post, class: "btn btn-outline-dark rounded-pill"
+                .modal.fade#editgroupModalToggle tabindex="-1" aria-labelledby="editgroupModalToggle" aria-hidden="true"
+                  .modal-dialog.modal-dialog-centered
+                    .modal-content
+                      .modal-header
+                        h5.modal-title#editgroupModalToggle
+                          | グループ詳細編集
+                        button.btn data-bs-dismiss="modal" aria-label="close" ×
+                      .modal-body
+                        = form_with model: @group, url: group_path(@group), method: :patch do |f|
+                          .form-group.mt-3.text-center
+                            = f.label :icon, class: "mb-2"
+                              = image_tag @group.group_icon(80, 80), class: "rounded-circle pt-2"
+                            = f.file_field :icon, accept: "image/*", class: "form-control"
+                          .form-group.mt-3
+                            = f.text_field :name, placeholder: "グループ名", class: "form-control"
+                          .form-group.mt-3
+                            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control"
+                          .text-end
+                            = f.submit "保存", class: "btn btn-dark rounded-pill mt-3"
+                      .modal-body
+                        .d-flex
+                          label.col-3.align-self-center for="copy_id" style="font-size: 16px;"
+                            | ユーザーID：
+                          .col-3
+                            input.form-control.rounded-0.rounded-start type="text" id="copy_id" value="#{@group.id}" readonly="readonly"
+                          .col-7
+                            button.btn.btn-dark.rounded-0.rounded-end#copy_btn type="button" コピーする
+                      .modal-footer
+                        button.btn.btn-outline-dark data-bs-dismiss="modal" 閉じる
+        .row.ms-5.my-3
+          .col-11.ms-3.user-show-text
+            = @group.introduction
+        .row
+          .col-12.mb-1.add-item
+            = link_to tags_path
+              i.fa-solid.fa-tags.text-black
+              span.me-3.text-black
+                | 趣味タグ：
+            - @group.tags.each do |tag|
+              = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          .col-12.mb-1.add-item
+            = link_to genres_path
+              i.fa-solid.fa-chess.text-black
+              span.me-3.text-black
+                | ゲームジャンル：
+            - @group.genres.each do |genre|
+              = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          .col-12.mb-1.add-item
+            = link_to games_path
+                i.fa-solid.fa-gamepad.text-black
+                span.me-3.text-black
+                  | ゲーム：
+            - @group.games.each do |game|
+              = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+
+
+          .text-black.post-item-edit data-bs-toggle="modal" data-bs-target="#groupAddTagModalToggle"
+            i.fa-solid.fa-pen-to-square data-bs-toggle="tooltip" data-bs-placement="right" title="クリックしてタグを追加する"
+
+          .modal.modal.fade#groupAddTagModalToggle tabindex="-1" aria-labelledby="groupAddTagModalToggle" aria-hidden="true"
+            .modal-dialog.modal-dialog-centered
+              .modal-content
+                .modal-header
+                  .modal-body
+                    #groupAddTagModalToggle
+                      button.btn data-bs-dismiss="modal" aria-label="close" ×
+                .modal-body
+                .modal-footer
+                  button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+
+
+
+
+
+
+
+
+
     div
-    = user.name
-  div
-  = @group.introduction
-div
-  | タグの追加
-  - @tags.each do |tag|
-    = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-    = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-div
-  = form_with model: @group, url: tag_path(@group) do |f|
-    = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
-      = tag.label do
-        = tag.check_box
-        = tag.text
-div
-  | タグ新規作成
-= form_with model: @tag do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.hidden_field :id, value: @group.id
-  = f.hidden_field :model, value: "group"
-  = f.submit "タグ登録"
-
-div
-  | ジャンルの追加
-  - @genres.each do |genre|
-    = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-    = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-div
-  = form_with model: @group, url: genre_path(@group) do |f|
-    = f.collection_check_boxes :genre_ids, Genre.all, :id, :name, include_hidden: false do |genre|
-      = genre.label do
-        = genre.check_box
-        = genre.text
-div
-  | ジャンル新規作成
-= form_with model: @genre do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.hidden_field :id, value: @group.id
-  = f.hidden_field :model, value: "group"
-  = f.submit "ジャンル登録"
-
-div
-  | ゲームの追加
-  - @games.each do |game|
-    = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
-    = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
-div
-  = form_with model: @group, url: game_path(@group) do |f|
-    = f.collection_check_boxes :game_ids, Game.all, :id, :name, include_hidden: false do |game|
-      = game.label do
-        = game.check_box
-        = game.text
-div
-  | ゲーム新規作成
-= form_with model: @game do |f|
-  = f.label :name
-  = f.text_field :name
-  = f.hidden_field :id, value: @group.id
-  = f.hidden_field :model, value: "group"
-  = f.submit "ジャンル登録"
-
-
-div
-  - if @group.is_ownerd_by?(current_end_user)
-    = link_to "編集", edit_group_path(@group)
-  - elsif @group.includesUser?(current_end_user)
-    = link_to "グループを抜ける", group_user_groups_path(@group), method: :delete, class: "btn btn-outline-danger"
-  - else
-    = link_to "グループに入る", group_user_groups_path(@group), method: :post, class: "btn btn-outline-primary"
-div
-  | コメント件数：
-  = @group.group_chats.count
-div
-  - @group.group_chats.each do |chat|
+      | タグの追加
+      - @tags.each do |tag|
+        = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
+        = link_to tag.name, tag_path(@group, name: tag.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
     div
-      = chat.user.name
-      = chat.text
-      = chat.created_at.strftime("%H時%M分 %Y年%m月%d日")
-      - if chat.user == current_end_user
-        = link_to "削除", group_chat_path(chat.group, chat), method: :delete
-div
-  = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
-    = f.text_area :text
-    = f.submit
+      = form_with model: @group, url: tag_path(@group) do |f|
+        = f.collection_check_boxes :tag_ids, Tag.all, :id, :name, include_hidden: false do |tag|
+          = tag.label do
+            = tag.check_box
+            = tag.text
+    div
+      | タグ新規作成
+    = form_with model: @tag do |f|
+      = f.label :name
+      = f.text_field :name
+      = f.hidden_field :id, value: @group.id
+      = f.hidden_field :model, value: "group"
+      = f.submit "タグ登録"
+
+    div
+      | ジャンルの追加
+      - @genres.each do |genre|
+        = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
+        = link_to genre.name, genre_path(@group, name: genre.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
+    div
+      = form_with model: @group, url: genre_path(@group) do |f|
+        = f.collection_check_boxes :genre_ids, Genre.all, :id, :name, include_hidden: false do |genre|
+          = genre.label do
+            = genre.check_box
+            = genre.text
+    div
+      | ジャンル新規作成
+    = form_with model: @genre do |f|
+      = f.label :name
+      = f.text_field :name
+      = f.hidden_field :id, value: @group.id
+      = f.hidden_field :model, value: "group"
+      = f.submit "ジャンル登録"
+
+    div
+      | ゲームの追加
+      - @games.each do |game|
+        = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :patch, class: "btn btn-outline-primary"
+        = link_to game.name, game_path(@group, name: game.name, model: "group"), method: :delete, class: "btn btn-outline-danger"
+    div
+      = form_with model: @group, url: game_path(@group) do |f|
+        = f.collection_check_boxes :game_ids, Game.all, :id, :name, include_hidden: false do |game|
+          = game.label do
+            = game.check_box
+            = game.text
+    div
+      | ゲーム新規作成
+    = form_with model: @game do |f|
+      = f.label :name
+      = f.text_field :name
+      = f.hidden_field :id, value: @group.id
+      = f.hidden_field :model, value: "group"
+      = f.submit "ジャンル登録"
+
+
+
+    div
+      | コメント件数：
+      = @group.group_chats.count
+    div
+      - @group.group_chats.each do |chat|
+        div
+          = chat.group.name
+          = chat.text
+          = chat.created_at.strftime("%H時%M分 %Y年%m月%d日")
+          - if chat.group == current_end_group
+            = link_to "削除", group_chat_path(chat.group, chat), method: :delete
+    div
+      = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
+        = f.text_area :text
+        = f.submit

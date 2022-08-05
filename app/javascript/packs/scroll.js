@@ -1,3 +1,4 @@
+/* global $*/
 $(document).on('turbolinks:load', function() {
   $('.jscroll').jscroll({
     contentSelector: '.jscroll',

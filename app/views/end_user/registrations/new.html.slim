@@ -3,7 +3,7 @@
     .col-8.mx-auto
       .card.col-8
         .card-header.bg-white
-          h5.card-title#newUserModalToggle
+          h5.card-title
             | アカウントを作成
         .card-body
           = form_with model: @end_user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|

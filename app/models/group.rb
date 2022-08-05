@@ -49,6 +49,18 @@ class Group < ApplicationRecord
     user_groups.exists?(end_user_id: user.id)
   end
 
+  def sameHasTag?(user)
+    tags.any? { |i| user.tags.include?(i) }
+  end
+
+  def sameHasGenre?(user)
+    genres.any? { |i| user.genres.include?(i) }
+  end
+
+  def sameHasGame?(user)
+    games.any? { |i| user.games.include?(i) }
+  end
+
   def self.search_for(word)
     groups = []
     perfect_match_groups = Group.where(name: word)

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :groups do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
       resources :group_chats, only: [:create, :destroy], as: "chats"
+      get "members"
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]

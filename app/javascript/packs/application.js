@@ -16,6 +16,7 @@ import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
 import "./index";
 import "./input";
+import "./copy";
 import "./scroll";
 
 Rails.start()

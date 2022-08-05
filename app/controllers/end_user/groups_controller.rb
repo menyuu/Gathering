@@ -1,10 +1,11 @@
 class EndUser::GroupsController < ApplicationController
   def index
-    @groups = Group.all
+    @groups = Group.includes(:owner, icon_attachment:[:blob])
   end
 
   def show
     @group = Group.find(params[:id])
+    @member = @group.users
     @group_chat = GroupChat.new
     @tags = Tag.all
     @tag = Tag.new
@@ -40,6 +41,11 @@ class EndUser::GroupsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def members
+    group = Group.find(params[:group_id])
+    @member = group.users
   end
 
   def group_params
