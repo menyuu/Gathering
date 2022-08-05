@@ -26,4 +26,26 @@ class Tag < ApplicationRecord
     tags.flatten!
     return unique_tags = tags.uniq { |tag| tag.id }
   end
+
+  def self.create_tag(tag_name, create_tag_model)
+    tags = tag_name.split(",")
+    tags.each do |tag|
+      tag = self.find_or_create_by(name: tag)
+      create_tag_model.tags.delete(tag)
+      create_tag_model.tags << tag
+    end
+  end
+
+  def self.update_tag(tag_name, add_tag_model)
+    tag = self.find_by(name: tag_name)
+    add_tag_model.tags.delete(tag)
+    add_tag_model.tags << tag
+  end
+
+  def self.destroy_tag(tag_name, remove_tag_model)
+    tag = self.find_by(name: tag_name)
+    if remove_tag_model.tags.size > 1
+      remove_tag_model.tags.delete(tag)
+    end
+  end
 end

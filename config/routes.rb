@@ -33,10 +33,17 @@ Rails.application.routes.draw do
     resources :groups do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
       resources :group_chats, only: [:index, :create, :destroy], as: "chats"
+      get "tags" => "group_multi_toggle"
+      post "create_tags" => "group_multi_toggle"
+      patch "update_tags" => "group_multi_toggle"
+      delete "destroy_tags" => "group_multi_toggle"
+      get "genress" => "group_multi_toggle"
+      post "create_genres" => "group_multi_toggle"
+      patch "update_genres" => "group_multi_toggle"
+      delete "destroy_genres" => "group_multi_toggle"
+
+
       get "members"
-      get "group_tags", as: "tags"
-      get "group_genres", as: "genres"
-      get "group_games", as: "games"
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
