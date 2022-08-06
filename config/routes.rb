@@ -45,8 +45,6 @@ Rails.application.routes.draw do
       post "create_games" => "group_multi_toggle"
       patch "update_games" => "group_multi_toggle"
       delete "destroy_games" => "group_multi_toggle"
-
-
       get "members"
     end
     resources :tags, only: [:index, :create, :update, :destroy]

@@ -1,18 +1,12 @@
 class EndUser::GroupsController < ApplicationController
   def index
-    @groups = Group.includes(:owner, icon_attachment:[:blob])
+    @groups = Group.includes(:group_tags, :tags, :group_genres, :genres, :group_games, :games, :owner).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @join_group = current_end_user.groups.includes(:group_tags, :tags, :group_genres, :genres, :group_games, :games, :owner, icon_attachment: [:blob])
   end
 
   def show
     @group = Group.find(params[:id])
     @member = @group.users
-    @group_chat = GroupChat.new
-    @tags = Tag.all
-    @tag = Tag.new
-    @genres = Genre.all
-    @genre = Genre.new
-    @games = Game.all
-    @game = Game.new
   end
 
   def new

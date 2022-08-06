@@ -38,7 +38,7 @@ class Group < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/group_no_image.png')
       icon.attach(io: File.open(file_path), filename: 'group-default-image.png', content_type: 'image/png')
     end
-    icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0").processed
+    icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0")
   end
 
   def is_ownerd_by?(user)

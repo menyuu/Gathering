@@ -169,6 +169,9 @@ textarea {
 .group-show {
   font-size: 16px;
   &-members {
+    &-text a, a:hover {
+      text-decoration: none;
+    }
     &-count {
       text-decoration: none;
       &:hover {
@@ -177,7 +180,6 @@ textarea {
     }
   }
 }
-
 
 
 /*common*/
