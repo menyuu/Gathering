@@ -17,6 +17,7 @@ import "../stylesheets/application";
 import "./index";
 import "./input";
 import "./copy";
+import "./chat";
 import "./scroll";
 
 Rails.start()

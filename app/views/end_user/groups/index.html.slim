@@ -3,7 +3,7 @@
    .col-12
     .scroll-list.jscroll
       - @groups.each do |group|
-        .col-10.border.shadow-sm.p-3.mx-auto
+        .col-10.border.shadow-sm.p-4.mx-auto
           .row.group-show
             .col-2.text-center.p-0
               = link_to group_path(group)
@@ -35,7 +35,7 @@
                           = link_to "グループに入る", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
               .col-11.ms-5.my-4.user-show-text
                 = group.introduction
-            .row.mb-3
+            .row.my-5
               .col-12.mb-3.add-item
                 i.fa-solid.fa-tags.text-black
                 span.me-3.text-black

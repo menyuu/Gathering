@@ -22,6 +22,7 @@ class Group < ApplicationRecord
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :users, through: :user_groups, source: :user
   has_many :group_chats, dependent: :destroy
+  has_many :chat_users, through: :group_chats, source: :user
   has_many :group_tags, dependent: :destroy
   has_many :tags, through: :group_tags
   has_many :group_genres, dependent: :destroy

@@ -89,3 +89,7 @@
                   | ゲーム：
             - @group.games.each do |game|
               = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+      - if @member.include?(current_end_user)
+        .row.text-end
+          .col
+            = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"
