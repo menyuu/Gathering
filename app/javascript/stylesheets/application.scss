@@ -181,6 +181,72 @@ textarea {
   }
 }
 
+.group-chat-balloon {
+  display: inline-block;
+  padding: 24px;
+  margin: 16px 8px;
+  border-radius: 50px;
+  position: relative;
+  background-color: #8de055;
+  max-width: 60%;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    margin-top: -10px;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 10px 10px 10px;
+    border-color: transparent transparent transparent #8de055;
+  }
+  &-other {
+    display: inline-block;
+    padding: 24px;
+    margin: 16px 8px;
+    border-radius: 50px;
+    position: relative;
+    background-color: #D9F0FF;
+    max-width: 60%;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -9px;
+      margin-top: -10px;
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #D9F0FF transparent transparent;
+    }
+  }
+}
+
+#group-chat-area {
+  height: 560px;
+}
+
+.group-chat{
+  &-container {
+    max-width: 95%;
+  }
+  &-user-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  &delete-text {
+    text-decoration: none;
+    &:hover {
+      color: red;
+    }
+  }
+}
 
 /*common*/
 .add-item a {
