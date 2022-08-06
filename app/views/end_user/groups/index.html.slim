@@ -54,6 +54,9 @@
                   | ゲーム：
                 - group.games.each do |game|
                   = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            .row.text-end
+              .col
+                = link_to "詳細を見る", group_path(group), class: "btn btn-lg btn-outline-dark p-2"
             .skill-list
               = link_to_prev_page @groups, "前のページ", class: "prev d-none"
               = link_to_next_page @groups, "次のページ", class: "next d-none"
@@ -63,28 +66,28 @@
     - @join_group.each do |group|
       .col-10.border.shadow-sm.p-3
         .row.group-show
-          .col-2.text-center.p-0
+          .col-4.text-center.p-0
             = link_to group_path(group)
               = image_tag group.group_icon(80, 80), class: "rounded-circle pt-2"
-          .col-9.offset-1.d-flex.align-items-center.ps-0
-            .col-4.d-none.d-sm-block.group-show-name
-              = link_to group.name, group_path(group)
+          .col-6.d-none.d-sm-block.group-show-name.align-self-center
+            = link_to group.name, group_path(group)
+          .col-12.offset-1.ps-0
             span.col-6.text-center
               .row.mb-3.text-start
-                .col-12.mb-1.add-item
+                .col-12.mb-1.add-item.add-item
                   i.fa-solid.fa-tags.text-black
                   | ：
-                  - group.tags.first(2).each do |tag|
+                  - group.tags.first(3).each do |tag|
                     = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
                 .col-12.mb-1.add-item
                   i.fa-solid.fa-chess.text-black
                   | ：
-                  - group.genres.first(2).each do |genre|
+                  - group.genres.first(3).each do |genre|
                     = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
                 .col-12.mb-1.add-item.text-start
                   i.fa-solid.fa-gamepad.text-black
                   | ：
-                  - group.games.first(2).each do |game|
+                  - group.games.first(3).each do |game|
                     = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           .col.ms-3.me-5
             - unless group.is_ownerd_by?(current_end_user)
