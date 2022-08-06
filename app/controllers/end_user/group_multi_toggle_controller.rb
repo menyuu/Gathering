@@ -2,52 +2,82 @@ class EndUser::GroupMultiToggleController < ApplicationController
 
   def tags
     @group = Group.find(params[:group_id])
-    @tags = Tag.display_show_tags("group")
+    @tags = Tag.display_show_type("group")
     @tag = Tag.new
   end
 
   def create_tags
     @group = Group.find(params[:group_id])
     Tag.create_tag(params[:tag][:name], @group)
-    @tags = Tag.display_show_tags(params[:tag][:model])
+    @tags = Tag.display_show_type(params[:tag][:model])
     @tag = Tag.new
   end
 
   def update_tags
     @group = Group.find(params[:group_id])
     Tag.update_tag(params[:name], @group)
-    @tags = Tag.display_show_tags(params[:model])
+    @tags = Tag.display_show_type(params[:model])
     @tag = Tag.new
   end
 
   def destroy_tags
     @group = Group.find(params[:group_id])
     Tag.destroy_tag(params[:name], @group)
-    @tags = Tag.display_show_tags(params[:model])
+    @tags = Tag.display_show_type(params[:model])
     @tag = Tag.new
   end
 
-
-
-
-
-
-
-
-
-
-
   def genres
     @group = Group.find(params[:group_id])
-    @tags = Tag.where(status: "prepared").sort {|a,b| b.groups.size <=> a.groups.size}.first(30)
-    @tag = Tag.new
+    @genres = Genre.display_show_type("group")
+    @genre = Genre.new
+  end
+
+  def create_genres
+    @group = Group.find(params[:group_id])
+    Genre.create_genre(params[:genre][:name], @group)
+    @genres = Genre.display_show_type(params[:genre][:model])
+    @genre = Genre.new
+  end
+
+  def update_genres
+    @group = Group.find(params[:group_id])
+    Genre.update_genre(params[:name], @group)
+    @genres = Genre.display_show_type(params[:model])
+    @genre = Genre.new
+  end
+
+  def destroy_genres
+    @group = Group.find(params[:group_id])
+    Genre.destroy_genre(params[:name], @group)
+    @genres = Genre.display_show_type(params[:model])
+    @genre = Genre.new
   end
 
   def games
     @group = Group.find(params[:group_id])
-    @tags = Tag.where(status: "prepared").sort {|a,b| b.groups.size <=> a.groups.size}.first(30)
-    @tag = Tag.new
+    @games = Game.display_show_type("group")
+    @game = Game.new
   end
 
+  def create_games
+    @group = Group.find(params[:group_id])
+    Game.create_game(params[:game][:name], @group)
+    @games = Game.display_show_type(params[:game][:model])
+    @game = Game.new
+  end
 
+  def update_games
+    @group = Group.find(params[:group_id])
+    Game.update_game(params[:name], @group)
+    @games = Game.display_show_type(params[:model])
+    @game = Game.new
+  end
+
+  def destroy_games
+    @group = Group.find(params[:group_id])
+    Game.destroy_game(params[:name], @group)
+    @games = Game.display_show_type(params[:model])
+    @game = Game.new
+  end
 end

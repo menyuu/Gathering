@@ -26,4 +26,26 @@ class Genre < ApplicationRecord
     genres.flatten!
     return unique_genres = genres.uniq { |genre| genre.id }
   end
+  
+  def self.create_genre(genre_name, create_genre_model)
+    genres = genre_name.split(",")
+    genres.each do |genre|
+      genre = self.find_or_create_by(name: genre)
+      create_genre_model.genres.delete(genre)
+      create_genre_model.genres << genre
+    end
+  end
+
+  def self.update_genre(genre_name, add_genre_model)
+    genre = self.find_by(name: genre_name)
+    add_genre_model.genres.delete(genre)
+    add_genre_model.genres << genre
+  end
+
+  def self.destroy_genre(genre_name, remove_genre_model)
+    genre = self.find_by(name: genre_name)
+    if remove_genre_model.genres.size > 1
+      remove_genre_model.genres.delete(genre)
+    end
+  end
 end

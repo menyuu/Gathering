@@ -37,10 +37,14 @@ Rails.application.routes.draw do
       post "create_tags" => "group_multi_toggle"
       patch "update_tags" => "group_multi_toggle"
       delete "destroy_tags" => "group_multi_toggle"
-      get "genress" => "group_multi_toggle"
+      get "genres" => "group_multi_toggle"
       post "create_genres" => "group_multi_toggle"
       patch "update_genres" => "group_multi_toggle"
       delete "destroy_genres" => "group_multi_toggle"
+      get "games" => "group_multi_toggle"
+      post "create_games" => "group_multi_toggle"
+      patch "update_games" => "group_multi_toggle"
+      delete "destroy_games" => "group_multi_toggle"
 
 
       get "members"
