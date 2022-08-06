@@ -14,11 +14,11 @@ class EndUser::RelationshipsController < ApplicationController
 
   def followings
     user = EndUser.find(params[:user_id])
-    @users = user.followings
+    @users = user.followings.where(status: "published").page(params[:page]).without_count.per(1)
   end
 
   def followers
     user = EndUser.find(params[:user_id])
-    @users = user.followers
+    @users = user.followers.where(status: "published").page(params[:page]).without_count.per(1)
   end
 end
