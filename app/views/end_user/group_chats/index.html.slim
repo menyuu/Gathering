@@ -1,39 +1,37 @@
-.row
+.row.group-chat-header
   .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3
     h1.text-center
       = @group.name
-  .row
-    .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3
-      - @members.each do |member|
-        = image_tag member.user_icon(60, 60), class: "rounded-circle"
 .row
-  .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3
+  .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3.d-inline-block
     - if @chats.exists?
       .overflow-auto#group-chat-area.p-2
         - @chats.each do |chat|
           - if chat.user.id == current_end_user.id
-            .chat-container.text-end.d-flex.justify-content-end.align-items-center
-              .chat-balloon.text-start
+            .group-chat-container.text-end.d-flex.justify-content-end.align-items-center
+              .group-chat-balloon.text-start
                 = chat.text
-              .col-2.chat-user-name.d-inline-block.text-center
-                .span
-                  = chat.user.name
-                .span
-                  = image_tag chat.user.user_icon(80, 80), class: "rounded-circle"
-            .row.text-end.chat-container
+              .col-2.group-chat-user-name.d-inline-block.text-center
+                = link_to user_path(chat.user), class: "group-chat-user-name"
+                  .span.text-black
+                    = chat.user.name
+                  .span
+                    = image_tag chat.user.user_icon(80, 80), class: "rounded-circle"
+            .row.text-end.group-chat-container
               .col.my-2
                 = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                = link_to "削除", group_chat_path(chat.group, chat), method: :delete
+                = link_to "削除", group_chat_path(chat.group, chat), method: :delete, class: "ms-3 group-chat-delete-text"
           - else
-            .chat-container.text-start.d-flex.justify-content-start.align-items-center
-              .col-2.chat-user-name.d-inline-block.text-center
-                .span
-                  = chat.user.name
-                .span
-                  = image_tag chat.user.user_icon(80, 80), class: "rounded-circle"
-              .chat-balloon-other.text-start
+            .group-chat-container.text-start.d-flex.justify-content-start.align-items-center
+              .col-2.group-chat-user-name.d-inline-block.text-center
+                = link_to user_path(chat.user), class: "group-chat-user-name"
+                  .span.text-black
+                    = chat.user.name
+                  .span
+                    = image_tag chat.user.user_icon(80, 80), class: "rounded-circle"
+              .group-chat-balloon-other.text-start
                 = chat.text
-            .row.text-start.chat-container
+            .row.text-start.group-chat-container
               .col.my-2
                 = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
     - else
@@ -46,3 +44,11 @@
             = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control"
           .form-group.text-end
             = f.submit "送信", class: "btn btn-outline-dark rounded-pill mt-3"
+  .col-3.group-chat-member.d-inline-block
+    .mt-5.ms-5
+      - @members.each do |member|
+        .mt-3.mb-4.py-2.border.rounded.shadow-sm.p-3
+          = link_to user_path(member), class: "group-chat-user-name"
+            = image_tag member.user_icon(60, 60), class: "rounded-circle me-2"
+            span.text-black
+              = member.name

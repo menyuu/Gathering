@@ -14,7 +14,7 @@
  *= require_self
  */
 
-.chat-balloon {
+.group-chat-balloon {
   display: inline-block;
   padding: 24px;
   margin: 16px 8px;
@@ -23,7 +23,7 @@
   background-color: #8de055;
 }
 
-.chat-balloon:after {
+.group-chat-balloon:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -38,7 +38,7 @@
 }
 
 
-.chat-balloon-other {
+.group-chat-balloon-other {
   display: inline-block;
   padding: 24px;
   margin: 16px 8px;
@@ -47,7 +47,7 @@
   background-color: #D9F0FF;
 }
 
-.chat-balloon-other:after {
+.group-chat-balloon-other:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -66,16 +66,29 @@
   height: 560px;
 }
 
-.chat-container {
+.group-chat-container {
   max-width: 95%;
 }
 
-.chat-balloon {
+.group-chat-balloon {
   max-width: 60%;
 }
 
-.chat-user-name {
+.group-chat-user-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.group-chat-delete-text {
+  text-decoration: none;
+}
+
+.group-chat-delete-text:hover {
+  color: red;
+}
+
+.group-chat-header {
+  position: sticky;
 }
