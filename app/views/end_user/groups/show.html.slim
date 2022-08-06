@@ -5,7 +5,7 @@
         .col-2.text-center.p-0
           - if @group.icon.attached?
             = link_to @group.icon, "data-lightbox": @group.icon
-              = image_tag group.group_icon(160, 160), class: "rounded-circle pt-2"
+              = image_tag @group.group_icon(160, 160), class: "rounded-circle pt-2"
           - else
             = image_tag '/assets/group_no_image.png', class: "rounded-circle pt-2", width: "160", height: "160"
         .col-9.offset-1.d-flex.align-items-center.ps-0
