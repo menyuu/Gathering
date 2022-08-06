@@ -40,7 +40,7 @@ class EndUser::GroupsController < ApplicationController
 
   def members
     group = Group.find(params[:group_id])
-    @member = group.users
+    @members = group.users.page(params[:page]).without_count.per(1)
   end
 
   def group_params

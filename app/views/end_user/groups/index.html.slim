@@ -10,7 +10,7 @@
                 = image_tag group.group_icon(160, 160), class: "rounded-circle pt-2"
             .col-9.offset-1.d-flex.align-items-center.ps-0
               .col-4.d-none.d-sm-block.group-show-name
-                = link_to group.name, group_path(group)
+                = link_to group.name, group_path(group), class: "group-show-name-link text-black"
               .col-8.ms-3.me-5
                 .row
                   .col-6
@@ -70,7 +70,7 @@
             = link_to group_path(group)
               = image_tag group.group_icon(80, 80), class: "rounded-circle pt-2"
           .col-6.d-none.d-sm-block.group-show-name.align-self-center
-            = link_to group.name, group_path(group)
+            = link_to group.name, group_path(group), class:"group-show-name-link"
           .col-12.offset-1.ps-0
             span.col-6.text-center
               .row.mb-3.text-start
