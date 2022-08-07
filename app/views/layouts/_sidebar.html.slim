@@ -1,33 +1,33 @@
-- if end_user_signed_in?
-  table.table.table-borderless
-    tbody
-      tr
-        td
-          = link_to user_path(current_end_user)
-            = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
-          span.ms-3
-          = link_to user_path(current_end_user)
-            = current_end_user.name
-      tr
-        td
-          = link_to posts_path, class: "btn btn-dark rounded-pill"
-            i.fa.fa-home
-            | タイムライン
-      tr
-        td
-          = link_to "みんなの投稿", index_all_posts_path, class: "btn btn-dark rounded-pill"
-      tr
-        td
-          = link_to "グループを作る", new_group_path, class: "btn btn-dark rounded-pill"
-      tr
-        td
-          = link_to "グループを見る", groups_path, class: "btn btn-dark rounded-pill"
-      tr
-        td
-          = link_to "タグを見る", tags_path, class: "btn btn-dark rounded-pill"
-      tr
-        td
-          = link_to "ジャンルを見る", genres_path, class: "btn btn-dark rounded-pill"
-      tr
-        td
-          = link_to "ゲームを見る", games_path, class: "btn btn-dark rounded-pill"
+table.table.table-borderless
+  tbody
+    tr
+      td
+        = link_to user_path(current_end_user)
+          = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
+        span.ms-3
+        = link_to user_path(current_end_user)
+          = current_end_user.name
+    tr
+      td
+        = link_to posts_path, class: "btn btn-dark rounded-pill"
+          i.fa.fa-home
+          | タイムライン
+    tr
+      td
+        = link_to "みんなの投稿", index_all_posts_path, class: "btn btn-dark rounded-pill"
+    tr
+      td
+        = link_to "グループを作る", new_group_path, class: "btn btn-dark rounded-pill"
+    tr
+      td
+        = link_to "グループを見る", groups_path, class: "btn btn-dark rounded-pill"
+    tr
+      td
+        = link_to "タグを見る", tags_path, class: "btn btn-dark rounded-pill"
+    tr
+      td
+        = link_to "ジャンルを見る", genres_path, class: "btn btn-dark rounded-pill"
+    tr
+      td
+        = link_to "ゲームを見る", games_path, class: "btn btn-dark rounded-pill"
+

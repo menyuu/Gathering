@@ -23,6 +23,9 @@ html
       .container-fluid
         .row
           .col-2.h-100.sidebar
-            = render "layouts/sidebar"
+            - if end_user_signed_in?
+              = render "layouts/sidebar"
+            - elsif admin_signed_in?
+              = render "layouts/admin_sidebar"
           .col-10
             = yield
