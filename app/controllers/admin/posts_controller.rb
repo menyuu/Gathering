@@ -5,9 +5,12 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
+    @comments = @post.post_comments.page(params[:page]).per(1)
   end
 
-  def delete
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to admin_posts_path
   end
 end
