@@ -54,7 +54,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
-    session: "admin/sessions"
+    sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    get "/" => "home#top"
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

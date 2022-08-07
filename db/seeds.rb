@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+Admin.create(
+  email: "qpdb96@gathering.com",
+  password: "AEIO4310"
+  )
+
 30.times do |n|
   Tag.create(
     name: "タグ#{n + 1}",
