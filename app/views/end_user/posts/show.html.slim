@@ -1,7 +1,7 @@
     .container
-      .row.mx-auto
+      .row
         .col-8
-          .card.posts-area.offset-2.rounded-0
+          .card.posts-area.rounded-0
             .card-body.row
               .col-8
                 = link_to user_path(@post.user)
@@ -44,19 +44,21 @@
                                     = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
                             .modal-footer
                               button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              .row.mb-3
-                .col-10.m-3
+              .card-body
+                p.card-text.post-text
                   = @post.text
-                .text-center.py-3
+              .card-body
+                .card-img.text-center
                   - @post.images.each do |image|
-                    .d-inline-block
                     = link_to image, "data-lightbox": image
-                      = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed
-                .col.mb-3
-                  - @post.tags.each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
-                .post-item-time
-                    = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                      = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+              .card-body
+                .container
+                  .card-text
+                    - @post.tags.each do |tag|
+                      = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                .card-text
+                  = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
             .row.text-end.mb-3
               .col-12.text-end
                 - if @post.status == "published"
