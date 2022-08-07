@@ -78,7 +78,11 @@ textarea {
 .file-uploader-image {
   font-size: 24px;
   margin-right: 16px;
+  &:hover {
+    opacity: 0.7;
+  }
 }
+// cursor: pointer; フォームのイメージアイコンhover時にする
 
 .post-input {
   &-item {
@@ -88,9 +92,6 @@ textarea {
     &::placeholder {
       padding-top: 80px;
     }
-  }
-  &-tag-label {
-    margin-left: 16px;
   }
 }
 
@@ -105,21 +106,22 @@ textarea {
       padding: 16px;
     }
   }
-  &-user {
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-      color: black;
-    }
-  }
 }
 
 .post-item {
   margin-right: 16px;
   cursor: pointer;
+  &-delete {
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  &-delete a:hover {
+    color: red;
+  }
   &-container {
     margin-bottom: 24px;
   }
+
 }
 
 
@@ -130,30 +132,6 @@ textarea {
     text-decoration: underline;
   }
 }
-
-.post-item-edit {
-  font-size: 20px;
-  cursor: pointer;
-  &-text {
-    font-size: 16px;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  &-delete {
-    margin-left: 12px;
-    &:hover {
-      color: #f4212e;
-    }
-  }
-  &-icons {
-    div:nth-child(2) {
-      margin: 0 12px;
-    }
-  }
-}
-
 
 /*group*/
 .group-show {
@@ -254,6 +232,11 @@ textarea {
 
 
 /* postのindex調整で追加 */
+ul,ol,li {
+  list-style: none;
+}
+
+
 a {
   color: black;
   text-decoration: none;

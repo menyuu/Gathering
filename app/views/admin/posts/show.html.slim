@@ -1,12 +1,10 @@
-.row
-  .col-8
     .container
-      .row
-        .col.mx-auto
+      .row.mx-auto
+        .col-8
           .col-10.ms-auto.border.p-3
             .row
               .col-2.text-center.pe-0
-                = link_to user_path(@post.user)
+                = link_to admin_user_path(@post.user)
                   = image_tag @post.user.user_icon(80, 80), class: "rounded-circle pt-2"
               .col-10.d-flex.align-items-center.ps-0
                 .col-4.d-none.d-sm-block

@@ -13,6 +13,12 @@ class EndUser::PostsController < ApplicationController
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
     @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
+    tags = @post.tags.all
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def create
