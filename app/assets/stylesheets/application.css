@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.flash {
+   z-index: 100;
+ }
+
 .search-bar {
   position: sticky;
   top: 100px;
