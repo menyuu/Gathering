@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :end_user do
     root to: "home#top"
-    resources :users, except: [:new] do
+    resources :users, except: [:index, :new] do
       resource :relationships, only: [:create, :destroy], as: "follows"
       get "followings" => "relationships#followings", as: "followings"
       get "followers" => "relationships#followers", as: "followers"

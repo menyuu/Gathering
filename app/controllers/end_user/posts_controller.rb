@@ -36,6 +36,8 @@ class EndUser::PostsController < ApplicationController
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
     @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    # 非同期を一旦休止
+    redirect_to posts_path
   end
 
   def edit
@@ -83,6 +85,6 @@ class EndUser::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:text, :status, posting_tags: [:name], images: [])
+    params.require(:post).permit(:text, :status, images: [])
   end
 end
