@@ -1,7 +1,7 @@
 .scroll-list.jscroll
   - posts.each do |post|
     #post-index
-      .card.posts-area.offset-2.rounded-0
+      .card.posts-area.rounded-0
         .card-body
           = link_to user_path(post.user)
             = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
@@ -16,10 +16,9 @@
               = link_to image, "data-lightbox": image
                 = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
         .card-body
-          .container
-            .card-text
-              - post.tags.each do |tag|
-                = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          .card-text
+            - post.tags.each do |tag|
+              = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           .card-text
             = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
           ul.col-12.text-end.post-item-container
