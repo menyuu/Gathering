@@ -50,7 +50,7 @@
             = link_to post_path(post)
               p.card-text.post-text
                 = post.text
-          .modal-body
+          .modal-body.text-center
             - post.images.first(4).each do |image|
               = link_to post_path(post)
                 = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
