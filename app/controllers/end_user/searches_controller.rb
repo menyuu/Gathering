@@ -30,7 +30,9 @@ class EndUser::SearchesController < ApplicationController
       @post_comment = PostComment.new
     when "post_tag"
       search_result = PostingTag.search_for(@word)
-      @search_result = Kaminari.paginate_array(search_result.posts).page(params[:page]).per(1)
+      if search_result.present?
+        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+      end
       @post_comment = PostComment.new
     when "tag"
       search_result = Tag.search_for(@word)
@@ -58,21 +60,21 @@ class EndUser::SearchesController < ApplicationController
       @tags = Tag.display_show_type("group", 10)
       @user_search_tags = Tag.display_show_type("group")
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
     when "group_genre"
       search_result = Genre.search_for(@word)
       @genres = Genre.display_show_type("group", 10)
       @user_search_genres = Genre.display_show_type("group")
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
     when "group_game"
       search_result = Game.search_for(@word)
       @games = Game.display_show_type("group", 10)
       @user_search_games = Game.display_show_type("group")
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
     end
   end
