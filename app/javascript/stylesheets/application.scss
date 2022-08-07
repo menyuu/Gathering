@@ -98,12 +98,9 @@ textarea {
   display: none;
 }
 
-.posts-area {
+.post-text {
   &-text {
     padding: 32px 56px;
-    &-container {
-      text-decoration: none;
-    }
     @media screen and (max-width: 768px) {
       padding: 16px;
     }
@@ -118,21 +115,14 @@ textarea {
 }
 
 .post-item {
-  margin-bottom: 24px;
-  &-comment {
-    margin-right: 16px;
-  }
-  &-favorite {
-    margin-right: 16px;
-  }
-  &-time-path {
-    margin-right: 8px;
+  margin-right: 16px;
+  cursor: pointer;
+  &-container {
+    margin-bottom: 24px;
   }
 }
 
-.tag-item {
-  margin-right: 8px;
-}
+
 
 .post-show-name {
   text-decoration: none;
@@ -249,6 +239,35 @@ textarea {
 }
 
 /*common*/
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  opacity: 0.7;
+}
+
+.user-name {
+  margin-left: 24px;
+}
+
+.user-name:hover {
+  text-decoration: underline;
+}
+
+.post-text {
+  padding: 32px 56px;
+}
+
+
+
+
+
+
+
 .add-item a {
   text-decoration: none;
 }
