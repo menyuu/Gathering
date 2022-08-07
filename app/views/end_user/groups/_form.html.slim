@@ -1,12 +1,18 @@
-= form_with model: group, url: groups_path, local: true do |f|
-  .form-group.mb-3
-    = f.label :name, "グループ名"
-    = f.text_field :name, placeholder: "グループ名", class: "form-control"
-  .form-group.mb-3
-    = f.label :introduction, "グループ紹介文"
-    = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control"
-  .form-group.mb-3
-    = f.label :icon, "アイコンを設定する"
-    = f.file_field :icon, class: "form-control"
-  .form-group.mb-3.text-end
-    = f.submit "グループを作成", class: "btn btn-dark rounded-pill"
+.col.mx-auto
+  .card.col-10
+    .card-header.bg-white
+      h5.card-title
+        | グループを作成する
+    .card-body
+      = form_with model: group, url: groups_path, local: true do |f|
+        .form-group.mb-3
+          = f.label :name, "グループ名"
+          = f.text_field :name, placeholder: "グループ名", class: "form-control"
+        .form-group.mb-3
+          = f.label :introduction, "グループ紹介文"
+          = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control"
+        .form-group.mb-3
+          = f.label :icon, "アイコンを設定する"
+          = f.file_field :icon, class: "form-control"
+        .form-group.mb-3.text-end
+          = f.submit "グループを作成", class: "btn btn-dark rounded-pill"

@@ -78,15 +78,29 @@ class EndUser < ApplicationRecord
         specific_user << user
         return user
       else
-        EndUser.all
+        return self.all
       end
     when "user"
       users = []
-      perfect_match_users = EndUser.where(name: word)
-      backward_match_users = EndUser.where("name LIKE ?", "#{word}%")
-      prefix_match_users = EndUser.where("name LIKE ?", "%#{word}")
-      partial_match_users = EndUser.where("name LIKE ?", "%#{word}%")
+      perfect_match_users = EndUser.where(name: word, status: "published")
+      backward_match_users = EndUser.where("name LIKE ?", "#{word}%").where(status: "published")
+      prefix_match_users = EndUser.where("name LIKE ?", "%#{word}").where(status: "published")
+      partial_match_users = EndUser.where("name LIKE ?", "%#{word}%").where(status: "published")
       users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users)
+      users.flatten!
+      return unique_users = users.uniq { |user| user.id }
+    when "user_keyword"
+      users = []
+      perfect_match_users = EndUser.where(name: word, status: "published")
+      backward_match_users = EndUser.where("name LIKE ?", "#{word}%").where(status: "published")
+      prefix_match_users = EndUser.where("name LIKE ?", "%#{word}").where(status: "published")
+      partial_match_users = EndUser.where("name LIKE ?", "%#{word}%").where(status: "published")
+      perfect_match_users_introduction = EndUser.where(introduction: word, status: "published")
+      backward_match_users_introduction = EndUser.where("introduction LIKE ?", "#{word}%").where(status: "published")
+      prefix_match_users_introduction = EndUser.where("introduction LIKE ?", "%#{word}").where(status: "published")
+      partial_match_users_introduction = EndUser.where("introduction LIKE ?", "%#{word}%").where(status: "published")
+      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users,
+      perfect_match_users_introduction, backward_match_users_introduction, prefix_match_users_introduction, partial_match_users_introduction)
       users.flatten!
       return unique_users = users.uniq { |user| user.id }
     end

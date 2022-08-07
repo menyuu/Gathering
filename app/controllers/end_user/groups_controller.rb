@@ -1,6 +1,6 @@
 class EndUser::GroupsController < ApplicationController
   def index
-    @groups = Group.includes(:group_tags, :tags, :group_genres, :genres, :group_games, :games, :owner).page(params[:page]).without_count.per(1).order(params[:sort])
+    @groups = Group.page(params[:page]).without_count.per(1).order(params[:sort])
     @join_group = current_end_user.groups.includes(:group_tags, :tags, :group_genres, :genres, :group_games, :games, :owner, icon_attachment: [:blob])
   end
 

@@ -17,16 +17,9 @@ class Genre < ApplicationRecord
   enum status: { prepared: 0, self_made: 1 }
 
   def self.search_for(word)
-    genres = []
-    perfect_match_genres = Genre.where(name: word).order(created_at: :DESC)
-    backward_match_genres = Genre.where("name LIKE ?", "#{word}%").order(created_at: :DESC)
-    prefix_match_genres = Genre.where("name LIKE ?", "%#{word}").order(created_at: :DESC)
-    partial_match_genres = Genre.where("name LIKE ?", "%#{word}%").order(created_at: :DESC)
-    genres.push(perfect_match_genres, backward_match_genres, prefix_match_genres, partial_match_genres)
-    genres.flatten!
-    return unique_genres = genres.uniq { |genre| genre.id }
+    Genre.find_by(name: word)
   end
-  
+
   def self.create_genre(genre_name, create_genre_model)
     genres = genre_name.split(",")
     genres.each do |genre|

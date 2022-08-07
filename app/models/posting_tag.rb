@@ -12,13 +12,6 @@ class PostingTag < ApplicationRecord
   has_many :posts, through: :post_tags
 
   def self.search_for(word)
-    post_tags = []
-    perfect_match_post_tags = PostingTag.where(name: word).order(created_at: :DESC)
-    backward_match_post_tags = PostingTag.where("name LIKE ?", "#{word}%").order(created_at: :DESC)
-    prefix_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}").order(created_at: :DESC)
-    partial_match_post_tags = PostingTag.where("name LIKE ?", "%#{word}%").order(created_at: :DESC)
-    post_tags.push(perfect_match_post_tags, backward_match_post_tags, prefix_match_post_tags, partial_match_post_tags)
-    post_tags.flatten!
-    return unique_post_tags = post_tags.uniq { |post_tag| post_tag.id }
+    perfect_match_post_tags = PostingTag.find_by(name: word)
   end
 end

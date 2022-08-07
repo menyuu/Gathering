@@ -62,14 +62,40 @@ class Group < ApplicationRecord
     games.any? { |i| user.games.include?(i) }
   end
 
-  def self.search_for(word)
-    groups = []
-    perfect_match_groups = Group.where(name: word)
-    backward_match_groups = Group.where("name LIKE ?", "#{word}%")
-    prefix_match_groups = Group.where("name LIKE ?", "%#{word}")
-    partial_match_groups = Group.where("name LIKE ?", "%#{word}%")
-    groups.push(perfect_match_groups, backward_match_groups, prefix_match_groups, partial_match_groups)
-    groups.flatten!
-    return unique_groups = groups.uniq { |group| group.id }
+  def self.search_for(object, word, user_id)
+    case object
+    when "group_id"
+      if Group.exists?(word)
+        specific_user = []
+        user = Group.where(id: user_id)
+        specific_user << user
+        return user
+      else
+        return self.all
+      end
+    when "group"
+      users = []
+      perfect_match_users = Group.where(name: word)
+      backward_match_users = Group.where("name LIKE ?", "#{word}%")
+      prefix_match_users = Group.where("name LIKE ?", "%#{word}")
+      partial_match_users = Group.where("name LIKE ?", "%#{word}%")
+      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users)
+      users.flatten!
+      return unique_users = users.uniq { |user| user.id }
+    when "group_keyword"
+      users = []
+      perfect_match_users = Group.where(name: word)
+      backward_match_users = Group.where("name LIKE ?", "#{word}%")
+      prefix_match_users = Group.where("name LIKE ?", "%#{word}")
+      partial_match_users = Group.where("name LIKE ?", "%#{word}%")
+      perfect_match_users_introduction = Group.where(introduction: word)
+      backward_match_users_introduction = Group.where("introduction LIKE ?", "#{word}%")
+      prefix_match_users_introduction = Group.where("introduction LIKE ?", "%#{word}")
+      partial_match_users_introduction = Group.where("introduction LIKE ?", "%#{word}%")
+      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users,
+      perfect_match_users_introduction, backward_match_users_introduction, prefix_match_users_introduction, partial_match_users_introduction)
+      users.flatten!
+      return unique_users = users.uniq { |user| user.id }
+    end
   end
 end

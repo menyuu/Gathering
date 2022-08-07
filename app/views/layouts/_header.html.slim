@@ -1,5 +1,6 @@
 .nav.navbar.navbar-light.justify-content-bettween.bg-white
   .col-2.px-3
-    = link_to "LOGO", root_path, class:"navbar-brand"
-  .col-8.col-sm-6.px-3.mx-auto
+    = link_to root_path, class:"navbar-brand"
+      = image_tag '/assets/Gathering.png', width: "160", height: "32"
+  .col-8.col-md-6.col-lg-5.px-3.mx-auto
     = render "end_user/searches/form"

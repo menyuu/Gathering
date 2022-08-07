@@ -35,10 +35,10 @@ class Post < ApplicationRecord
 
   def self.search_for(word)
     posts = []
-    perfect_match_posts = Post.where(text: word)
-    backward_match_posts = Post.where("text LIKE ?", "#{word}%")
-    prefix_match_posts = Post.where("text LIKE ?", "%#{word}")
-    partial_match_posts = Post.where("text LIKE ?", "%#{word}%")
+    perfect_match_posts = Post.where(text: word).where(status: "published")
+    backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(status: "published")
+    prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(status: "published")
+    partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(status: "published")
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
     posts.flatten!
     return unique_posts = posts.uniq { |post| post.id }
