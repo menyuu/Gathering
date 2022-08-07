@@ -31,7 +31,7 @@ class EndUser::SearchesController < ApplicationController
     when "post_tag"
       search_result = PostingTag.search_for(@word)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.posts).page(params[:page]).per(1)
       end
       @post_comment = PostComment.new
     when "tag"
