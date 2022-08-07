@@ -26,3 +26,47 @@
   padding-left: 24px;
   font-size: 24px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.sidebar-item {*/
+/*  padding: 0;*/
+/*}*/
+
+/*.sidebar-item:hover {*/
+/*  background-color: black;*/
+/*  color: white;*/
+/*  border-radius: 8px;*/
+/*  opacity: 0.8;*/
+/*}*/
+
+/*.sidebar-item a {*/
+/*  display: inline-block;*/
+/*  padding: 8px;*/
+/*  width: 100%;*/
+/*}*/
+
+/*.sidebar-item a:hover {*/
+/*  color: white;*/
+/*}*/
+
+/*.sidebar-item span:hover {*/
+/*  color: white;*/
+/*}*/

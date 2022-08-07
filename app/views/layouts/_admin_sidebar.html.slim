@@ -1,7 +1,15 @@
 /管理者側のサイドバー
 - if admin_signed_in?
+ table.table.table-borderless
   tr
-    td
+    td.sidebar-item
       = link_to admin_posts_path, class: "btn btn-dark rounded-pill"
         i.fa-solid.fa-list
-        |　投稿一覧
+        span
+          |　投稿一覧
+  tr
+    td
+      = link_to destroy_admin_session_path, method: :delete, class: "btn btn-dark rounded-pill"
+        i.fa-solid.fa-right-from-bracket
+        |　ログアウト
+

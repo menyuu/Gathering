@@ -1,37 +1,35 @@
-.row
-  .col-8
-    .container
-      .row
-        .col.mx-auto
-          .scroll-list.jscroll
-            - @posts.each do |post|
-              #post-index
-                .card.posts-area.offset-2.rounded-0
-                  .card-body
-                    = link_to admin_user_path(post.user)
-                      = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
-                    = link_to post.user.name, admin_user_path(post.user), class: "user-name"
-                  .card-body
+.container
+  .row.mx-auto
+    .col-8
+      .scroll-list.jscroll
+        - @posts.each do |post|
+          #post-index
+            .card.posts-area.offset-2.rounded-0
+              .card-body
+                = link_to admin_user_path(post.user)
+                  = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+                = link_to post.user.name, admin_user_path(post.user), class: "user-name"
+              .card-body
+                = link_to admin_post_path(post)
+                  p.card-text.post-text
+                    = post.text
+              .card-body
+                .card-img.text-center
+                  - post.images.each do |image|
+                    = link_to image, "data-lightbox": image
+                      = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+              .card-body
+                .container
+                  .card-text
+                    - post.tags.each do |tag|
+                      = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                  .card-text
+                    = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                ul.col-12.text-end.post-item-container
+                  li.card-text.d-inline-block.post-item
                     = link_to admin_post_path(post)
-                      p.card-text.post-text
-                        = post.text
-                  .card-body
-                    .card-img.text-center
-                      - post.images.each do |image|
-                        = link_to image, "data-lightbox": image
-                          = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
-                  .card-body
-                    .container
-                      .card-text
-                        - post.tags.each do |tag|
-                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                      .card-text
-                        = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                    ul.col-12.text-end.post-item-container
-                      li.card-text.d-inline-block.post-item
-                        = link_to admin_post_path(post)
-                          = time_ago_in_words(post.created_at)
-                          | 前
-                  .skill-list
-                    = link_to_prev_page @posts, "前のページ", class: "prev d-none"
-                    = link_to_next_page @posts, "次のページ", class: "next d-none"
+                      = time_ago_in_words(post.created_at)
+                      | 前
+              .skill-list
+                = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+                = link_to_next_page @posts, "次のページ", class: "next d-none"
