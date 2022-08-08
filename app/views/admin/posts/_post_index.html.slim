@@ -1,0 +1,40 @@
+.scroll-list.jscroll
+  - posts.each do |post|
+    #post-index
+      .card.posts-area.rounded-0
+        .card-body.row
+          .col-8
+            = link_to admin_user_path(post.user)
+              = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+            = link_to post.user.name, admin_user_path(post.user), class: "user-name"
+          ul.col-4.text-end.post-item-container
+            li.card-text.d-inline-block.delete-btn
+              = link_to "削除する", admin_post_path(post), method: :delete, class:"btn btn-outline-danger opacity-10",
+              data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
+        .card-body
+          = link_to admin_post_path(post)
+            p.card-text.post-text
+              = post.text
+        .card-body
+          .card-img.text-center
+            - post.images.each do |image|
+              = link_to image, "data-lightbox": image
+                = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+        .card-body
+          .container
+            .card-text
+              - post.tags.each do |tag|
+                = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            .card-text
+              = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+          ul.col-12.text-end.post-item-container
+            li.card-text.d-inline-block.post-item
+              = link_to admin_post_path(post)
+                = time_ago_in_words(post.created_at)
+                | 前
+            li.card-text.d-inline-block.post-item
+              = link_to admin_post_path(post)
+                = post.status_i18n
+        .skill-list
+          = link_to_prev_page posts, "前のページ", class: "prev d-none"
+          = link_to_next_page posts, "次のページ", class: "next d-none"

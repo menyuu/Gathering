@@ -4,12 +4,20 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
+    @user = EndUser.find(params[:id])
+    @posts = Post.where(status: "published",end_user_id: @user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @post_comment = PostComment.new
   end
 
-  def edit
+  def update
+    @user = EndUser.find(params[:id])
+    @user.update(status: "published")
+    redirect_to request.referer
   end
 
   def destroy
-    @user = EndUser.find()
+    @user = EndUser.find(params[:id])
+    @user.update(status: "freeze")
+    redirect_to request.referer
   end
 end

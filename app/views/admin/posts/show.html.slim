@@ -5,7 +5,7 @@
         .card-body.row
           .col-8
             = link_to user_path(@post.user)
-              = image_tag @post.user.user_icon(50, 50), class: "rounded-circle"
+              = image_tag @post.user.user_icon(80, 80), class: "rounded-circle"
             = link_to @post.user.name, user_path(@post.user), class: "user-name"
           ul.col-4.text-end.post-item-container
             li.card-text.d-inline-block.delete-btn
@@ -30,6 +30,9 @@
                 = link_to post_path(@post)
                   = time_ago_in_words(@post.created_at)
                   | 前
+              li.card-text.d-inline-block.post-item
+                = link_to admin_post_path(@post)
+                  = @post.status_i18n
       .scroll-list.jscroll
         - @comments.each do |comment|
           #post-index

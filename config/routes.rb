@@ -62,7 +62,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy], as: "comment"
     end
-    resources :users, only: [:index, :show, :edit, :destroy]
+    resources :users, only: [:index, :show, :update, :destroy]
     resources :groups, only: [:index, :show, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
