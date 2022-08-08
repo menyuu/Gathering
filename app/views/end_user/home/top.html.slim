@@ -11,7 +11,7 @@
             .modal-header
               h5.modal-title#newUserModalToggle
                 | アカウントを作成
-              button.btn data-bs-dismiss="modal" aria-label="close" ×
+              button.btn data-dismiss="modal" aria-label="close" ×
             .modal-body
               = form_with model: @user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
                 .form-group
@@ -29,15 +29,15 @@
                   br
                   = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
             .modal-footer
-              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              button.btn.btn-primary.mr-auto#form data-bs-target="#newUserConfirmModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 確認
+              button.btn.btn-secondary data-dismiss="modal" 閉じる
+              button.btn.btn-primary.mr-auto#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
       .modal.fade#newUserConfirmModalToggle tabindex="-1" aria-labelledby="newUserModalToggle" aria-hidden="true"
         .modal-dialog.modal-dialog-centered
           .modal-content
             .modal-header
               h5.modal-title#newUserConfirmModalToggle
                 | アカウントを作成(確認画面)
-              button.btn data-bs-dismiss="modal" aria-label="close" ×
+              button.btn data-dismiss="modal" aria-label="close" ×
             .modal-body
               = form_with model: @user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
                 .form-group
@@ -57,11 +57,11 @@
                 .actions.mt-3
                   = f.submit "アカウントを作成する", class: "btn btn-primary w-100"
             .modal-footer
-              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
-              button.btn.btn-primary.mr-auto#form href="" data-bs-target="#newUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
+              button.btn.btn-secondary data-dismiss="modal" 閉じる
+              button.btn.btn-primary.mr-auto#form href="" data-target="#newUserModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
       .row
         .col-8
-          button.btn.btn-dark data-bs-toggle="modal" data-bs-target="#newUserModalToggle" type="button" メールアドレスで登録
+          button.btn.btn-dark data-toggle="modal" data-target="#newUserModalToggle" type="button" メールアドレスで登録
       .row
         .col-9.col-md-8.mx-auto.mt-5
           h1.text-center
@@ -80,6 +80,6 @@
                 = f.submit "ログイン", class: "btn btn-dark w-100"
           .mt-5
             | 初めてご利用ですか？
-            a href="" data-bs-toggle="modal" data-bs-target="#newUserModalToggle" アカウントを作成する
+            a href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
 
 = javascript_pack_tag 'top.js'
