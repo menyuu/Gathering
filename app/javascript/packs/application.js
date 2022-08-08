@@ -14,7 +14,7 @@ import "popper.js";
 import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
-import "./index";
+import "./flash";
 import "./input";
 import "./copy";
 import "./chat";
