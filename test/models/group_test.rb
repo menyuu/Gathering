@@ -3,7 +3,7 @@
 # Table name: groups
 #
 #  id           :integer          not null, primary key
-#  introduction :text             default(""), not null
+#  introduction :text             not null
 #  name         :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
