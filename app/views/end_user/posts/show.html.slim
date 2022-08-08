@@ -1,6 +1,6 @@
 .container
   .row
-    .col-8
+    .col-10
       .card.posts-area.rounded-0
         .card-body.row
           .col-8
@@ -17,7 +17,7 @@
                   = link_to post_tags_path(@post)
                     i.fa-solid.fa-tags data-bs-toggle="tooltip" data-bs-placement="right" title="クリックしてタグを編集"
                 li.card-text.d-inline-block.post-item-delete
-                  = link_to post_path(@post), method: :delete, 
+                  = link_to post_path(@post), method: :delete,
                   data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
                     i.fa-solid.fa-trash-can data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を削除"
                   .modal.modal-lg.fade#editPostModalToggle tabindex="-1" aria-labelledby="editPostModalToggle" aria-hidden="true"
@@ -127,7 +127,7 @@
                     | 前
                   li.card-text.d-inline-block.post-item
                     - if comment.user == current_end_user
-                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "post-item-edit-text text-danger", 
+                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "post-item-edit-text text-danger",
                       data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
           .skill-list
             = link_to_prev_page @comments, "前のページ", class: "prev d-none"
