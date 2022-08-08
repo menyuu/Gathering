@@ -1,0 +1,16 @@
+= form_with model: @post, local: false do |f|
+  .col-12.ms-auto.border
+    = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
+    .text-end.post-input-item
+      .form-group.file-uploader-image.d-sm-inline-block
+        = f.label :images
+          i.fa-regular.fa-image.post-form-image
+        = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
+      .form-check.form-switch.d-sm-inline-block
+        = f.check_box :status, {class: "form-check-input"}, "published", "draft"
+        = f.label :status, "投稿を公開", class: "form-check-label"
+    .col-10.form-group
+      = f.label :name, "タグ", class: "post-input-tag-label"
+      = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
+    .form-group.mt-3.text-end.post-input-item
+      = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"

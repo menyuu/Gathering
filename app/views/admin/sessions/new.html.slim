@@ -1,0 +1,25 @@
+.col-6.mx-auto.mt-5
+  .card.col-8.p-3.shadow
+    .card-header.bg-white
+      h5.card-title#newUserModalToggle
+        | 管理者ログイン
+    .card-body
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field.form-group.my-3
+          = f.label :email, "メールアドレス"
+          br
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+        .field.form-group.my-3
+          = f.label :password, "パスワード"
+          br
+          = f.password_field :password, autocomplete: "current-password", class: "form-control"
+        - if devise_mapping.rememberable?
+          .field.form-group.my-3
+            = f.check_box :remember_me
+            = f.label :remember_me, "パスワードを保持する"
+        .actions.form-group.my-3
+          = f.submit "ログイン", class: "btn btn-dark w-100"
+    .card-footer.bg-white
+        | 管理者でない方は
+        = link_to "こちら", root_path
+

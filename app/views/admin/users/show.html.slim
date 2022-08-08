@@ -1,0 +1,49 @@
+.container
+  .row
+    .col-10
+      .card.rounded-0
+        .card-body.row
+          .col-8
+            = link_to @user.icon, "data-lightbox": @user.icon
+              = image_tag @user.user_icon(80, 80), class: "rounded-circle"
+            span.user-name
+              = @user.name
+          ul.col-4
+            li.card-text.d-inline-block
+              = @user.status_i18n
+            li.card-text.d-inline-block.delete-btn.ms-5
+              - if @user.status == "freeze"
+                = link_to "アカウント復旧", admin_user_path(@user), method: :patch,class: "btn btn-outline-dark",
+                data: {"confirm": "該当のユーザーのアカウントを利用可能にしてよろしいですか？"}
+              - else
+                = link_to "アカウント停止", admin_user_path(@user), method: :delete, class: "btn btn-outline-danger",
+                data: {confirm: "該当のユーザーのアカウントを停止してよろしいですか？"}
+        .card-body
+          p.card-text.user-text
+            = @user.introduction
+        .card-body
+          ul.col-12
+            li.card-text.user-item
+              = link_to tags_path
+                i.fa-solid.fa-tags
+                span
+                  |   趣味タグ：
+              - @user.tags.each do |tag|
+                = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.user-item
+              = link_to genres_path
+                i.fa-solid.fa-chess
+                span
+                  |   ゲームジャンル：
+              - @user.genres.each do |genre|
+                = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.user-item
+              = link_to games_path
+                i.fa-solid.fa-gamepad
+                span
+                  |   ゲーム：
+              - @user.games.each do |game|
+                = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+  .row
+    .col-10
+      = render "admin/posts/post_index", posts: @posts

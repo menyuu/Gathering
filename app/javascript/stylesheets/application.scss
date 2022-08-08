@@ -1,0 +1,279 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+body {
+  height: 100%;
+  background-color: white;
+  margin-bottom: 80px;
+}
+
+header {
+  z-index: 1080;
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+.sidebar {
+  position: sticky;
+  top: 100px;
+  padding-left: 24px;
+  font-size: 24px;
+}
+
+.sign-in-area {
+  top: 30%;
+}
+
+/* user */
+/* post */
+.file-uploader-image {
+  font-size: 24px;
+  margin-right: 16px;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+// cursor: pointer; フォームのイメージアイコンhover時にする
+
+.post-input {
+  &-item {
+    margin-right: 16px;
+  }
+  &-area {
+    &::placeholder {
+      padding-top: 80px;
+    }
+  }
+}
+
+.post-comment-container {
+  display: none;
+}
+
+.post-text {
+  &-text {
+    padding: 32px 56px;
+    @media screen and (max-width: 768px) {
+      padding: 16px;
+    }
+  }
+}
+
+.post-item {
+  margin-right: 16px;
+  cursor: pointer;
+  &-delete {
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  &-delete a:hover {
+    color: red;
+  }
+  &-container {
+    margin-bottom: 24px;
+  }
+
+}
+
+
+
+.post-show-name {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/*group*/
+.group-show {
+  font-size: 16px;
+  &-members {
+    &-text a, a:hover {
+      text-decoration: none;
+    }
+    &-count {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.group-chat-balloon {
+  display: inline-block;
+  padding: 24px;
+  margin: 16px 8px;
+  border-radius: 50px;
+  position: relative;
+  background-color: #8de055;
+  max-width: 60%;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    margin-top: -10px;
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 10px 10px 10px 10px;
+    border-color: transparent transparent transparent #8de055;
+  }
+  &-other {
+    display: inline-block;
+    padding: 24px;
+    margin: 16px 8px;
+    border-radius: 50px;
+    position: relative;
+    background-color: #D9F0FF;
+    max-width: 60%;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: -9px;
+      margin-top: -10px;
+      display: block;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-width: 10px 10px 10px 0;
+      border-color: transparent #D9F0FF transparent transparent;
+    }
+  }
+}
+
+#group-chat-area {
+  height: 560px;
+}
+
+.group-chat{
+  &-container {
+    max-width: 95%;
+  }
+  &-user-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  &delete-text {
+    text-decoration: none;
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+/*common*/
+
+
+/* postのindex調整で追加 */
+ul,ol,li {
+  list-style: none;
+}
+
+
+a {
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: black;
+    opacity: 0.7;
+  }
+}
+
+i {
+  color: black;
+}
+
+.user-name {
+  margin-left: 24px;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.post-text {
+  padding: 32px 56px;
+}
+
+
+.modal-close-btn {
+  border: 1px solid black;
+  &span {
+    font-size: 16px;
+  }
+}
+
+.user-text {
+  padding: 16px 16px;
+}
+
+
+
+.tag-item {
+  margin: 8px;
+}
+
+
+.flash {
+ z-index: 100;
+}
+
+.delete-btn a:hover {
+ opacity: 1;
+}
+
+.table-link {
+ display: inline-block;
+ width: 100%;
+ height: 100%;
+}
+
+.table-link-count a:hover {
+ text-decoration: underline;
+}
+
+.icon-item {
+ font-size: 24px;
+ cursor: pointer;
+}
+
+.user-item {
+  font-size: 20px;
+  
+}
+
+.link-text-blue {
+  color: #007bff;
+}
+
+.link-text-blue:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+
+.search-bar {
+  position: sticky;
+  top: 100px;
+  padding-left: 24px;
+  font-size: 24px;
+}
+
+.group-bar {
+  position: sticky;
+  top: 100px;
+  padding-left: 24px;
+  font-size: 24px;
+}
+
+
+

@@ -1,0 +1,23 @@
+/管理者側のサイドバー
+- if admin_signed_in?
+  table.table.table-borderless
+    tr
+      td
+        = link_to admin_posts_path, class: "btn btn-dark rounded-pill"
+          i.fa-solid.fa-list
+          span
+            |   投稿一覧
+
+    tr
+      td
+        = link_to admin_users_path, class: "btn btn-dark rounded-pill"
+          i.fa-solid.fa-user
+          span
+            |   ユーザー一覧
+    tr
+      td
+        = link_to destroy_admin_session_path, method: :delete, class: "btn btn-dark rounded-pill"
+          i.fa-solid.fa-right-from-bracket
+          span
+            |   ログアウト
+

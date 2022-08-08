@@ -1,0 +1,58 @@
+.row
+  .col-8
+    .container
+      .row
+        .col.mx-auto
+          .scroll-list.jscroll
+            - @posts.each do |post|
+              #post-index
+                .card.posts-area.offset-2.rounded-0
+                  .card-body.pb-0
+                    = link_to user_path(post.user), class: "posts-area-user"
+                      = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+                      span.text-dark
+                        = post.user.name
+                  .card-body.p-0
+                    = link_to post_path(post), class: "posts-area-text-container"
+                      .posts-area-text
+                        .card-text.text-dark
+                          = post.text
+                  .card-body.p-0
+                    .card-img.text-center
+                      - post.images.each do |image|
+                        = link_to image, "data-lightbox": image
+                          = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                  .card-dody
+                    .container
+                      .card-text.m-3
+                        - post.tags.each do |tag|
+                          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
+                      .card-text
+                        = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                      .col-12.text-end.post-item.accordion id="accordion#{post.id}"
+                        accordion-item
+                        .card-text.d-inline-block.post-item-edit.accordion-header id="heading#{post.id}"
+                          .text-dark data-bs-toggle="collapse" data-bs-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                            i.fa-solid.fa-pen-to-square
+                            span.post-item-edit-text
+                              | クリックして編集
+                        .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-bs-parent="#accordion#{post.id}"
+                          .accordion-body.p-0
+                            = form_with model: post, local: false do |f|
+                              .col-12.ms-auto.border.rounded
+                                = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
+                                .text-end.post-input-item
+                                  .form-group.file-uploader-image.d-sm-inline-block
+                                    = f.label :images, for: "post_images_#{post.id}"
+                                      i.fa-regular.fa-image
+                                    = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{post.id}", style: "display: none;"
+                                  .form-check.form-switch.d-sm-inline-block
+                                    = f.check_box :status, {class: "form-check-input", id: "post-status-#{post.id}"}, "published", "draft"
+                                    = f.label :status, "投稿を公開", class: "form-check-label", for: "post-status-#{post.id}"
+                                .col-10.form-group
+                                  = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
+                                .form-group.mt-3.text-end.post-input-item
+                                  = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+            .skill-list
+              = link_to_prev_page @posts, "前のページ", class: "prev d-none"
+              = link_to_next_page @posts, "次のページ", class: "next d-none"
