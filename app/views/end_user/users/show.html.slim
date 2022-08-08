@@ -147,4 +147,7 @@
                   i.fa-solid.fa-pen-to-square
                   span.user-show-item-text
                     | 下書き
-    = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment
+.container
+  .row.mx-auto
+    .col-10
+      = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment

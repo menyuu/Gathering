@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   def index
-    @users = EndUser.all
+    @users = EndUser.page(params[:page]).per(1).order(created_at: :DESC)
   end
 
   def show
@@ -10,5 +10,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    @user = EndUser.find()
   end
 end
