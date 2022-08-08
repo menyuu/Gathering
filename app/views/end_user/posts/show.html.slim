@@ -5,7 +5,7 @@
         .card-body.row
           .col-8
             = link_to user_path(@post.user)
-              = image_tag @post.user.user_icon(50, 50), class: "rounded-circle"
+              = image_tag @post.user.user_icon(80, 80), class: "rounded-circle"
             = link_to @post.user.name, user_path(@post.user), class: "user-name"
           ul.col-4.text-end.post-item-container
             - if current_end_user == @post.user

@@ -29,51 +29,6 @@ textarea {
 }
 
 /* user */
-.user-show {
-  font-size: 16px;
-  &-follows {
-    &-text a, a:hover {
-      text-decoration: none;
-    }
-    &-count {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-  &-item {
-    text-decoration: none;
-    &-text {
-      font-size: 16px;
-    }
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-  &-text {
-    font-size: 16px;
-  }
-  &-edit {
-    &-password {
-      font-size: 16px;
-    }
-    &-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    &-status {
-      font-size: 16px;
-      &-open, &-close {
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-}
-
 /* post */
 .file-uploader-image {
   font-size: 24px;
