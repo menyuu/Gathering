@@ -23,7 +23,7 @@
             = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
           ul.col-12.text-end.post-item-container
             li.card-text.d-inline-block.post-item
-              a data-bs-toggle="modal" data-bs-target="#postComment#{post.id}ModalToggle" data-link="postComment#{post.id}ModalToggle"
+              a data-toggle="modal" data-target="#postComment#{post.id}ModalToggle" data-link="postComment#{post.id}ModalToggle"
                 i.fa-regular.fa-comment
               = post.post_comments.count
             li.card-text.d-inline-block.post-item
@@ -33,12 +33,12 @@
               = link_to post_path(post)
                 = time_ago_in_words(post.created_at)
                 | 前
-    .modal.modal-lg.fade id="postComment#{post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{post.id}ModalToggle" aria-hidden="true"
-      .modal-dialog.modal-dialog-centered
+    .modal.fade id="postComment#{post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{post.id}ModalToggle" aria-hidden="true"
+      .modal-dialog.modal-lg.modal-dialog-centered
         .modal-content
           .modal-header
             div id="#postComment#{post.id}ModalToggle"
-            button.btn.modal-close-btn data-bs-dismiss="modal" aria-label="close"
+            button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
               span
                 | ×
           .modal-body
@@ -60,7 +60,7 @@
               .text-end.mt-3
                 = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill"
           .modal-footer
-            button.btn.btn-dark data-bs-dismiss="modal" 閉じる
+            button.btn.btn-dark data-dismiss="modal" 閉じる
       .skill-list
         = link_to_prev_page posts, "前のページ", class: "prev d-none"
         = link_to_next_page posts, "次のページ", class: "next d-none"
