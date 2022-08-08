@@ -5,10 +5,15 @@
         - @posts.each do |post|
           #post-index
             .card.posts-area.offset-2.rounded-0
-              .card-body
-                = link_to admin_user_path(post.user)
-                  = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
-                = link_to post.user.name, admin_user_path(post.user), class: "user-name"
+              .card-body.row
+                .col-8
+                  = link_to admin_user_path(post.user)
+                    = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+                  = link_to post.user.name, admin_user_path(post.user), class: "user-name"
+                ul.col-4.text-end.post-item-container
+                  li.card-text.d-inline-block.delete-btn
+                    = link_to "削除する", admin_post_path(post), method: :delete, class:"btn btn-outline-danger opacity-10",
+                    data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
               .card-body
                 = link_to admin_post_path(post)
                   p.card-text.post-text

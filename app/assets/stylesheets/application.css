@@ -18,6 +18,10 @@
    z-index: 100;
  }
 
+ .delete-btn a:hover {
+   opacity: 1;
+ }
+
 .search-bar {
   position: sticky;
   top: 100px;

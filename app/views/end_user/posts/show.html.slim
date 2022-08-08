@@ -111,17 +111,17 @@
             .card.posts-area.rounded-0
               .card-body.row
                 .col-8
-                  = link_to user_path(comment.post.user)
-                    = image_tag comment.post.user.user_icon(50, 50), class: "rounded-circle"
-                  = link_to comment.post.user.name, user_path(comment.post.user), class: "user-name"
+                  = link_to user_path(comment.user)
+                    = image_tag comment.user.user_icon(50, 50), class: "rounded-circle"
+                  = link_to comment.user.name, user_path(comment.user), class: "user-name"
                 .card-body
                   p.card-text.post-text
-                    = comment.post.text
+                    = comment.text
                 ul.col-12.text-end.post-item-container
                   li.card-text.d-inline-block.post-item
-                    = comment.post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                    = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
                   li.card-text.d-inline-block.post-item
-                    = time_ago_in_words(comment.post.created_at)
+                    = time_ago_in_words(comment.created_at)
                     | 前
                   li.card-text.d-inline-block.post-item
                     - if comment.user == current_end_user

@@ -12,7 +12,7 @@ class EndUser::PostsController < ApplicationController
     @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
     @post_tag = PostingTag.new
-    @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
+    @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     tags = @post.tags.all
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
