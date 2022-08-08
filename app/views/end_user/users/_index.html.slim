@@ -1,60 +1,59 @@
-- users.each do |user|
-    .col-12
-      .scroll-list.jscroll
-        - users.each do |user|
-          .col-10.border.shadow-sm.p-4.mx-auto
-            .row.user-show
-              .col-2.text-center.p-0
-                = link_to user_path(user)
-                  = image_tag user.user_icon(80, 80), class: "rounded-circle pt-2"
-              .col-9.offset-1.d-flex.align-items-center.ps-0
-                .col-4.d-none.d-sm-block.user-show-name
-                  = link_to user.name, user_path(user), class: "user-show-name-link text-black"
-                .col-8.ms-3.me-5
-                  .row
-                    .col-6
-                      table.table
-                        tbody
-                          tr
-                            td.user-show-follows-text
-                              = link_to "フォロー中：", user_followings_path(user), class: "text-black d-block w-100 h-100"
-                            td
-                              = link_to user.followings.count, user_followings_path(user), class: "user-show-follows-count text-black d-block w-100 h-100"
-                          tr
-                            td.user-show-follows-text
-                              = link_to "フォロワー：", user_followers_path(user), class: "text-black d-block w-100 h-100"
-                            td
-                              = link_to user.followers.count, user_followers_path(user), class: "user-show-follows-count text-black d-block w-100 h-100"
-                    span.col-6.text-center
-                      - unless current_end_user == user
-                        - if current_end_user.following?(user)
-                          = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
-                        - else
-                          = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
-                .col-11.ms-5.my-4.user-show-text
-                  = user.introduction
-              .row.my-5
-                .col-12.mb-3.add-item
-                  i.fa-solid.fa-tags.text-black
-                  span.me-3.text-black
-                    | 趣味タグ：
-                  - user.tags.each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                .col-12.mb-3.add-item
-                  i.fa-solid.fa-chess.text-black
-                  span.me-3.text-black
-                    | ゲームジャンル：
-                  - user.genres.each do |genre|
-                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                .col-12.mb-3.add-item
-                  i.fa-solid.fa-gamepad.text-black
-                  span.me-3.text-black
-                    | ゲーム：
-                  - user.games.each do |game|
-                    = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .row.text-end
-                .col
-                  = link_to "詳細を見る", user_path(user), class: "btn btn-outline-dark"
-            .skill-list
-              = link_to_prev_page users, "前のページ", class: "prev d-none"
-              = link_to_next_page users, "次のページ", class: "next d-none"
+.scroll-list.jscroll
+  - users.each do |user|
+    .card.rounded-0
+      .card-body.row
+        .col-6
+          = link_to user_path(user)
+            = image_tag user.user_icon(80, 80), class: "rounded-circle"
+          = link_to user.name, user_path(user), class: "user-name"
+        .col-6
+          .row
+            .col-6
+              table.table
+                tbody
+                  tr
+                    td
+                      = link_to "フォロー中：", user_followings_path(user), class: "table-link"
+                    td
+                      = link_to user.followings.count, user_followings_path(user), class: "table-link table-link-count"
+                  tr
+                    td
+                      = link_to "フォロワー：", user_followers_path(user), class: "table-link"
+                    td
+                      = link_to user.followers.count, user_followers_path(user), class: "table-link table-link-count"
+            .col-6
+              .card-text
+                - unless current_end_user == user
+                  - if current_end_user.following?(user)
+                    = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
+                  - else
+                    = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
+      .card-body
+        = link_to user_path(user)
+          p.card-text.user-text
+            = user.introduction
+      .card-body
+        ul.col-12
+          li.card-text
+            i.fa-solid.fa-tags
+            span
+              | 趣味タグ：
+            - user.tags.each do |tag|
+              = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          li.card-text
+            i.fa-solid.fa-chess
+            span
+              | ゲームジャンル：
+            - user.genres.each do |genre|
+              = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          li.card-text
+            i.fa-solid.fa-gamepad
+            span
+              | ゲーム：
+            - user.games.each do |game|
+              = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+      .card-body.text-end
+        = link_to "詳細を見る", user_path(user), class: "btn btn-outline-dark"
+    .skill-list
+      = link_to_prev_page users, "前のページ", class: "prev d-none"
+      = link_to_next_page users, "次のページ", class: "next d-none"

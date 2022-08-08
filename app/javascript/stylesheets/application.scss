@@ -217,18 +217,6 @@ textarea {
 }
 
 /*common*/
-.add-item a {
-  text-decoration: none;
-}
-
-
-
-
-
-
-
-
-
 
 
 /* postのindex調整で追加 */
@@ -261,9 +249,6 @@ i {
   padding: 32px 56px;
 }
 
-.tag-item {
-  margin: 8px;
-}
 
 .modal-close-btn {
   border: 1px solid black;
@@ -272,6 +257,12 @@ i {
   }
 }
 
+.user-text {
+  padding: 16px 16px;
+}
 
 
 
+.tag-item {
+  margin: 8px;
+}

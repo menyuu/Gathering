@@ -22,6 +22,16 @@
    opacity: 1;
  }
 
+ .table-link {
+   display: inline-block;
+   width: 100%;
+   height: 100%;
+ }
+
+ .table-link-count a:hover {
+   text-decoration: underline;
+ }
+
 .search-bar {
   position: sticky;
   top: 100px;

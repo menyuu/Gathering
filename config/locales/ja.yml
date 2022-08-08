@@ -8,6 +8,7 @@ ja:
       status:
         published: "公開"
         privately: "非公開"
+        freeze: "凍結"
     tag:
       status:
         prepared: "デフォルト"

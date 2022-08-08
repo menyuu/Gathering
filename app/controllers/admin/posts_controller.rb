@@ -5,7 +5,7 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.post_comments.page(params[:page]).per(1)
+    @comments = @post.post_comments.page(params[:page]).per(1).order(created_at: :DESC)
   end
 
   def destroy

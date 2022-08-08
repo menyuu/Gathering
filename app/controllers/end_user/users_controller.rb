@@ -1,9 +1,9 @@
 class EndUser::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :open_user, :close_user]
 
-  def index
-    @users = EndUser.all
-  end
+  # def index
+  #   @users = EndUser.all
+  # end
 
   def show
     @user = EndUser.find(params[:id])

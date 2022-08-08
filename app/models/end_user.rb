@@ -45,7 +45,7 @@ class EndUser < ApplicationRecord
 
   has_one_attached :icon
 
-  enum status: { published: 0, privately: 1 }
+  enum status: { published: 0, privately: 1, freeze: 2 }
 
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
