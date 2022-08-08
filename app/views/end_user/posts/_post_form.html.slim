@@ -4,7 +4,7 @@
     .text-end.post-input-item
       .form-group.file-uploader-image.d-sm-inline-block
         = f.label :images
-          i.fas.fa-image.post-form-image
+          i.fa-regular.fa-image.post-form-image
         = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
       .form-check.form-switch.d-sm-inline-block
         = f.check_box :status, {class: "form-check-input"}, "published", "draft"
