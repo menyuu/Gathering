@@ -225,11 +225,11 @@ i {
  &:hover {
    text-decoration: none;
  }
- &-count a {
+ &-count {
     display: inline-block;
     width: 100%;
     height: 100%;
-    &:hover {
+    &a:hover {
       text-decoration: underline;
     }
   }
