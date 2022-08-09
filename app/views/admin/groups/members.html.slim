@@ -1,0 +1,50 @@
+.container
+  .row.mx-auto
+    .col-10
+      .scroll-list.jscroll
+        - @members.each do |user|
+          .card.rounded-0
+            .card-body.row
+              .col-8
+                = link_to admin_user_path(user)
+                  = image_tag user.user_icon(80, 80), class: "rounded-circle"
+                = link_to user.name, admin_user_path(user), class: "user-name"
+              ul.col-4.text-right
+                li.card-text.d-inline-block
+                  = user.status_i18n
+                li.card-text.d-inline-block.delete-btn.ml-5
+                  - if user.status == "freeze"
+                    = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
+                    data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
+                  - else
+                    = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                    data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+            .card-body
+              = link_to admin_user_path(user)
+                p.card-text.user-text
+                  = user.introduction
+            .card-body
+              ul.col-12
+                li.card-text
+                  i.fas.fa-user-tag
+                  span
+                    | 趣味タグ：
+                  - user.tags.each do |tag|
+                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                li.card-text
+                  i.fas.fa-chess
+                  span
+                    | ゲームジャンル：
+                  - user.genres.each do |genre|
+                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                li.card-text
+                  i.fas.fa-gamepad
+                  span
+                    | ゲーム：
+                  - user.games.each do |game|
+                    = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+              .card-body.text-right
+                = link_to "詳細を見る", admin_user_path(user), class: "btn btn-outline-dark"
+            .skill-list
+              = link_to_prev_page @members, "前のページ", class: "prev d-none"
+              = link_to_next_page @members, "次のページ", class: "next d-none"
