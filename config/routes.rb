@@ -63,7 +63,10 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:destroy], as: "comment"
     end
     resources :users, only: [:index, :show, :update, :destroy]
-    resources :groups, only: [:index, :show, :destroy]
+    resources :groups, only: [:index, :show, :destroy] do
+      resources :group_chats, only: [:index, :destroy], as: "chats"
+      get "members"
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

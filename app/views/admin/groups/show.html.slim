@@ -1,2 +1,55 @@
-h1 Admin::Groups#show
-p Find me in app/views/admin/groups/show.html.slim
+.container.ml-0
+  .row
+    .col-10.offset-2
+      .card.shadow.rounded-0
+        .card-body.row
+          .col-6
+            = link_to admin_group_path(@group)
+              = image_tag @group.group_icon(80, 80), class: "rounded-circle pt-2"
+              = link_to @group.name, admin_group_path(@group), class: "group-show-name-link text-black"
+          .col-6.row
+            .col-8
+              table.table
+                tbody
+                  tr
+                    td
+                      = link_to "オーナー：", admin_user_path(@group.owner), class: "table-link"
+                    td
+                      = link_to @group.owner.name, admin_user_path(@group.owner), class: "table-link-count"
+                  tr.border-bottom
+                    td
+                      = link_to "メンバー：", admin_group_members_path(@group), class: "table-link"
+                    td
+                      = link_to @group.users.count, admin_group_members_path(@group), class: "table-link-count"
+            ul.col-4.text-right
+              li.card-text.d-inline-block.delete-btn
+                = link_to "削除する", admin_group_path(@group), method: :delete, class: "btn btn-outline-danger",
+                data: {"confirm": "該当のグループを削除してよろしいですか？"}
+        .card-body
+          = link_to admin_group_path(@group)
+            p.card-text.group-text
+              = @group.introduction
+        .card-body
+          ul.col-12
+            li.card-text.group-item
+              i.fas.fa-tags
+              span
+                | 趣味タグ：
+              - @group.tags.each do |tag|
+                = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              i.fas.fa-chess
+              span
+                | ゲームジャンル：
+              - @group.genres.each do |genre|
+                = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              i.fas.fa-gamepad
+              span
+                | ゲーム：
+              - @group.games.each do |game|
+                = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+
+        .card-body.text-right
+          .col
+            = link_to "チャットを確認する", admin_group_chats_path(@group), class: "btn btn-outline-dark"
