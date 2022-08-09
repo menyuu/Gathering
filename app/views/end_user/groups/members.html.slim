@@ -16,14 +16,14 @@
                     tbody
                       tr
                         td.group-show-members-text
-                          = link_to "フォロー中：", user_followings_path(member), class: "text-black d-block w-100 h-100"
+                          = link_to "フォロー中：", user_followings_path(member), class: "d-block w-100 h-100"
                         td
-                          = link_to member.followings.count, user_followings_path(member), class: "group-show-members-count text-black d-block w-100 h-100"
+                          = link_to member.followings.count, user_followings_path(member), class: "group-show-members-count d-block w-100 h-100"
                       tr
                         td.group-show-members-text
-                          = link_to "フォロワー：", user_followers_path(member), class: "text-black d-block w-100 h-100"
+                          = link_to "フォロワー：", user_followers_path(member), class: "d-block w-100 h-100"
                         td
-                          = link_to member.followers.count, user_followers_path(member), class: "group-show-members-count text-black d-block w-100 h-100"
+                          = link_to member.followers.count, user_followers_path(member), class: "group-show-members-count d-block w-100 h-100"
                 span.col-6.text-center
                   - unless current_end_user == member
                     - if current_end_user.following?(member)

@@ -136,7 +136,10 @@ textarea {
 }
 
 #group-chat-area {
-  height: 560px;
+  height: 480px;
+  &-admin {
+    height: 720px;
+  }
 }
 
 .group-chat{

@@ -132,17 +132,17 @@
           - if current_end_user == @user
             ul.text-center.d-flex.justify-content-around.p-0
               li.col-4.user-item
-                = link_to posts_path, class: "text-black user-show-item"
+                = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
                   span
                     |   タイムライン
               li.col-4.border-left.border-right.border-3.user-item
-                = link_to user_favorites_path(@user), class: "text-black user-show-item"
+                = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
                   span
                     |   いいね
               li.col-4.user-item
-                = link_to draft_posts_path, class: "text-black user-show-item"
+                = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
                   span
                     |   下書き

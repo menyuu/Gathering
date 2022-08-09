@@ -25,7 +25,7 @@
           ul.col-12
             li.card-text.user-item
               = link_to tags_path
-                i.fa-solid.fa-tags
+                i.fas.fa-user-tag
                 span
                   |   趣味タグ：
               - @user.tags.each do |tag|
@@ -39,7 +39,7 @@
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.user-item
               = link_to games_path
-                i.fa-solid.fa-gamepad
+                i.fas.fa-gamepad
                 span
                   |   ゲーム：
               - @user.games.each do |game|

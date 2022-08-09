@@ -1,29 +1,32 @@
-.row.group-chat-header
-  .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3
-    h1.text-center
-      = @group.name
 .row
-  .col-8.mt-5.ms-5.border.rounded.shadow-sm.p-3.d-inline-block
-    .overflow-auto#group-chat-area.p-2
-      - @chats.each do |chat|
-          .group-chat-container.text-right.d-flex.justify-content-end.align-items-center
-            .group-chat-balloon.text-left
-              = chat.text
-            .col-2.group-chat-user-name.d-inline-block.text-center
-              = link_to user_path(chat.user), class: "group-chat-user-name"
-                .span.text-black
-                  = chat.user.name
-                .span
-                  = image_tag chat.user.user_icon(80, 80), class: "rounded-circle"
-          .row.text-right.group-chat-container
-            .col.my-2
-              = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
-              = link_to "削除", group_chat_path(chat.group, chat), method: :delete, class: "ms-3 group-chat-delete-text"
-  .col-3.group-chat-member.d-inline-block
-    .mt-5.ms-5
+  .col-8.mt-5.shadow.p-3
+    - if @chats.exists?
+      .overflow-auto#group-chat-area-admin
+        - @chats.each do |chat|
+          .card.border-0
+            .card-body.text-left.d-flex.justify-content-start.align-items-center
+              .col-2.group-chat-user-name.text-center
+                = link_to user_path(chat.user), class: "group-chat-user-name"
+                  .span
+                    = chat.user.name
+                  .span
+                    = image_tag chat.user.user_icon(60, 60), class: "rounded-circle"
+              .card-text.text-left
+                = chat.text
+                    = image_tag chat.user.user_icon(60, 60), class: "rounded-circle"
+            .card-body.text-right
+              ul.col-12
+                li.card-text.d-inline-block
+                  = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                li.card-text.d-inline-block.group-item-delete
+                  = link_to "削除", group_chat_path(chat.group, chat), method: :delete
+  .col-3.mt-5
+    .card.shadow
+      h6.card-title.text-center.mx-auto.p-3
+        = @group.name
       - @members.each do |member|
-        .mt-3.mb-4.py-2.border.rounded.shadow-sm.p-3
-          = link_to user_path(member), class: "group-chat-user-name"
-            = image_tag member.user_icon(60, 60), class: "rounded-circle mr-2"
-            span.text-black
+        .card-body
+          = link_to user_path(member)
+            = image_tag member.user_icon(60, 60), class: "rounded-circle"
+            span.card-text.group-name
               = member.name
