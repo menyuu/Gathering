@@ -1,6 +1,7 @@
-= form_with model: @post, local: false do |f|
+= form_with model: post, local: false do |f|
   .col-12.ml-auto.border
-    = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-area", rows: 5;
+    = f.text_area :text, placeholder: "入力して投稿",
+    class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-area", rows: 5
     .text-right.post-input-item.mt-3
       .form-group.d-sm-inline-block
         = f.label :images
@@ -10,7 +11,7 @@
         = f.check_box :status, {class: "form-check-input form-item"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label form-item"
     .col-10.form-group
-      = f.label :name, "タグ", class: "post-input-tag-label"
-      = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
+      = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
+      class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
