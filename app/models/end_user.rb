@@ -76,7 +76,8 @@ class EndUser < ApplicationRecord
         specific_user = []
         user = EndUser.where(id: user_id)
         specific_user << user
-        return user
+        specific_user.flatten!
+        return specific_user
       else
         return self.all
       end

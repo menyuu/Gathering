@@ -2,62 +2,57 @@
   .row
     .col-10.offset-2
       .scroll-list.jscroll
-        - groups.each do |group|
-          .border.shadow-sm.p-4.mx-auto
-            .row.group-show
-              .col-2.text-center.p-0
+        - @groups.each do |group|
+          .card.shadow.rounded-0
+            .card-body.row
+              .col-6
                 = link_to admin_group_path(group)
-                  = image_tag group.group_icon(160, 160), class: "rounded-circle pt-2"
-              .col-9.offset-1.d-flex.align-items-center.ps-0
-                .col-4.d-none.d-sm-block.group-show-name
+                  = image_tag group.group_icon(80, 80), class: "rounded-circle pt-2"
                   = link_to group.name, admin_group_path(group), class: "group-show-name-link text-black"
-                .col-8.ms-3.me-5
-                  .row
-                    .col-6
-                      table.table
-                        tbody
-                          tr
-                            td.group-show-members-text
-                              = link_to "オーナー：", user_path(group.owner), class: "text-black d-block w-100 h-100"
-                            td
-                              = link_to group.owner.name, user_path(group.owner), class: "group-show-members-count text-black d-block w-100 h-100"
-                          tr
-                            td.group-show-members-text
-                              = link_to "メンバー：", group_members_path(group), class: "text-black d-block w-100 h-100"
-                            td
-                              = link_to group.users.count, group_members_path(group), class: "group-show-members-count text-black d-block w-100 h-100"
-                    span.col-6.text-center
-                      - unless group.is_ownerd_by?(current_end_user)
-                        - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-                          - if group.includesUser?(current_end_user)
-                            = link_to "グループを抜ける", group_user_admin_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
-                          - else
-                            = link_to "グループに入る", group_user_admin_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
-              .row
-                .col-11.ms-5.my-4.user-show-text
+              .col-6.row
+                .col-8
+                  table.table
+                    tbody
+                      tr
+                        td
+                          = link_to "オーナー：", admin_user_path(group.owner), class: "table-link"
+                        td
+                          = link_to group.owner.name, admin_user_path(group.owner), class: "table-link-count"
+                      tr.border-bottom
+                        td
+                          = link_to "メンバー：", admin_group_members_path(group), class: "table-link"
+                        td
+                          = link_to group.users.count, admin_group_members_path(group), class: "table-link-count"
+                ul.col-4.text-right
+                  li.card-text.d-inline-block.delete-btn
+                    = link_to "削除する", admin_group_path(group), method: :delete, class: "btn btn-outline-danger",
+                    data: {"confirm": "該当のグループを削除してよろしいですか？"}
+            .card-body
+              = link_to admin_group_path(group)
+                p.card-text.group-text
                   = group.introduction
-              .row.my-5
-                .col-12.mb-3.add-item
+            .card-body
+              ul.col-12
+                li.card-text.group-item
                   i.fas.fa-tags
-                  span.me-3.text-black
+                  span
                     | 趣味タグ：
                   - group.tags.each do |tag|
                     = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                .col-12.mb-3.add-item
+                li.card-text.group-item
                   i.fas.fa-chess
-                  span.me-3.text-black
+                  span
                     | ゲームジャンル：
                   - group.genres.each do |genre|
                     = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                .col-12.mb-3.add-item
+                li.card-text.group-item
                   i.fas.fa-gamepad
-                  span.me-3.text-black
+                  span
                     | ゲーム：
                   - group.games.each do |game|
                     = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .row.text-right
-                .col
-                  = link_to "詳細を見る", admin_group_path(group), class: "btn btn-lg btn-outline-dark p-2"
+            .card-body.text-right
+              = link_to "詳細を見る", admin_group_path(group), class: "btn btn-outline-dark"
           .skill-list
-            = link_to_prev_page groups, "前のページ", class: "prev d-none"
-            = link_to_next_page groups, "次のページ", class: "next d-none"
+            = link_to_prev_page @groups, "前のページ", class: "prev d-none"
+            = link_to_next_page @groups, "次のページ", class: "next d-none"
