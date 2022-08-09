@@ -10,22 +10,22 @@
           ul.col-4.text-end.post-item-container
             - if current_end_user == @post.user
               - if @post.status == "draft"
-                li.card-text.d-inline-block.post-item data-bs-toggle="modal" data-bs-target="#editPostModalToggle"
-                  i.fa-solid.fa-pen-to-square data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を編集"
+                li.card-text.d-inline-block.post-item data-toggle="modal" data-target="#editPostModalToggle"
+                  i.fa-solid.fa-pen-to-square data-toggle="tooltip" data-placement="right" title="クリックして投稿を編集"
               - if @post.status == "published" or @post.status == "draft"
                 li.card-text.d-inline-block.post-item
                   = link_to post_tags_path(@post)
-                    i.fa-solid.fa-tags data-bs-toggle="tooltip" data-bs-placement="right" title="クリックしてタグを編集"
+                    i.fa-solid.fa-tags data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
                 li.card-text.d-inline-block.post-item-delete
                   = link_to post_path(@post), method: :delete,
                   data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
-                    i.fa-solid.fa-trash-can data-bs-toggle="tooltip" data-bs-placement="right" title="クリックして投稿を削除"
+                    i.fa-solid.fa-trash-can data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
                   .modal.modal-lg.fade#editPostModalToggle tabindex="-1" aria-labelledby="editPostModalToggle" aria-hidden="true"
                     .modal-dialog.modal-dialog-centered
                       .modal-content
                         .modal-header
                           #editPostModalToggle
-                          button.btn.modal-close-btn data-bs-dismiss="modal" aria-label="close"
+                          button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
                             span
                               | ×
                         .modal-body
@@ -45,7 +45,7 @@
                               .form-group.mt-3.text-end.post-input-item
                                 = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
                         .modal-footer
-                          button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+                          button.btn.btn-secondary data-dismiss="modal" 閉じる
           .card-body
             p.card-text.post-text
               = @post.text
@@ -63,7 +63,7 @@
           ul.col-12.text-end.post-item-container
             - if @post.status == "published"
               li.card-text.d-inline-block.post-item
-                a data-bs-toggle="modal" data-bs-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
+                a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
                   i.fa-regular.fa-comment
                 = @post.post_comments.count
             - if @post.status == "published" or @post.status == "draft"
@@ -79,7 +79,7 @@
               .modal-content
                 .modal-header
                   div id="#postComment#{@post.id}ModalToggle"
-                  button.btn.modal-close-btn data-bs-dismiss="modal" aria-label="close"
+                  button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
                     span
                       | ×
                 .modal-body
@@ -96,12 +96,12 @@
                         = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
                 .modal-body
                   = form_with model: @post_comment, url: post_comments_path(@post) do |f|
-                    .form-group.mt-5
+                    .form-group
                     = f.text_area :text, placeholder: "コメントを入力", class: "form-control"
                     .text-end.mt-3
                       = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill"
                 .modal-footer
-                  button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+                  button.btn.btn-secondary data-dismiss="modal" 閉じる
           .card-body.col-10
             = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
               .form-group.text-end

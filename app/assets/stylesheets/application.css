@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+
+.text_area {
+  width: 40%;
+  height: 50%;
+}
