@@ -4,12 +4,12 @@
       = render "end_user/groups/index", groups: @groups
     .col-2
       .group-bar.overflow-auto
-        .col-10.mx-auto
+        .col-12.mx-auto
           = render "end_user/groups/form", group: @group
         h3.text-center.mt-5.mx-auto
           | 参加中のグループ
         - @join_group.each do |group|
-          .card
+          .card.shadow.col-11.mx-auto
             .card-body
               .col-12
                 = link_to group_path(group)
@@ -35,10 +35,10 @@
                       | ：
                       - group.games.first(3).each do |game|
                         = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .col.ms-3.mr-5
-                - unless group.is_ownerd_by?(current_end_user)
-                  - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-                    - if group.includesUser?(current_end_user)
-                      = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
-                    - else
-                      = link_to "グループに入る", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+            .card-body.text-right
+              - unless group.is_ownerd_by?(current_end_user)
+                - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
+                  - if group.includesUser?(current_end_user)
+                    = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
+                  - else
+                    = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"

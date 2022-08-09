@@ -1,4 +1,4 @@
-.card
+.card.shadow
   .card-header.bg-white
     h5.card-title
       | グループを作成する
@@ -9,7 +9,7 @@
         = f.text_field :name, placeholder: "グループ名", class: "form-control"
       .form-group.mb-3
         = f.label :introduction, "グループ紹介文"
-        = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control"
+        = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
       .form-group.mb-3
         = f.label :icon, "アイコンを設定する"
         = f.file_field :icon, accept: "image/*", class: "form-control"

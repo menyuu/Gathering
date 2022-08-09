@@ -1,6 +1,6 @@
 class EndUser::GroupsController < ApplicationController
   def index
-    @groups = Group.page(params[:page]).without_count.per(1).order(params[:sort])
+    @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @join_group = current_end_user.groups.includes(:group_tags, :tags, :group_genres, :genres, :group_games, :games, :owner, icon_attachment: [:blob])
     @group = Group.new
   end
@@ -10,7 +10,7 @@ class EndUser::GroupsController < ApplicationController
     @group_chat = GroupChat.new
     @member = @group.users
   end
-  
+
   def new
     @group = Group.find(params[:id])
   end
@@ -31,6 +31,12 @@ class EndUser::GroupsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    redirect_to groups_path
   end
 
   def members

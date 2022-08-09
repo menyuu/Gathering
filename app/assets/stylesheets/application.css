@@ -71,3 +71,11 @@
   font-size: 16px;
   margin: 4px 4px 4px 0;
 }
+
+.group-item-delete {
+  margin-left: 16px;
+  cursor: pointer;
+}
+.group-item-delete a:hover {
+  color: red;
+}
