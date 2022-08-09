@@ -34,20 +34,20 @@
             = user.introduction
       .card-body
         ul.col-12
-          li.card-text
-            i.fa-solid.fa-tags
+          li.card-text.user-item
+            i.fas.fa-user-tag
             span
               | 趣味タグ：
             - user.tags.each do |tag|
               = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          li.card-text
-            i.fa-solid.fa-chess
+          li.card-text.user-item
+            i.fas.fa-chess
             span
               | ゲームジャンル：
             - user.genres.each do |genre|
               = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          li.card-text
-            i.fa-solid.fa-gamepad
+          li.card-text.user-item
+            i.fas.fa-gamepad
             span
               | ゲーム：
             - user.games.each do |game|
