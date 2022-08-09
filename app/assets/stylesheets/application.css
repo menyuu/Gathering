@@ -18,3 +18,7 @@
 .form-item {
   cursor: pointer;
 }
+
+.post-item-icon {
+  font-size: 20px;
+}

@@ -1,5 +1,5 @@
-.container
+.container.ml-0
   .row
-    .col-10
+    .col-10.offset-2
       = render "end_user/posts/post_form", post: @post
       = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment
