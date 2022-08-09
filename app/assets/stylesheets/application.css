@@ -15,7 +15,6 @@
  */
 
 
-.text_area {
-  width: 40%;
-  height: 50%;
+.form-item {
+  cursor: pointer;
 }
