@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'group_chats/index'
+  end
   devise_for :end_users, path: "users", controllers: {
     registrations: "end_user/registrations",
     sessions: "end_user/sessions",
