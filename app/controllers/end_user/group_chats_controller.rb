@@ -15,8 +15,9 @@ class EndUser::GroupChatsController < ApplicationController
   end
 
   def destroy
-    GroupChat.find(params[:id]).destroy
-    redirect_to group_chats_path(params[:group_id])
+    @group = GroupChat.find(params[:id])
+    @group.destroy
+    redirect_to request.referer
   end
 
   private

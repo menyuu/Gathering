@@ -41,7 +41,7 @@
       .col-8.mx-auto
         = form_with model: [@group, @group_chat], url: group_chats_path(@group) do |f|
           .form-group
-            = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control"
+            = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control", rows: 5
           .form-group.text-right
             = f.submit "送信", class: "btn btn-outline-dark rounded-pill mt-3"
   .col-3.group-chat-member.d-inline-block
@@ -49,6 +49,6 @@
       - @members.each do |member|
         .mt-3.mb-4.py-2.border.rounded.shadow-sm.p-3
           = link_to user_path(member), class: "group-chat-user-name"
-            = image_tag member.user_icon(60, 60), class: "rounded-circle me-2"
+            = image_tag member.user_icon(60, 60), class: "rounded-circle mr-2"
             span.text-black
               = member.name
