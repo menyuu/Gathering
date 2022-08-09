@@ -47,3 +47,11 @@
 .group-name:hover {
   text-decoration: underline;
 }
+
+.group-text {
+  padding: 16px 16px;
+}
+
+.group-item {
+  font-size: 18px;
+}

@@ -7,7 +7,7 @@
             = image_tag group.group_icon(80, 80), class: "rounded-circle"
           = link_to group.name, group_path(group), class: "group-name"
         .col-6.row
-          .col-6
+          .col-8
             table.table
               tbody
                 tr
@@ -15,44 +15,45 @@
                     = link_to "オーナー：", user_path(group.owner), class: "table-link"
                   td
                     = link_to group.owner.name, user_path(group.owner), class: "table-link-count"
-                tr
-                  td.group-show-members-text
+                tr.border-bottom
+                  td
                     = link_to "メンバー：", group_members_path(group), class: "table-link"
                   td
                     = link_to group.users.count, group_members_path(group), class: "table-link-count"
-          .col-6.text-center
+          .col-4
             .card-text
               - unless group.is_ownerd_by?(current_end_user)
                 - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
                   - if group.includesUser?(current_end_user)
-                    = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
+                    = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
                   - else
-                    = link_to "グループに入る", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
-        .row
-          .col-11.ms-5.my-4.user-show-text
-            = group.introduction
-        .row.my-5
-          .col-12.mb-3.add-item
-            i.fa-solid.fa-tags.text-black
-            span.mr-3.text-black
-              | 趣味タグ：
-            - group.tags.each do |tag|
-              = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          .col-12.mb-3.add-item
-            i.fa-solid.fa-chess.text-black
-            span.mr-3.text-black
-              | ゲームジャンル：
-            - group.genres.each do |genre|
-              = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          .col-12.mb-3.add-item
-            i.fa-solid.fa-gamepad.text-black
-            span.mr-3.text-black
-              | ゲーム：
-            - group.games.each do |game|
-              = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-        .row.text-right
-          .col
-            = link_to "詳細を見る", group_path(group), class: "btn btn-lg btn-outline-dark p-2"
+                    = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+        .card-body
+          = link_to group_path(group)
+            p.card-text.group-text
+              = group.introduction
+        .card-body
+          ul.col-12
+            li.card-text.group-item
+              i.fas.fa-tags
+              span
+                | 趣味タグ：
+              - group.tags.each do |tag|
+                = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              i.fas.fa-chess
+              span
+                | ゲームジャンル：
+              - group.genres.each do |genre|
+                = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              i.fas.fa-gamepad
+              span
+                | ゲーム：
+              - group.games.each do |game|
+                = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+          .card-body.text-right
+              = link_to "詳細を見る", group_path(group), class: "btn btn-lg btn-outline-dark p-2"
     .skill-list
       = link_to_prev_page groups, "前のページ", class: "prev d-none"
       = link_to_next_page groups, "次のページ", class: "next d-none"

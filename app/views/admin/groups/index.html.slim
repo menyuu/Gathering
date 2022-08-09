@@ -38,19 +38,19 @@
             = group.introduction
         .row.my-5
           .col-12.mb-3.add-item
-            i.fa-solid.fa-tags.text-black
+            i.fas.fa-tags
             span.me-3.text-black
               | 趣味タグ：
             - group.tags.each do |tag|
               = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           .col-12.mb-3.add-item
-            i.fa-solid.fa-chess.text-black
+            i.fas.fa-chess
             span.me-3.text-black
               | ゲームジャンル：
             - group.genres.each do |genre|
               = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           .col-12.mb-3.add-item
-            i.fa-solid.fa-gamepad.text-black
+            i.fas.fa-gamepad
             span.me-3.text-black
               | ゲーム：
             - group.games.each do |game|
