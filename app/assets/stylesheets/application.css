@@ -72,6 +72,10 @@
   margin: 4px 4px 4px 0;
 }
 
+.group-item {
+  margin-right: 16px;
+  cursor: pointer;
+}
 .group-item-delete {
   margin-left: 16px;
   cursor: pointer;

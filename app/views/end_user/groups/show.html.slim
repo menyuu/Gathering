@@ -26,60 +26,65 @@
                     = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
                       i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
                 .modal.fade#editgroupModalToggle tabindex="-1" aria-labelledby="editgroupModalToggle" aria-hidden="true"
-                  .modal-dialog.modal-dialog-centered
+                  .modal-dialog.modal-lg.modal-dialog-centered
                     .modal-content
                       .modal-header
                         h5.modal-title#editgroupModalToggle
                           | グループ詳細編集
-                        button.btn data-dismiss="modal" aria-label="close" ×
+                        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+                          span
+                            | ×
                       .modal-body
                         = form_with model: @group, url: group_path(@group), method: :patch do |f|
                           .form-group.mt-3.text-center
-                            = f.label :icon, class: "mb-2"
-                              = image_tag @group.group_icon(80, 80), class: "rounded-circle pt-2"
+                            = f.label :icon, class: "mb-3"
+                              = image_tag @group.group_icon(80, 80), class: "rounded-circle"
                             = f.file_field :icon, accept: "image/*", class: "form-control"
                           .form-group.mt-3
                             = f.text_field :name, placeholder: "グループ名", class: "form-control"
                           .form-group.mt-3
-                            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control"
-                          .text-right
-                            = f.submit "保存", class: "btn btn-dark rounded-pill mt-3"
+                            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
+                          .form-group.mt-3.text-right
+                            = f.submit "保存", class: "btn btn-dark rounded-pill"
                       .modal-body
                         .d-flex
-                          label.col-3.align-self-center for="copy_id" style="font-size: 16px;"
-                            | ユーザーID：
-                          .col-3
-                            input.form-control.rounded-0.rounded-start type="text" id="copy_id" value="#{@group.id}" readonly="readonly"
-                          .col-6.text-left
-                            button.btn.btn-dark.rounded-0.rounded-end#copy_btn type="button" コピーする
+                          label.col-3.align-self-center for="copy_id"
+                            | グループID：
+                          span.input-group.col-6
+                            input.form-control.input-group-prepend type="text" id="copy_id" value="#{@group.id}" readonly="readonly"
+                            span.input-group-btn.input-group-append
+                              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
                       .modal-footer
                         button.btn.btn-outline-dark data-dismiss="modal" 閉じる
-        .row.ms-5.my-3
-          .col-11.ms-3.user-show-text
-            = @group.introduction
-        .row
-          .col-12.mb-1.add-item
-            = link_to group_tags_path(@group)
-              i.fas.fa-tags
-              span.mr-3.text-black
-                | 趣味タグ：
-            - @group.tags.each do |tag|
-              = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          .col-12.mb-1.add-item
-            = link_to group_genres_path(@group)
-              i.fas.fa-chess
-              span.mr-3.text-black
-                | ゲームジャンル：
-            - @group.genres.each do |genre|
-              = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          .col-12.mb-1.add-item
-            = link_to group_games_path(@group)
+        .card-body
+          = link_to group_path(@group)
+            p.card-text.group-text
+              = @group.introduction
+        .card-body
+          ul.col-12
+            li.card-text.group-item
+              = link_to group_tags_path(@group)
+                i.fas.fa-tags
+                span
+                  | 趣味タグ：
+              - @group.tags.each do |tag|
+                = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              = link_to group_genres_path(@group)
+                i.fas.fa-chess
+                span
+                  | ゲームジャンル：
+              - @group.genres.each do |genre|
+                = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            li.card-text.group-item
+              = link_to group_games_path(@group)
                 i.fas.fa-gamepad
-                span.mr-3.text-black
+                span
                   | ゲーム：
-            - @group.games.each do |game|
-              = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-      - if @member.include?(current_end_user)
+              - @group.games.each do |game|
+                = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body.text-right
-          .col
-            = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"
+          - if @member.include?(current_end_user)
+            .card-body.text-right
+              .col
+                = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"
