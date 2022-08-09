@@ -28,26 +28,26 @@
                     li.accordion id="accordion#{post.id}" aria-multiselectable="true"
                       .accordion-item
                         .card-text.d-inline-block.accordion-header id="heading#{post.id}"
-                          .text-dark data-toggle="collapse" data-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                          div data-toggle="collapse" data-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
                             i.fa-solid.fa-pen-to-square
-                            span.post-item-edit-text
+                            span.form-item
                               | クリックして編集
                         .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-parent="#accordion#{post.id}"
-                          .accordion-body.p-0
+                          .accordion-body
                             = form_with model: post, local: false do |f|
-                              .col-12.ms-auto.border.rounded
-                                = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area", rows: 5;
-                                .text-end.post-input-item
-                                  .form-group.file-uploader-image.d-sm-inline-block
+                              .col-12.ml-auto
+                                = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top rounded-0 post-input-area", rows: 5;
+                                .text-right.post-input-item.mt-3
+                                  .form-group.d-sm-inline-block
                                     = f.label :images, for: "post_images_#{post.id}"
-                                      i.fas.fa-image
+                                      i.fas.fa-image.post-item-icon
                                     = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{post.id}", style: "display: none;"
                                   .form-check.form-switch.d-sm-inline-block
-                                    = f.check_box :status, {class: "form-check-input", id: "post-status-#{post.id}"}, "published", "draft"
-                                    = f.label :status, "投稿を公開", class: "form-check-label", for: "post-status-#{post.id}"
+                                    = f.check_box :status, {class: "form-check-input form-item", id: "post-status-#{post.id}"}, "published", "draft"
+                                    = f.label :status, "投稿を公開", class: "form-check-label form-item", for: "post-status-#{post.id}"
                                 .col-10.form-group
-                                  = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
-                                .form-group.mt-3.text-end.post-input-item
+                                  = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
+                                .form-group.mt-3.text-right.post-input-item
                                   = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
             .skill-list
               = link_to_prev_page @posts, "前のページ", class: "prev d-none"

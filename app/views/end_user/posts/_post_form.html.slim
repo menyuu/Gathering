@@ -1,8 +1,8 @@
 = form_with model: @post, local: false do |f|
-  .col-12.ms-auto.border
+  .col-12.ml-auto.border
     = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-area", rows: 5;
-    .text-right.post-input-item
-      .form-group.file-uploader-image.d-sm-inline-block
+    .text-right.post-input-item.mt-3
+      .form-group.d-sm-inline-block
         = f.label :images
           i.fas.fa-image.form-item
         = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"

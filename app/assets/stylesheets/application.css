@@ -21,4 +21,10 @@
 
 .post-item-icon {
   font-size: 20px;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.post-item-icon:hover {
+  opacity: 0.7;
 }
