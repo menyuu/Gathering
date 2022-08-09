@@ -16,7 +16,7 @@
                       = link_to "フォロー中：", user_followings_path(user), class: "table-link"
                     td
                       = link_to user.followings.count, user_followings_path(user), class: "table-link table-link-count"
-                  tr
+                  tr.border-bottom
                     td
                       = link_to "フォロワー：", user_followers_path(user), class: "table-link"
                     td
@@ -52,7 +52,7 @@
               | ゲーム：
             - user.games.each do |game|
               = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-      .card-body.text-end
+      .card-body.text-right
         = link_to "詳細を見る", user_path(user), class: "btn btn-outline-dark"
     .skill-list
       = link_to_prev_page users, "前のページ", class: "prev d-none"

@@ -1,6 +1,6 @@
-.container
+.container.ml-0
   .row
-    .col-10
+    .col-10.offset-2
       .card.rounded-0
         .card-body.row
           .col-6
@@ -18,7 +18,7 @@
                         = link_to "フォロー中：", user_followings_path(@user), class: "table-link"
                       td
                         = link_to @user.followings.count, user_followings_path(@user), class: "table-link table-link-count"
-                    tr
+                    tr.border-bottom
                       td
                         = link_to "フォロワー：", user_followers_path(@user), class: "table-link"
                       td
@@ -31,16 +31,16 @@
                     - else
                       = link_to "フォローする", user_follows_path(@user), method: :post, class: "btn btn-outline-dark rounded-pill"
                   - else
-                    i.fa-solid.fa-user-gear.icon-item data-bs-toggle="modal" data-bs-target="#editUserModalToggle"
+                    i.fas.fa-user-cog.icon-item.mr-5 data-toggle="modal" data-target="#editUserModalToggle"
                     = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ms-5",
                     data: {confirm: "本当にログアウトしますか？"}
-                .modal.modal-lg.fade#editUserModalToggle tabindex="-1" aria-labelledby="editUserModalToggle" aria-hidden="true"
-                  .modal-dialog.modal-dialog-centered
+                .modal.fade#editUserModalToggle tabindex="-1" aria-labelledby="editUserModalToggle" aria-hidden="true"
+                  .modal-dialog.modal-lg.modal-dialog-centered
                     .modal-content
                       .modal-header
                         h5.modal-title#editUserModalToggle
                           | プロフィール編集
-                        button.btn.modal-close-btn data-bs-dismiss="modal" aria-label="close"
+                        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
                           span
                             | ×
                       .modal-body
@@ -54,54 +54,54 @@
                           .form-group.mt-3
                             = f.email_field :email, placeholder: "メールアドレス", class: "form-control"
                           .form-group.mt-3
-                            = f.text_area :introduction, placeholder: "自己紹介文", class: "form-control"
-                          .form-group.mt-3.text-end
+                            = f.text_area :introduction, placeholder: "自己紹介文", class: "form-control", rows: 5
+                          .form-group.mt-3.text-right
                             = f.submit "保存", class: "btn btn-dark rounded-pill"
                       .modal-body
                         .d-flex
-                          label.col-3.align-self-center for="copy_id"
+                          label.align-self-center for="copy_id"
                             | ユーザーID：
-                          .col-3
-                            input.form-control.rounded-0.rounded-start type="text" id="copy_id" value="#{@user.id}" readonly="readonly"
-                          span.col-6.text-start
-                            button.btn.btn-dark.rounded-0.rounded-end#copy_btn type="button" コピーする
+                          span.input-group.col-6
+                            input.form-control.input-group-prepend type="text" id="copy_id" value="#{@user.id}" readonly="readonly"
+                            span.input-group-btn.input-group-append
+                              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
                       .modal-footer
-                        .col-4.me-auto
+                        .col-4.mr-auto
                           - if current_end_user.published?
                             = link_to close_user_path(@user), method: :patch
                               = check_box_tag :status
-                              i.fa-solid.fa-lock
+                              i.fas.fa-lock
                               | 非公開にする
                           - else
                             = link_to open_user_path(@user), method: :patch
                               = check_box_tag :status, {}, checked: "checked"
-                              i.fa-solid.fa-globe
+                              i.fas.fa-globe
                               | 公開する
-                        a.mr-auto.link-text-blue href="" data-bs-target="#editPasswordModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" パスワードを変更する
-                        button.btn.btn-outline-dark data-bs-dismiss="modal" 閉じる
+                        a.link-text-blue href="" data-target="#editPasswordModalToggle" data-toggle="modal" data-dismiss="modal" パスワードを変更する
+                        button.btn.btn-outline-dark data-dismiss="modal" 閉じる
                 .modal.modal-lg.fade#editPasswordModalToggle tabindex="-1" aria-labelledby="editPasswordModalToggle" aria-hidden="true"
                   .modal-dialog.modal-dialog-centered
                     .modal-content
                       .modal-header
                         h5.modal-title#editPasswordModalToggle
                           | パスワード変更
-                        button.btn.modal-close-btn data-bs-dismiss="modal" aria-label="close"
+                        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
                           span
                             | ×
                       .modal-body
                         = form_with model: @user, url: user_path(@user), method: :patch, local: true  do |f|
                             = f.hidden_field :reset_password_token
-                            .field.form-group.text-start.mt-3
+                            .field.form-group.text-left.mt-3
                               = f.label :password, "新しいパスワード(6文字以上)"
                               = f.password_field :password, autocomplete: "new-password", class: "form-control"
-                            .field.form-group.text-start.mt-3
+                            .field.form-group.text-left.mt-3
                               = f.label :password_confirmation, "パスワードを確認"
                               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
-                            .actions.text-end.mt-3
+                            .actions.text-right.mt-3
                               = f.submit "保存", class: "btn btn-dark rounded-pill"
                       .modal-footer
-                        button.btn.btn-outline-dark data-bs-target="#editUserModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 戻る
-                        button.btn.btn-outline-dark data-bs-dismiss="modal" 閉じる
+                        button.btn.btn-outline-dark data-target="#editUserModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
+                        button.btn.btn-outline-dark data-dismiss="modal" 閉じる
         .card-body
           p.card-text.user-text
             = @user.introduction
@@ -109,21 +109,21 @@
           ul.col-12
             li.card-text.user-item
               = link_to tags_path
-                i.fa-solid.fa-tags
+                i.fas.fa-user-tag
                 span
                   |   趣味タグ：
               - @user.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.user-item
               = link_to genres_path
-                i.fa-solid.fa-chess
+                i.fas.fa-chess
                 span
                   |   ゲームジャンル：
               - @user.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.user-item
               = link_to games_path
-                i.fa-solid.fa-gamepad
+                i.fas.fa-gamepad
                 span
                   |   ゲーム：
               - @user.games.each do |game|
@@ -136,16 +136,16 @@
                   i.fa.fa-home
                   span
                     |   タイムライン
-              li.col-4.border-start.border-end.border-3.user-item
+              li.col-4.border-left.border-right.border-3.user-item
                 = link_to user_favorites_path(@user), class: "text-black user-show-item"
-                  i.fa-solid.fa-heart.text-danger
+                  i.fas.fa-heart.text-danger
                   span
                     |   いいね
               li.col-4.user-item
                 = link_to draft_posts_path, class: "text-black user-show-item"
-                  i.fa-solid.fa-pen-to-square
+                  i.fa.fa-edit
                   span
                     |   下書き
   .row
-    .col-10
+    .col-10.offset-2
       = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment

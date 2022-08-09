@@ -8,8 +8,8 @@
           i.fas.fa-image.form-item.post-item-icon
         = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
       .form-check.form-switch.d-sm-inline-block
-        = f.check_box :status, {class: "form-check-input form-item"}, "published", "draft"
-        = f.label :status, "投稿を公開", class: "form-check-label form-item"
+        = f.check_box :status, {class: "form-check-input"}, "published", "draft"
+        = f.label :status, "投稿を公開", class: "form-check-label"
     .col-10.form-group
       = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
       class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"

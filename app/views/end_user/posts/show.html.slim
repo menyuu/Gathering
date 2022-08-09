@@ -11,7 +11,7 @@
             - if current_end_user == @post.user
               - if @post.status == "draft"
                 li.card-text.d-inline-block.post-item data-toggle="modal" data-target="#editPostModalToggle"
-                  i.fas.fa-edit data-toggle="tooltip" data-placement="right" title="クリックして投稿を編集"
+                  i.fa.fa-edit data-toggle="tooltip" data-placement="right" title="クリックして投稿を編集"
               - if @post.status == "published" or @post.status == "draft"
                 li.card-text.d-inline-block.post-item
                   = link_to post_tags_path(@post)
