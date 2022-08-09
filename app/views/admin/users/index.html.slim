@@ -9,7 +9,7 @@
                 = link_to admin_user_path(user)
                   = image_tag user.user_icon(80, 80), class: "rounded-circle"
                 = link_to user.name, admin_user_path(user), class: "user-name"
-              ul.col-4.text-end
+              ul.col-4.text-right
                 li.card-text.d-inline-block
                   = user.status_i18n
                 li.card-text.d-inline-block.delete-btn.ms-5
@@ -43,7 +43,7 @@
                     | ゲーム：
                   - user.games.each do |game|
                     = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .card-body.text-end
+              .card-body.text-right
                 = link_to "詳細を見る", admin_user_path(user), class: "btn btn-outline-dark"
             .skill-list
               = link_to_prev_page @users, "前のページ", class: "prev d-none"

@@ -17,6 +17,6 @@
     .d-flex.my-3
       = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control post-input-tag-area rounded-0 rounded-start"
       = f.submit "投稿タグ登録", class: "btn btn-sm btn-outline-dark rounded-0 rounded-end"
-.card-body.ms-auto
+.card-body.ml-auto
   .card-text
     = link_to "戻る", post_path(post), class: "btn btn-dark"

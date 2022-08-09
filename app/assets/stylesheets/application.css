@@ -33,3 +33,17 @@
   background-color: black;
   opacity: 1;
 }
+
+
+.group-bar {
+  width: 480px;
+  height: 720px;
+  margin-left: 48px;
+}
+
+.group-name {
+  margin-left: 24px;
+}
+.group-name:hover {
+  text-decoration: underline;
+}

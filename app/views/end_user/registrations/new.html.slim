@@ -27,8 +27,8 @@
               = f.label :password_confirmation, "パスワード(確認)"
               br
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
-        .card-footer.bg-white.text-end
-          button.btn.btn-primary.mr-auto#form data-bs-target="#newUserConfirmModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal" 確認
+        .card-footer.bg-white.text-right
+          button.btn.btn-primary.mr-auto#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
         .card-body
           | すでにアカウントをお持ちですか？
           = link_to "ログインする", new_end_user_session_path
@@ -38,7 +38,7 @@
             .modal-header
               h5.modal-title#newUserConfirmModalToggle
                 | アカウントを作成(確認画面)
-              button.btn data-bs-dismiss="modal" aria-label="close" ×
+              button.btn data-dismiss="modal" aria-label="close" ×
             .modal-body
               = form_with model: @end_user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
                 .form-group
@@ -63,6 +63,6 @@
                 .actions.mt-3
                   = f.submit "アカウントを作成する", class: "btn btn-primary w-100"
             .modal-footer
-              button.btn.btn-secondary data-bs-dismiss="modal" 閉じる
+              button.btn.btn-secondary data-dismiss="modal" 閉じる
 
 = javascript_pack_tag 'top.js'

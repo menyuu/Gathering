@@ -6,28 +6,27 @@
           = link_to user_path(user)
             = image_tag user.user_icon(80, 80), class: "rounded-circle"
           = link_to user.name, user_path(user), class: "user-name"
-        .col-6
-          .row
-            .col-6
-              table.table
-                tbody
-                  tr
-                    td
-                      = link_to "フォロー中：", user_followings_path(user), class: "table-link"
-                    td
-                      = link_to user.followings.count, user_followings_path(user), class: "table-link-count"
-                  tr.border-bottom
-                    td
-                      = link_to "フォロワー：", user_followers_path(user), class: "table-link"
-                    td
-                      = link_to user.followers.count, user_followers_path(user), class: "table-link-count"
-            .col-6
-              .card-text
-                - unless current_end_user == user
-                  - if current_end_user.following?(user)
-                    = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
-                  - else
-                    = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
+        .col-6.row
+          .col-6
+            table.table
+              tbody
+                tr
+                  td
+                    = link_to "フォロー中：", user_followings_path(user), class: "table-link"
+                  td
+                    = link_to user.followings.count, user_followings_path(user), class: "table-link-count"
+                tr.border-bottom
+                  td
+                    = link_to "フォロワー：", user_followers_path(user), class: "table-link"
+                  td
+                    = link_to user.followers.count, user_followers_path(user), class: "table-link-count"
+          .col-6
+            .card-text
+              - unless current_end_user == user
+                - if current_end_user.following?(user)
+                  = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
+                - else
+                  = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
       .card-body
         = link_to user_path(user)
           p.card-text.user-text

@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         get "index_all"
       end
     end
-    resources :groups do
+    resources :groups, except: [:edit] do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
       resources :group_chats, only: [:index, :create, :destroy], as: "chats"
       get "tags" => "group_multi_toggle"

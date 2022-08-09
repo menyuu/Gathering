@@ -46,7 +46,8 @@
                                     = f.check_box :status, {class: "form-check-input form-item", id: "post-status-#{post.id}"}, "published", "draft"
                                     = f.label :status, "投稿を公開", class: "form-check-label form-item", for: "post-status-#{post.id}"
                                 .col-10.form-group
-                                  = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
+                                  = f.text_field :name, value:  @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
+                                  class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
                                 .form-group.mt-3.text-right.post-input-item
                                   = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
             .skill-list

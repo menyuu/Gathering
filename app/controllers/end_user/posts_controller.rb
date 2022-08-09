@@ -14,6 +14,7 @@ class EndUser::PostsController < ApplicationController
     @post_tag = PostingTag.new
     @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     tags = @post.tags.all
+    @tag_names
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
     else

@@ -1,7 +1,7 @@
 = form_with model: @post, local: false do |f|
-  .col-10.ms-auto.border
+  .col-10.ml-auto.border
     = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-0 border-bottom rounded-0 post-input-area"
-    .text-end.post-input-item
+    .text-right.post-input-item
       .form-group.file-uploader-image.d-sm-inline-block
         = f.label :images
           i.fa-regular.fa-image
@@ -12,5 +12,5 @@
     .col-10.form-group
       = f.label :name, "タグ", class: "post-input-tag-label"
       = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control border-0 border-bottom rounded-0 post-input-tag-area"
-    .form-group.mt-3.text-end.post-input-item
+    .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
