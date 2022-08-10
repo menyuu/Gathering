@@ -3,11 +3,10 @@
     .col-6.mt-5
       h5.mb-3
         | タグの新規作成
-      = form_with model: [:admin, @tag], local: false do |f|
+      = form_with model: [:admin, @tag], local: true do |f|
         .form-group.input-group
           = f.text_field :name, placeholder: "タグの名前を入力して作成", class: "form-control input-group-prepend text-field"
-          = f.hidden_field :status, value: "hide"
           span.input-group-append.text-right
             = f.submit "保存", class: "btn btn-dark input-group"
   .row.mt-5.tags-area
-    
+    = render "index", prepared_tags: @prepared_tags, self_made_tags: @self_made_tags, hide_tags: @hide_tags

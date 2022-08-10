@@ -5,14 +5,14 @@
         td colspan="3"
           | 既存の公開タグ一覧
     tbody
-      - @prepared_tags.each do |tag|
+      - prepared_tags.each do |tag|
         tr
           td
             = tag.name
           td
-            = link_to "非表示", admin_tag_path(tag, status: "hide"), method: :patch, class: "btn btn-outline-primary"
+            = link_to "非表示", admin_tag_path(tag, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
           td
-            = link_to "削除", admin_tag_path(tag), method: :delete, class: "btn btn-outline-danger"
+            = link_to "削除", admin_tag_path(tag), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
 .col-4.tag-bar.overflow-auto
   table.table
     thead
@@ -20,14 +20,14 @@
         td colspan="3"
           | ユーザーが作成したタグ一覧
     tbody
-      - @self_made_tags.each do |tag|
+      - self_made_tags.each do |tag|
         tr
           td
             = tag.name
           td
-            = link_to "公開に変更", admin_tag_path(tag, status: "prepared"), method: :patch, class: "btn btn-outline-primary"
+            = link_to "公開に変更", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
           td
-            = link_to "削除", admin_tag_path(tag), method: :delete, class: "btn btn-outline-danger"
+            = link_to "削除", admin_tag_path(tag), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
 .col-4.tag-bar.overflow-auto
   table.table
     thead
@@ -35,11 +35,11 @@
         td colspan="3"
           | 非公開タグ一覧
     tbody
-      - @hide_tags.each do |tag|
+      - hide_tags.each do |tag|
         tr
           td
             = tag.name
           td
-            = link_to "公開に変更", admin_tag_path(tag, status: "prepared"), method: :patch, class: "btn btn-outline-primary"
+            = link_to "公開に変更", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
           td
-            = link_to "削除", admin_tag_path(tag), method: :delete, class: "btn btn-outline-danger"
+            = link_to "削除", admin_tag_path(tag), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
