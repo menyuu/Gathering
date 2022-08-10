@@ -10,7 +10,7 @@ class Admin::TagsController < ApplicationController
     @tag = Tag.find_or_initialize_by(tag_params)
     @tag.save
     @tag.update(status: "hide")
-    redirect_to request.referer, notice: "タグを作成しました。"
+    flash[:notice] =  "タグを作成しました。"
   end
 
   def update

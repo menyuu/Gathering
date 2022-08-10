@@ -14,7 +14,12 @@ class Genre < ApplicationRecord
   has_many :group_genres, dependent: :destroy
   has_many :groups, through: :group_genres
 
-  enum status: { prepared: 0, self_made: 1 }
+  enum status: { prepared: 0, self_made: 1, hide: 2 }
+
+  with_options presence: true do
+    validates :name, uniqueness: true, length: { maximum: 50 }
+    validates :status, inclusion: { in: Genre.statuses.keys }
+  end
 
   def self.search_for(word)
     Genre.find_by(name: word)

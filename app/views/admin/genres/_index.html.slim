@@ -1,0 +1,45 @@
+.col-4.genre-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | 既存の公開ジャンル一覧
+    tbody
+      - prepared_genres.each do |genre|
+        tr
+          td
+            = genre.name
+          td
+            = link_to "非表示", admin_genre_path(genre, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_genre_path(genre), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+.col-4.genre-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | ユーザーが作成したジャンル一覧
+    tbody
+      - self_made_genres.each do |genre|
+        tr
+          td
+            = genre.name
+          td
+            = link_to "公開に変更", admin_genre_path(genre, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_genre_path(genre), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+.col-4.genre-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | 非公開ジャンル一覧
+    tbody
+      - hide_genres.each do |genre|
+        tr
+          td
+            = genre.name
+          td
+            = link_to "公開に変更", admin_genre_path(genre, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_genre_path(genre), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }

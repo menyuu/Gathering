@@ -14,7 +14,12 @@ class Game < ApplicationRecord
   has_many :group_games, dependent: :destroy
   has_many :groups, through: :group_games
 
-  enum status: { prepared: 0, self_made: 1 }
+  enum status: { prepared: 0, self_made: 1, hide: 2 }
+
+  with_options presence: true do
+    validates :name, uniqueness: true, length: { maximum: 50 }
+    validates :status, inclusion: { in: Game.statuses.keys }
+  end
 
   def self.search_for(word)
     Game.find_by(name: word)

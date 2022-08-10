@@ -1,2 +1,12 @@
-h1 Admin::Genres#index
-p Find me in app/views/admin/genres/index.html.slim
+.container-fluid
+  .row
+    .col-6.mt-5
+      h5.mb-3
+        | タグの新規作成
+      = form_with model: [:admin, @genre], local: false do |f|
+        .form-group.input-group
+          = f.text_field :name, placeholder: "タグの名前を入力して作成", class: "form-control input-group-prepend text-field"
+          span.input-group-append.text-right
+            = f.submit "保存", class: "btn btn-dark input-group"
+  .row.mt-5.genres-area
+    = render "index", prepared_genres: @prepared_genres, self_made_genres: @self_made_genres, hide_genres: @hide_genres

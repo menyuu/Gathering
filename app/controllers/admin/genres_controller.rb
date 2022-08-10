@@ -3,34 +3,37 @@ class Admin::GenresController < ApplicationController
   before_action :admin_display_show_genres
 
   def index
-    @tag = Tag.new
+    @genre = Genre.new
   end
 
   def create
-    @tag = Tag.find_or_initialize_by(tag_params)
-    @tag.save
-    @tag.update(status: "hide")
+    @genre = Genre.find_or_initialize_by(genre_params)
+    @genre.save
+    @genre.update(status: "hide")
+    flash[:notice] =  "ジャンルを作成しました。"
   end
 
   def update
-    @tag = Tag.find(params[:id])
-    @tag.update(status: params[:status])
+    @genre = Genre.find(params[:id])
+    @genre.update(status: params[:status])
+    flash[:notice] = "ジャンルの情報を更新しました。"
   end
 
   def destroy
-    @tag = Tag.find(params[:id])
-    @tag.destroy
+    @genre = Genre.find(params[:id])
+    @genre.destroy
+    flash[:notice] = "ジャンルを削除しました。"
   end
 
   private
 
-  def tag_params
-    params.require(:tag).permit(:name)
+  def genre_params
+    params.require(:genre).permit(:name)
   end
 
-  def admin_display_show_tags
-    @prepared_tags = Tag.where(status: "prepared").order(updated_at: :DESC)
-    @self_made_tags = Tag.where(status: "self_made").order(updated_at: :DESC)
-    @hide_tags = Tag.where(status: "hide").order(updated_at: :DESC)
+  def admin_display_show_genres
+    @prepared_genres = Genre.where(status: "prepared").order(updated_at: :DESC)
+    @self_made_genres = Genre.where(status: "self_made").order(updated_at: :DESC)
+    @hide_genres = Genre.where(status: "hide").order(updated_at: :DESC)
   end
 end
