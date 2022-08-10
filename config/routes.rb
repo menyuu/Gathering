@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'games/index'
+    get 'games/edit'
+  end
+  namespace :admin do
+    get 'genres/index'
+    get 'genres/edit'
+  end
   devise_for :end_users, path: "users", controllers: {
     registrations: "end_user/registrations",
     sessions: "end_user/sessions",
@@ -67,6 +75,10 @@ Rails.application.routes.draw do
       resources :group_chats, only: [:index, :destroy], as: "chats"
       get "members"
     end
+    resources :tags, only: [:index, :create, :update, :destroy]
+    resources :genres, only: [:index, :create, :update, :destroy]
+    resources :games, only: [:index, :create, :update, :destroy]
+    resources :posting_tags, only: [:index, :create, :update, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

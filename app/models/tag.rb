@@ -14,7 +14,7 @@ class Tag < ApplicationRecord
   has_many :group_tags, dependent: :destroy
   has_many :groups, through: :group_tags
 
-  enum status: { prepared: 0, self_made: 1 }
+  enum status: { prepared: 0, self_made: 1, hide: 2 }
 
   def self.search_for(word)
     Tag.find_by(name: word)

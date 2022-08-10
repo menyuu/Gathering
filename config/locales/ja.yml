@@ -13,11 +13,14 @@ ja:
       status:
         prepared: "デフォルト"
         self_made: "自作"
+        hide: "非表示"
     genre:
       status:
         prepared: "デフォルト"
         self_made: "自作"
+        hide: "非表示"
     game:
       status:
         prepared: "デフォルト"
         self_made: "自作"
+        hide: "非表示"

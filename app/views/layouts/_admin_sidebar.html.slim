@@ -22,6 +22,24 @@
             | グループ一覧
     tr
       td
+        = link_to admin_tags_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-user-tag
+          span
+            | 趣味タグ
+    tr
+      td
+        = link_to admin_genres_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-chess
+          span
+            | ジャンル
+    tr
+      td
+        = link_to admin_games_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-gamepad
+          span
+            | ゲーム
+    tr
+      td
         = link_to destroy_admin_session_path, method: :delete, class: "btn btn-dark rounded-pill"
           i.fas.fa-sign-out-alt
           span

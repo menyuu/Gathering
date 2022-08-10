@@ -17,9 +17,7 @@ html
       = render "layouts/header"
     main
       #flash
-        - if flash[:notice]
-          .text-center.bg-black.text-white.position-absolute.w-100.flash
-            = flash[:notice]
+        = render "layouts/flash"
       .container-fluid
         .row
           .col-2.h-100.sidebar
