@@ -14,17 +14,27 @@ table.table.table-borderless
           | タイムライン
     tr
       td
-        = link_to "みんなの投稿", index_all_posts_path, class: "btn btn-dark rounded-pill"
+        = link_to index_all_posts_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-paper-plane
+          | みんなの投稿
     tr
       td
-        = link_to "グループを見る", groups_path, class: "btn btn-dark rounded-pill"
+        = link_to groups_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-users
+          | グループを見る
     tr
       td
-        = link_to "タグを見る", tags_path, class: "btn btn-dark rounded-pill"
+        = link_to tags_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-tags
+          | タグを見る
     tr
       td
-        = link_to "ジャンルを見る", genres_path, class: "btn btn-dark rounded-pill"
+        = link_to genres_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-chess
+          | ジャンルを見る
     tr
       td
-        = link_to "ゲームを見る", games_path, class: "btn btn-dark rounded-pill"
+        = link_to games_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-gamepad
+          | ゲームを見る
 
