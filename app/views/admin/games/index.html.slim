@@ -1,2 +1,12 @@
-h1 Admin::Games#index
-p Find me in app/views/admin/games/index.html.slim
+.container-fluid
+  .row
+    .col-6.mt-5
+      h5.mb-3
+        | ゲームの新規作成
+      = form_with model: [:admin, @game], local: false do |f|
+        .form-group.input-group
+          = f.text_field :name, placeholder: "ゲームの名前を入力して作成", class: "form-control input-group-prepend text-field"
+          span.input-group-append.text-right
+            = f.submit "保存", class: "btn btn-dark input-group"
+  .row.mt-5.games-area
+    = render "index", prepared_games: @prepared_games, self_made_games: @self_made_games, hide_games: @hide_games

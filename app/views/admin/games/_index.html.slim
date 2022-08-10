@@ -1,0 +1,45 @@
+.col-4.game-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | 既存の公開ゲーム一覧
+    tbody
+      - prepared_games.each do |game|
+        tr
+          td
+            = game.name
+          td
+            = link_to "非表示", admin_game_path(game, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_game_path(game), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+.col-4.game-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | ユーザーが作成したゲーム一覧
+    tbody
+      - self_made_games.each do |game|
+        tr
+          td
+            = game.name
+          td
+            = link_to "公開に変更", admin_game_path(game, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_game_path(game), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+.col-4.game-bar.overflow-auto
+  table.table
+    thead
+      tr
+        td colspan="3"
+          | 非公開ゲーム一覧
+    tbody
+      - hide_games.each do |game|
+        tr
+          td
+            = game.name
+          td
+            = link_to "公開に変更", admin_game_path(game, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          td
+            = link_to "削除", admin_game_path(game), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
