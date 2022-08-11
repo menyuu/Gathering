@@ -25,6 +25,12 @@ class Admin::GamesController < ApplicationController
     flash[:notice] = "ゲームを削除しました。"
   end
 
+  def search
+    @search_result = Game.find_by(name: params[:name])
+    @search_name = params[:name]
+    render :search_result
+  end
+
   private
 
   def game_params

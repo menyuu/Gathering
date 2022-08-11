@@ -1,0 +1,23 @@
+- if @search_result
+  table.table.table-borderless
+    thead
+      tr
+        td
+          = @search_result.name
+        td
+          |  現在の状態：
+          = @search_result.status_i18n
+    tbody
+      tr
+        td
+          -if @search_result.prepared?
+            = link_to "非表示", admin_game_path(@search_result, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
+          - else
+            = link_to "表示する", admin_game_path(@search_result, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+        td
+          = link_to "削除", admin_game_path(@search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+- else
+  h4
+    |"
+    = @search_name
+    |"は見つかりませんでした。

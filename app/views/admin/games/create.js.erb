@@ -1,4 +1,5 @@
 $('#flash').html('<%= j(render "layouts/flash") %>').fadeOut(10000)
 .css({'position': 'fixed', 'z-index': '1080'});
 $('.games-area').html("<%= j(render "index", prepared_games: @prepared_games, self_made_games: @self_made_games, hide_games: @hide_games) %>");
+$('.search_result').empty();
 $('.text-field').val('');
