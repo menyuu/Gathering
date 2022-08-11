@@ -17,6 +17,14 @@ class EndUser::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  # ゲストユーザー用のアクション
+  def guest_sign_in
+    # guestメソッドはEndUserモデルで作成
+    user = EndUser.guest
+    sign_in user
+    redirect_to posts_path, notice: "ゲストユーザーでログインしました。"
+  end
 
   protected
 

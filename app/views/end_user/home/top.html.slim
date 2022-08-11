@@ -81,5 +81,8 @@
           .mt-5
             | 初めてご利用ですか？
             a href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
+          .mt-5
+            | ゲストユーザーで
+            = link_to "ログイン", users_guest_sign_in_path, class: "link-text-blue", method: :post
 
 = javascript_pack_tag 'top.js'

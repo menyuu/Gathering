@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_scope :end_user do
     get "users/sign_up/complete" => "end_user/registrations#complete"
+    post "users/guest_sign_in" => "end_user/sessions#guest_sign_in"
   end
 
   scope module: :end_user do
