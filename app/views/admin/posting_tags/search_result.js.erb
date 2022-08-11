@@ -1,0 +1,20 @@
+$('.search_result').html(`
+<% if @search_result %>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>
+          <%= @search_result.name %>
+        </td>
+        <td>
+          <%= j(link_to "削除", admin_tag_path(@search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% else %>
+  <h4>
+    "<%= @search_name %>"は見つかりませんでした。
+  </h4>
+<% end %>
+`);

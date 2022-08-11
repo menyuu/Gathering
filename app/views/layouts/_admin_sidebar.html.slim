@@ -7,7 +7,6 @@
           i.fas.fa-list
           span
             | 投稿一覧
-
     tr
       td
         = link_to admin_users_path, class: "btn btn-dark rounded-pill"
@@ -20,6 +19,11 @@
           i.fas.fa-users
           span
             | グループ一覧
+    tr
+      td
+        = link_to admin_post_tags_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-tags
+          | 投稿タグ
     tr
       td
         = link_to admin_tags_path, class: "btn btn-dark rounded-pill"

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'posting_tags/index'
+  end
   devise_for :end_users, path: "users", controllers: {
     registrations: "end_user/registrations",
     sessions: "end_user/sessions",
@@ -79,7 +82,9 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :create, :update, :destroy] do
       get "search", on: :collection
     end
-    resources :posting_tags, only: [:index, :create, :update, :destroy]
+    resources :posting_tags, only: [:index, :destroy], as: "post_tags" do
+      get "search", on: :collection
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
