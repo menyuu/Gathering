@@ -75,8 +75,11 @@ Rails.application.routes.draw do
       resources :group_chats, only: [:index, :destroy], as: "chats"
       get "members"
     end
-    resources :tags, only: [:index, :create, :update, :destroy]
-    resources :genres, only: [:index, :create, :update, :destroy]
+    resources :tags, only: [:index, :create, :update, :destroy] do
+      get "search", on: :collection
+    end
+    resources :genres, only: [:index, :create, :update, :destroy] do
+    end
     resources :games, only: [:index, :create, :update, :destroy]
     resources :posting_tags, only: [:index, :create, :update, :destroy]
   end

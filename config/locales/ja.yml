@@ -11,16 +11,16 @@ ja:
         freeze: "凍結"
     tag:
       status:
-        prepared: "デフォルト"
-        self_made: "自作"
-        hide: "非表示"
+        prepared: "公開"
+        self_made: "ユーザー作成"
+        hide: "非公開"
     genre:
       status:
-        prepared: "デフォルト"
-        self_made: "自作"
-        hide: "非表示"
+        prepared: "公開"
+        self_made: "ユーザー作成"
+        hide: "非公開"
     game:
       status:
-        prepared: "デフォルト"
-        self_made: "自作"
-        hide: "非表示"
+        prepared: "公開"
+        self_made: "ユーザー作成"
+        hide: "非公開"

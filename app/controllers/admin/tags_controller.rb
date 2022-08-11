@@ -25,6 +25,12 @@ class Admin::TagsController < ApplicationController
     flash[:notice] = "タグを削除しました。"
   end
 
+  def search
+    @search_result = Tag.find_by(name: params[:name])
+    @search_name = (params[:name])
+    render :search_result
+  end
+
   private
 
   def tag_params
