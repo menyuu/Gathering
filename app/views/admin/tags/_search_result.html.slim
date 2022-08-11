@@ -13,7 +13,7 @@
           -if @search_result.prepared?
             = link_to "非表示", admin_tag_path(@search_result, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
           - else
-            = link_to "公開する", admin_tag_path(@search_result, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+            = link_to "表示する", admin_tag_path(@search_result, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
         td
           = link_to "削除", admin_tag_path(@search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
 - else

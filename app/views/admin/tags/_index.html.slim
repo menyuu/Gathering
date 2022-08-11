@@ -25,7 +25,7 @@
           td
             = tag.name
           td
-            = link_to "公開する", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+            = link_to "表示する", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
           td
             = link_to "削除", admin_tag_path(tag), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
 .col-4.tag-bar.overflow-auto
@@ -40,6 +40,6 @@
           td
             = tag.name
           td
-            = link_to "公開する", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
+            = link_to "表示する", admin_tag_path(tag, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
           td
             = link_to "削除", admin_tag_path(tag), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }

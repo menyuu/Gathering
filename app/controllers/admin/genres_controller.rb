@@ -24,6 +24,12 @@ class Admin::GenresController < ApplicationController
     @genre.destroy
     flash[:notice] = "ジャンルを削除しました。"
   end
+  
+  def search
+    @search_result = Genre.find_by(name: params[:name])
+    @search_name = params[:name]
+    render :search_result
+  end
 
   private
 
