@@ -1,23 +1,23 @@
 .container-fluid
   .row
-    .col
-      h1.pt-5
+    .col-6
+      h1.pt-5.my-3
         | ゲーム×趣味で広がるフレンドの輪
-      h5
+      h5.my-3
         | Gatheringをはじめる
       = render "sign_up_modal", user: @user
       = render "sign_in_modal", user: @user
       .row
-        .col-8
+        .col
           button.btn.btn-dark data-toggle="modal" data-target="#newUserModalToggle" type="button" メールアドレスで登録
       .row
-        .col-9.col-md-8.mx-auto.mt-5
-          h1.text-center
+        .col
+          h1.text-center.my-5
             | みんなの新着投稿
           #posts
             = render "top", posts: @posts, post_comment: PostComment.new
-    .col-4.sticky-top.h-100.sign-in-area
-      .card
+    .col-4.offset-1.sign-in-area
+      .card.shadow
         .card-body
           = form_with model: @user, url: end_user_session_path, local: true do |f|
             .card-text.field.form-group
@@ -25,12 +25,11 @@
             .card-text.field.form-group
               = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
             .actions.mt-3
-                = f.submit "ログイン", class: "btn btn-dark w-100"
+                = f.submit "ログイン", class: "btn btn-block btn-dark"
           .mt-5
             | 初めてご利用ですか？
-            a href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
+            a.link-text-blue href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
           .mt-5
             | ゲストユーザーで
             = link_to "ログイン", users_guest_sign_in_path, class: "link-text-blue", method: :post
-
 = javascript_pack_tag 'top.js'

@@ -14,3 +14,8 @@
  *= require_self
  */
 
+.sign-in-area {
+  position: sticky;
+  height: 100%;
+  z-index: 1020;
+}
