@@ -47,16 +47,26 @@ class EndUser < ApplicationRecord
 
   enum status: { published: 0, privately: 1, freeze: 2 }
 
+  with_options presence: true do
+    validates :name, length: { in: 1..30 }
+    validates :introduction, length: { maximum: 200 }
+    validates :status, inclusion: { in: EndUser.statuses.keys }
+  end
+  
+  # アカウント作成時にランダムな数値のIDを付与
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
+  # ユーザーアイコン用
   def user_icon(width, height)
     unless icon.attached?
+      # ユーザーがアイコンを持っていなかったらデフォルト画像
       file_path = Rails.root.join('app/assets/images/user_no_image.png')
       icon.attach(io: File.open(file_path), filename: 'user-default-image.png', content_type: 'image/png')
     end
     icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0").processed
   end
 
+  # フォロー用
   def follow(user)
     relationships.create(followed_id: user.id)
   end
@@ -68,7 +78,8 @@ class EndUser < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-
+  
+  # ユーザー検索用
   def self.search_for(object, word, user_id)
     case object
     when "id"
