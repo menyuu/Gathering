@@ -1,4 +1,12 @@
 ja:
+  activerecord:
+    attributes:
+      end_user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        name: "名前"
   enums:
     post:
       status:
