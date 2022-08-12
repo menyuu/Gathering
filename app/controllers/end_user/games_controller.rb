@@ -1,24 +1,32 @@
 class EndUser::GamesController < ApplicationController
   def index
-    @games = Game.display_show_type("user")
     @game = Game.new
+    @games = Game.display_show_type("user")
   end
 
   def create
-    Game.create_game(params[:game][:name], current_end_user)
-    @games = Game.display_show_type(params[:game][:model])
     @game = Game.new
+    @games = Game.display_show_type(params[:game][:model])
+    unless current_end_user.games.size == 10 || params[:game][:name].length >= 50
+      Game.create_game(params[:game][:name], current_end_user)
+    else
+      redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは10個までです。"
+    end
   end
 
   def update
-    Game.update_game(params[:name], current_end_user)
-    @games = Game.display_show_type(params[:model])
     @game = Game.new
+    @games = Game.display_show_type(params[:model])
+    unless current_end_user.games.size == 10
+      Game.update_game(params[:name], current_end_user)
+    else
+      redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは10個までです。"
+    end
   end
 
   def destroy
-    Game.destroy_game(params[:name], current_end_user)
-    @games = Game.display_show_type(params[:model])
     @game = Game.new
+    @games = Game.display_show_type(params[:model])
+    Game.destroy_game(params[:name], current_end_user)
   end
 end

@@ -3,21 +3,19 @@
     | 現在のゲーム
   .card-text.my-3
     - object.games.each do |game|
-      = link_to game.name, game_path(object, name: game.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill game-item m-1"
+      = link_to game.name, game_path(object, name: game.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
 .card-body.border-bottom
   .card-header.mb-5.bg-white
     | 人気のゲーム
   .card-text.my-3
     - games.each do |game|
-      = link_to game.name, game_path(object, name: game.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill game-item m-1"
-.card-body.border-bottom
+      = link_to game.name, game_path(object, name: game.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+.card-body
   .card-header.mb-5.bg-white
     | 新しいゲームを作成する
   = form_with model: game, local: false do |f|
     .d-flex.my-3
-      = f.text_field :name, placeholder: "複数のゲームは半角のカンマ(,)で区切って入力してください。", class: "form-control input-game-area rounded-0 rounded-start"
+      = f.text_field :name, placeholder: "複数のゲームは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
       = f.hidden_field :model, value: user
-      = f.submit "投稿ゲーム登録", class: "btn btn-sm btn-outline-dark rounded-0 rounded-end"
-.card-body.ml-auto
-  .card-text
-    = link_to "戻る", :back, class: "btn btn-dark"
+      span.input-group-append.text-right
+        = f.submit "投稿ゲーム登録", class: "btn btn-outline-dark input-group"

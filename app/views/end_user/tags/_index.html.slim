@@ -1,10 +1,10 @@
-.card-body
+.card-body.border-bottom
   .card-header.mb-5.bg-white
     | 現在のタグ
   .card-text.my-3
     - object.tags.each do |tag|
       = link_to tag.name, tag_path(object, name: tag.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
-.card-body
+.card-body.border-bottom
   .card-header.mb-5.bg-white
     | 人気のタグ
   .card-text.my-3

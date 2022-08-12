@@ -1,7 +1,7 @@
 class EndUser::TagsController < ApplicationController
   def index
-    @tags = Tag.display_show_type("user")
     @tag = Tag.new
+    @tags = Tag.display_show_type("user")
   end
 
   def create
@@ -25,8 +25,8 @@ class EndUser::TagsController < ApplicationController
   end
 
   def destroy
+    @tag = Tag.new
     Tag.destroy_tag(params[:name], current_end_user)
     @tags = Tag.display_show_type(params[:model])
-    @tag = Tag.new
   end
 end
