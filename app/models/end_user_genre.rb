@@ -21,4 +21,12 @@
 class EndUserGenre < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :genre
+
+  validate :genres_limit_count
+
+  def genres_limit_count
+    if user.genres.size >= 8
+      return
+    end
+  end
 end

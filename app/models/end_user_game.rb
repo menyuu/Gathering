@@ -21,4 +21,12 @@
 class EndUserGame < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :game
+
+  validate :tags_limit_count
+
+  def tags_limit_count
+    if user.tags.size >= 8
+      return
+    end
+  end
 end

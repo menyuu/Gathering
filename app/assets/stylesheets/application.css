@@ -19,3 +19,8 @@
   height: 100%;
   z-index: 1020;
 }
+
+.modal {
+  overflow-y: auto;
+  max-height: 100%;
+}

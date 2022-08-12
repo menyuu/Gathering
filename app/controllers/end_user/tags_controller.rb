@@ -7,20 +7,20 @@ class EndUser::TagsController < ApplicationController
   def create
     @tag = Tag.new
     @tags = Tag.display_show_type(params[:tag][:model])
-    unless current_end_user.tags.size == 10 || params[:tag][:name].length >= 50
+    unless current_end_user.tags.size == 8 || params[:tag][:name].length >= 50
       Tag.create_tag(params[:tag][:name], current_end_user)
     else
-      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは10個までです。"
+      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
     end
   end
 
   def update
     @tag = Tag.new
     @tags = Tag.display_show_type(params[:model])
-    unless current_end_user.tags.size == 10
+    unless current_end_user.tags.size == 8
       Tag.update_tag(params[:name], current_end_user)
     else
-      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは10個までです。"
+      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは8個までです。"
     end
   end
 

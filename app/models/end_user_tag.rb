@@ -25,7 +25,7 @@ class EndUserTag < ApplicationRecord
   validate :tags_limit_count
 
   def tags_limit_count
-    if user.tags.size >= 10
+    if user.tags.size >= 8
       # errors.add(:tag, "所持できるタグ数は10個までです。すでに所持している他のタグを削除してから、再度登録してください。")
       return
     end

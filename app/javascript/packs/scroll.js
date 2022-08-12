@@ -4,5 +4,6 @@ $(document).on('turbolinks:load', function() {
     contentSelector: '.jscroll',
     padding: 10,
     nextSelector: 'a.next',
+    loadingHtml: `<div class="spinner"><div class="dot1"></div><div class="dot2"></div></div>`
   });
 })
