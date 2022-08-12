@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     post "users/guest_sign_in" => "end_user/sessions#guest_sign_in"
   end
 
+  get 'users' => 'end_user/users#dummy'
+
   scope module: :end_user do
     root to: "home#top"
     resources :users, except: [:index, :new] do

@@ -39,6 +39,10 @@ class EndUser::UsersController < ApplicationController
     redirect_to request.referer
   end
 
+  def dummy
+    redirect_to new_end_user_registration_path
+  end
+
   private
 
   def user_params
