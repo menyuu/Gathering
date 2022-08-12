@@ -10,13 +10,7 @@ nav.navbar-light.bg-white
       - else
         = link_to root_path, class:"navbar-brand"
           = image_tag asset_path("logo.png"), class: "logo"
-    .search-form-container
-      = form_with url: search_path, method: :get, local: true do |f|
-        .input-group.search-form-item.search-form-out
-          = f.text_field :name, placeholder: "検索", class: "form-control input-group-prepend"
-          span.input-group-append.text-right
-            = button_tag(type: "submit", class: "btn btn-dark input-group")
-              i.fas.fa-search.align-self-center
+    = render "end_user/searches/form"
     div
       = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
         i.fas.fa-search.align-self-center
