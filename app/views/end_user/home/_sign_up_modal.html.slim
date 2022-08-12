@@ -1,0 +1,27 @@
+.modal.fade#newUserModalToggle tabindex="-1" aria-labelledby="newUserModalToggle" aria-hidden="true"
+  .modal-dialog.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title#newUserModalToggle
+          | アカウントを作成
+        button.btn data-dismiss="modal" aria-label="close" ×
+      .modal-body
+        = form_with model: user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
+          .form-group
+            = f.label :name, "名前"
+            = f.text_field :name, class: "form-control", id: "input-name"
+          .form-froup
+            = f.label :email, "メールアドレス"
+            = f.email_field :email, class: "form-control", id: "input-email"
+          .field.form-group
+            = f.label :password, "パスワード"
+            br
+            = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control", id: "input-password"
+          .field
+            = f.label :password_confirmation, "パスワード(確認)"
+            br
+            = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
+      .modal-body.ml-auto
+        button.btn.btn-dark#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
+      .modal-footer
+        button.btn.btn-outline-dark data-dismiss="modal" 閉じる
