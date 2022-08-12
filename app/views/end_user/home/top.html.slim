@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-6
+    .col-12.col-sm-8.col-md-6
       h1.pt-5.my-3
         | ゲーム×趣味で広がるフレンドの輪
       h5.my-3
@@ -8,15 +8,18 @@
       = render "sign_up_modal", user: @user
       = render "sign_in_modal", user: @user
       .row
-        .col
-          button.btn.btn-dark data-toggle="modal" data-target="#newUserModalToggle" type="button" メールアドレスで登録
+        button.btn.btn-dark data-toggle="modal" data-target="#newUserModalToggle" type="button" メールアドレスで登録
+      .row.my-3.d-sm-none.d-block
+        = link_to "ログイン", new_end_user_session_path, class: "btn btn-outline-dark"
+      .row.my-3.d-sm-none.d-block
+        = link_to "ゲストでログイン", users_guest_sign_in_path, class: "btn btn-outline-dark", method: :post
       .row
         .col
           h1.text-center.my-5
             | みんなの新着投稿
           #posts
             = render "top", posts: @posts, post_comment: PostComment.new
-    .col-4.offset-1.sign-in-area
+    .col-4.offset-1.offset-sm-0.d-none.d-sm-block.sign-in-area
       .card.shadow
         .card-body
           = form_with model: @user, url: end_user_session_path, local: true do |f|
