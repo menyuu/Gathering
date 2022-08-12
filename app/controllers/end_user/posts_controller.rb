@@ -1,4 +1,6 @@
 class EndUser::PostsController < ApplicationController
+  before_action :user_has_tags?
+
   def index
     @post = Post.new
     @post_comment = PostComment.new

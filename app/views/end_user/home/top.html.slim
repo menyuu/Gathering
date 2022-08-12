@@ -29,10 +29,10 @@
               = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
             .actions.mt-3
                 = f.submit "ログイン", class: "btn btn-block btn-dark"
-          .mt-5
-            | 初めてご利用ですか？
-            a.link-text-blue href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
-          .mt-5
+        .card-footer.bg-white
+          | 初めてご利用ですか？
+          a.link-text-blue href="" data-toggle="modal" data-target="#newUserModalToggle" アカウントを作成する
+          .my-3
             | ゲストユーザーで
             = link_to "ログイン", users_guest_sign_in_path, class: "link-text-blue", method: :post
 = javascript_pack_tag 'top.js'

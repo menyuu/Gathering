@@ -7,7 +7,7 @@
     .card-body
       = link_to new_end_user_session_path
         p.card-text.post-text
-          = post.text
+          = safe_join(post.text.split("\n"),tag(:br))
     .card-body
       .card-img.text-center
         - post.images.each do |image|
