@@ -30,6 +30,8 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # end
 
   def complete
+    @tags = Tag.display_show_type("user")
+    @tag = Tag.new
   end
 
   # GET /resource/cancel

@@ -1,3 +1,12 @@
-div
-  | 登録が完了しました
-  
+.container-fluid.mt-5
+  .row
+    .col-10.mt-5
+      h1.text-center
+        | 登録が完了しました！
+      h4.text-center
+        | 続けてタグを追加しましょう。
+  .row
+    .col-4.mt-5
+      .card.offset-2.tag-area
+        .errors
+          = render = render "end_user/tags/index", object: current_end_user, tags: @tags, tag: @tag, user: "user"

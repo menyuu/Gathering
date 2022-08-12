@@ -1,6 +1,9 @@
 .container-fluid
   .row
     .col-8.mt-5
-      .card.offset-2.tag-area
-        .errors
-        = render "index", object: current_end_user, tags: @tags, tag: @tag, user: "user"
+      .card.offset-2
+        .card-body.tag-area
+          = render "index", object: current_end_user, tags: @tags, tag: @tag, user: "user"
+        .card-footer.bg-white
+          .card-text.text-right
+            = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"

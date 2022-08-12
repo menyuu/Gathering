@@ -10,8 +10,7 @@ class EndUser::TagsController < ApplicationController
     unless current_end_user.tags.size == 10 || params[:tag][:name].length >= 50
       Tag.create_tag(params[:tag][:name], current_end_user)
     else
-      render :errors
-      flash[:notice] = "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは10個までです。"
+      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは10個までです。"
     end
   end
 
@@ -21,8 +20,7 @@ class EndUser::TagsController < ApplicationController
     unless current_end_user.tags.size == 10
       Tag.update_tag(params[:name], current_end_user)
     else
-      render :errors
-      flash[:notice] = "タグの追加に失敗しました。追加できるタグは10個までです。"
+      redirect_to request.referer, notice: "タグの追加に失敗しました。追加できるタグは10個までです。"
     end
   end
 
