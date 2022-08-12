@@ -48,11 +48,11 @@ class EndUser < ApplicationRecord
   enum status: { published: 0, privately: 1, freeze: 2 }
 
   with_options presence: true do
-    validates :name, length: { in: 1..30 }
+    validates :name, length: { maximum: 30 }
     validates :status, inclusion: { in: EndUser.statuses.keys }
   end
   validates :introduction, length: { maximum: 200 }
-  
+
   # アカウント作成時にランダムな数値のIDを付与
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
@@ -78,7 +78,7 @@ class EndUser < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
+
   # ユーザー検索用
   def self.search_for(object, word, user_id)
     case object
