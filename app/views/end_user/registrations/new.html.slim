@@ -8,13 +8,13 @@
         .card-body
           = form_with model: @end_user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
             = render "end_user/shared/error_messages", resource: resource
-            .form-group
+            .field.form-group.my-3
               = f.label :name, "名前"
               = f.text_field :name, class: "form-control", autofocus: true, id: "input-name"
-            .form-froup
+            .field.form-group.my-3
               = f.label :email, "メールアドレス"
               = f.email_field :email, class: "form-control", id: "input-email"
-            .field.form-group
+            .field.form-group.my-3
               = f.label :password, "パスワード"
               - if @minimum_password_length
                 em
@@ -22,7 +22,7 @@
                   = @minimum_password_length
                   |  文字以上)
               = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password"
-            .field.form-group
+            .field.form-group.mt-3
               = f.label :password_confirmation, "パスワード(確認)"
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
         .card-body.text-right
