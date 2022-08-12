@@ -1,6 +1,22 @@
-.nav.navbar.navbar-light.justify-content-bettween.bg-white
-  .col-2.px-3
-    = link_to root_path, class:"navbar-brand"
-      = image_tag '/assets/Gathering.png', width: "160", height: "32"
-  .col-8.col-md-6.col-lg-5.px-3.mx-auto
-    = render "end_user/searches/form"
+nav.navbar-light.bg-white
+  .container-fluid.header-container
+    .logo-container
+      - if signed_in? && current_end_user.name == "ゲストユーザー"
+        = link_to index_all_posts_path, class:"navbar-brand"
+          = image_tag asset_path("logo.png"), class: "logo"
+      - elsif signed_in?
+        = link_to posts_path, class:"navbar-brand"
+          = image_tag asset_path("logo.png"), class: "logo"
+      - else
+        = link_to root_path, class:"navbar-brand"
+          = image_tag asset_path("logo.png"), class: "logo"
+    .search-form-container
+      = form_with url: search_path, method: :get, local: true do |f|
+        .input-group.search-form-item.search-form-out
+          = f.text_field :name, placeholder: "検索", class: "form-control input-group-prepend"
+          span.input-group-append.text-right
+            = button_tag(type: "submit", class: "btn btn-dark input-group")
+              i.fas.fa-search.align-self-center
+    div
+      = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
+        i.fas.fa-search.align-self-center
