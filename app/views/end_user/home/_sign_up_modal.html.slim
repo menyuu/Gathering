@@ -4,7 +4,9 @@
       .modal-header
         h5.modal-title#newUserModalToggle
           | アカウントを作成
-        button.btn data-dismiss="modal" aria-label="close" ×
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
       .modal-body
         = form_with model: user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
           .form-group
@@ -15,11 +17,9 @@
             = f.email_field :email, class: "form-control", id: "input-email"
           .field.form-group
             = f.label :password, "パスワード"
-            br
             = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "form-control", id: "input-password"
-          .field
+          .field.form-group
             = f.label :password_confirmation, "パスワード(確認)"
-            br
             = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
       .modal-body.ml-auto
         button.btn.btn-dark#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認

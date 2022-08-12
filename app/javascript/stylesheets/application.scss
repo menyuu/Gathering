@@ -123,9 +123,12 @@ textarea {
 
 
 .modal-close-btn {
-  border: 1px solid black;
+  border: 1px solid #1d2124;
   &span {
     font-size: 16px;
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.2rem rgb(29, 33, 36, 25%);
   }
 }
 
