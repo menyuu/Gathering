@@ -21,7 +21,7 @@
           .field.form-group
             = f.label :password_confirmation, "パスワード(確認)"
             = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "output-password-confirmation", readonly: true
-          .actions.form-group.mt-3.mb-5
+          .actions.form-group.mt-5.mb-5
             = f.submit "アカウントを作成する", class: "btn btn-block btn-dark"
       .modal-footer
         button.btn.btn-outline-dark data-dismiss="modal" 閉じる

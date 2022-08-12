@@ -10,7 +10,7 @@
             = render "end_user/shared/error_messages", resource: resource
             .form-group
               = f.label :name, "名前"
-              = f.text_field :name, class: "form-control", id: "input-name"
+              = f.text_field :name, class: "form-control", autofocus: true, id: "input-name"
             .form-froup
               = f.label :email, "メールアドレス"
               = f.email_field :email, class: "form-control", id: "input-email"
@@ -18,51 +18,19 @@
               = f.label :password, "パスワード"
               - if @minimum_password_length
                 em
-                  | (
+                  | (英数字
                   = @minimum_password_length
                   |  文字以上)
-              br
               = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "input-password"
-            .field
+            .field.form-group
               = f.label :password_confirmation, "パスワード(確認)"
-              br
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "input-password-confirmation"
-        .card-footer.bg-white.text-right
-          button.btn.btn-primary.mr-auto#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
-        .card-body
+        .card-body.text-right
+          button.btn.btn-dark#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
+        = render "end_user/home/sign_up_confirm_modal", user: @end_user
+        .card-footer.bg-white.mt-3
           | すでにアカウントをお持ちですか？
-          = link_to "ログインする", new_end_user_session_path
-      .modal.fade#newUserConfirmModalToggle tabindex="-1" aria-labelledby="newUserModalToggle" aria-hidden="true"
-        .modal-dialog.modal-dialog-centered
-          .modal-content
-            .modal-header
-              h5.modal-title#newUserConfirmModalToggle
-                | アカウントを作成(確認画面)
-              button.btn data-dismiss="modal" aria-label="close" ×
-            .modal-body
-              = form_with model: @end_user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
-                .form-group
-                  = f.label :name, "名前"
-                  = f.text_field :name, class: "form-control", id: "output-name", readonly: true
-                .form-froup
-                  = f.label :email, "メールアドレス"
-                  = f.email_field :email, class: "form-control", id: "output-email", readonly: true
-                .field.form-group
-                  = f.label :password, "パスワード"
-                  - if @minimum_password_length
-                    em
-                      | (
-                      = @minimum_password_length
-                      |  文字以上)
-                  br
-                  = f.password_field :password, autocomplete: "new-password", class: "form-control", id: "output-password", readonly: true
-                .field
-                  = f.label :password_confirmation, "パスワード(確認)"
-                  br
-                  = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: "output-password-confirmation", readonly: true
-                .actions.mt-3
-                  = f.submit "アカウントを作成する", class: "btn btn-primary w-100"
-            .modal-footer
-              button.btn.btn-secondary data-dismiss="modal" 閉じる
-
-= javascript_pack_tag 'top.js'
+          = link_to "ログインする", new_end_user_session_path, class: "link-text-blue"
+          .my-3
+            | ゲストユーザーで
+            = link_to "ログイン", users_guest_sign_in_path, class: "link-text-blue", method: :post
