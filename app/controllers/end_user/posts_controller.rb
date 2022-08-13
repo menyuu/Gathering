@@ -120,12 +120,6 @@ class EndUser::PostsController < ApplicationController
     end
   end
 
-  def forbid_guestuser_posting
-    if current_end_user.name == "ゲストユーザー"
-      redirect_to posts_path, alert: "ゲストユーザーは投稿・編集・削除を行えません。"
-    end
-  end
-
   def tag_items
     @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
     @tags = Kaminari.paginate_array(Tag.display_show_type("user", 15)).page(params[:page]).per(5)
