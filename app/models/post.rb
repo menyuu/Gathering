@@ -28,14 +28,16 @@ class Post < ApplicationRecord
   enum status: { published: 0, draft: 1 }
 
   validates :text, presence: true
-  validates :images, attached_file_number: { maximum: 4 }
+  validate :images_length
 
   before_create -> { self.id = SecureRandom.random_number(10000000) }
 
+  # 投稿にcurrent_end_userのいいねがあるかどうかを判定
   def favorited_by?(user)
     favorites.exists?(end_user_id: user.id)
   end
 
+  # 完全一致、後方、前方、部分、に当てはまる投稿を配列に直し重複しているものを除外
   def self.search_for(word)
     posts = []
     perfect_match_posts = Post.where(text: word).where(status: "published")
@@ -45,5 +47,11 @@ class Post < ApplicationRecord
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
     posts.flatten!
     return unique_posts = posts.uniq { |post| post.id }
+  end
+
+  def images_length
+    if images.length > 4
+      errors.add(:images, "の投稿可能な数は4枚までです。")
+    end
   end
 end

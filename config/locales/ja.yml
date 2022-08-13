@@ -9,6 +9,7 @@ ja:
         name: "名前"
       post:
         text: "投稿内容"
+        images: "画像"
   enums:
     post:
       status:

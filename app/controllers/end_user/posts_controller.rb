@@ -1,6 +1,7 @@
 class EndUser::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :destroy]
-  before_action :tag_items, only: [:index, :index_all, :draft]
+  before_action :tag_items, only: [:index, :index_all, :draft, :create]
+  before_action :forbid_guestuser_posting, only: [:create, :update, :destroy]
 
   def index
     @post = Post.new
@@ -43,7 +44,7 @@ class EndUser::PostsController < ApplicationController
       @tag_names = tags.pluck(:name).join(",")
     end
   end
-  
+
   def draft
     @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @tag_names = []
@@ -60,11 +61,11 @@ class EndUser::PostsController < ApplicationController
   # 非同期を一旦休止
   def create
     @post = current_end_user.posts.new(post_params)
-    # posts = Post.includes(:user)
-    # users = []
-    # users.push(current_end_user.followings, current_end_user)
-    # users.flatten!
-    # @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    posts = Post.includes(:user)
+    users = []
+    users.push(current_end_user.followings, current_end_user)
+    users.flatten!
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     case params[:post][:status]
     when "0"
       @post.status = "published"
@@ -116,6 +117,12 @@ class EndUser::PostsController < ApplicationController
     unless current_end_user == post.user
       flash[:alert] = "アカウントが違います。"
       redirect_to posts_path
+    end
+  end
+
+  def forbid_guestuser_posting
+    if current_end_user.name == "ゲストユーザー"
+      redirect_to posts_path, alert: "ゲストユーザーは投稿・編集・削除を行えません。"
     end
   end
 
