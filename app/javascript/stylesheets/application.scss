@@ -38,12 +38,14 @@ textarea {
 }
 
 .post-text {
-  padding: 32px 56px;
+  padding: 0 24px;
+  margin: 24px 0;
   & a:hover {
     text-decoration: none;
   }
   @media screen and (max-width: 768px) {
-    padding: 16px;
+    padding: 0 16px;
+    padding: 16px 0;
   }
 }
 
@@ -128,10 +130,6 @@ textarea {
   &:hover {
     text-decoration: underline;
   }
-}
-
-.post-text {
-  padding: 32px 56px;
 }
 
 

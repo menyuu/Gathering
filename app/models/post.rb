@@ -27,7 +27,7 @@ class Post < ApplicationRecord
 
   enum status: { published: 0, draft: 1 }
 
-  validates :text, presence: true
+  validates :text, presence: true, length: { maximum: 200 }
   validate :images_length
 
   before_create -> { self.id = SecureRandom.random_number(10000000) }

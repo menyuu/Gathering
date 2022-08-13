@@ -61,6 +61,7 @@ class EndUser::PostsController < ApplicationController
   # 非同期を一旦休止
   def create
     @post = current_end_user.posts.new(post_params)
+    @post_comment = PostComment.new
     posts = Post.includes(:user)
     users = []
     users.push(current_end_user.followings, current_end_user)
