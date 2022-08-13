@@ -8,8 +8,7 @@ class EndUser::HomeController < ApplicationController
 
   def user_after_signed_in_prohibit
     if current_end_user
-      flash[:notice] = "すでにログインしています。"
-      # リダイレクト先を作る
+      redirect_to posts_path
     end
   end
 end

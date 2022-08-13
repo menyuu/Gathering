@@ -12,6 +12,6 @@ class PostingTag < ApplicationRecord
   has_many :posts, through: :post_tags
 
   def self.search_for(word)
-    perfect_match_post_tags = PostingTag.find_by(name: word)
+    PostingTag.find_by(name: word)
   end
 end

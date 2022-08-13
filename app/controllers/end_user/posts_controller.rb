@@ -8,7 +8,7 @@ class EndUser::PostsController < ApplicationController
     users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).with_attached_images.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @tags = Tag.display_show_type("user", 50)
     @genres = Genre.display_show_type("user", 50)
     @games = Game.display_show_type("user", 50)
@@ -79,8 +79,17 @@ class EndUser::PostsController < ApplicationController
 
   def index_all
     @post = Post.new
-    @posts = Post.where(status: "published").with_attached_images.includes(:user).where(user: {status: "published"}).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @post_comment = PostComment.new
+    users = []
+    other_published_users = EndUser.where(status: "published").reject { |user| user == current_end_user }
+    users.push(other_published_users, current_end_user.followings, current_end_user)
+    users.flatten!
+    unique_users = users.uniq { |user| user.id }
+    @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @tags = Tag.display_show_type("user", 50)
+    @genres = Genre.display_show_type("user", 50)
+    @games = Game.display_show_type("user", 50)
+    @post_tags = PostingTag.display_show_type("post", 50)
   end
 
   def draft
