@@ -27,7 +27,7 @@ class Post < ApplicationRecord
 
   enum status: { published: 0, draft: 1 }
 
-  before_create -> { self.id = SecureRandom.random_number(100000000000000) }
+  before_create -> { self.id = SecureRandom.random_number(10000000) }
 
   def favorited_by?(user)
     favorites.exists?(end_user_id: user.id)

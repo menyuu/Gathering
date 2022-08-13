@@ -1,4 +1,5 @@
 class EndUser::PostsController < ApplicationController
+  before_action :tag_items, only: [:index, :index_all]
   # before_action :user_has_tags?
 
   def index
@@ -9,10 +10,7 @@ class EndUser::PostsController < ApplicationController
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
     @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @tags = Tag.display_show_type("user", 50)
-    @genres = Genre.display_show_type("user", 50)
-    @games = Game.display_show_type("user", 50)
-    @post_tags = PostingTag.display_show_type("post", 50)
+
   end
 
   def index_all
@@ -24,12 +22,8 @@ class EndUser::PostsController < ApplicationController
     users.flatten!
     unique_users = users.uniq { |user| user.id }
     @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @tags = Tag.display_show_type("user", 50)
-    @genres = Genre.display_show_type("user", 50)
-    @games = Game.display_show_type("user", 50)
-    @post_tags = PostingTag.display_show_type("post", 50)
   end
-  
+
   def show
     @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
@@ -110,5 +104,12 @@ class EndUser::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:text, :status, images: [])
+  end
+
+  def tag_items
+    @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
+    @tags = Kaminari.paginate_array(Tag.display_show_type("user", 15)).page(params[:page]).per(5)
+    @genres = Kaminari.paginate_array(Genre.display_show_type("user", 15)).page(params[:page]).per(5)
+    @games = Kaminari.paginate_array(Game.display_show_type("user", 15)).page(params[:page]).per(5)
   end
 end
