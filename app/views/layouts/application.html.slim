@@ -20,7 +20,7 @@ html
         = render "layouts/flash"
       .container-fluid
         .row
-          .col-2.h-100.sidebar
+          .col-2.sidebar
             - unless current_page?(users_sign_up_complete_path)
               - if end_user_signed_in?
                 = render "layouts/sidebar"

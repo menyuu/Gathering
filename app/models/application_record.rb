@@ -8,7 +8,7 @@ class ApplicationRecord < ActiveRecord::Base
       when "group"
         where(status: "prepared").sort { |a,b| b.groups.size <=> a.groups.size}.first(range)
       when "post"
-        sort{ |a,b| b.groups.size <=> a.groups.size}.first(range)
+        all.sort{ |a,b| b.posts.size <=> a.posts.size}.first(range)
     end
   end
 end

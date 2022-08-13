@@ -1,0 +1,47 @@
+.container-fluid.item-sidebar-container
+  .row
+    .col-5.item-bar.item-sidebar
+      table.table.table-borderless
+        thead.item-sidebar-title
+          tr
+            td colspan="3"
+              | 人気の投稿タグ
+        tbody
+          - post_tags.each do |tag|
+            tr
+              td
+                = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+    .col-5.offset-1.item-bar.item-sidebar
+      table.table.table-borderless
+        thead.item-sidebar-title
+          tr
+            td colspan="3"
+              | 人気の趣味タグ
+        tbody
+          - tags.each do |tag|
+            tr
+              td
+                = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+  .row.item-sidebar-bottom
+    .col-5.item-bar.item-sidebar
+      table.table.table-borderless
+        thead.item-sidebar-title
+          tr
+            td colspan="3"
+              | 人気のジャンル
+        tbody
+          - genres.each do |genre|
+            tr
+              td
+                = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+    .col-5.offset-1.item-bar.item-sidebar
+      table.table.table-borderless
+        thead.item-sidebar-title
+          tr
+            td colspan="3"
+              | 人気のゲーム
+        tbody
+          - games.each do |game|
+            tr
+              td
+                = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"

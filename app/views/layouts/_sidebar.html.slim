@@ -4,9 +4,9 @@ table.table.table-borderless
       td
         = link_to user_path(current_end_user)
           = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
-        span.ms-3
-        = link_to user_path(current_end_user)
-          = current_end_user.name
+        span.ms-3.user-name
+          = link_to user_path(current_end_user)
+            = current_end_user.name
     tr
       td
         = link_to posts_path, class: "btn btn-dark rounded-pill"
@@ -37,4 +37,10 @@ table.table.table-borderless
         = link_to games_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-gamepad
           | ゲームを見る
+    tr
+      td
+        = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-dark rounded-pill"
+          i.fas.fa-sign-out-alt
+          span
+            | ログアウト
 

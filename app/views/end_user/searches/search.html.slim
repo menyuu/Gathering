@@ -12,7 +12,7 @@
         .row
           .col
             - if @search_result.present?
-              = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
+              = render "end_user/posts/index", posts: @search_result, post_comment: @post_comment
             - else
               .text-center
                 h1
@@ -30,7 +30,7 @@
         .row
           .col
             - if @search_result.present?
-              = render "end_user/posts/post_index", posts: @search_result, post_comment: @post_comment
+              = render "end_user/posts/index", posts: @search_result, post_comment: @post_comment
             - else
               .text-center
                 h1

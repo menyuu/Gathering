@@ -24,3 +24,24 @@
   overflow-y: auto;
   max-height: 100%;
 }
+
+.item-sidebar {
+  overflow-y: auto;
+  height: 320px;
+}
+
+.item-sidebar-title {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: white;
+}
+
+.item-sidebar-bottom {
+  margin-top: 80px
+}
+
+.item-sidebar-container {
+  position: sticky;
+  top: 100px;
+}

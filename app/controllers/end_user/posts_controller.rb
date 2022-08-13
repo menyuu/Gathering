@@ -8,7 +8,11 @@ class EndUser::PostsController < ApplicationController
     users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").includes(:user).page(params[:page]).with_attached_images.per(1).order(created_at: :DESC)
+    @tags = Tag.display_show_type("user", 50)
+    @genres = Genre.display_show_type("user", 50)
+    @games = Game.display_show_type("user", 50)
+    @post_tags = PostingTag.display_show_type("post", 50)
   end
 
   def show

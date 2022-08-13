@@ -38,13 +38,15 @@ textarea {
 }
 
 .post-text {
-  &-text {
-    padding: 32px 56px;
-    @media screen and (max-width: 768px) {
-      padding: 16px;
-    }
+  padding: 32px 56px;
+  & a:hover {
+    text-decoration: none;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 16px;
   }
 }
+
 
 .post-item {
   margin-right: 16px;
@@ -113,6 +115,7 @@ textarea {
 
 .user-name {
   margin-left: 24px;
+  font-size: 16px;
   &:hover {
     text-decoration: underline;
   }

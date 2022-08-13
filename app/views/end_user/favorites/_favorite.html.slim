@@ -5,7 +5,7 @@
       = post.favorites.count
   - else
     = link_to post_favorites_path(post), method: :post, remote: true
-      i.far.fa-heart
+      i.far.fa-heart.post-item-icon
       = post.favorites.count
 - else
   = link_to new_end_user_session_path

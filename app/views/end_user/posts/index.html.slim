@@ -1,5 +1,8 @@
-.container.ml-0
+.container-fluid
   .row
-    .col-10.offset-2
-      = render "end_user/posts/post_form", post: @post
-      = render "end_user/posts/post_index", posts: @posts, post_comment: @post_comment
+    .col-10.col-md-6.offset-1
+      = render "form", post: @post
+      = render "index", posts: @posts, post_comment: @post_comment
+
+    .col-5.d-none.d-md-block
+      = render "item_sidebar", post_tags: @post_tags, tags: @tags, genres: @genres, games: @games
