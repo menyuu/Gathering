@@ -6,21 +6,8 @@
           = link_to user_path(post.user)
             = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
           = link_to post.user.name, user_path(post.user), class: "user-name"
-        .card-body.post-text
-          = link_to post_path(post)
-            p.card-text
-              = safe_join(post.text.split("\n"),tag(:br))
-        .card-body
-          .card-img.text-center
-            - post.images.each do |image|
-              = link_to image, "data-lightbox": image
-                = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block"
-        .card-body
-          .card-text
-            - post.tags.each do |tag|
-              = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          .card-text
-            = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        div
+          = render "end_user/posts/post_body", post: post
           ul.col-12.text-right.post-item-container
             li.card-text.d-inline-block.post-item
               a data-toggle="modal" data-target="#postComment#{post.id}ModalToggle" data-link="postComment#{post.id}ModalToggle"
@@ -33,34 +20,7 @@
               = link_to post_path(post)
                 = time_ago_in_words(post.created_at)
                 | 前
-    .modal.fade id="postComment#{post.id}ModalToggle" tabindex="-1" aria-labelledby="postComment#{post.id}ModalToggle" aria-hidden="true"
-      .modal-dialog.modal-lg.modal-dialog-centered
-        .modal-content
-          .modal-header
-            div id="#postComment#{post.id}ModalToggle"
-            button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-              span
-                | ×
-          .modal-body
-            = link_to user_path(post.user)
-              = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
-            = link_to post.user.name, user_path(post.user), class: "user-name"
-          .modal-body
-            = link_to post_path(post)
-              p.card-text.post-text
-                = post.text
-          .modal-body.text-center
-            - post.images.first(4).each do |image|
-              = link_to post_path(post)
-                = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
-          .modal-body
-            = form_with model: post_comment, url: post_comments_path(post) do |f|
-              .form-group.mt-5
-              = f.text_area :text, placeholder: "コメントを入力", class: "form-control", rows: 5
-              .form-group.text-right.mt-3
-                = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill"
-          .modal-footer
-            button.btn.btn-dark data-dismiss="modal" 閉じる
+        = render "end_user/posts/comment_modal", post: post, post_comment: @post_comment
       .skill-list
         = link_to_prev_page posts, "前のページ", class: "prev d-none"
         = link_to_next_page posts, "次のページ", class: "next d-none"

@@ -19,7 +19,7 @@
           .card-img.text-center
             - post.images.each do |image|
               = link_to image, "data-lightbox": image
-                = image_tag image.variant(gravity: :center, resize:"200x200^", crop:"200x200+0+0").processed, class: "d-none d-sm-inline-block"
+                = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block"
         .card-body
           .container
             .card-text

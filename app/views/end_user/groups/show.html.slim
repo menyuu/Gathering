@@ -9,7 +9,7 @@
               = link_to @group.icon, "data-lightbox": @group.icon
                 = image_tag @group.group_icon(80, 80), class: "rounded-circle"
             - else
-              = image_tag '/assets/group_no_image.png', class: "rounded-circle", width: "160", height: "160"
+              = image_tag '/assets/group_no_image.png', class: "rounded-circle", width: "160x160", height: "160x160"
             span.group-name
               = @group.name
           .col-6.row

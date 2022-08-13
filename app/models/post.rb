@@ -25,6 +25,10 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags, source: :posting_tag
   has_many_attached :images
 
+  with_options presence: true do
+    
+  end
+
   enum status: { published: 0, draft: 1 }
 
   before_create -> { self.id = SecureRandom.random_number(10000000) }

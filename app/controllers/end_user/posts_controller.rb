@@ -1,5 +1,6 @@
 class EndUser::PostsController < ApplicationController
-  before_action :tag_items, only: [:index, :index_all]
+  before_action :ensure_correct_user, only: [:update, :update, :destroy]
+  # before_action :tag_items, only: [:index, :index_all]
   # before_action :user_has_tags?
 
   def index
@@ -38,8 +39,14 @@ class EndUser::PostsController < ApplicationController
     end
   end
 
+  # 非同期を一旦休止
   def create
     @post = current_end_user.posts.new(post_params)
+    posts = Post.includes(:user)
+    users = []
+    users.push(current_end_user.followings, current_end_user)
+    users.flatten!
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
     case params[:post][:status]
     when "0"
       @post.status = "published"
@@ -53,14 +60,10 @@ class EndUser::PostsController < ApplicationController
         @post.tags.delete(tag)
         @post.tags << tag
       end
+      redirect_to posts_path, notice: "正常に投稿されました。"
+    else
+      redirect_to posts_path, notice: "投稿に失敗しました。"
     end
-    posts = Post.includes(:user)
-    users = []
-    users.push(current_end_user.followings, current_end_user)
-    users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    # 非同期を一旦休止
-    redirect_to posts_path
   end
 
   def edit
@@ -106,10 +109,18 @@ class EndUser::PostsController < ApplicationController
     params.require(:post).permit(:text, :status, images: [])
   end
 
-  def tag_items
-    @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
-    @tags = Kaminari.paginate_array(Tag.display_show_type("user", 15)).page(params[:page]).per(5)
-    @genres = Kaminari.paginate_array(Genre.display_show_type("user", 15)).page(params[:page]).per(5)
-    @games = Kaminari.paginate_array(Game.display_show_type("user", 15)).page(params[:page]).per(5)
+  def ensure_correct_user
+    post = Post.find(params[:id])
+    unless current_end_user == post.user
+      flash[:notice] = "アカウントが違います。"
+      redirect_to posts_path
+    end
   end
+
+  # def tag_items
+  #   @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
+  #   @tags = Kaminari.paginate_array(Tag.display_show_type("user", 15)).page(params[:page]).per(5)
+  #   @genres = Kaminari.paginate_array(Genre.display_show_type("user", 15)).page(params[:page]).per(5)
+  #   @games = Kaminari.paginate_array(Game.display_show_type("user", 15)).page(params[:page]).per(5)
+  # end
 end

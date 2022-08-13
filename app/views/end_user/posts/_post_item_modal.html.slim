@@ -1,0 +1,23 @@
+- if current_end_user == post.user
+  - if post.status == "draft"
+    li.card-text.d-inline-block.post-item data-toggle="modal" data-target="#editPostModalToggle"
+      i.fa.fa-edit data-toggle="tooltip" data-placement="right" title="クリックして投稿を編集"
+  - if post.status == "published" || post.status == "draft"
+    li.card-text.d-inline-block.post-item
+      = link_to post_tags_path(post)
+        i.fas.fa-tags data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
+  li.card-text.d-inline-block.post-item-delete
+    = link_to post_path(post), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
+      i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
+.modal.fade#editPostModalToggle tabindex="-1" aria-labelledby="editPostModalToggle" aria-hidden="true"
+  .modal-dialog.modal-lg.modal-dialog-centered
+    .modal-content
+      .modal-header
+        #editPostModalToggle
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
+      .modal-body
+        = render "end_user/posts/form", post: post
+      .modal-footer
+        button.btn.btn-secondary data-dismiss="modal" 閉じる
