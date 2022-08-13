@@ -1,8 +1,9 @@
 - if flash[:notice]
-  .flash
+  .flash.flash-notice
     p
-      = flash[:notice]
-- if flash[:danger]
-  .flash
+      = notice
+- if flash[:alert]
+  .flash.flash-alert
     p
-      = flash[:danger]
+      = alert
+

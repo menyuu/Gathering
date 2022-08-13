@@ -69,6 +69,7 @@ gem 'devise-i18n'
 gem 'rails-i18n'
 gem 'kaminari'
 gem 'dotenv-rails'
+gem 'activestorage-validator'
 group :production do
   gem 'mysql2'
 end

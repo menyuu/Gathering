@@ -1,6 +1,6 @@
-.container.ml-0
+.container-fluid
   .row
-    .col-10.offset-2
+    .col-10.col-md-6.offset-1
       .scroll-list.jscroll
         - @posts.each do |post|
           #post-index
@@ -9,47 +9,36 @@
                 = link_to user_path(post.user)
                   = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
                 = link_to post.user.name, user_path(post.user), class: "user-name"
-              .card-body
-                = link_to post_path(post)
-                  p.card-text.post-text
-                    = post.text
-              .card-body
-                .card-img.text-center
-                  - post.images.each do |image|
-                    = link_to image, "data-lightbox": image
-                      = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block"
-              .card-body
-                .card-text
-                  - post.tags.each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                .card-text
-                  = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                  ul.col-12.text-right.post-item-container
-                    li.accordion id="accordion#{post.id}" aria-multiselectable="true"
-                      .accordion-item
-                        .card-text.d-inline-block.accordion-header id="heading#{post.id}"
-                          div data-toggle="collapse" data-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
-                            i.fa-solid.fa-pen-to-square
-                            span.form-item
-                              | クリックして編集
-                        .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-parent="#accordion#{post.id}"
-                          .accordion-body
-                            = form_with model: post, local: false do |f|
-                              .col-12.ml-auto
-                                = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top rounded-0 post-input-area", rows: 5;
-                                .text-right.post-input-item.mt-3
-                                  .form-group.d-sm-inline-block
-                                    = f.label :images, for: "post_images_#{post.id}"
-                                      i.fas.fa-image.form-item.post-item-icon
-                                    = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{post.id}", style: "display: none;"
-                                  .form-check.form-switch.d-sm-inline-block
-                                    = f.check_box :status, {class: "form-check-input form-item", id: "post-status-#{post.id}"}, "published", "draft"
-                                    = f.label :status, "投稿を公開", class: "form-check-label form-item", for: "post-status-#{post.id}"
-                                .col-10.form-group
-                                  = f.text_field :name, value:  @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
-                                  class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
-                                .form-group.mt-3.text-right.post-input-item
-                                  = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+              div
+                = render "post_body", post: post
+              ul.col-12.text-right.post-item-container
+                li.accordion id="accordion#{post.id}" aria-multiselectable="true"
+                  .accordion-item
+                    .card-text.d-inline-block.accordion-header id="heading#{post.id}"
+                      div data-toggle="collapse" data-target="#collapse#{post.id}" aria-expanded="false" aria-controls="collapse#{post.id}"
+                        i.fa-solid.fa-pen-to-square
+                        span.form-item
+                          | クリックして編集
+                    .accordion-collapse.collapse id="collapse#{post.id}" aria-labelledby="heading#{post.id}" data-parent="#accordion#{post.id}"
+                      .accordion-body
+                        = form_with model: post, local: false do |f|
+                          .col-12.ml-auto
+                            = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top rounded-0 post-input-area", rows: 5;
+                            .text-right.post-input-item.mt-3
+                              .form-group.d-sm-inline-block
+                                = f.label :images, for: "post_images_#{post.id}"
+                                  i.fas.fa-image.form-item.post-item-icon
+                                = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{post.id}", style: "display: none;"
+                              .form-check.form-switch.d-sm-inline-block
+                                = f.check_box :status, {class: "form-check-input form-item", id: "post-status-#{post.id}"}, "published", "draft"
+                                = f.label :status, "投稿を公開", class: "form-check-label form-item", for: "post-status-#{post.id}"
+                            .col-10.form-group
+                              = f.text_field :name, value:  @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
+                              class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
+                            .form-group.mt-3.text-right.post-input-item
+                              = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
             .skill-list
               = link_to_prev_page @posts, "前のページ", class: "prev d-none"
               = link_to_next_page @posts, "次のページ", class: "next d-none"
+    .col-5.d-none.d-md-block
+      = render "item_sidebar", post_tags: @post_tags, tags: @tags, genres: @genres, games: @games

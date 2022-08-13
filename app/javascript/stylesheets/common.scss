@@ -22,8 +22,6 @@ i {
 }
 
 .flash {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
   position: fixed;
   top: 60px;
   z-index: 1080;
@@ -32,6 +30,18 @@ i {
   text-align: center;
   line-height: 48px;
 }
+
+.flash {
+  &-notice {
+    background-color: rgba(0, 123, 255, 0.8);
+    color: #fff;
+  }
+  &-alert {
+    background-color: rgba(220, 53, 69, 0.8);
+    color: #fff;
+  }
+}
+
 
 .sidebar {
   position: sticky;

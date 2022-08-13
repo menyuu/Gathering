@@ -17,10 +17,10 @@
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
                   i.far.fa-comment.post-item-icon
                 = @post.post_comments.count
-            - if @post.status == "published" or @post.status == "draft"
               li.card-text.d-inline-block.post-item
                 div class="favorite_btn_#{@post.id}"
                   = render "end_user/favorites/favorite", post: @post
+            - if @post.status == "published" || @post.status == "draft"
               li.card-text.d-inline-block.post-item
                 = link_to post_path(@post)
                   = time_ago_in_words(@post.created_at)
