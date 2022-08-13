@@ -15,6 +15,21 @@ class EndUser::PostsController < ApplicationController
     @post_tags = PostingTag.display_show_type("post", 50)
   end
 
+  def index_all
+    @post = Post.new
+    @post_comment = PostComment.new
+    users = []
+    other_published_users = EndUser.where(status: "published").reject { |user| user == current_end_user }
+    users.push(other_published_users, current_end_user.followings, current_end_user)
+    users.flatten!
+    unique_users = users.uniq { |user| user.id }
+    @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @tags = Tag.display_show_type("user", 50)
+    @genres = Genre.display_show_type("user", 50)
+    @games = Game.display_show_type("user", 50)
+    @post_tags = PostingTag.display_show_type("post", 50)
+  end
+  
   def show
     @post = Post.with_attached_images.find(params[:id])
     @post_comment = PostComment.new
@@ -77,20 +92,6 @@ class EndUser::PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  def index_all
-    @post = Post.new
-    @post_comment = PostComment.new
-    users = []
-    other_published_users = EndUser.where(status: "published").reject { |user| user == current_end_user }
-    users.push(other_published_users, current_end_user.followings, current_end_user)
-    users.flatten!
-    unique_users = users.uniq { |user| user.id }
-    @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @tags = Tag.display_show_type("user", 50)
-    @genres = Genre.display_show_type("user", 50)
-    @games = Game.display_show_type("user", 50)
-    @post_tags = PostingTag.display_show_type("post", 50)
-  end
 
   def draft
     @posts = current_end_user.posts.where(status: "draft").includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
