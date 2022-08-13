@@ -62,7 +62,8 @@ class EndUser::PostsController < ApplicationController
       end
       redirect_to posts_path, notice: "正常に投稿されました。"
     else
-      redirect_to posts_path, notice: "投稿に失敗しました。"
+      flash[:aleart] = "投稿に失敗しました。"
+      render :index
     end
   end
 

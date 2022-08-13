@@ -26,7 +26,7 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   with_options presence: true do
-    
+    validates :text
   end
 
   enum status: { published: 0, draft: 1 }
