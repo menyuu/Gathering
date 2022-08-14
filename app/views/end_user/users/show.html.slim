@@ -58,16 +58,16 @@
               li.col-4.user-item
                 = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
-                  span
+                  span.between-text-icon
                     | タイムライン
               li.col-4.border-left.border-right.border-3.user-item
                 = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
-                  span
+                  span.between-text-icon
                     | いいね
               li.col-4.user-item
                 = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
-                  span
+                  span.between-text-icon
                     | 下書き
       = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
