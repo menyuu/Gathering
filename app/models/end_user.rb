@@ -51,7 +51,7 @@ class EndUser < ApplicationRecord
     validates :name, length: { maximum: 30 }
     validates :status, inclusion: { in: EndUser.statuses.keys }
   end
-  validates :introduction, length: { maximum: 200 }
+  validates :introduction, length: { maximum: 240 }
 
   # アカウント作成時にランダムな数値のIDを付与
   before_create -> { self.id = SecureRandom.random_number(1000000000) }

@@ -32,6 +32,9 @@ class Group < ApplicationRecord
 
   has_one_attached :icon
 
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :introduction, length: { maximum: 240 }
+
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
   def group_icon(width, height)
