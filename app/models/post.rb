@@ -25,11 +25,15 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags, source: :posting_tag
   has_many_attached :images
 
-  enum status: { published: 0, draft: 1 }
+  enum status: { post_published: 0, draft: 1 }
 
-  validates :text, presence: true, length: { maximum: 200 }
+  with_options presence: true do
+    validates :text, length: { maximum: 200 }
+    validates :status, inclusion: { in: Post.statuses.keys }
+  end
   validate :images_length
-
+  
+  IMAGE_LIMITED = 4
   before_create -> { self.id = SecureRandom.random_number(10000000) }
 
   # 投稿にcurrent_end_userのいいねがあるかどうかを判定
@@ -50,7 +54,7 @@ class Post < ApplicationRecord
   end
 
   def images_length
-    if images.length > 4
+    if images.length > IMAGE_LIMITED
       errors.add(:images, "の投稿可能な数は4枚までです。")
     end
   end
