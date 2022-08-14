@@ -4,7 +4,7 @@
       .scroll-list.jscroll
         - @posts.each do |post|
           #post-index
-            .card.posts-area.rounded-0
+            .card.shadow.posts-area.rounded-0
               .card-body
                 = link_to user_path(post.user)
                   = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
