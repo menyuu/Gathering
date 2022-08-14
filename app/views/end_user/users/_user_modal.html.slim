@@ -53,7 +53,7 @@
               = f.label :password_confirmation, "パスワードを確認"
               = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
             .actions.text-right.mt-3
-              = f.submit "保存", class: "btn btn-dark rounded-pill"
+              = f.submit "保存", class: "btn btn-dark rounded-pill", data: {"confirm": "パスワードを変更してよろしいでしょうか。"}
       .modal-footer
         button.btn.btn-outline-dark data-target="#editUserModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
         button.btn.btn-outline-dark data-dismiss="modal" 閉じる
