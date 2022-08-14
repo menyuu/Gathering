@@ -1,2 +1,1 @@
-$('.genre-area').html('<%= j(render "end_user/genres/index", object: current_end_user, genres: @genres, genre: @genre, user: "user") %>')
-$('.input-genre-area').val('')
+$('.genre-area').html('<%= j(render "end_user/genres/index", genres: @genres, genre: @genre) %>');

@@ -3,7 +3,7 @@
     .col-8.mt-5
       .card.offset-2
         .card-body.game-area
-          = render "index", object: current_end_user, games: @games, game: @game, user: "user"
+          = render "index", games: @games, game: @game
         .card-footer.bg-white
           .card-text.text-right
             = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"

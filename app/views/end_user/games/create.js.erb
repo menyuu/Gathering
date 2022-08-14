@@ -1,2 +1,1 @@
-$('.game-area').html('<%= j(render "end_user/games/index", object: current_end_user, games: @games, game: @game, user: "user") %>')
-$('.input-game-area').val('')
+$('.game-area').html('<%= j(render "end_user/games/index", games: @games, game: @game) %>');
