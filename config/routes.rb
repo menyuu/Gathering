@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       patch "update_games" => "group_multi_toggle"
       delete "destroy_games" => "group_multi_toggle"
       get "members"
+      get "complete"
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]

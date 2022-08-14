@@ -17,7 +17,7 @@ class EndUser::GroupsController < ApplicationController
     if @group.save
       @group.users << current_end_user
     end
-    redirect_to group_path(@group), notice: "グループを作成しました。"
+    redirect_to group_complete_path(@group), notice: "グループを作成しました。"
   end
 
   def update
@@ -38,6 +38,16 @@ class EndUser::GroupsController < ApplicationController
   def members
     group = Group.find(params[:group_id])
     @members = group.users.where(status: "published").page(params[:page]).without_count.per(1)
+  end
+
+  def complete
+    @group = Group.find(params[:group_id])
+    @tags = Tag.display_show_type("group")
+    @tag = Tag.new
+    @genres = Genre.display_show_type("group")
+    @genre = Genre.new
+    @games = Game.display_show_type("group")
+    @game = Game.new
   end
 
   private

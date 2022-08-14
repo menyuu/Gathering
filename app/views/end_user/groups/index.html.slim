@@ -29,4 +29,4 @@
                         = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
                       - else
                         = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
-= render "end_user/groups/form", group: @group
+= render "end_user/groups/form_modal", group: @group
