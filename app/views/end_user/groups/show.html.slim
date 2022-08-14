@@ -19,9 +19,9 @@
                 - unless @group.is_ownerd_by?(current_end_user)
                   = render "join_link", group: @group
                 - else
-                  li.card-text.d-inline-blocktag-icon-item
+                  li.card-text.d-inline-block.tag-icon-item
                     i.fa.fa-edit data-toggle="modal" data-target="#editgroupModalToggle"
-                  li.card-text.d-inline-blocktag-icon-item-delete
+                  li.card-text.d-inline-block.tag-icon-item-delete
                     = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
                       i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
                 .modal.fade#editgroupModalToggle tabindex="-1" aria-labelledby="editgroupModalToggle" aria-hidden="true"
@@ -61,21 +61,21 @@
               = safe_join(@group.introduction.split("\n"),tag(:br))
         .card-body
           ul.col-12
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to group_tags_path(@group)
                 i.fas.fa-tags
                 span.between-text-icon
                   | 趣味タグ：
               - @group.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to group_genres_path(@group)
                 i.fas.fa-chess
                 span.between-text-icon
                   | ゲームジャンル：
               - @group.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to group_games_path(@group)
                 i.fas.fa-gamepad
                 span.between-text-icon

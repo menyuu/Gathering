@@ -27,25 +27,25 @@
                     data: {confirm: "本当にログアウトしますか？"}
                 = render "user_modal", user: @user
         .card-body
-          p.card-text.user-text
+          p.card-text.introduction-text
             = @user.introduction
         .card-body
           ul.col-12
-            li.card-texttag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
+            li.card-text.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
               = link_to tags_path
                 i.fas.fa-user-tag
                 span.between-text-icon
                   | 趣味タグ：
                 - @user.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてジャンルを編集"
+            li.card-text.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてジャンルを編集"
               = link_to genres_path
                 i.fas.fa-chess
                 span.between-text-icon
                   | ゲームジャンル：
                 - @user.genres.each do |genre|
                   = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてゲームを編集"
+            li.card-text.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてゲームを編集"
               = link_to games_path
                 i.fas.fa-gamepad
                 span.between-text-icon
@@ -55,17 +55,17 @@
         .card-body
           - if current_end_user == @user
             ul.text-center.d-flex.justify-content-around.p-0
-              li.col-4tag-icon-item
+              li.col-4.tag-icon-item
                 = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
                   span.between-text-icon
                     | タイムライン
-              li.col-4.border-left.border-right.border-3tag-icon-item
+              li.col-4.border-left.border-right.border-3.tag-icon-item
                 = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
                   span.between-text-icon
                     | いいね
-              li.col-4tag-icon-item
+              li.col-4.tag-icon-item
                 = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
                   span.between-text-icon

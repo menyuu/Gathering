@@ -19,25 +19,25 @@
                 = link_to "アカウント停止", admin_user_path(@user), method: :delete, class: "btn btn-outline-danger",
                 data: {confirm: "該当のユーザーのアカウントを停止してよろしいですか？"}
         .card-body
-          p.card-text.user-text
+          p.card-text.introduction-text
             = @user.introduction
         .card-body
           ul.col-12
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to tags_path
                 i.fas.fa-user-tag
                 span
                   |   趣味タグ：
               - @user.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to genres_path
                 i.fas.fa-chess
                 span
                   |   ゲームジャンル：
               - @user.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-texttag-icon-item
+            li.card-text.tag-icon-item
               = link_to games_path
                 i.fas.fa-gamepad
                 span

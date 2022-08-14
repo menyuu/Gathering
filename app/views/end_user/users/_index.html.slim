@@ -15,25 +15,25 @@
                   = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
                 - else
                   = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
-      .card-body
+      .card-body.introduction-area-container
         = link_to user_path(user)
-          p.card-text.user-text
+          p.card-tex.introduction-area
             = user.introduction
       .card-body
         ul.col-12
-          li.card-texttag-icon-item
+          li.card-text.tag-icon-item
             i.fas.fa-user-tag
             span.between-text-icon
               | 趣味タグ：
             - user.tags.each do |tag|
               = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          li.card-texttag-icon-item
+          li.card-text.tag-icon-item
             i.fas.fa-chess
             span.between-text-icon
               | ゲームジャンル：
             - user.genres.each do |genre|
               = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-          li.card-texttag-icon-item
+          li.card-text.tag-icon-item
             i.fas.fa-gamepad
             span
               | ゲーム：
