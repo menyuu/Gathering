@@ -20,45 +20,14 @@
                   = render "join_link", group: @group
                 - else
                   li.card-text.d-inline-block.tag-icon-item
-                    i.fa.fa-edit data-toggle="modal" data-target="#editgroupModalToggle"
+                    i.fa.fa-edit data-toggle="modal" data-target="#editGroupModalToggle"
                   li.card-text.d-inline-block.tag-icon-item-delete
                     = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
                       i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
-                .modal.fade#editgroupModalToggle tabindex="-1" aria-labelledby="editgroupModalToggle" aria-hidden="true"
-                  .modal-dialog.modal-lg.modal-dialog-centered
-                    .modal-content
-                      .modal-header
-                        h5.modal-title#editgroupModalToggle
-                          | グループ詳細編集
-                        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-                          span
-                            | ×
-                      .modal-body
-                        = form_with model: @group, url: group_path(@group), method: :patch do |f|
-                          .form-group.mt-3.text-center
-                            = f.label :icon, class: "mb-3"
-                              = image_tag @group.group_icon(56, 56), class: "rounded-circle"
-                            = f.file_field :icon, accept: "image/*", class: "form-control"
-                          .form-group.mt-3
-                            = f.text_field :name, placeholder: "グループ名", class: "form-control"
-                          .form-group.mt-3
-                            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
-                          .form-group.mt-3.text-right
-                            = f.submit "保存", class: "btn btn-dark rounded-pill"
-                      .modal-body
-                        .d-flex
-                          label.col-3.align-self-center for="copy_id"
-                            | グループID：
-                          span.input-group.col-6
-                            input.form-control.input-group-prepend type="text" id="copy_id" value="#{@group.id}" readonly="readonly"
-                            span.input-group-btn.input-group-append
-                              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
-                      .modal-footer
-                        button.btn.btn-outline-dark data-dismiss="modal" 閉じる
+                = render "edit_modal", group: @group
         .card-body
-          = link_to group_path(@group)
-            p.card-text.group-text
-              = safe_join(@group.introduction.split("\n"),tag(:br))
+          .card-text.introduction-text
+            = safe_join(@group.introduction.split("\n"),tag(:br))
         .card-body
           ul.col-12
             li.card-text.tag-icon-item

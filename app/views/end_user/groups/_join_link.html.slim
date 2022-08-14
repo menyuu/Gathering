@@ -1,5 +1,5 @@
 - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
   - if group.includesUser?(current_end_user)
-    = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
+    = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
   - else
-    = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+    = link_to "グループに参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"

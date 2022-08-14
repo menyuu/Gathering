@@ -9,4 +9,4 @@ table.table.text-center
       td
         = link_to "メンバー：", group_members_path(group), class: "table-link"
       td
-        = link_to users.count, group_members_path(group), class: "table-link-count"
+        = link_to group.users.count, group_members_path(group), class: "table-link-count"

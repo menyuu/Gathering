@@ -1,0 +1,31 @@
+.modal.fade#editGroupModalToggle tabindex="-1" aria-labelledby="editGroupModalToggle" aria-hidden="true"
+  .modal-dialog.modal-lg.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title#editGroupModalToggle
+          | グループ詳細編集
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
+      .modal-body
+        = form_with model: group, url: group_path(group), method: :patch do |f|
+          .form-group.mt-3.text-center
+            = f.label :icon, class: "mb-3"
+              = image_tag group.group_icon(56, 56), class: "rounded-circle"
+            = f.file_field :icon, accept: "image/*", class: "form-control"
+          .form-group.mt-3
+            = f.text_field :name, placeholder: "グループ名", class: "form-control"
+          .form-group.mt-3
+            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
+          .form-group.mt-3.text-right
+            = f.submit "保存", class: "btn btn-dark rounded-pill"
+      .modal-body
+        .d-flex
+          label.col-3.align-self-center for="copy_id"
+            | グループID：
+          span.input-group.col-6
+            input.form-control.input-group-prepend type="text" id="copy_id" value="#{group.id}" readonly="readonly"
+            span.input-group-btn.input-group-append
+              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
+      .modal-footer
+        button.btn.btn-outline-dark data-dismiss="modal" 閉じる

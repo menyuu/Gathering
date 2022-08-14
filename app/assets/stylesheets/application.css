@@ -56,7 +56,7 @@
 
 
 .introduction-area {
-  padding: 16px;
+  padding: 0 16px;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -74,7 +74,7 @@
 
 .tag-icon-item {
   font-size: 18px;
-  margin: 16px 8px 16px 0;
+  margin: 8px 8px 16px 0;
 }
 
 .tag-icon-item a:hover {
