@@ -11,17 +11,13 @@ class EndUser::GroupsController < ApplicationController
     @member = @group.users
   end
 
-  def new
-    @group = Group.find(params[:id])
-  end
-
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_end_user.id
     if @group.save
       @group.users << current_end_user
     end
-    redirect_to group_path(@group)
+    redirect_to group_path(@group), notice: "グループを作成しました。"
   end
 
   def update

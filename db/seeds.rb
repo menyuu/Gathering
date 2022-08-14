@@ -14,8 +14,8 @@ Admin.create(
 
 5.times do |n|
   EndUser.create(
-    name: "ユーザー#{n + 1}",
-    email: "#{n + 1}@#{n + 1}",
+    name: "ユーザー#{n * 1}",
+    email: "#{n * 1}@#{n * 1}",
     password: "#{111111 * n}"
   )
 end

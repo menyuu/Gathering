@@ -36,7 +36,7 @@ Rails.application.routes.draw do
         get "index_all"
       end
     end
-    resources :groups, except: [:edit] do
+    resources :groups, except: [:edit, :new] do
       resource :end_user_groups, only: [:create, :destroy], as: "user_groups"
       resources :group_chats, only: [:index, :create, :destroy], as: "chats"
       get "tags" => "group_multi_toggle"
@@ -73,9 +73,6 @@ Rails.application.routes.draw do
       resources :group_chats, only: [:index, :destroy], as: "chats"
       get "members"
     end
-    # concern :searchable do
-    #   get "search", on: :collection
-    # end, concern: :searchable
     resources :tags, only: [:index, :create, :update, :destroy] do
       get "search", on: :collection
     end

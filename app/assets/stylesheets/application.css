@@ -27,7 +27,7 @@
 
 .item-sidebar {
   overflow-y: auto;
-  height: px;
+  height: 640px;
 }
 
 .item-sidebar-title {
@@ -52,4 +52,22 @@
 }
 .user-item a:hover {
   text-decoration: none;
+}
+
+
+.introduction-area {
+  padding: 16px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.introduction-area-container a:hover {
+  text-decoration: none;
+}
+
+.tag-icon-item {
+  font-size: 18px;
+  margin: 8px 8px 8px 0;
 }

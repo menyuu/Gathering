@@ -1,15 +1,14 @@
-.container.ml-0
+.container-fluid
   .row
-    .col-10.offset-2
+    .col-10.col-md-8.offset-1
       .card.shadow.rounded-0
         .card-body.row
           .col-6
-            /作成時にエラーが起こるためif文を追加
             - if @group.icon.attached?
               = link_to @group.icon, "data-lightbox": @group.icon
-                = image_tag @group.group_icon(56, 56), class: "rounded-circle"
+                = image_tag @group.group_icon(64, 64), class: "rounded-circle"
             - else
-              = image_tag '/assets/group_no_image.png', class: "rounded-circle", width: "160x160", height: "160x160"
+              = image_tag @group.group_icon(64, 64), class: "rounded-circle"
             span.group-name
               = @group.name
           .col-6.row
@@ -20,9 +19,9 @@
                 - unless @group.is_ownerd_by?(current_end_user)
                   = render "join_link", group: @group
                 - else
-                  li.card-text.d-inline-block.group-item
+                  li.card-text.d-inline-blocktag-icon-item
                     i.fa.fa-edit data-toggle="modal" data-target="#editgroupModalToggle"
-                  li.card-text.d-inline-block.group-item-delete
+                  li.card-text.d-inline-blocktag-icon-item-delete
                     = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
                       i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
                 .modal.fade#editgroupModalToggle tabindex="-1" aria-labelledby="editgroupModalToggle" aria-hidden="true"
@@ -59,27 +58,27 @@
         .card-body
           = link_to group_path(@group)
             p.card-text.group-text
-              = @group.introduction
+              = safe_join(@group.introduction.split("\n"),tag(:br))
         .card-body
           ul.col-12
-            li.card-text.group-item
+            li.card-texttag-icon-item
               = link_to group_tags_path(@group)
                 i.fas.fa-tags
-                span
+                span.between-text-icon
                   | 趣味タグ：
               - @group.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-text.group-item
+            li.card-texttag-icon-item
               = link_to group_genres_path(@group)
                 i.fas.fa-chess
-                span
+                span.between-text-icon
                   | ゲームジャンル：
               - @group.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-text.group-item
+            li.card-texttag-icon-item
               = link_to group_games_path(@group)
                 i.fas.fa-gamepad
-                span
+                span.between-text-icon
                   | ゲーム：
               - @group.games.each do |game|
                 = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"

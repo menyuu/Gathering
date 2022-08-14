@@ -1,6 +1,6 @@
-.container.ml-0.mr-0
+.container-fluid
   .row
-    .col-10
+    .col-6.offset-1
       = render "end_user/groups/index", groups: @groups
     .col-2
       .group-bar.overflow-auto
@@ -17,19 +17,19 @@
                 = link_to group.name, group_path(group), class: "group-name-min"
             .card-body
               ul.col-12
-                li.card-text.group-item-min
+                li.card-texttag-icon-item-min
                   i.fas.fa-tags
                   span
                     | ：
                   - group.tags.first(3).each do |tag|
                     = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.group-item-min
+                li.card-texttag-icon-item-min
                   i.fas.fa-chess
                   span
                     | ：
                   - group.genres.first(3).each do |genre|
                     = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.group-item-min
+                li.card-texttag-icon-item-min
                     i.fas.fa-gamepad
                     span
                       | ：
