@@ -3,21 +3,17 @@
     .col-10.mt-5
       h1.text-center
         | グループを作成しました！
-      .col-6.my-5.mx-auto
-        table.table.table-borderless
+      .col-10.my-5.mx-auto
+        table.table.table-borderless.text-center
           thead
             tr
-              td.text-center colspan="2"
+              td colspan="2"
                 = image_tag @group.group_icon(80, 80), class: "rounded-circle"
           tbody
             tr
               td
-                | グループ名：
-              td
                 = @group.name
             tr
-              td
-                | グループ紹介文：
               td
                 = @group.introduction
       h4.text-center
