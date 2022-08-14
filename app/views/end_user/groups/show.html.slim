@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .col-10.col-md-8.offset-1
-      .card.shadow.rounded-0
+      .card.shadow.rounded.mt-5
         .card-body.row
           .col-6
             - if @group.icon.attached?
@@ -11,20 +11,29 @@
               = image_tag @group.group_icon(64, 64), class: "rounded-circle"
             span.show-name
               = @group.name
-          .col-6.row
-            .col-8
-              = render "member", group: @group, users: @member
-            .col-4
-              .card-text
-                - unless @group.is_ownerd_by?(current_end_user)
-                  = render "join_link", group: @group
-                - else
-                  li.card-text.d-inline-block.tag-icon-item
-                    i.fa.fa-edit data-toggle="modal" data-target="#editGroupModalToggle"
-                  li.card-text.d-inline-block.tag-icon-item-delete
-                    = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
-                      i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
-                = render "edit_modal", group: @group
+          .col-6
+            .row.text-right.mb-5
+              .col-12
+                .card-text
+                  - unless @group.is_ownerd_by?(current_end_user)
+                    = render "join_link", group: @group
+                  - else
+                    li.card-text.d-inline-block.tag-icon-item
+                      i.fa.fa-edit data-toggle="modal" data-target="#editGroupModalToggle"
+                    li.card-text.d-inline-block.tag-icon-item-delete
+                      = link_to group_path(@group), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
+                        i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックしてグループを削除"
+                  = render "edit_modal", group: @group
+            .row
+              table.table
+                tr
+                  td
+                    = link_to user_path(@group.owner)
+                      = image_tag @group.owner.user_icon(64, 64), class: "rounded-circle"
+                  td.other-group-members
+                    - @members.each do |member|
+                        = link_to group_members_path(@group)
+                          = image_tag member.user_icon(32, 32), class: "rounded-circle"
         .card-body
           .card-text.introduction-text
             = safe_join(@group.introduction.split("\n"),tag(:br))
@@ -52,7 +61,7 @@
               - @group.games.each do |game|
                 = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body.text-right
-          - if @member.include?(current_end_user)
+          - if @members.include?(current_end_user)
             .card-body.text-right
               .col
                 = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"

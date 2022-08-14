@@ -88,3 +88,9 @@
 .tag-icon-item-delete a:hover {
   color: red;
 }
+
+.other-group-members {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
