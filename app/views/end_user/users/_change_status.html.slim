@@ -2,10 +2,10 @@
   - if current_end_user.published?
     = link_to close_user_path(current_end_user), method: :patch, remote: true
       = check_box_tag :status, {}
-      i.fas.fa-lock.icon-space
+      i.fas.fa-lock.between-text-icon
       | 非公開にする
   - else
     = link_to open_user_path(current_end_user), method: :patch, remote: true
       = check_box_tag :status, {}, checked: "checked"
-      i.fas.fa-globe
+      i.fas.fa-globe.between-text-icon
       | 公開する

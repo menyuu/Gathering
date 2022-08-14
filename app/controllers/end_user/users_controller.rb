@@ -1,22 +1,20 @@
 class EndUser::UsersController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:edit, :update, :open_user, :close_user]
+  before_action :user_commons, only: [:show, :update]
+  before_action :forbid_guestuser, only: [:update, :open_user, :close_user]
 
   def show
-    @user = EndUser.find(params[:id])
-    @post_comment = PostComment.new
-    @posts = Post.where(status: "published",end_user_id: @user).with_attached_images.page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def update
-    @user = EndUser.find(params[:id])
     if @user.update(user_params)
       if params[:end_user][:password] && params[:end_user][:password_confirmation]
         sign_in(@user, bypass: true)
       end
       redirect_to user_path(@user)
     else
-      render :edit
+      render :show
     end
   end
 
@@ -36,6 +34,12 @@ class EndUser::UsersController < ApplicationController
 
   def user_params
     params.require(:end_user).permit(:name, :introduction, :email, :icon, :password, :password_confirmation, :reset_password_token)
+  end
+
+  def user_commons
+    @user = EndUser.find(params[:id])
+    @post_comment = PostComment.new
+    @posts = Post.where(status: "published", end_user_id: @user).with_attached_images.page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   def ensure_correct_user

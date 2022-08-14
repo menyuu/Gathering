@@ -1,7 +1,7 @@
 class EndUser::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :destroy]
   before_action :tag_items, only: [:index, :index_all, :draft, :create]
-  before_action :forbid_guestuser_posting, only: [:create, :update, :destroy]
+  before_action :forbid_guestuser, only: [:create, :update, :destroy]
 
   def index
     @post = Post.new
