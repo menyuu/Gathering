@@ -2,32 +2,31 @@
   .row
     .col-10.mt-5
       h1.text-center
-        | 登録が完了しました！
-    .col-4.offset-3.text-center
-      table.table
-        tbody
-          tr
-            td
-              | アイコン：
-            td
-              = image_tag @group.group_icon(80, 80), class: "rounded-circle"
-          tr
-            td
-              | グループ名：
-            td
-              = @group.name
-          tr
-            td
-              | グループ紹介文：
-            td
-              = @group.introduction
+        | グループを作成しました！
+      .col-6.my-5.mx-auto
+        table.table.table-borderless
+          thead
+            tr
+              td.text-center colspan="2"
+                = image_tag @group.group_icon(80, 80), class: "rounded-circle"
+          tbody
+            tr
+              td
+                | グループ名：
+              td
+                = @group.name
+            tr
+              td
+                | グループ紹介文：
+              td
+                = @group.introduction
       h4.text-center
-        | 続けてタグを追加してみよう！
+        | タグを追加してみよう！
   .row
     .col-10.mt-5.text-center
       button.btn.btn-dark data-toggle="modal" data-target="#addTagModalToggle" type="button"
         span
-          | 趣味タグを追加する
+          | タグを追加する
 .modal.fade#addTagModalToggle tabindex="-1" aria-labelledby="addTagModalToggle" aria-hidden="true"
   .modal-dialog.modal-lg
     .modal-content

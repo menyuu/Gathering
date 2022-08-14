@@ -1,2 +1,1 @@
-$('.game-area').html('<%= j(render "end_user/group_multi_toggle/games", type: "タグ", group: @group, games: @games, game: @game) %>')
-$('.input-game-area').val('')
+$('.game-area').html('<%= j(render "end_user/group_multi_toggle/games", group: @group, games: @games, game: @game) %>')

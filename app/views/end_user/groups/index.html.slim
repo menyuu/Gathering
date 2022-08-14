@@ -17,7 +17,7 @@
                 .card-body
                   .col-12 data-toggle="tooltip" data-placement="right" title="クリックして詳細を見る"
                     = image_tag group.group_icon(40, 40), class: "rounded-circle"
-                    span.name
+                    span.show-name
                       = group.name
                 .card-body.group-join-member-container
                   - group.users.each do |member|

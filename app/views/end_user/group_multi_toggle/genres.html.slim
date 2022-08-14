@@ -1,4 +1,9 @@
-.col-9.mt-5.mr-auto
-  .col-8.mx-auto
-    .card.offset-2.genre-area
-      = render "end_user/group_multi_toggle/genres", group: @group, genres: @genres, genre: @genre
+.container-fluid
+  .row
+    .col-8.mt-5
+      .card.offset-2
+        .card-body.genre-area
+          = render "end_user/group_multi_toggle/genres", group: @group, genres: @genres, genre: @genre
+        .card-footer.bg-white
+          .card-text.text-right
+            = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"

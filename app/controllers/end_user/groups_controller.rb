@@ -1,7 +1,7 @@
 class EndUser::GroupsController < ApplicationController
   def index
-    @groups = Group.with_attached_icon.includes(:user_groups, :tags, :genres, :games).page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, :tags, :genres, :games, :group_tags, :group_genres, :group_games, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
+    @groups = Group.with_attached_icon.page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
     @group = Group.new
   end
 
