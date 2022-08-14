@@ -4,22 +4,10 @@
       .card-body.row
         .col-6
           = link_to user_path(user)
-            = image_tag user.user_icon(80, 80), class: "rounded-circle"
+            = image_tag user.user_icon(56, 56), class: "rounded-circle"
           = link_to user.name, user_path(user), class: "user-name"
         .col-6.row
-          .col-6
-            table.table
-              tbody
-                tr
-                  td
-                    = link_to "フォロー中：", user_followings_path(user), class: "table-link"
-                  td
-                    = link_to user.followings.count, user_followings_path(user), class: "table-link-count"
-                tr.border-bottom
-                  td
-                    = link_to "フォロワー：", user_followers_path(user), class: "table-link"
-                  td
-                    = link_to user.followers.count, user_followers_path(user), class: "table-link-count"
+          = render "end_user/user/follows", user: user
           .col-6
             .card-text
               - unless current_end_user == user

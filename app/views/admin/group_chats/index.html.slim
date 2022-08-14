@@ -10,10 +10,10 @@
                   .span
                     = chat.user.name
                   .span
-                    = image_tag chat.user.user_icon(60, 60), class: "rounded-circle"
+                    = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
               .card-text.text-left
                 = chat.text
-                    = image_tag chat.user.user_icon(60, 60), class: "rounded-circle"
+                    = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
             .card-body.text-right
               ul.col-12
                 li.card-text.d-inline-block
@@ -27,6 +27,6 @@
       - @members.each do |member|
         .card-body
           = link_to user_path(member)
-            = image_tag member.user_icon(60, 60), class: "rounded-circle"
+            = image_tag member.user_icon(56, 56), class: "rounded-circle"
             span.card-text.group-name
               = member.name

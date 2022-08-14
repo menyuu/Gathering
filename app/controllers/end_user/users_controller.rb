@@ -21,15 +21,11 @@ class EndUser::UsersController < ApplicationController
   end
 
   def open_user
-    @user = EndUser.find(params[:id])
-    @user.published! unless @user.published?
-    redirect_to request.referer
+    @user = current_end_user.update(status: "published")
   end
 
   def close_user
-    @user = EndUser.find(params[:id])
-    @user.privately! unless @user.privately?
-    redirect_to request.referer
+    @user = current_end_user.update(status: "privately")
   end
 
   def dummy

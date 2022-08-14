@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-10.col-md-6.offset-1
+    .col-10.col-md-8.offset-1
       = render "index", posts: @posts, post_comment: @post_comment
-    .col-5.d-none.d-md-block
+    .col-3.d-none.d-md-block
       = render "item_sidebar", post_tags: @post_tags, tags: @tags, genres: @genres, games: @games

@@ -5,7 +5,7 @@
         .card-body.row
           .col-8
             = link_to user_path(@post.user)
-              = image_tag @post.user.user_icon(80, 80), class: "rounded-circle"
+              = image_tag @post.user.user_icon(56, 56), class: "rounded-circle"
             = link_to @post.user.name, user_path(@post.user), class: "user-name"
           ul.col-4.text-right.post-item-container
             li.card-text.d-inline-block.delete-btn
@@ -40,7 +40,7 @@
               .card-body.row
                 .col-8
                   = link_to user_path(comment.post.user)
-                    = image_tag comment.post.user.user_icon(50, 50), class: "rounded-circle"
+                    = image_tag comment.post.user.user_icon(56, 56), class: "rounded-circle"
                   = link_to comment.user.name, user_path(comment.user), class: "user-name"
               .card-body
                 p.card-text.post-text

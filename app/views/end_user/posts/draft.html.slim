@@ -1,13 +1,13 @@
 .container-fluid
   .row
-    .col-10.col-md-6.offset-1
+    .col-10.col-md-8.offset-1
       .scroll-list.jscroll
         - @posts.each do |post|
           #post-index
             .card.posts-area.rounded-0
               .card-body
                 = link_to user_path(post.user)
-                  = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+                  = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
                 = link_to post.user.name, user_path(post.user), class: "user-name"
               div
                 = render "post_body", post: post
@@ -40,5 +40,5 @@
             .skill-list
               = link_to_prev_page @posts, "前のページ", class: "prev d-none"
               = link_to_next_page @posts, "次のページ", class: "next d-none"
-    .col-5.d-none.d-md-block
+    .col-3.d-none.d-md-block
       = render "item_sidebar", post_tags: @post_tags, tags: @tags, genres: @genres, games: @games

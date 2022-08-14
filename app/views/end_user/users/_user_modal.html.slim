@@ -1,0 +1,59 @@
+.modal.fade#editUserModalToggle tabindex="-1" aria-labelledby="editUserModalToggle" aria-hidden="true"
+  .modal-dialog.modal-lg.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title#editUserModalToggle
+          | プロフィール編集
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
+      .modal-body
+        = form_with model: user, url: user_path(user), method: :patch do |f|
+          .form-group.mt-3
+            = f.label :icon, class: "mb-3"
+              = image_tag user.user_icon(56, 56), class: "rounded-circle"
+            = f.file_field :icon, accept: "image/*", class: "form-control"
+          .form-group.mt-3
+            = f.text_field :name, placeholder: "名前", class: "form-control"
+          .form-group.mt-3
+            = f.email_field :email, placeholder: "メールアドレス", class: "form-control"
+          .form-group.mt-3
+            = f.text_area :introduction, placeholder: "自己紹介文", class: "form-control", rows: 5
+          .form-group.mt-3.text-right
+            = f.submit "保存", class: "btn btn-dark rounded-pill"
+      .modal-body
+        .d-flex
+          label.align-self-center for="copy_id"
+            | ユーザーID：
+          span.input-group.col-6
+            input.form-control.input-group-prepend type="text" id="copy_id" value="#{user.id}" readonly="readonly"
+            span.input-group-btn.input-group-append
+              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
+      .modal-footer
+        .modal-body.user_change_status
+          = render "change_status"
+        a.link-text-blue href="" data-target="#editPasswordModalToggle" data-toggle="modal" data-dismiss="modal" パスワードを変更する
+        button.btn.btn-outline-dark data-dismiss="modal" 閉じる
+.modal.fade#editPasswordModalToggle tabindex="-1" aria-labelledby="editPasswordModalToggle" aria-hidden="true"
+  .modal-dialog.modal-lg.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title#editPasswordModalToggle
+          | パスワード変更
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
+      .modal-body
+        = form_with model: user, url: user_path(user), method: :patch, local: true  do |f|
+            = f.hidden_field :reset_password_token
+            .field.form-group.text-left.mt-3
+              = f.label :password, "新しいパスワード(6文字以上)"
+              = f.password_field :password, autocomplete: "new-password", class: "form-control"
+            .field.form-group.text-left.mt-3
+              = f.label :password_confirmation, "パスワードを確認"
+              = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control"
+            .actions.text-right.mt-3
+              = f.submit "保存", class: "btn btn-dark rounded-pill"
+      .modal-footer
+        button.btn.btn-outline-dark data-target="#editUserModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
+        button.btn.btn-outline-dark data-dismiss="modal" 閉じる

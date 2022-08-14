@@ -5,7 +5,7 @@
         .card-body.row
           .col-8
             = link_to @user.icon, "data-lightbox": @user.icon
-              = image_tag @user.user_icon(80, 80), class: "rounded-circle"
+              = image_tag @user.user_icon(56, 56), class: "rounded-circle"
             span.user-name
               = @user.name
           ul.col-4

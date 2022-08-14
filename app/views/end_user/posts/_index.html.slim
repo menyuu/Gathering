@@ -4,7 +4,7 @@
       .card.posts-area.rounded-0
         .card-body
           = link_to user_path(post.user)
-            = image_tag post.user.user_icon(50, 50), class: "rounded-circle"
+            = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
           = link_to post.user.name, user_path(post.user), class: "user-name"
         div
           = render "end_user/posts/post_body", post: post

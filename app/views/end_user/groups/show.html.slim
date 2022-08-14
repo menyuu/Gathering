@@ -7,7 +7,7 @@
             /作成時にエラーが起こるためif文を追加
             - if @group.icon.attached?
               = link_to @group.icon, "data-lightbox": @group.icon
-                = image_tag @group.group_icon(80, 80), class: "rounded-circle"
+                = image_tag @group.group_icon(56, 56), class: "rounded-circle"
             - else
               = image_tag '/assets/group_no_image.png', class: "rounded-circle", width: "160x160", height: "160x160"
             span.group-name
@@ -38,7 +38,7 @@
                         = form_with model: @group, url: group_path(@group), method: :patch do |f|
                           .form-group.mt-3.text-center
                             = f.label :icon, class: "mb-3"
-                              = image_tag @group.group_icon(80, 80), class: "rounded-circle"
+                              = image_tag @group.group_icon(56, 56), class: "rounded-circle"
                             = f.file_field :icon, accept: "image/*", class: "form-control"
                           .form-group.mt-3
                             = f.text_field :name, placeholder: "グループ名", class: "form-control"
