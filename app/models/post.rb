@@ -25,14 +25,14 @@ class Post < ApplicationRecord
   has_many :tags, through: :post_tags, source: :posting_tag
   has_many_attached :images
 
-  enum status: { post_published: 0, draft: 1 }
+  enum status: { published: 0, draft: 1 }
 
   with_options presence: true do
     validates :text, length: { maximum: 200 }
     validates :status, inclusion: { in: Post.statuses.keys }
   end
   validate :images_length
-  
+
   IMAGE_LIMITED = 4
   before_create -> { self.id = SecureRandom.random_number(10000000) }
 
