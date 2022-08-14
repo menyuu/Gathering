@@ -34,22 +34,22 @@
             li.card-text.user-item
               = link_to tags_path
                 i.fas.fa-user-tag
-                span
-                  |   趣味タグ：
+                span.between-text-icon
+                  | 趣味タグ：
                 - @user.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.user-item
               = link_to genres_path
                 i.fas.fa-chess
-                span
-                  |   ゲームジャンル：
+                span.between-text-icon
+                  | ゲームジャンル：
                 - @user.genres.each do |genre|
                   = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.user-item
               = link_to games_path
                 i.fas.fa-gamepad
-                span
-                  |   ゲーム：
+                span.between-text-icon
+                  | ゲーム：
                 - @user.games.each do |game|
                   = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body
@@ -59,15 +59,15 @@
                 = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
                   span
-                    |   タイムライン
+                    | タイムライン
               li.col-4.border-left.border-right.border-3.user-item
                 = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
                   span
-                    |   いいね
+                    | いいね
               li.col-4.user-item
                 = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
                   span
-                    |   下書き
+                    | 下書き
       = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
