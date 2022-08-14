@@ -6,7 +6,7 @@
           .col-8
             = link_to admin_user_path(post.user)
               = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
-            = link_to post.user.name, admin_user_path(post.user), class: "name"
+            = link_to post.user.name, admin_user_path(post.user), class: "show-name"
           ul.col-4.text-right.post-item-container
             li.card-text.d-inline-block.delete-btn
               = link_to "削除する", admin_post_path(post), method: :delete, class:"btn btn-outline-danger opacity-10",
