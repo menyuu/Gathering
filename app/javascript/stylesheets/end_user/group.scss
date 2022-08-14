@@ -6,17 +6,18 @@
     position: sticky;
     top: 100px;
   }
+  &-body {
+    width: 90%;
+    margin: 0 auto;
+  }
 }
 
-
-
-
-.group-item {
-  font-size: 18px;
-  margin: 8px 8px 8px 0;
-}
-
-.group-item {
-  margin-right: 16px;
-  cursor: pointer;
+.group-join-member {
+  margin: 8px;
+  &-container {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

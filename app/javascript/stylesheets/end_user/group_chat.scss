@@ -47,13 +47,6 @@
   }
 }
 
-#group-chat-area {
-  height: 480px;
-  &-admin {
-    height: 720px;
-  }
-}
-
 .group-chat{
   &-container {
     max-width: 95%;
@@ -69,5 +62,12 @@
     &:hover {
       color: red;
     }
+  }
+}
+
+#group-chat-area {
+  height: 480px;
+  &-admin {
+    height: 720px;
   }
 }
