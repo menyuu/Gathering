@@ -8,7 +8,7 @@
               .col-8
                 = link_to admin_user_path(user)
                   = image_tag user.user_icon(56, 56), class: "rounded-circle"
-                = link_to user.name, admin_user_path(user), class: "user-name"
+                = link_to user.name, admin_user_path(user), class: "name"
               ul.col-4.text-right
                 li.card-text.d-inline-block
                   = user.status_i18n

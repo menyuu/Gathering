@@ -6,7 +6,7 @@
           .col-8
             = link_to user_path(@post.user)
               = image_tag @post.user.user_icon(56, 56), class: "rounded-circle"
-            = link_to @post.user.name, user_path(@post.user), class: "user-name"
+            = link_to @post.user.name, user_path(@post.user), class: "name"
           ul.col-4.text-right.post-item-container
             li.card-text.d-inline-block.delete-btn
               = link_to "削除する", admin_post_path(@post), method: :delete, class:"btn btn-outline-danger opacity-10",
@@ -41,7 +41,7 @@
                 .col-8
                   = link_to user_path(comment.post.user)
                     = image_tag comment.post.user.user_icon(56, 56), class: "rounded-circle"
-                  = link_to comment.user.name, user_path(comment.user), class: "user-name"
+                  = link_to comment.user.name, user_path(comment.user), class: "name"
               .card-body
                 p.card-text.post-text
                   = comment.text

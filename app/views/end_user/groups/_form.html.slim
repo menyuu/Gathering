@@ -1,17 +1,24 @@
-.card.shadow
-  .card-header.bg-white
-    h5.card-title
-      | グループを作成する
-  .card-body
-    = form_with model: group, url: groups_path, local: true do |f|
-      .form-group.mb-3
-        = f.label :name, "グループ名"
-        = f.text_field :name, placeholder: "グループ名", class: "form-control"
-      .form-group.mb-3
-        = f.label :introduction, "グループ紹介文"
-        = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
-      .form-group.mb-3
-        = f.label :icon, "アイコンを設定する"
-        = f.file_field :icon, accept: "image/*", class: "form-control"
-      .form-group.mb-3.text-right
-        = f.submit "グループを作成", class: "btn btn-dark rounded-pill"
+.modal.fade#createGroupModalToggle tabindex="-1" aria-labelledby="createGroupModalToggle" aria-hidden="true"
+  .modal-dialog.modal-lg.modal-dialog-centered
+    .modal-content
+      .modal-header
+        h5.modal-title#createGroupModalToggle
+          | グループを作成する
+        button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
+          span
+            | ×
+      .modal-body
+        = form_with model: group, url: groups_path, local: true do |f|
+          .form-group.mb-3
+            = f.label :name, "グループ名"
+            = f.text_field :name, placeholder: "グループ名", class: "form-control"
+          .form-group.mb-3
+            = f.label :introduction, "グループ紹介文"
+            = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
+          .form-group.mb-3
+            = f.label :icon, "アイコンを設定する"
+            = f.file_field :icon, accept: "image/*", class: "form-control"
+          .form-group.mb-3.text-right
+            = f.submit "グループを作成", class: "btn btn-dark rounded-pill"
+      .modal-footer
+        button.btn.btn-outline-dark data-dismiss="modal" 閉じる

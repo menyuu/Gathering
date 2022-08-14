@@ -1,0 +1,22 @@
+
+.group-sidebar {
+  width: 100%;
+  height: 640px;
+  &-container {
+    position: sticky;
+    top: 100px;
+  }
+}
+
+
+
+
+.group-item {
+  font-size: 18px;
+  margin: 8px 8px 8px 0;
+}
+
+.group-item {
+  margin-right: 16px;
+  cursor: pointer;
+}

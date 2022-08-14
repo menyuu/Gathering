@@ -2,43 +2,47 @@
   .row
     .col-6.offset-1
       = render "end_user/groups/index", groups: @groups
-    .col-2
-      .group-bar.overflow-auto
-        .col-12.mx-auto
-          = render "end_user/groups/form", group: @group
-        h3.text-center.mt-5.mx-auto
+    .col-3.offset-1
+      .group-sidebar-container
+        .text-center
+          button.btn.btn-dark data-toggle="modal" data-target="#createGroupModalToggle"
+            span
+              | グループを作成する
+        h3.text-center.mt-5
           | 参加中のグループ
-        - @join_group.each do |group|
-          .card.shadow.col-11.mx-auto
-            .card-body
-              .col-12
-                = link_to group_path(group)
-                  = image_tag group.group_icon(40, 40), class: "rounded-circle"
-                = link_to group.name, group_path(group), class: "group-name-min"
-            .card-body
-              ul.col-12
-                li.card-text.tag-icon-item-min
-                  i.fas.fa-tags
-                  span
-                    | ：
-                  - group.tags.first(3).each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.tag-icon-item-min
-                  i.fas.fa-chess
-                  span
-                    | ：
-                  - group.genres.first(3).each do |genre|
-                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.tag-icon-item-min
-                    i.fas.fa-gamepad
+        .group-sidebar.overflow-auto
+          - @join_group.each do |group|
+            .card.shadow
+              .card-body
+                .col-12
+                  = link_to group_path(group)
+                    = image_tag group.group_icon(40, 40), class: "rounded-circle"
+                  = link_to group.name, group_path(group), class: "name"
+              .card-body
+                ul.col-12
+                  li.card-text.tag-icon-item
+                    i.fas.fa-tags
                     span
                       | ：
-                      - group.games.first(3).each do |game|
-                        = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            .card-body.text-right
-              - unless group.is_ownerd_by?(current_end_user)
-                - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-                  - if group.includesUser?(current_end_user)
-                    = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
-                  - else
-                    = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+                    - group.tags.first(3).each do |tag|
+                      = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                  li.card-text.tag-icon-item
+                    i.fas.fa-chess
+                    span
+                      | ：
+                    - group.genres.first(3).each do |genre|
+                      = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                  li.card-text.tag-icon-item
+                      i.fas.fa-gamepad
+                      span
+                        | ：
+                        - group.games.first(3).each do |game|
+                          = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+              .card-body.text-right
+                - unless group.is_ownerd_by?(current_end_user)
+                  - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
+                    - if group.includesUser?(current_end_user)
+                      = link_to "脱退する", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
+                    - else
+                      = link_to "参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+= render "end_user/groups/form", group: @group

@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import './end_user/post_comments';
+@import './end_user/post';
+@import './end_user/group';
+@import './end_user/group_chat';
 @import './common';
 @import './header';
 @import './loader';
@@ -15,64 +17,6 @@ textarea {
 
 .sign-in-area {
   top: 30%;
-}
-
-/* user */
-/* post */
-
-// cursor: pointer; フォームのイメージアイコンhover時にする
-
-.post-input {
-  &-item {
-    margin-right: 16px;
-  }
-  &-area {
-    &::placeholder {
-      padding-top: 80px;
-    }
-  }
-}
-
-.post-comment-container {
-  display: none;
-}
-
-.post-text {
-  padding: 0 24px;
-  margin: 24px 0;
-  & a:hover {
-    text-decoration: none;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0 16px;
-    padding: 16px 0;
-  }
-}
-
-
-.post-item {
-  margin-right: 16px;
-  cursor: pointer;
-  & a:hover {
-    text-decoration: none;
-  }
-  &-delete {
-    margin-left: 16px;
-    cursor: pointer;
-  }
-  &-delete a:hover {
-    color: red;
-  }
-  &-container {
-    margin-bottom: 24px;
-  }
-  &-icon {
-    font-size: 20px;
-    margin-right: 16px;
-    &:hover {
-      opacity: 0.7;
-    }
-  }
 }
 
 
@@ -94,37 +38,14 @@ textarea {
 
 
 
-#group-chat-area {
-  height: 480px;
-  &-admin {
-    height: 720px;
-  }
-}
 
-.group-chat{
-  &-container {
-    max-width: 95%;
-  }
-  &-user-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-decoration: none;
-  }
-  &delete-text {
-    text-decoration: none;
-    &:hover {
-      color: red;
-    }
-  }
-}
 
 /*common*/
 
 
 /* postのindex調整で追加 */
 
-.user-name {
+.name {
   margin-left: 24px;
   font-size: 16px;
   &:hover {
@@ -199,12 +120,7 @@ textarea {
   font-size: 24px;
 }
 
-.group-bar {
-  position: sticky;
-  top: 100px;
-  padding-left: 24px;
-  font-size: 24px;
-}
+
 
 
 
@@ -224,50 +140,7 @@ textarea {
 
 
 
-.group-bar {
-  width: 480px;
-  height: 720px;
-  margin-left: 48px;
-}
 
-.group-name {
-  margin-left: 24px;
-}
-
-.group-name:hover {
-  text-decoration: underline;
-}
-
-.group-name-min {
-  margin-left: 12px;
-  font-size: 16px;
-}
-
-.group-name:hover {
-  text-decoration: underline;
-}
-
-.group-item {
-  font-size: 18px;
-  margin: 8px 8px 8px 0;
-}
-
-.group-item-min {
-  font-size: 16px;
-  margin: 4px 4px 4px 0;
-}
-
-.group-item {
-  margin-right: 16px;
-  cursor: pointer;
-}
-.group-item-delete {
-  margin-left: 16px;
-  cursor: pointer;
-}
-.group-item-delete a:hover {
-  color: red;
-}
 
 
 .item-bar {

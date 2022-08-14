@@ -2,16 +2,16 @@
   - groups.each do |group|
     .card.shadow.rounded-0
       .card-body.row
-        .col-6
+        .col-12.col-lg-8
           = link_to group_path(group)
             = image_tag group.group_icon(56, 56), class: "rounded-circle"
-            = link_to group_path(group), class: "group-name"
+            = link_to group_path(group), class: "name"
               = group.name
             | (
             span
               = link_to group.users.count, group_members_path(group)
             | )
-        .col-6.text-right
+        .col-12.col-lg-4.text-right
           .card-text
             - unless group.is_ownerd_by?(current_end_user)
               = render "join_link", group: group

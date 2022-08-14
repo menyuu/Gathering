@@ -8,7 +8,7 @@
               .card-body
                 = link_to user_path(post.user)
                   = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
-                = link_to post.user.name, user_path(post.user), class: "user-name"
+                = link_to post.user.name, user_path(post.user), class: "name"
               div
                 = render "post_body", post: post
               ul.col-12.text-right.post-item-container

@@ -6,7 +6,7 @@
           .col-8
             = link_to @user.icon, "data-lightbox": @user.icon
               = image_tag @user.user_icon(56, 56), class: "rounded-circle"
-            span.user-name
+            span.name
               = @user.name
           ul.col-4
             li.card-text.d-inline-block

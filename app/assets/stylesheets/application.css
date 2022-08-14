@@ -80,3 +80,11 @@
 .tag-icon-item a:hover {
   text-decoration: none;
 }
+
+.tag-icon-item-delete {
+  margin-left: 16px;
+  cursor: pointer;
+}
+.tag-icon-item-delete a:hover {
+  color: red;
+}

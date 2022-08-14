@@ -5,7 +5,7 @@
         .col-6
           = link_to user_path(user)
             = image_tag user.user_icon(56, 56), class: "rounded-circle"
-          = link_to user.name, user_path(user), class: "user-name"
+          = link_to user.name, user_path(user), class: "name"
         .col-6.row
           = render "end_user/user/follows", user: user
           .col-6

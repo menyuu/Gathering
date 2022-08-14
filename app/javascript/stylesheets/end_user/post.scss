@@ -1,0 +1,51 @@
+.post-input {
+  &-item {
+    margin-right: 16px;
+  }
+  &-area {
+    &::placeholder {
+      padding-top: 80px;
+    }
+  }
+}
+
+.post-comment-container {
+  display: none;
+}
+
+.post-text {
+  padding: 0 24px;
+  margin: 24px 0;
+  & a:hover {
+    text-decoration: none;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 0 16px;
+    padding: 16px 0;
+  }
+}
+
+.post-item {
+  margin-right: 16px;
+  cursor: pointer;
+  & a:hover {
+    text-decoration: none;
+  }
+  &-delete {
+    margin-left: 16px;
+    cursor: pointer;
+  }
+  &-delete a:hover {
+    color: red;
+  }
+  &-container {
+    margin-bottom: 24px;
+  }
+  &-icon {
+    font-size: 20px;
+    margin-right: 16px;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}

@@ -46,3 +46,28 @@
     }
   }
 }
+
+#group-chat-area {
+  height: 480px;
+  &-admin {
+    height: 720px;
+  }
+}
+
+.group-chat{
+  &-container {
+    max-width: 95%;
+  }
+  &-user-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  &delete-text {
+    text-decoration: none;
+    &:hover {
+      color: red;
+    }
+  }
+}

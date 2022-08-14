@@ -5,8 +5,8 @@
         - @chats.each do |chat|
           .card.border-0
             .card-body.text-left.d-flex.justify-content-start.align-items-center
-              .col-2.group-chat-user-name.text-center
-                = link_to user_path(chat.user), class: "group-chat-user-name"
+              .col-2.group-chat-name.text-center
+                = link_to user_path(chat.user), class: "group-chat-name"
                   .span
                     = chat.user.name
                   .span
@@ -28,5 +28,5 @@
         .card-body
           = link_to user_path(member)
             = image_tag member.user_icon(56, 56), class: "rounded-circle"
-            span.card-text.group-name
+            span.card-text.name
               = member.name

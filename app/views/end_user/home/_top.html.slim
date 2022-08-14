@@ -3,7 +3,7 @@
     .card-body
       = link_to new_end_user_session_path
         = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
-      = link_to post.user.name, new_end_user_session_path, class: "user-name"
+      = link_to post.user.name, new_end_user_session_path, class: "name"
     .card-body.post-text
       = link_to new_end_user_session_path
         p.card-text
