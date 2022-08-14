@@ -54,15 +54,15 @@ class Group < ApplicationRecord
   end
 
   def sameHasTag?(user)
-    tags.includes([:tags]).any? { |i| user.tags.include?(i) }
+    tags.includes(:group_tags).any? { |i| user.tags.includes(:tags).include?(i) }
   end
 
   def sameHasGenre?(user)
-    genres.includes([:genres]).any? { |i| user.genres.include?(i) }
+    genres.includes(:group_genres).any? { |i| user.genres.includes(:genres).include?(i) }
   end
 
   def sameHasGame?(user)
-    games.includes([:games]).any? { |i| user.games.include?(i) }
+    games.includes(:group_games).any? { |i| user.games.includes(:games).include?(i) }
   end
 
   def self.search_for(object, word, user_id)
