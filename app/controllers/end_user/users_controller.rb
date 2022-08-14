@@ -18,14 +18,17 @@ class EndUser::UsersController < ApplicationController
     end
   end
 
+  # 公開に変更
   def open_user
     @user = current_end_user.update(status: "published")
   end
 
+  # 非公開に変更
   def close_user
     @user = current_end_user.update(status: "privately")
   end
 
+  # 会員登録失敗時にダミーのリダイレクト先に遷移させる
   def dummy
     redirect_to new_end_user_registration_path
   end
