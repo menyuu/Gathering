@@ -6,9 +6,9 @@ class EndUser::GamesController < ApplicationController
 
   def create
     @game = Game.new
-    @games = Game.display_show_type(params[:game][:model])
     unless current_end_user.games.size == 8 || params[:game][:name].length >= 50
       Game.create_game(params[:game][:name], current_end_user)
+      @games = Game.display_show_type(params[:game][:model])
     else
       redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは8個までです。"
     end
@@ -16,9 +16,9 @@ class EndUser::GamesController < ApplicationController
 
   def update
     @game = Game.new
-    @games = Game.display_show_type(params[:model])
     unless current_end_user.games.size == 8
       Game.update_game(params[:name], current_end_user)
+      @games = Game.display_show_type(params[:model])
     else
       redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは8個までです。"
     end
