@@ -1,6 +1,7 @@
 class EndUser::RelationshipsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :forbid_guestuser, only: [:create, :destroy]
+  before_action :ensure_correct_user, only: [:create]
 
   def create
     user = EndUser.find(params[:user_id])
@@ -46,5 +47,14 @@ class EndUser::RelationshipsController < ApplicationController
     @tags = Tag.display_show_type("user", 15)
     common_followers = users & current_end_user.followers
     @common_followers = Kaminari.paginate_array(common_followers).page(params[:page]).per(1)
+  end
+
+  private
+
+  def ensure_correct_user
+    user = EndUser.find(params[:user_id])
+    if user.name == "ゲストユーザー"
+      redirect_to request.referer, alert: "ゲストユーザーはフォローできません。"
+    end
   end
 end

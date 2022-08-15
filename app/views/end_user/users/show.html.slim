@@ -12,18 +12,19 @@
               = @user.name
           .col-6
             .card-text.text-right
-              - unless current_end_user == @user
-                - if current_end_user.following?(@user)
-                  = link_to "フォローを外す", user_follows_path(@user), method: :delete, class: "btn btn-dark rounded-pill"
+              - unless @user.name == "ゲストユーザー"
+                - unless current_end_user == @user
+                  - if current_end_user.following?(@user)
+                    = link_to "フォローを外す", user_follows_path(@user), method: :delete, class: "btn btn-dark rounded-pill"
+                  - else
+                    = link_to "フォローする", user_follows_path(@user), method: :post, class: "btn btn-outline-dark rounded-pill"
                 - else
-                  = link_to "フォローする", user_follows_path(@user), method: :post, class: "btn btn-outline-dark rounded-pill"
-              - else
-                a data-toggle="modal" data-target="#editUserModalToggle"
-                  i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" data-placement="right" title="クリックしてユーザーを編集"
-                = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ms-5",
-                data: {confirm: "本当にログアウトしますか？"}
-              span.text-center
-                = render "user_modal", user: @user
+                  a data-toggle="modal" data-target="#editUserModalToggle"
+                    i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" data-placement="right" title="クリックしてユーザーを編集"
+                  = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ms-5",
+                  data: {confirm: "本当にログアウトしますか？"}
+                span.text-center
+                  = render "user_modal", user: @user
             .row.mt-5
               = render "follows", user: @user
         .card-body
