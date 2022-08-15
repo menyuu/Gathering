@@ -1,0 +1,21 @@
+.card.shadow.group-sidebar-container
+  h6.card-title.text-center.mx-auto.p-3
+    = group.name
+    | のメンバー
+  .group-sidebar.overflow-auto
+    .scroll-list.jscroll
+      - members.each do |member|
+        .card-body
+          tbody
+            tr
+              td
+                - if member.id == group.owner.id
+                  i.fas.fa-star.owner-icon
+              td
+                = link_to user_path(member)
+                  = image_tag member.user_icon(56, 56), class: "rounded-circle"
+              td.card-text.show-name
+                  = member.name
+            .skill-list
+              = link_to_prev_page members, "前のページ", class: "prev d-none"
+              = link_to_next_page members, "次のページ", class: "next d-none"

@@ -46,12 +46,4 @@
           .form-group.text-right
             = f.submit "送信", class: "btn btn-outline-dark rounded-pill mt-3"
   .col-3.mt-5
-    .card.shadow
-      h6.card-title.text-center.mx-auto.p-3
-        = @group.name
-      - @members.each do |member|
-        .card-body
-          = link_to user_path(member)
-            = image_tag member.user_icon(56, 56), class: "rounded-circle"
-            span.card-text.show-name
-              = member.name
+    = render "members", members: @members, group: @group

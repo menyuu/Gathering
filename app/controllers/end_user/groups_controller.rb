@@ -1,4 +1,7 @@
 class EndUser::GroupsController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :forbid_guestuser, only: [:create, :update, :destroy]
+
   def index
     @groups = Group.with_attached_icon.page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
@@ -8,7 +11,7 @@ class EndUser::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_chat = GroupChat.new
-    @members = @group.users
+    @members = @group.users.with_attached_icon.page(params[:page]).without_count.per(1).order(name: :ASC)
   end
 
   def create
@@ -33,11 +36,6 @@ class EndUser::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path
-  end
-
-  def members
-    group = Group.find(params[:group_id])
-    @members = group.users.where(status: "published").page(params[:page]).without_count.per(1)
   end
 
   def complete

@@ -22,7 +22,7 @@ table.table.table-borderless
         = link_to groups_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-users
           | グループを見る
-    - if controller_path == "end_user/groups" && action_name == "show"
+    - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
       - if current_end_user.id == @group.owner.id
         tr
           td
