@@ -1,5 +1,7 @@
 class EndUser::GroupMultiToggleController < ApplicationController
-
+  before_action :authenticate_end_user!
+  before_action :ensure_correct_user
+  before_action :forbid_guestuser
   def tags
     @group = Group.find(params[:group_id])
     @tags = Tag.display_show_type("group")
@@ -79,5 +81,14 @@ class EndUser::GroupMultiToggleController < ApplicationController
     Game.destroy_game(params[:name], @group)
     @games = Game.display_show_type(params[:model])
     @game = Game.new
+  end
+
+  private
+
+  def ensure_correct_user
+    group = Group.find(params[:group_id])
+    unless current_end_user.id == group.owner_id
+      redirect_to groups_path, alert: "オーナーではないため編集できません。"
+    end
   end
 end
