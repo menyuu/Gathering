@@ -1,5 +1,7 @@
 class EndUser::GroupChatsController < ApplicationController
+  before_action :authenticate_end_user!
   before_action :ensure_correct_user
+  before_action :forbid_guestuser, only: [:create, :destroy]
 
   def index
     @group = Group.find(params[:group_id])
@@ -16,7 +18,7 @@ class EndUser::GroupChatsController < ApplicationController
     @chats = @group.group_chats.includes(user: [icon_attachment: [:blob]])
     @members = @group.users.page(params[:page]).without_count.per(1).order(name: :ASC)
     if @group_chat.save
-      redirect_to request.referer
+      redirect_to request.referer, notice: "チャットを送信しました。"
     else
       render :index
     end
