@@ -1,6 +1,8 @@
 .container-fluid
   .row
     .col-6.offset-1
+      span.errors
+        = render "layouts/errors", obj: @group
       = render "end_user/groups/index", groups: @groups
     .col-3.offset-1
       .group-sidebar-container
