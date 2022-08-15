@@ -1,7 +1,7 @@
 - if @users.exists?
-  .container.ml-0
+  .container-fluid
     .row
-      .col-10.offset-2
+      .col-10.col-md-8.offset-1
         = render "end_user/users/index", users: @users
 - else
   h1.col-10.text-center.mt-5

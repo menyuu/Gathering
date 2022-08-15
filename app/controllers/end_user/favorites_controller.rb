@@ -1,4 +1,6 @@
 class EndUser::FavoritesController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :forbid_guestuser, only: [:create, :destroy]
 
   def index
     @user = EndUser.find(params[:user_id])

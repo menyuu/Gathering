@@ -5,20 +5,20 @@
     span
       = group.users.count
     | )
-  .group-sidebar.overflow-auto
+  .card-body.group-sidebar.overflow-auto
     .scroll-list.jscroll
       - members.each do |member|
-        .card-body
-          tbody
-            tr
-              td
-                - if member.id == group.owner_id
-                  i.fas.fa-star.owner-icon
-              td
-                = link_to user_path(member)
+        = link_to user_path(member)
+          table.table.table-borderless
+            tbody
+              tr
+                td
                   = image_tag member.user_icon(56, 56), class: "rounded-circle"
-              td.card-text.show-name
+                td.card-text.show-name
                   = member.name
+                td
+                  - if member.id == group.owner_id
+                    i.fas.fa-star.owner-icon
             .skill-list
               = link_to_prev_page members, "前のページ", class: "prev d-none"
               = link_to_next_page members, "次のページ", class: "next d-none"
