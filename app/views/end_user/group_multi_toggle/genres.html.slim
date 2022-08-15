@@ -6,4 +6,4 @@
           = render "end_user/group_multi_toggle/genres", group: @group, genres: @genres, genre: @genre
         .card-footer.bg-white
           .card-text.text-right
-            = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"
+            = link_to "グループに戻る", group_path(@group), class: "btn btn-dark"
