@@ -1,4 +1,6 @@
 class EndUser::GroupChatsController < ApplicationController
+  before_action :ensure_correct_user
+
   def index
     @group = Group.find(params[:group_id])
     @group_chat = GroupChat.new
@@ -24,5 +26,12 @@ class EndUser::GroupChatsController < ApplicationController
 
   def chat_params
     params.require(:group_chat).permit(:text)
+  end
+
+  def ensure_correct_user
+    group = Group.find(params[:group_id])
+    unless group.includesUser?(current_end_user)
+      redirect_to group_path(group), alert: "グループのメンバーではありません。"
+    end
   end
 end
