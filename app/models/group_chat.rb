@@ -22,4 +22,6 @@
 class GroupChat < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :group
+
+  validates :text, presence: true, length: { maximum: 400 }
 end
