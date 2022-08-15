@@ -1,19 +1,20 @@
-.row
-  .col-8.mt-5.shadow.p-3
-    - if @chats.exists?
-      span.errors
-        = render "layouts/errors", obj: @group_chat
-      .overflow-auto#group-chat-area
-        = render "index", chats: @chats
-    - else
-      h1.text-center.mt-3
-        | チャットをはじめよう！
-    .row.mt-5
-      .col-8.mx-auto
-        = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: true do |f|
-          .form-group
-            = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control text_area", rows: 5
-          .form-group.text-right
-            = f.submit "送信", class: "btn btn-outline-dark rounded-pill mt-3"
-  .col-3.mt-5
-    = render "end_user/groups/members", members: @members, group: @group
+.container-fluid
+  .row
+    .col-7.shadow.offset-1.mt-5
+      - if @chats.exists?
+        span.errors
+          = render "layouts/errors", obj: @group_chat
+        .overflow-auto#group-chat-area
+          = render "index", chats: @chats
+      - else
+        h1.text-center.mt-3
+          | チャットをはじめよう！
+      .row.mt-5
+        .col-8.mx-auto
+          = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: true do |f|
+            .form-group
+              = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control text_area", rows: 5
+            .form-group.text-right
+              = f.submit "送信", class: "btn btn-outline-dark rounded-pill mt-3"
+    .col-3.mt-5
+      = render "end_user/groups/members", members: @members, group: @group
