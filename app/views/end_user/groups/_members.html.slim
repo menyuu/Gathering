@@ -1,7 +1,10 @@
 .card.shadow.group-sidebar-container
   h6.card-title.text-center.mx-auto.p-3
     = group.name
-    | のメンバー
+    | (
+    span
+      = group.users.count
+    | )
   .group-sidebar.overflow-auto
     .scroll-list.jscroll
       - members.each do |member|
@@ -9,7 +12,7 @@
           tbody
             tr
               td
-                - if member.id == group.owner.id
+                - if member.id == group.owner_id
                   i.fas.fa-star.owner-icon
               td
                 = link_to user_path(member)

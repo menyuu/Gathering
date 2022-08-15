@@ -2,7 +2,7 @@ class EndUser::GroupChatsController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
     @group_chat = GroupChat.new
-    @members = @group.users
+    @members = @group.users.page(params[:page]).without_count.per(1).order(name: :ASC)
     @chats = @group.group_chats.includes(user: [icon_attachment: [:blob]])
   end
 

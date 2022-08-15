@@ -73,8 +73,9 @@
 
 
 .tag-icon-item {
-  font-size: 18px;
+  font-size: 16px;
   margin: 8px 8px 16px 0;
+  cursor: pointer;
 }
 
 .tag-icon-item a:hover {
