@@ -16,11 +16,17 @@ class EndUser::RelationshipsController < ApplicationController
 
   def followings
     @user = EndUser.find(params[:user_id])
+    # 空の配列を用意
     users = []
+    # @userがフォローしているpublishedユーザーを取得
     following_users = @user.followings.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
+    # @userがフォローしているユーザーとcurrent_end_userのフォロワーの重複しているユーザーを取得
     private_users = @user.followings & current_end_user.followings
+    # 先ほど変数に代入したユーザーを用意した空の配列に代入
     users.push(following_users, private_users)
+    # 一次元配列にする
     users.flatten!
+    # 重複したユーザーを除外
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
     @tags = Tag.display_show_type("user", 15)
