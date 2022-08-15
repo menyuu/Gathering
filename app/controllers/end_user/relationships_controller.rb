@@ -37,7 +37,7 @@ class EndUser::RelationshipsController < ApplicationController
   def followers
     @user = EndUser.find(params[:user_id])
     users = []
-    follower_users = @user.followers.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
+    follower_users = @user.followers.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
     private_users = @user.followers & current_end_user.followers
     users.push(follower_users, private_users)
     users.flatten!

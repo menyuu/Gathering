@@ -6,15 +6,15 @@
           = link_to user_path(user)
             = image_tag user.user_icon(56, 56), class: "rounded-circle"
           = link_to user.name, user_path(user), class: "show-name"
-        .col-6.row
-          = render "end_user/users/follows", user: user
-          .col-6
-            .card-text
-              - unless current_end_user == user
-                - if current_end_user.following?(user)
-                  = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
-                - else
-                  = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
+        .col-6
+          .card-text.text-right
+            - unless current_end_user == user
+              - if current_end_user.following?(user)
+                = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
+              - else
+                = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
+          .row.mt-5
+            = render "end_user/users/follows", user: user
       .card-body.introduction-area-container
         = link_to user_path(user)
           p.card-tex.introduction-area

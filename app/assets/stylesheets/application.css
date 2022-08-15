@@ -116,3 +116,12 @@
   position: sticky;
   top: 320px;
 }
+
+.follows-area {
+  margin-left: 30%;
+}
+@media screen and (max-width: 1200px) {
+  .follows-area {
+    margin-left: 0;
+  }
+}
