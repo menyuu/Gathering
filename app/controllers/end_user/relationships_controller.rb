@@ -25,6 +25,7 @@ class EndUser::RelationshipsController < ApplicationController
     @tags = Tag.display_show_type("user")
     common_followings = following_users & current_end_user.followings
     @common_followings = Kaminari.paginate_array(common_followings).page(params[:page]).per(1)
+    puts @user == current_end_user
   end
 
   def followers

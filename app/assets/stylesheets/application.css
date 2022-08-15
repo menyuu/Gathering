@@ -96,18 +96,23 @@
   text-overflow: ellipsis;
 }
 
-.item-bar-top_container {
+.item-top-bar-container {
   position: sticky;
   top: 60px;
   z-index: 100;
   height: 100px;
-  padding: 10px 0;
+  padding: 16px 0;
 }
 
-.item-top_bar {
+.item-top-bar {
   overflow-x: auto;
 	white-space: nowrap;
   display: flex;
   width: 100%;
   height: 80px;
+}
+
+.user-sidebar-container {
+  position: sticky;
+  top: 320px;
 }
