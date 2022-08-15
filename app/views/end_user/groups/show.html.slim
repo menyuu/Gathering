@@ -66,7 +66,7 @@
               - @group.games.each do |game|
                 = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body.text-right
-          - if @members.include?(current_end_user)
+          - if @group.users.include?(current_end_user)
             .card-body.text-right
               .col
                 = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"
