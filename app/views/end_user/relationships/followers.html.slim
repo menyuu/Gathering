@@ -1,7 +1,8 @@
-- if @users.exists?
+- if @users.present?
+  = render "end_user/users/item_bar", tags: @tags
   .container-fluid
     .row
-      .col-10.col-md-8.offset-1
+      .col-6.offset-1.mt-5
         = render "end_user/users/index", users: @users
 - else
   h1.col-10.text-center.mt-5

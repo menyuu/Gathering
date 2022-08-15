@@ -12,7 +12,7 @@ class EndUser::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_chat = GroupChat.new
-    @members = @group.users.with_attached_icon.page(params[:page]).without_count.per(1).order(name: :ASC)
+    @members = @group.users.where(status: "published").with_attached_icon.page(params[:page]).without_count.per(1).order(name: :ASC)
   end
 
   def create

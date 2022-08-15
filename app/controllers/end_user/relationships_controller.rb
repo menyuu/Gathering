@@ -16,11 +16,23 @@ class EndUser::RelationshipsController < ApplicationController
 
   def followings
     user = EndUser.find(params[:user_id])
-    @users = user.followings.where(status: "published").page(params[:page]).without_count.per(1)
+    users = []
+    following_users = user.followings.where(status: "published")
+    users.push(following_users, current_end_user.followings)
+    users.flatten!
+    users = users.uniq { |user| user.id }
+    @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
+    @tags = Tag.display_show_type("user")
   end
 
   def followers
     user = EndUser.find(params[:user_id])
-    @users = user.followers.where(status: "published").page(params[:page]).without_count.per(1)
+    users = []
+    follower_users = user.followers.where(status: "published")
+    users.push(follower_users, current_end_user.followers)
+    users.flatten!
+    users = users.uniq { |user| user.id }
+    @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
+    @tags = Tag.display_show_type("user", 15)
   end
 end

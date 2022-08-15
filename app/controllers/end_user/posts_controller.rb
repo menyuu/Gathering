@@ -10,8 +10,6 @@ class EndUser::PostsController < ApplicationController
     # フォロー中のユーザーとログイン中のユーザーを配列にする
     users = []
     users.push(current_end_user.followings, current_end_user)
-    # 一次元配列に整理する
-    users.flatten!
     @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
