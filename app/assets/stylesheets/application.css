@@ -96,7 +96,7 @@
   text-overflow: ellipsis;
 }
 
-.item-bar-container {
+.item-bar-top_container {
   position: sticky;
   top: 60px;
   z-index: 100;
@@ -104,7 +104,7 @@
   padding: 10px 0;
 }
 
-.item-bar {
+.item-top_bar {
   overflow-x: auto;
 	white-space: nowrap;
   display: flex;

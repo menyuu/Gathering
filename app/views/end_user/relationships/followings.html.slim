@@ -1,9 +1,28 @@
 - if @users.present?
-  = render "end_user/users/item_bar", tags: @tags
-  .container-fluid
+  = render "end_user/users/item_top_bar", tags: @tags
+  .container-fluid.mt-5
     .row
-      .col-6.offset-1
+      .col-6.offset-1.mt-5
+        h3.text-center.my-3
+          | "#{@user.name}"さんがフォロー中
         = render "end_user/users/index", users: @users
+      .col-4.offset-1.d-none.d-md-block
+        .container-fluid.item-sidebar-container
+          .row
+            .col-10.item-bar.item-sidebar
+              h6.item-sidebar-title
+                | 相互のフォローしているユーザー
+                .scroll-list.usersJscroll
+                  - @common_followings.each do |user|
+                    tr
+                      = link_to user_path(user)
+                        td
+                          = image_tag user.user_icon(40, 40), class: "rounded-circle"
+                        td
+                          = link_to user.name
+                      .skill-list
+                        = link_to_prev_page @common_followings, "前のページ", class: "prev d-none"
+                        = link_to_next_page @common_followings, "次のページ", class: "next d-none"
 - else
   h1.col-10.text-center.mt-5
     | ユーザーはいません
