@@ -18,24 +18,27 @@ class EndUser::RelationshipsController < ApplicationController
     @user = EndUser.find(params[:user_id])
     users = []
     following_users = @user.followings.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
-    users.push(following_users, current_end_user.followings)
+    private_users = @user.followings & current_end_user.followings
+    users.push(following_users, private_users)
     users.flatten!
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
-    @tags = Tag.display_show_type("user")
-    common_followings = following_users & current_end_user.followings
+    @tags = Tag.display_show_type("user", 15)
+    common_followings = users & current_end_user.followings
     @common_followings = Kaminari.paginate_array(common_followings).page(params[:page]).per(1)
-    puts @user == current_end_user
   end
 
   def followers
     @user = EndUser.find(params[:user_id])
     users = []
-    follower_users = @user.followers.where(status: "published")
-    users.push(follower_users, current_end_user.followers)
+    follower_users = @user.followers.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
+    private_users = @user.followers & current_end_user.followers
+    users.push(follower_users, private_users)
     users.flatten!
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
     @tags = Tag.display_show_type("user", 15)
+    common_followers = users & current_end_user.followers
+    @common_followers = Kaminari.paginate_array(common_followers).page(params[:page]).per(1)
   end
 end

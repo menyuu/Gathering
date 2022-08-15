@@ -4,8 +4,25 @@
     .row
       .col-6.offset-1.mt-5
         h3.text-center.my-3
-          | "#{@user.name}"さんがフォロー中
+          | "#{@user.name}"さんをフォロー中
         = render "end_user/users/index", users: @users
+      - unless @user == current_end_user
+        .col-4.offset-1.d-none.d-md-block
+          .container-fluid.user-sidebar-container
+            .row
+              .col-10.item-bar.item-sidebar
+                h6.item-sidebar-title
+                  | 共通のフォロワー
+                  .scroll-list.usersJscroll
+                    - @common_followers.each do |user|
+                      .card
+                        = link_to user_path(user)
+                          .card-body
+                            = image_tag user.user_icon(40, 40), class: "rounded-circle"
+                            = user.name
+                          .skill-list
+                            = link_to_prev_page @common_followers, "前のページ", class: "prev d-none"
+                            = link_to_next_page @common_followers, "次のページ", class: "next d-none"
 - else
   h1.col-10.text-center.mt-5
     | ユーザーはいません
