@@ -26,4 +26,13 @@ class PostTag < ApplicationRecord
     validates :post_id, uniqueness: { scope: [:posting_tag_id] }
     validates :posting_tag_id
   end
+  validate :tags_limit_count
+
+  LIMIT_COUNT = 8
+
+  def tags_limit_count
+    if post.post_tags.size >= LIMIT_COUNT
+      return
+    end
+  end
 end

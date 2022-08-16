@@ -72,14 +72,16 @@ class EndUser::PostsController < ApplicationController
     when "1"
       @post.status = "draft"
     end
-    if @post.save
-      tags = params[:post][:name].split(",")
-      tags.each do |tag|
-        # タグが既に存在するかを探して存在しなければ作成する
-        tag = PostingTag.find_or_create_by(name: tag)
+    tags = params[:post][:name].split(",")
+    if tags.size < 9 && params[:post][:name].length < 51
+      if @post.save
         # 持っているタグを全て削除して、追加する
-        @post.tags.delete(tag)
-        @post.tags << tag
+        @post.tags.destroy_all
+        tags.each do |tag|
+            # タグが既に存在するかを探して存在しなければ作成する
+          tag = PostingTag.find_or_create_by(name: tag)
+          @post.tags << tag
+        end
       end
       redirect_to posts_path, notice: "正常に投稿されました。"
     else
@@ -90,14 +92,25 @@ class EndUser::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      tags = params[:post][:name].split(",")
-      tags.each do |tag|
-        tag = PostingTag.find_or_create_by(name: tag)
-        @post.tags.delete(tag)
-        @post.tags << tag
+      if tags.size < 9 && params[:posting_tag][:name].length < 51
+        @post.tags.destroy_all
+        tags.each do |tag|
+          tag = PostingTag.find_or_create_by(name: tag)
+          @post.tags << tag
+        end
+      else
+        redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+      end
+      @post_tag = PostingTag.new
+      @post_tags = PostingTag.display_show_type("post")
+      tags = @post.tags.all
+      @tag_names = []
+      if tags.count > 0
+        @tag_names = tags.pluck(:name).join(",") + ","
+      else
+        @tag_names = tags.pluck(:name).join(",")
       end
     end
-    redirect_to post_path(@post), notice: "投稿を編集しました。"
   end
 
   def destroy
@@ -122,8 +135,5 @@ class EndUser::PostsController < ApplicationController
 
   def tag_items
     @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
-    @tags = Kaminari.paginate_array(Tag.display_show_type("user", 15)).page(params[:page]).per(5)
-    @genres = Kaminari.paginate_array(Genre.display_show_type("user", 15)).page(params[:page]).per(5)
-    @games = Kaminari.paginate_array(Game.display_show_type("user", 15)).page(params[:page]).per(5)
   end
 end

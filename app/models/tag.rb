@@ -20,19 +20,21 @@ class Tag < ApplicationRecord
     validates :name, uniqueness: true, length: { maximum: 50 }
     validates :status, inclusion: { in: Tag.statuses.keys }
   end
-  
+
   # 検索用
   def self.search_for(word)
     Tag.find_by(name: word)
   end
-  
+
   # 作成用
   def self.create_tag(tag_name, create_tag_model)
     tags = tag_name.split(",")
-    tags.each do |tag|
-      tag = self.find_or_create_by(name: tag)
-      create_tag_model.tags.delete(tag)
-      create_tag_model.tags << tag
+    if tags.size < 8 || tag_name.length < 50
+      tags.each do |tag|
+        tag = self.find_or_create_by(name: tag)
+        create_tag_model.tags.delete(tag)
+        create_tag_model.tags << tag
+      end
     end
   end
 
