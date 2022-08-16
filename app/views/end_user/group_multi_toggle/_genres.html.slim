@@ -15,7 +15,7 @@
     | 新しいジャンルを作成する
   = form_with model: genre, url: group_create_genres_path, local: false do |f|
     .input-group
-      = f.text_field :name, placeholder: "複数のジャンルは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
+      = f.text_field :name, value: genre_names, placeholder: "複数のジャンルは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
       = f.hidden_field :model, value: "group"
       span.input-group-append.text-right
         = f.submit "投稿ジャンル登録", class: "btn btn-outline-dark input-group"

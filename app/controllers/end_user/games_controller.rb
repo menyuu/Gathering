@@ -5,7 +5,7 @@ class EndUser::GamesController < ApplicationController
   def index
     @game = Game.new
     @games = Game.display_show_type("user")
-    games = current_end_user.games.all
+    games = current_end_user.games
     @game_names = []
     if games.count > 0
       @game_names = games.pluck(:name).join(",") + ","
@@ -23,7 +23,7 @@ class EndUser::GamesController < ApplicationController
     else
       redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは8個までです。"
     end
-    games = current_end_user.games.all
+    games = current_end_user.games
     @game_names = []
     if games.count > 0
       @game_names = games.pluck(:name).join(",") + ","
@@ -40,7 +40,7 @@ class EndUser::GamesController < ApplicationController
     else
       redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは8個までです。"
     end
-    games = current_end_user.games.all
+    games = current_end_user.games
     @game_names = []
     if games.count > 0
       @game_names = games.pluck(:name).join(",") + ","
@@ -53,7 +53,7 @@ class EndUser::GamesController < ApplicationController
     @game = Game.new
     Game.destroy_game(params[:name], current_end_user)
     @games = Game.display_show_type(params[:model])
-    games = current_end_user.games.all
+    games = current_end_user.games
     @game_names = []
     if games.count > 0
       @game_names = games.pluck(:name).join(",") + ","

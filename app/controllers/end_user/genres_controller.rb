@@ -5,7 +5,7 @@ class EndUser::GenresController < ApplicationController
   def index
     @genre = Genre.new
     @genres = Genre.display_show_type("user")
-    genres = current_end_user.genres.all
+    genres = current_end_user.genres
     @genre_names = []
     if genres.count > 0
       @genre_names = genres.pluck(:name).join(",") + ","
@@ -23,7 +23,7 @@ class EndUser::GenresController < ApplicationController
     else
       redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは50文字以内、もしくは8個までです。"
     end
-    genres = current_end_user.genres.all
+    genres = current_end_user.genres
     @genre_names = []
     if genres.count > 0
       @genre_names = genres.pluck(:name).join(",") + ","

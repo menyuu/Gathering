@@ -3,7 +3,7 @@
     .col-8.mt-5
       .card.offset-2
         .card-body.game-area
-          = render "end_user/group_multi_toggle/games", group: @group, games: @games, game: @game
+          = render "end_user/group_multi_toggle/games", group: @group, games: @games, game: @game, game_names: @game_names
         .card-footer.bg-white
           .card-text.text-right
             = link_to "グループに戻る", group_path(@group), class: "btn btn-dark"

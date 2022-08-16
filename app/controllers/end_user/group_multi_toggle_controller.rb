@@ -1,94 +1,209 @@
 class EndUser::GroupMultiToggleController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :ensure_correct_user
+  # before_action :ensure_correct_user
   before_action :forbid_guestuser
+
+  # グループタグ
   def tags
+    @tag = Tag.new
     @group = Group.find(params[:group_id])
     @tags = Tag.display_show_type("group")
-    @tag = Tag.new
+    tags = @group.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def create_tags
+     @tag = Tag.new
     @group = Group.find(params[:group_id])
-    Tag.create_tag(params[:tag][:name], @group)
-    @tags = Tag.display_show_type(params[:tag][:model])
-    @tag = Tag.new
+    tags = params[:tag][:name].split(",")
+    if tags.size < 9  && params[:tag][:name].length < 51
+      Tag.create_tag(tags, @group)
+      @tags = Tag.display_show_type(params[:tag][:model])
+    else
+      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+    end
+    tags = @group.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def update_tags
-    @group = Group.find(params[:group_id])
-    Tag.update_tag(params[:name], @group)
-    @tags = Tag.display_show_type(params[:model])
     @tag = Tag.new
+    @group = Group.find(params[:group_id])
+    unless @group.tags.size == 8
+      Tag.update_tag(params[:name], @group)
+      @tags = Tag.display_show_type(params[:model])
+    else
+      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは8個までです。"
+    end
+    tags = @group.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def destroy_tags
+    @tag = Tag.new
     @group = Group.find(params[:group_id])
     Tag.destroy_tag(params[:name], @group)
     @tags = Tag.display_show_type(params[:model])
-    @tag = Tag.new
+    tags = @group.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
+  # グループジャンル
   def genres
+    @genre = Genre.new
     @group = Group.find(params[:group_id])
     @genres = Genre.display_show_type("group")
-    @genre = Genre.new
+    genres = @group.genres
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
   end
 
   def create_genres
-    @group = Group.find(params[:group_id])
-    Genre.create_genre(params[:genre][:name], @group)
-    @genres = Genre.display_show_type(params[:genre][:model])
     @genre = Genre.new
+    @group = Group.find(params[:group_id])
+    genres = params[:genre][:name].split(",")
+    if genres.size < 9  && params[:genre][:name].length < 51
+      Genre.create_genre(genres, @group)
+      @genres = Genre.display_show_type(params[:genre][:model])
+    else
+      redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは50文字以内、もしくは8個までです。"
+    end
+    genres = @group.genres
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
   end
 
   def update_genres
-    @group = Group.find(params[:group_id])
-    Genre.update_genre(params[:name], @group)
-    @genres = Genre.display_show_type(params[:model])
     @genre = Genre.new
+    @group = Group.find(params[:group_id])
+    unless @group.genres.size == 8
+      Genre.update_genre(params[:name], @group)
+      @genres = Genre.display_show_type(params[:model])
+    else
+      redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは8個までです。"
+    end
+    genres = @group.genres.all
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
   end
 
   def destroy_genres
+    @genre = Genre.new
     @group = Group.find(params[:group_id])
     Genre.destroy_genre(params[:name], @group)
     @genres = Genre.display_show_type(params[:model])
-    @genre = Genre.new
+    genres = @group.genres.all
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
   end
 
+  # グループゲーム
   def games
+    @game = Game.new
     @group = Group.find(params[:group_id])
     @games = Game.display_show_type("group")
-    @game = Game.new
+    games = @group.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   def create_games
-    @group = Group.find(params[:group_id])
-    Game.create_game(params[:game][:name], @group)
-    @games = Game.display_show_type(params[:game][:model])
     @game = Game.new
+    @group = Group.find(params[:group_id])
+    games = params[:game][:name].split(",")
+    if games.size < 9  && params[:game][:name].length < 51
+      Game.create_game(games, @group)
+      @games = Game.display_show_type(params[:game][:model])
+    else
+      redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは8個までです。"
+    end
+    games = @group.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   def update_games
-    @group = Group.find(params[:group_id])
-    Game.update_game(params[:name], @group)
-    @games = Game.display_show_type(params[:model])
     @game = Game.new
+    @group = Group.find(params[:group_id])
+    unless @group.games.size == 8
+      Game.update_game(params[:name], @group)
+      @games = Game.display_show_type(params[:model])
+    else
+      redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは8個までです。"
+    end
+    games = @group.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   def destroy_games
+    @game = Game.new
     @group = Group.find(params[:group_id])
     Game.destroy_game(params[:name], @group)
     @games = Game.display_show_type(params[:model])
-    @game = Game.new
+    games = @group.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   private
 
-  def ensure_correct_user
-    group = Group.find(params[:group_id])
-    unless current_end_user.id == group.owner_id
-      redirect_to groups_path, alert: "オーナーではないため編集できません。"
-    end
-  end
+  # def ensure_correct_user
+  #   group = Group.find(params[:group_id])
+  #   unless current_ end_user.id == group.owner_id
+  #     redirect_to groups_path, alert: "オーナーではないため編集できません。"
+  #   end
+  # end
 end

@@ -5,7 +5,7 @@ class EndUser::TagsController < ApplicationController
   def index
     @tag = Tag.new
     @tags = Tag.display_show_type("user")
-    tags = current_end_user.tags.all
+    tags = current_end_user.tags
     @tag_names = []
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
@@ -23,7 +23,7 @@ class EndUser::TagsController < ApplicationController
     else
       redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
     end
-    tags = current_end_user.tags.all
+    tags = current_end_user.tags
     @tag_names = []
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
@@ -40,7 +40,7 @@ class EndUser::TagsController < ApplicationController
     else
       redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは8個までです。"
     end
-    tags = current_end_user.tags.all
+    tags = current_end_user.tags
     @tag_names = []
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
@@ -53,7 +53,7 @@ class EndUser::TagsController < ApplicationController
     @tag = Tag.new
     Tag.destroy_tag(params[:name], current_end_user)
     @tags = Tag.display_show_type(params[:model])
-    tags = current_end_user.tags.all
+    tags = current_end_user.tags
     @tag_names = []
     if tags.count > 0
       @tag_names = tags.pluck(:name).join(",") + ","
