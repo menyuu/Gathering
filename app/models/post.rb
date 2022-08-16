@@ -43,14 +43,17 @@ class Post < ApplicationRecord
 
   # 完全一致、後方、前方、部分、に当てはまる投稿を配列に直し重複しているものを除外
   def self.search_for(word)
+    # 公開されているユーザーを取得
+    published_user = EndUser.where(status: "published")
     posts = []
-    perfect_match_posts = Post.where(text: word).where(status: "published")
-    backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(status: "published")
-    prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(status: "published")
-    partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(status: "published")
+    perfect_match_posts = Post.where(text: word).where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
+    backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
+    prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
+    partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
     posts.flatten!
-    return unique_posts = posts.uniq { |post| post.id }
+    unique_posts = posts.uniq { |post| post.id }
+    return unique_posts
   end
 
   def images_length

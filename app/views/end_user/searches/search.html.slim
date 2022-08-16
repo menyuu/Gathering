@@ -1,65 +1,9 @@
 .row
-  .col-8.ms-start
-    = render "post_search", word: @word, search_result: @search_result, post_comment: @post_comment
+  .col-8.offset-1
+    = render "post_search", object: @object, word: @word, search_result: @search_result, post_comment: @post_comment
     = render "user_search"
-    - case @object  
-    - when "group"
-      .container
-        .row
-          .col.text-center.my-3
-            = link_to "idで探す", search_path(object: "group_id", word: @word, group_id: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
-        .row
-          .col
-            - if @search_result.present?
-              = render "end_user/groups/index", groups: @search_result
-            - else
-              .text-center
-                h1
-                  | 検索されたグループ名"#{@word}"のグループが見つかりませんでした。
-                h3
-                  | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
-    - when "group_id"
-      .container
-        .row
-          .col.text-center.my-3
-            = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "グループ名で探す", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
-        .row
-          .col
-            - if @search_result.present?
-              = render "end_user/groups/index", groups: @search_result
-            - else
-              .text-center
-                h1
-                  | 検索されたID"#{@word}"のグループが見つかりませんでした。
-                h3
-                  | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
-    - when "group_keyword"
-      .container
-        .row
-          .col.text-center.my-3
-            = link_to "idで探す", search_path(object: "group_id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "グループ名で探す", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-            = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
-        .row
-          .col
-            - if @search_result.present?
-              = render "end_user/groups/index", groups: @search_result
-            - else
-              .text-center
-                h1
-                  | 検索されたキーワード"#{@word}"のグループが見つかりませんでした。
-                h3
-                  | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
+    = render "group_search"
+    - case @object
     - when "tag"
       .container
         .row
