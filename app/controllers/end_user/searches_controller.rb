@@ -1,4 +1,6 @@
 class EndUser::SearchesController < ApplicationController
+  before_action :authenticate_end_user!
+  
   def search
     @object = params[:object]
     @word = params[:word]

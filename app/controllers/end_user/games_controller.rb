@@ -1,6 +1,6 @@
 class EndUser::GamesController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :forbid_guestuser, only: [:create, :destroy]
+  before_action :forbid_guestuser, only: [:create, :update, :destroy]
   
   def index
     @game = Game.new
