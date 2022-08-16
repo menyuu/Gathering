@@ -1,4 +1,9 @@
-.col-9.mt-5.mr-auto
-  .col-8.mx-auto
-    .card.offset-2.post-tag-area
-      = render "end_user/posting_tags/show", post: @post, post_tags: @post_tags, post_tag: @post_tag
+.container-fluid
+  .row
+    .col-8.mt-5
+      .card.offset-2
+        .card-body.post-tag-area
+          = render "end_user/posting_tags/show", post: @post, post_tags: @post_tags, post_tag: @post_tag
+        .card-footer.bg-white
+          .card-text.text-right
+            = link_to "戻る", post_path(@post), class: "btn btn-dark"

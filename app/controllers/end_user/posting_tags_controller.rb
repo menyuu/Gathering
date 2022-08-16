@@ -1,7 +1,7 @@
 class EndUser::PostingTagsController < ApplicationController
   def show
     @post = Post.find(params[:post_id])
-    @post_tags = PostingTag.all.sort {|a,b| b.posts.size <=> a.posts.size}.first(30)
+    @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
   end
 
@@ -13,7 +13,7 @@ class EndUser::PostingTagsController < ApplicationController
       @post.tags.delete(tag)
       @post.tags << tag
     end
-    @post_tags = PostingTag.all.sort {|a,b| b.posts.size <=> a.posts.size}.first(30)
+    @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
   end
 
@@ -22,7 +22,7 @@ class EndUser::PostingTagsController < ApplicationController
     tag = PostingTag.find_by(name: params[:name])
     @post.tags.delete(tag)
     @post.tags << tag
-    @post_tags = PostingTag.all.sort {|a,b| b.posts.size <=> a.posts.size}.first(30)
+    @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
   end
 
@@ -30,7 +30,7 @@ class EndUser::PostingTagsController < ApplicationController
     @post = Post.find(params[:post_id])
     tag = PostingTag.find_by(name: params[:name])
     @post.tags.delete(tag)
-    @post_tags = PostingTag.all.sort {|a,b| b.posts.size <=> a.posts.size}.first(30)
+    @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
   end
 end

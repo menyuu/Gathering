@@ -3,20 +3,18 @@
     | 現在のタグ
   .card-text.my-3
     - post.tags.each do |tag|
-      = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item m-1"
+      = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
 .card-body.border-bottom
   .card-header.mb-5.bg-white
     | 人気のタグ
   .card-text.my-3
     - post_tags.each do |tag|
-      = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item m-1"
-.card-body.border-bottom
+      = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+.card-body
   .card-header.mb-5.bg-white
     | 新しいタグを作成する
   = form_with model: [post, post_tag], url: post_tags_path(post), local: false do |f|
-    .d-flex.my-3
-      = f.text_field :name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control post-input-tag-area rounded-0 rounded-start"
-      = f.submit "投稿タグ登録", class: "btn btn-sm btn-outline-dark rounded-0 rounded-end"
-.card-body.ml-auto
-  .card-text
-    = link_to "戻る", post_path(post), class: "btn btn-dark"
+    .input-group
+      = f.text_field:name, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
+      span.input-group-append.text-right
+        = f.submit "投稿タグ登録", class: "btn btn-outline-dark input-group"
