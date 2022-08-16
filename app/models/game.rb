@@ -25,11 +25,11 @@ class Game < ApplicationRecord
     Game.find_by(name: word)
   end
 
-  def self.create_game(game_name, create_game_model)
-    games = game_name.split(",")
-    games.each do |game|
+  def self.create_game(game_names, create_game_model)
+    
+    create_game_model.games.destroy_all
+    game_names.each do |game|
       game = self.find_or_create_by(name: game)
-      create_game_model.games.delete(game)
       create_game_model.games << game
     end
   end

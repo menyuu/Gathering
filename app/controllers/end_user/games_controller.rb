@@ -5,15 +5,30 @@ class EndUser::GamesController < ApplicationController
   def index
     @game = Game.new
     @games = Game.display_show_type("user")
+    games = current_end_user.games.all
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   def create
     @game = Game.new
-    unless current_end_user.games.size == 8 || params[:game][:name].length >= 50
-      Game.create_game(params[:game][:name], current_end_user)
+    games = params[:game][:name].split(",")
+    if games.size < 9  && params[:game][:name].length < 51
+      Game.create_game(games, current_end_user)
       @games = Game.display_show_type(params[:game][:model])
     else
-      redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは8個までです。"
+      redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは50文字以内、もしくは8個までです。"
+    end
+    games = current_end_user.games.all
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
     end
   end
 
@@ -23,13 +38,27 @@ class EndUser::GamesController < ApplicationController
       Game.update_game(params[:name], current_end_user)
       @games = Game.display_show_type(params[:model])
     else
-      redirect_to request.referer, notice: "ゲームの追加に失敗しました。追加できるゲームは8個までです。"
+      redirect_to request.referer, alert: "ゲームの追加に失敗しました。追加できるゲームは8個までです。"
+    end
+    games = current_end_user.games.all
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
     end
   end
 
   def destroy
     @game = Game.new
-    @games = Game.display_show_type(params[:model])
     Game.destroy_game(params[:name], current_end_user)
+    @games = Game.display_show_type(params[:model])
+    games = current_end_user.games.all
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 end

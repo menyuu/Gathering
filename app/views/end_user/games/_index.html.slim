@@ -15,7 +15,7 @@
     | 新しいゲームを作成する
   = form_with model: game, local: false do |f|
     .input-group
-      = f.text_field :name, placeholder: "複数のゲームは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
+      = f.text_field :name, value: game_names, placeholder: "複数のゲームは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
       = f.hidden_field :model, value: "user"
       span.input-group-append.text-right
         = f.submit "投稿ゲーム登録", class: "btn btn-outline-dark input-group"

@@ -1,1 +1,1 @@
-$('.game-area').html('<%= j(render "end_user/games/index", games: @games, game: @game) %>');
+$('.game-area').html('<%= j(render "index", games: @games, game: @game, game_names: @game_names) %>');
