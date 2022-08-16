@@ -27,14 +27,11 @@ class Tag < ApplicationRecord
   end
 
   # 作成用
-  def self.create_tag(tag_name, create_tag_model)
-    tags = tag_name.split(",")
-    if tags.size < 8 || tag_name.length < 50
-      tags.each do |tag|
-        tag = self.find_or_create_by(name: tag)
-        create_tag_model.tags.delete(tag)
-        create_tag_model.tags << tag
-      end
+  def self.create_tag(tag_names, create_tag_model)
+    create_tag_model.tags.destroy_all
+    tag_names.each do |tag|
+      tag = self.find_or_create_by(name: tag)
+      create_tag_model.tags << tag
     end
   end
 

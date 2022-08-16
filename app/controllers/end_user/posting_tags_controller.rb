@@ -3,8 +3,6 @@ class EndUser::PostingTagsController < ApplicationController
   before_action :forbid_guestuser, only: [:create, :update, :destroy]
   before_action :ensure_correct_user
 
-
-
   def show
     @post = Post.find(params[:post_id])
     @post_tags = PostingTag.display_show_type("post")

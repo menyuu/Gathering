@@ -5,15 +5,30 @@ class EndUser::TagsController < ApplicationController
   def index
     @tag = Tag.new
     @tags = Tag.display_show_type("user")
+    tags = current_end_user.tags.all
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def create
     @tag = Tag.new
-    if current_end_user.tags.size < 8 || params[:tag][:name].length < 50
-      Tag.create_tag(params[:tag][:name], current_end_user)
+    tags = params[:tag][:name].split(",")
+    if tags.size < 9  && params[:tag][:name].length < 51
+      Tag.create_tag(tags, current_end_user)
       @tags = Tag.display_show_type(params[:tag][:model])
     else
       redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+    end
+    tags = current_end_user.tags.all
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
     end
   end
 
@@ -25,11 +40,25 @@ class EndUser::TagsController < ApplicationController
     else
       redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは8個までです。"
     end
+    tags = current_end_user.tags.all
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 
   def destroy
     @tag = Tag.new
     Tag.destroy_tag(params[:name], current_end_user)
     @tags = Tag.display_show_type(params[:model])
+    tags = current_end_user.tags.all
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
   end
 end
