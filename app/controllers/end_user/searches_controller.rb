@@ -14,6 +14,7 @@ class EndUser::SearchesController < ApplicationController
       @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "user_keyword"
       @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, nil)).page(params[:page]).per(1)
+      
     # グループ検索
     when "group_id"
       @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, @group_id)).page(params[:page]).per(1)
@@ -21,9 +22,10 @@ class EndUser::SearchesController < ApplicationController
       @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "group_keyword"
       @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, nil)).page(params[:page]).per(1)
+      
+    #　投稿検索
     when "post"
-      search_result = Post.search_for(@word)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(Post.search_for(@word)).page(params[:page]).per(1)
       @post_comment = PostComment.new
     when "post_tag"
       search_result = PostingTag.search_for(@word)
@@ -31,6 +33,8 @@ class EndUser::SearchesController < ApplicationController
         @search_result = Kaminari.paginate_array(search_result.posts).page(params[:page]).per(1)
       end
       @post_comment = PostComment.new
+      
+    # ユーザータグ検索用
     when "tag"
       search_result = Tag.search_for(@word)
       @tags = Tag.display_show_type("user", 10)
@@ -52,6 +56,8 @@ class EndUser::SearchesController < ApplicationController
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
       end
+      
+    # グループタグ検索用
     when "group_tag"
       search_result = Tag.search_for(@word)
       @tags = Tag.display_show_type("group", 10)
