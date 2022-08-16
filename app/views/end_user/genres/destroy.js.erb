@@ -1,1 +1,1 @@
-$('.genre-area').html('<%= j(render "end_user/genres/index", genres: @genres, genre: @genre) %>');
+$('.genre-area').html('<%= j(render "index", genres: @genres, genre: @genre, genre_names: @genre_names) %>');

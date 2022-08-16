@@ -1,1 +1,1 @@
-$('.tag-area').html('<%= j(render "end_user/tags/index", tags: @tags, tag: @tag) %>');
+$('.tag-area').html('<%= j(render "index", tags: @tags, tag: @tag, tag_names: @tag_names) %>');
