@@ -85,6 +85,7 @@ class EndUser::PostsController < ApplicationController
       end
       redirect_to posts_path, notice: "正常に投稿されました。"
     else
+      @tag_names = params[:post][:name].split(",")
       render :index
     end
   end
