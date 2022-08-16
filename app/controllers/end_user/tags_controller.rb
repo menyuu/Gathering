@@ -1,4 +1,7 @@
 class EndUser::TagsController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :forbid_guestuser, only: [:create, :destroy]
+  
   def index
     @tag = Tag.new
     @tags = Tag.display_show_type("user")

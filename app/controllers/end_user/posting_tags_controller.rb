@@ -1,4 +1,9 @@
 class EndUser::PostingTagsController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :forbid_guestuser, only: [:create, :destroy]
+  before_action :ensure_correct_user
+
+
   def show
     @post = Post.find(params[:post_id])
     @post_tags = PostingTag.display_show_type("post")
@@ -32,5 +37,14 @@ class EndUser::PostingTagsController < ApplicationController
     @post.tags.delete(tag)
     @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
+  end
+
+  private
+
+  def ensure_correct_user
+    post = Post.find(params[:post_id])
+    unless current_end_user == post.user
+      redirect_to user_path(current_end_user), alert: "アカウントが違うため編集できません。"
+    end
   end
 end

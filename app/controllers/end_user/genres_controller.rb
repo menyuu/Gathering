@@ -1,4 +1,7 @@
 class EndUser::GenresController < ApplicationController
+  before_action :authenticate_end_user!
+  before_action :forbid_guestuser, only: [:create, :destroy]
+  
   def index
     @genre = Genre.new
     @genres = Genre.display_show_type("user")
