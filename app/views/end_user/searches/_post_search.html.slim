@@ -13,12 +13,18 @@
           = render "end_user/posts/index", posts: search_result, post_comment: post_comment
         - else
           .text-center
-            h1
-              | 検索されたキーワード"#{word}"の投稿が見つかりませんでした。
-            h3
-              | 別のキーワード検索するか、ユーザーやグループから探してみましょう！
+            h2
+              | 検索されたキーワード
+              br
+              | "#{@word}"
+              br
+              | の投稿が見つかりませんでした。
+            h4.mt-5
+              | 別のキーワード検索するか、
+              br
+              | ユーザーやグループから探してみましょう！
           .search-form
-            h3.text
+            h5.text-center
               | 投稿を検索
             = render "form", model: "post"
 
