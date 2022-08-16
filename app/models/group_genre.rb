@@ -21,4 +21,9 @@
 class GroupGenre < ApplicationRecord
   belongs_to :group
   belongs_to :genre
+
+  with_options presence: true do
+    validates :group_id, uniqueness: { scope: [:genre_id] }
+    validates :genre_id
+  end
 end

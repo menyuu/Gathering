@@ -21,4 +21,9 @@
 class PostTag < ApplicationRecord
   belongs_to :post
   belongs_to :posting_tag
+
+  with_options presence: true do
+    validates :post_id, uniqueness: { scope: [:posting_tag_id] }
+    validates :posting_tag_id
+  end
 end

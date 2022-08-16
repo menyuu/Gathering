@@ -21,4 +21,9 @@
 class GroupTag < ApplicationRecord
   belongs_to :group
   belongs_to :tag
+
+  with_options presence: true do
+    validates :group_id, uniqueness: { scope: [:tag_id] }
+    validates :tag_id
+  end
 end

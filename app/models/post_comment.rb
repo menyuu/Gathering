@@ -22,4 +22,6 @@
 class PostComment < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :post
+
+  validates :text, presence: true, length: { maximum: 240 }
 end

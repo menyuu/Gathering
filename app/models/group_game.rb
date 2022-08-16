@@ -21,4 +21,9 @@
 class GroupGame < ApplicationRecord
   belongs_to :group
   belongs_to :game
+
+  with_options presence: true do
+    validates :group_id, uniqueness: { scope: [:game_id] }
+    validates :game_id
+  end
 end

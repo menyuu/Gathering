@@ -21,4 +21,9 @@
 class EndUserGroup < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :group
+
+  with_options presence: true do
+    validates :end_user_id, uniqueness: { scope: [:group_id] }
+    validates :group_id
+  end
 end

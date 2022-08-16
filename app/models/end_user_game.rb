@@ -22,10 +22,16 @@ class EndUserGame < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :game
 
+  with_options presence: true do
+    validates :end_user_id, uniqueness: { scope: [:game_id] }
+    validates :game_id
+  end
   validate :tags_limit_count
 
+  LIMIT_COUNT = 8
+
   def tags_limit_count
-    if user.tags.size >= 8
+    if user.tags.size >= LIMIT_COUNT
       return
     end
   end

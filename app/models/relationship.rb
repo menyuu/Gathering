@@ -21,4 +21,9 @@
 class Relationship < ApplicationRecord
   belongs_to :follower, class_name: "EndUser"
   belongs_to :followed, class_name: "EndUser"
+
+  with_options presence: true do
+    validates :follower_id, uniqueness: { scope: [:followed_id] }
+    validates :followed_id
+  end
 end

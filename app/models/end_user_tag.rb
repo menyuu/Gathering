@@ -22,11 +22,16 @@ class EndUserTag < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :tag
 
+  with_options presence: true do
+    validates :end_user_id, uniqueness: { scope: [:tag_id] }
+    validates :tag_id
+  end
   validate :tags_limit_count
 
+  LIMIT_COUNT = 8
+
   def tags_limit_count
-    if user.tags.size >= 8
-      # errors.add(:tag, "所持できるタグ数は10個までです。すでに所持している他のタグを削除してから、再度登録してください。")
+    if user.tags.size >= LIMIT_COUNT
       return
     end
   end

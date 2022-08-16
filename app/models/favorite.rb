@@ -21,4 +21,9 @@
 class Favorite < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :post
+
+  with_options presence: true do
+    validates :end_user_id, uniqueness: { scope: [:post_id] }
+    validates :post_id
+  end
 end
