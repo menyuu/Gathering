@@ -1,12 +1,13 @@
 - case object
 - when "post"
- .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
         = link_to "投稿から探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
     .row
       .col
         - if search_result.present?
@@ -14,35 +15,46 @@
         - else
           .text-center
             h2
-              | 検索されたキーワード
+              | 検索されたキーワード：
               br
               | "#{@word}"
               br
-              | の投稿が見つかりませんでした。
+              | の投稿は見つかりませんでした。
             h4.mt-5
-              | 別のキーワード検索するか、
+              | 別のキーワードで検索するか、
               br
               | ユーザーやグループから探してみましょう！
-          .search-form
+          .d-flex.flex-column.align-items-center.search-form-content
             h5.text-center
               | 投稿を検索
             = render "form", model: "post"
 
 - when "post_tag"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
         = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
     .row
       .col
         - if search_result.present?
           = render "end_user/posts/index", posts: search_result, post_comment: post_comment
         - else
           .text-center
-            h1
-              | 検索されたタグ"#{word}"の投稿が見つかりませんでした。
-            h3
-              | 別のキーワード検索するか、ユーザーやグループから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{@word}"
+              br
+              | の投稿タグは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | ユーザーやグループから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | 投稿を検索
+            = render "form", model: "post"
