@@ -4,7 +4,7 @@ class EndUser::FavoritesController < ApplicationController
 
   def index
     @user = EndUser.find(params[:user_id])
-    @posts = @user.favorite_posts.page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = @user.favorite_posts.with_attached_images.page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @post_comment = PostComment.new
   end
 

@@ -10,6 +10,7 @@ class EndUser::PostsController < ApplicationController
     # フォロー中のユーザーとログイン中のユーザーを配列にする
     users = []
     users.push(current_end_user.followings, current_end_user)
+    users.flatten!
     @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
@@ -96,7 +97,7 @@ class EndUser::PostsController < ApplicationController
         @post.tags << tag
       end
     end
-    redirect_to post_path(@post)
+    redirect_to post_path(@post), notice: "投稿を編集しました。"
   end
 
   def destroy
