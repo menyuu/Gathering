@@ -1,0 +1,58 @@
+- case @object  
+- when "user"
+  .container
+    .row
+      .col.text-center.my-3
+        = link_to "idで探す", search_path(object: "id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h1
+              | 検索されたユーザー名"#{@word}"のユーザーが見つかりませんでした。
+            h3
+              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
+- when "id"
+  .container
+    .row
+      .col.text-center.my-3
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h1
+              | 検索されたID"#{@word}"のユーザーが見つかりませんでした。
+            h3
+              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
+- when "user_keyword"
+  .container
+    .row
+      .col.text-center.my-3
+        = link_to "idで探す", search_path(object: "id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h1
+              | 検索されたキーワード"#{@word}"のユーザーが見つかりませんでした。
+            h3
+              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
