@@ -1,30 +1,26 @@
 class EndUser::SearchesController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def search
     @object = params[:object]
     @word = params[:word]
     @user_id = params[:user_id].to_i
     @group_id = params[:group_id].to_i
     case @object
+    # ユーザー検索
     when "id"
-      search_result = EndUser.search_for(@object, @word, @user_id)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, @user_id)).page(params[:page]).per(1)
     when "user"
-      search_result = EndUser.search_for(@object, @word, nil)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "user_keyword"
-      search_result = EndUser.search_for(@object, @word, nil)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, nil)).page(params[:page]).per(1)
+    # グループ検索
     when "group_id"
-      search_result = Group.search_for(@object, @word, @group_id)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, @group_id)).page(params[:page]).per(1)
     when "group"
-      search_result = Group.search_for(@object, @word, nil)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "group_keyword"
-      search_result = Group.search_for(@object, @word, nil)
-      @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "post"
       search_result = Post.search_for(@word)
       @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
