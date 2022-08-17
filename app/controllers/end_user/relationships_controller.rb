@@ -4,15 +4,13 @@ class EndUser::RelationshipsController < ApplicationController
   before_action :ensure_correct_user, only: [:create]
 
   def create
-    user = EndUser.find(params[:user_id])
-    current_end_user.follow(user)
-    redirect_to request.referer
+    @user = EndUser.find(params[:user_id])
+    current_end_user.follow(@user)
   end
 
   def destroy
-    user = EndUser.find(params[:user_id])
-    current_end_user.unfollow(user)
-    redirect_to request.referer
+    @user = EndUser.find(params[:user_id])
+    current_end_user.unfollow(@user)
   end
 
   def followings

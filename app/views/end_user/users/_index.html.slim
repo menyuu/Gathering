@@ -10,12 +10,8 @@
           .card-text.text-right
             - unless user.name == "ゲストユーザー"
               - unless current_end_user == user
-                - if current_end_user.following?(user)
-                  = link_to "フォローを外す", user_follows_path(user), method: :delete, class: "btn btn-dark rounded-pill"
-                - else
-                  = link_to "フォローする", user_follows_path(user), method: :post, class: "btn btn-outline-dark rounded-pill"
-            .row.mt-5
-              = render "end_user/users/follows", user: user
+                div class="follow_btn_#{user.id}"
+                  = render "end_user/relationships/follow_btn", user: user
       .card-body.introduction-area-container
         = link_to user_path(user)
           p.card-tex.introduction-area
