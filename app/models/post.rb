@@ -53,7 +53,7 @@ class Post < ApplicationRecord
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
     # 一次元配列にする
     posts.flatten!
-    # 重複したデータを
+    # 重複したデータを取り除く
     unique_posts = posts.uniq { |post| post.id }
     return unique_posts
   end

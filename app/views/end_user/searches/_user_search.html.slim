@@ -1,58 +1,93 @@
-- case @object  
+- case object
 - when "user"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "idで探す", search_path(object: "id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "idでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h1
-              | 検索されたユーザー名"#{@word}"のユーザーが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のユーザー名は見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | ユーザーやグループから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | ユーザーを検索
+            = render "form", model: "user"
+
 - when "id"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ユーザー名で探す", search_path(object: "user", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h1
-              | 検索されたID"#{@word}"のユーザーが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のユーザーIDは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | ユーザーやグループから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | ユーザーIDを検索
+            = render "form", model: "id", user_id: word
+
 - when "user_keyword"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "idで探す", search_path(object: "id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ユーザー名で探す", search_path(object: "user", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "idでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h1
-              | 検索されたキーワード"#{@word}"のユーザーが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やグループから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のユーザーは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | ユーザーやグループから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | ユーザーをキーワードから検索
+            = render "form", model: "user_keyword"

@@ -17,7 +17,7 @@
             h2
               | 検索されたキーワード：
               br
-              | "#{@word}"
+              | "#{word}"
               br
               | の投稿は見つかりませんでした。
             h4.mt-5
@@ -47,7 +47,7 @@
             h2
               | 検索されたキーワード：
               br
-              | "#{@word}"
+              | "#{word}"
               br
               | の投稿タグは見つかりませんでした。
             h4.mt-5
@@ -57,4 +57,4 @@
           .d-flex.flex-column.align-items-center.search-form-content
             h5.text-center
               | 投稿を検索
-            = render "form", model: "post"
+            = render "form", model: "post_tag"

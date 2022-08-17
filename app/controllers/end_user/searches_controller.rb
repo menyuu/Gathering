@@ -4,8 +4,8 @@ class EndUser::SearchesController < ApplicationController
   def search
     @object = params[:object]
     @word = params[:word]
-    @user_id = params[:user_id].to_i
-    @group_id = params[:group_id].to_i
+    @user_id = params[:word].to_i
+    @group_id = params[:word].to_i
     case @object
     # ユーザー検索
     when "id"
