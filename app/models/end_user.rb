@@ -79,19 +79,11 @@ class EndUser < ApplicationRecord
     followings.include?(user)
   end
 
-  # ユーザー検索用
+  # ユーザー検索用(application_recordに記載)
   def self.search_for(object, word, user_id)
     case object
     when "id"
-      if EndUser.exists?(word)
-        specific_user = []
-        user = EndUser.where(id: user_id)
-        specific_user << user
-        specific_user.flatten!
-        return specific_user
-      else
-        return self.all
-      end
+      EndUser.search_id_match(word, user_id)
     when "user"
       EndUser.search_match(word, status: "published")
     when "user_keyword"

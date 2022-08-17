@@ -65,17 +65,10 @@ class Group < ApplicationRecord
     games.includes(:group_games).any? { |i| user.games.includes(:games).include?(i) }
   end
 
-  def self.search_for(object, word, user_id)
+  def self.search_for(object, word, group_id)
     case object
     when "group_id"
-      if Group.exists?(word)
-        specific_user = []
-        user = Group.where(id: user_id)
-        specific_user << user
-        return user
-      else
-        return self.all
-      end
+      Group.search_id_match(word, group_id)
     when "group"
       Group.search_match(word, nil)
     when "group_keyword"

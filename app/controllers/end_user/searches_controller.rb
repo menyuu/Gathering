@@ -9,7 +9,10 @@ class EndUser::SearchesController < ApplicationController
     case @object
     # ユーザー検索
     when "id"
-      @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, @user_id)).page(params[:page]).per(1)
+      search_result = EndUser.search_for(@object, @word, @user_id)
+      if search_result.present?
+        @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      end
     when "user"
       @search_result = Kaminari.paginate_array(EndUser.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "user_keyword"
@@ -17,7 +20,10 @@ class EndUser::SearchesController < ApplicationController
 
     # グループ検索
     when "group_id"
-      @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, @group_id)).page(params[:page]).per(1)
+      search_result = Group.search_for(@object, @word, @group_id)
+      if search_result.present?
+        @search_result = Kaminari.paginate_array(search_result).page(params[:page]).per(1)
+      end
     when "group"
       @search_result = Kaminari.paginate_array(Group.search_for(@object, @word, nil)).page(params[:page]).per(1)
     when "group_keyword"
