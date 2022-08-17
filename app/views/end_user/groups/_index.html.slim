@@ -14,7 +14,7 @@
           .col-12.col-lg-4.text-right
             .card-text
               - unless group.is_ownerd_by?(current_end_user)
-                = render "join_link", group: group
+                = render "end_user/groups/join_link", group: group
               - else
                | あなたがオーナーです。
         .card-body

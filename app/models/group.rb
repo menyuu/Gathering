@@ -77,28 +77,9 @@ class Group < ApplicationRecord
         return self.all
       end
     when "group"
-      users = []
-      perfect_match_users = Group.where(name: word)
-      backward_match_users = Group.where("name LIKE ?", "#{word}%")
-      prefix_match_users = Group.where("name LIKE ?", "%#{word}")
-      partial_match_users = Group.where("name LIKE ?", "%#{word}%")
-      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users)
-      users.flatten!
-      return unique_users = users.uniq { |user| user.id }
+      Group.search_match(word, nil)
     when "group_keyword"
-      users = []
-      perfect_match_users = Group.where(name: word)
-      backward_match_users = Group.where("name LIKE ?", "#{word}%")
-      prefix_match_users = Group.where("name LIKE ?", "%#{word}")
-      partial_match_users = Group.where("name LIKE ?", "%#{word}%")
-      perfect_match_users_introduction = Group.where(introduction: word)
-      backward_match_users_introduction = Group.where("introduction LIKE ?", "#{word}%")
-      prefix_match_users_introduction = Group.where("introduction LIKE ?", "%#{word}")
-      partial_match_users_introduction = Group.where("introduction LIKE ?", "%#{word}%")
-      users.push(perfect_match_users, backward_match_users, prefix_match_users, partial_match_users,
-      perfect_match_users_introduction, backward_match_users_introduction, prefix_match_users_introduction, partial_match_users_introduction)
-      users.flatten!
-      return unique_users = users.uniq { |user| user.id }
+      Group.search_keyword_match(word, nil)
     end
   end
 end
