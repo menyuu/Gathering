@@ -46,7 +46,7 @@ class Post < ApplicationRecord
     # 公開されているユーザーを取得
     published_user = EndUser.where(status: "published")
     posts = []
-    perfect_match_posts = Post.where(text: word).where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
+    perfect_match_posts = Post.where(text: word, end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
@@ -55,6 +55,8 @@ class Post < ApplicationRecord
     unique_posts = posts.uniq { |post| post.id }
     return unique_posts
   end
+
+  private
 
   def images_length
     if images.length > IMAGE_LIMITED

@@ -14,10 +14,10 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.search_match(word)
     objects = []
-    perfect_match = self.where(text: word).where(status: "published")
-    backward_match = self.where("text LIKE ?", "#{word}%").where(status: "published")
-    prefix_match = self.where("text LIKE ?", "%#{word}").where(status: "published")
-    partial_match = self.where("text LIKE ?", "%#{word}%").where(status: "published")
+    perfect_match = self.where(name: word).where(status: "published")
+    backward_match = self.where("name LIKE ?", "#{word}%").where(status: "published")
+    prefix_match = self.where("name LIKE ?", "%#{word}").where(status: "published")
+    partial_match = self.where("name LIKE ?", "%#{word}%").where(status: "published")
     objects.push(perfect_match, backward_match, prefix_match, partial_match)
     objects.flatten!
     return unique_objects = objects.uniq { |object| object.id }
