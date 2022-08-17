@@ -81,7 +81,7 @@ class EndUser::PostsController < ApplicationController
             # タグが既に存在するかを探して存在しなければ作成する
           tag = PostingTag.find_or_create_by(name: tag)
           @post.tags << tag
-      end
+        end
         redirect_to posts_path, notice: "正常に投稿されました。"
       else
         @tag_names = params[:post][:name].split(",")
