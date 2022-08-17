@@ -64,21 +64,18 @@ class EndUser::SearchesController < ApplicationController
     when "group_tag"
       search_result = Tag.search_for(@word)
       @tags = Tag.display_show_type("group", 15)
-      @user_search_tags = Tag.display_show_type("group")
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
     when "group_genre"
       search_result = Genre.search_for(@word)
       @genres = Genre.display_show_type("group", 15)
-      @user_search_genres = Genre.display_show_type("group")
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
     when "group_game"
       search_result = Game.search_for(@word)
       @games = Game.display_show_type("group", 15)
-      @user_search_games = Game.display_show_type("group")
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
       end
