@@ -1,25 +1,37 @@
 - case @object
 - when "group"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "idで探す", search_path(object: "group_id", word: @word, group_id: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "idで探す", search_path(object: "group_id", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+  .container-fluid
     .row
       .col
         - if @search_result.present?
           = render "end_user/groups/index", groups: @search_result
         - else
           .text-center
-            h1
-              | 検索されたグループ名"#{@word}"のグループが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のグループ名は見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 投稿やユーザーから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | グループ名を検索
+            = render "form", model: "group"
+
 - when "group_id"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
         = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
@@ -27,32 +39,54 @@
         = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+  .container-fluid
     .row
       .col
         - if @search_result.present?
           = render "end_user/groups/index", groups: @search_result
         - else
           .text-center
-            h1
-              | 検索されたID"#{@word}"のグループが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のグループIDは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 投稿やユーザーから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | グループIDを検索
+            = render "form", model: "group_id"
 - when "group_keyword"
-  .container
+  .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "idで探す", search_path(object: "group_id", word: @word, user_id: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "idで探す", search_path(object: "group_id", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "グループ名で探す", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "タグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
         = link_to "ゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+  .container-fluid
     .row
       .col
         - if @search_result.present?
           = render "end_user/groups/index", groups: @search_result
         - else
           .text-center
-            h1
-              | 検索されたキーワード"#{@word}"のグループが見つかりませんでした。
-            h3
-              | 別のキーワードで検索するか、投稿やユーザーから探してみましょう！
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のグループは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 投稿やユーザーから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | グループをキーワードから検索
+            = render "form", model: "group_keyword"

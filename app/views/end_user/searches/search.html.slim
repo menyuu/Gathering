@@ -2,7 +2,7 @@
   .col-8.offset-1
     = render "post_search", object: @object, word: @word, search_result: @search_result, post_comment: @post_comment
     = render "user_search", object: @object, word: @word, search_result: @search_result
-    = render "group_search"
+    = render "group_search", object: @object, word: @word, search_result: @search_result
     - case @object
     - when "tag"
       .container
