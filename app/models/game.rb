@@ -26,7 +26,6 @@ class Game < ApplicationRecord
   end
 
   def self.create_game(game_names, create_game_model)
-    
     create_game_model.games.destroy_all
     game_names.each do |game|
       game = self.find_or_create_by(name: game)

@@ -1,0 +1,105 @@
+- case @object
+- when "tag"
+  .container-fluid.bg-white.search-tags-top-bar
+    .row
+      .col.text-center.my-3
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+    .row.mb-5.item-top-bar
+      .col.text-center
+        |人気のタグから探す：
+        - @tags.each do |tag|
+          = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のタグは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 人気のタグから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | タグを検索
+            = render "form", model: "tag"
+
+- when "genre"
+  .container-fluid.bg-white.search-tags-top-bar
+    .row
+      .col.text-center.my-3
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+    .row.mb-5.item-top-bar
+      .col.text-center
+        |人気のジャンルから探す：
+        - @genres.each do |genre|
+          = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のジャンルは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 人気のジャンルから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | ジャンルを検索
+            = render "form", model: "genre"
+
+- when "game"
+  .container-fluid.bg-white.search-tags-top-bar
+    .row
+      .col.text-center.my-3
+        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+    .row.mb-5.item-top-bar
+      .col.text-center
+        |人気のゲームから探す：
+        - @games.each do |game|
+          = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-dark rounded-pill tag-item"
+  .container-fluid
+    .row
+      .col
+        - if @search_result.present?
+          = render "end_user/users/index", users: @search_result
+        - else
+          .text-center
+            h2
+              | 検索されたキーワード：
+              br
+              | "#{word}"
+              br
+              | のゲームは見つかりませんでした。
+            h4.mt-5
+              | 別のキーワードで検索するか、
+              br
+              | 人気のゲームから探してみましょう！
+          .d-flex.flex-column.align-items-center.search-form-content
+            h5.text-center
+              | ゲームを検索
+            = render "form", model: "game"
