@@ -51,7 +51,9 @@ class Post < ApplicationRecord
     prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
+    # 一次元配列にする
     posts.flatten!
+    # 重複したデータを
     unique_posts = posts.uniq { |post| post.id }
     return unique_posts
   end
