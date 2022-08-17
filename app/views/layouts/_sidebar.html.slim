@@ -11,54 +11,63 @@ table.table.table-borderless
       td
         = link_to posts_path, class: "btn btn-dark rounded-pill"
           i.fa.fa-home
-          | タイムライン
+          span.between-text-icon
+            | タイムライン
     tr
       td
         = link_to index_all_posts_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-paper-plane
-          | みんなの投稿
+          span.between-text-icon
+            | みんなの投稿
     tr
       td
         = link_to groups_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-users
-          | グループを見る
+          span.between-text-icon
+            | グループを見る
     - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
       - if current_end_user.id == @group.owner.id
         tr
           td
             = link_to group_tags_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-tags
-              | グループタグを見る
+              span.between-text-icon
+                | グループタグを見る
         tr
           td
             = link_to group_genres_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-chess
-              | グループジャンルを見る
+              span.between-text-icon
+                | グループジャンルを見る
         tr
           td
             = link_to group_games_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-gamepad
-              | グループゲームを見る
+              span.between-text-icon
+                | グループゲームを見る
     - else
       tr
         td
           = link_to tags_path, class: "btn btn-dark rounded-pill"
             i.fas.fa-tags
-            | タグを見る
+            span.between-text-icon
+              | タグを見る
       tr
         td
           = link_to genres_path, class: "btn btn-dark rounded-pill"
             i.fas.fa-chess
-            | ジャンルを見る
+            span.between-text-icon
+              | ジャンルを見る
       tr
         td
           = link_to games_path, class: "btn btn-dark rounded-pill"
             i.fas.fa-gamepad
-            | ゲームを見る
+            span.between-text-icon
+              | ゲームを見る
     tr
       td
         = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-dark rounded-pill"
           i.fas.fa-sign-out-alt
-          span
+          span.between-text-icon
             | ログアウト
 
