@@ -5,47 +5,48 @@
       td
         = link_to admin_posts_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-list
-          span
+          span.between-text-icon
             | 投稿一覧
     tr
       td
         = link_to admin_users_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-user
-          span
+          span.between-text-icon
             | ユーザー一覧
     tr
       td
         = link_to admin_groups_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-users
-          span
+          span.between-text-icon
             | グループ一覧
     tr
       td
         = link_to admin_post_tags_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-tags
-          | 投稿タグ
+          span.between-text-icon
+           | 投稿タグ
     tr
       td
         = link_to admin_tags_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-user-tag
-          span
+          span.between-text-icon
             | 趣味タグ
     tr
       td
         = link_to admin_genres_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-chess
-          span
+          span.between-text-icon
             | ジャンル
     tr
       td
         = link_to admin_games_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-gamepad
-          span
+          span.between-text-icon
             | ゲーム
     tr
       td
         = link_to destroy_admin_session_path, method: :delete, class: "btn btn-dark rounded-pill"
           i.fas.fa-sign-out-alt
-          span
+          span.between-text-icon
             | ログアウト
 

@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'posting_tags/index'
-  end
   devise_for :end_users, path: "users", controllers: {
     registrations: "end_user/registrations",
     sessions: "end_user/sessions",
@@ -13,7 +10,7 @@ Rails.application.routes.draw do
     post "users/guest_sign_in" => "end_user/sessions#guest_sign_in"
   end
 
-  get 'users' => 'end_user/users#dummy'
+  get "users" => "end_user/users#dummy"
 
   scope module: :end_user do
     root to: "home#top"
@@ -85,6 +82,7 @@ Rails.application.routes.draw do
     resources :posting_tags, only: [:index, :destroy], as: "post_tags" do
       get "search", on: :collection
     end
+    get "search" => "searches#search"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

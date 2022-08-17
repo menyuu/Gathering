@@ -14,8 +14,10 @@ nav.navbar-light.bg-white
       - else
         = link_to root_path, class:"navbar-brand"
           = image_tag asset_path("logo.png"), class: "logo"
-    - if signed_in?
+    - if end_user_signed_in?
       = render "end_user/searches/form", model: "post"
+    - elsif admin_signed_in?
+      = render "admin/searches/form"
     div
       = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
         i.fas.fa-search.align-self-center
