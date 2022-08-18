@@ -1,7 +1,8 @@
 class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :forbid_guestuser, only: [:create, :update, :destroy]
-  before_action :ensure_correct_user, only: [:update, :destroy, :complete]
+  before_action :ensure_correct_user, only: [:update, :destroy]
+  before_action :prohibit_other_user, only: [:complete]
 
   def index
     @groups = Group.with_attached_icon.page(params[:page]).without_count.per(1).order(created_at: :DESC)
@@ -46,18 +47,46 @@ class EndUser::GroupsController < ApplicationController
 
   def complete
     @group = Group.find(params[:group_id])
-    @tags = Tag.display_show_type("group")
     @tag = Tag.new
-    @genres = Genre.display_show_type("group")
+    @tags = Tag.display_show_type("group")
+    tags = @group.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
     @genre = Genre.new
-    @games = Game.display_show_type("group")
+    @genres = Genre.display_show_type("group")
+    genres = @group.genres.all
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
     @game = Game.new
+    @games = Game.display_show_type("group")
+    games = @group.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   private
 
   def ensure_correct_user
     group = Group.find(params[:id])
+    unless current_end_user.id == group.owner_id
+      redirect_to groups_path, alert: "オーナーではないため編集できません。"
+    end
+  end
+
+  def prohibit_other_user
+    group = Group.find(params[:group_id])
     unless current_end_user.id == group.owner_id
       redirect_to groups_path, alert: "オーナーではないため編集できません。"
     end
