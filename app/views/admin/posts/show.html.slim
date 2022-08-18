@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-6.offset-2
+    .col-8.offset-1
       .card.shadow.posts-area.rounded-0
         .card-body.row
           .col-8
@@ -9,7 +9,7 @@
             = link_to @post.user.name, admin_user_path(@post.user), class: "show-name"
           ul.col-4.text-right.post-item-container
             li.card-text.d-inline-block.delete-btn
-              = link_to "削除する", admin_post_path(@post), method: :delete, class:"btn btn-outline-danger opacity-10",
+              = link_to "削除する", admin_post_path(@post), method: :delete, class:"btn btn-outline-danger",
               data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
         .card-body
           p.card-text.post-text
@@ -36,7 +36,7 @@
       .scroll-list.jscroll
         - @comments.each do |comment|
           #post-index
-            .card.posts-area.rounded-0
+            .card.shadow.posts-area.rounded-0
               .card-body.row
                 .col-8
                   = link_to user_path(comment.post.user)

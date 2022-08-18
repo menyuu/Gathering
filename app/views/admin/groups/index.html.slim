@@ -1,6 +1,6 @@
-.container.ml-0
+.container-fluid
   .row
-    .col-10.offset-2
+    .col-6.offset-2
       .scroll-list.jscroll
         - @groups.each do |group|
           .card.shadow.rounded-0
@@ -8,7 +8,8 @@
               .col-6
                 = link_to admin_group_path(group)
                   = image_tag group.group_icon(56, 56), class: "rounded-circle"
-                  = link_to group.name, admin_group_path(group), class: "show-name"
+                  = link_to admin_group_path(group), class: "show-name"
+                    = group.name
               .col-6.row
                 .col-8
                   table.table
