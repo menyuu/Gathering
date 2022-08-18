@@ -1,0 +1,7 @@
+- post_tags.each do |tag|
+  tr
+    td
+      = tag.name
+    td
+      = link_to "削除", admin_post_tag_path(tag), method: :delete, remote: true,
+      class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }

@@ -4,6 +4,13 @@ class Admin::PostingTagsController < ApplicationController
     @post_tags = PostingTag.all.sort{ |a,b| b.posts.size <=> a.posts.size}
   end
 
+  def destroy
+    @post_tag = PostingTag.find(params[:id])
+    @post_tag.destroy
+    @post_tags = PostingTag.all.sort{ |a,b| b.posts.size <=> a.posts.size}
+    flash[:notice] = "タグを削除しました。"
+  end
+
   def search
     @post_tags = PostingTag.all.sort{ |a,b| b.posts.size <=> a.posts.size}
     @search_result = PostingTag.find_by(name: params[:name])

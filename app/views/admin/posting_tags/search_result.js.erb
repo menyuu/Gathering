@@ -7,7 +7,7 @@ $('.search_result').html(`
           <%= @search_result.name %>
         </td>
         <td>
-          <%= j(link_to "削除", admin_tag_path(@search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }) %>
+          <%= j(link_to "削除", admin_post_tag_path(@search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }) %>
         </td>
       </tr>
     </tbody>

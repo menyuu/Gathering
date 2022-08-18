@@ -24,11 +24,5 @@
           tr
             td colspan="2"
               | 投稿タグ一覧
-        tbody
-          - @post_tags.each do |tag|
-            tr
-              td
-                = tag.name
-              td
-                = link_to "削除", search_admin_post_tags_path(tag), method: :delete, remote: true,
-                class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
+        tbody.post-tags-area
+          = render "index", post_tags: @post_tags
