@@ -20,7 +20,7 @@
           span
             | ×
       .modal-body.tag-area
-        = render "end_user/tags/index", object: current_end_user, tags: @tags, tag: @tag, user: "user"
+        = render "end_user/tags/index", object: current_end_user, tags: @tags, tag: @tag, user: "user", tag_names: @tag_names
       .modal-footer
         .modal-body
           span.text-left
@@ -37,7 +37,7 @@
           span
             | ×
       .modal-body.genre-area
-        = render "end_user/genres/index", object: current_end_user, genres: @genres, genre: @game, user: "user"
+        = render "end_user/genres/index", object: current_end_user, genres: @genres, genre: @game, user: "user", genre_names: @genre_names
       .modal-footer
         .modal-body
           span.text-left
@@ -54,7 +54,7 @@
           span
             | ×
       .modal-body.game-area
-        = render "end_user/games/index", object: current_end_user, games: @games, game: @game, user: "user"
+        = render "end_user/games/index", object: current_end_user, games: @games, game: @game, user: "user", game_names: @game_names
       .modal-footer
         .modal-body
           span.text-left

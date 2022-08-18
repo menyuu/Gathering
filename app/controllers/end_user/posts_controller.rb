@@ -84,7 +84,7 @@ class EndUser::PostsController < ApplicationController
         end
         redirect_to posts_path, notice: "正常に投稿されました。"
       else
-        @tag_names = params[:post][:name].split(",")
+        @tag_names = tags
         render :index
       end
     end
@@ -92,25 +92,26 @@ class EndUser::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(post_params)
-      if tags.size < 9 && params[:posting_tag][:name].length < 51
+    tags = params[:post][:name].split(",")
+    if tags.size < 9 && params[:post][:name].length < 51
+      if @post.update(post_params)
         @post.tags.destroy_all
         tags.each do |tag|
           tag = PostingTag.find_or_create_by(name: tag)
           @post.tags << tag
         end
-      else
-        redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
       end
-      @post_tag = PostingTag.new
-      @post_tags = PostingTag.display_show_type("post")
-      tags = @post.tags.all
-      @tag_names = []
-      if tags.count > 0
-        @tag_names = tags.pluck(:name).join(",") + ","
-      else
-        @tag_names = tags.pluck(:name).join(",")
-      end
+      redirect_to request.referer, notice: "投稿の編集が完了しました。"
+    else
+      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+    end
+    @post_tag = PostingTag.new
+    @post_tags = PostingTag.display_show_type("post")
+    @tag_names = []
+    if @post.tags.count > 0
+      @tag_names = @post.tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = @post.tags.pluck(:name).join(",")
     end
   end
 

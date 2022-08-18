@@ -32,10 +32,31 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   def complete
     @tag = Tag.new
     @tags = Tag.display_show_type("user")
+    tags = current_end_user.tags
+    @tag_names = []
+    if tags.count > 0
+      @tag_names = tags.pluck(:name).join(",") + ","
+    else
+      @tag_names = tags.pluck(:name).join(",")
+    end
     @genre = Genre.new
     @genres = Genre.display_show_type("user")
+    genres = current_end_user.genres
+    @genre_names = []
+    if genres.count > 0
+      @genre_names = genres.pluck(:name).join(",") + ","
+    else
+      @genre_names = genres.pluck(:name).join(",")
+    end
     @game = Game.new
     @games = Game.display_show_type("user")
+    games = current_end_user.games
+    @game_names = []
+    if games.count > 0
+      @game_names = games.pluck(:name).join(",") + ","
+    else
+      @game_names = games.pluck(:name).join(",")
+    end
   end
 
   # GET /resource/cancel
