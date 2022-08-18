@@ -11,7 +11,7 @@ class EndUser::PostsController < ApplicationController
     users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
   end
 
   def index_all
@@ -25,7 +25,7 @@ class EndUser::PostsController < ApplicationController
     users.flatten!
     # idが重複しているユーザーを取り除く
     unique_users = users.uniq { |user| user.id }
-    @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = Post.where(end_user_id: unique_users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
   end
 
   def show
@@ -45,7 +45,7 @@ class EndUser::PostsController < ApplicationController
   end
 
   def draft
-    @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = current_end_user.posts.where(status: "draft").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
     @tag_names = []
     @posts.each do |post|
       tags = post.tags
@@ -65,7 +65,7 @@ class EndUser::PostsController < ApplicationController
     users = []
     users.push(current_end_user.followings, current_end_user)
     users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
     case params[:post][:status]
     when "0"
       @post.status = "published"

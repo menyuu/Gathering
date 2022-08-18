@@ -30,7 +30,7 @@
             - if @post.status == "published" || @post.status == "draft"
               li.card-text.d-inline-block.post-item
                 = link_to post_path(@post)
-                  = time_ago_in_words(@post.created_at)
+                  = time_ago_in_words(@post.updated_at)
                   | 前
             - if @post.status == "draft"
               li.accordion id="accordion#{@post.id}" aria-multiselectable="true"
@@ -78,9 +78,9 @@
                       = comment.text
                   ul.col-12.text-right.post-item-container
                     li.card-text.d-inline-block.post-item
-                      = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                      = comment.updated_at.strftime("%Y年%m月%d日 %H時%M分")
                     li.card-text.d-inline-block.post-item
-                      = time_ago_in_words(comment.created_at)
+                      = time_ago_in_words(comment.updated_at)
                       | 前
                     li.card-text.d-inline-block.post-item
                       - if comment.user == current_end_user

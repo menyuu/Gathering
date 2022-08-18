@@ -18,7 +18,7 @@
                 = render "end_user/favorites/favorite", post: post
             li.card-text.d-inline-block.post-item
               = link_to post_path(post)
-                = time_ago_in_words(post.created_at)
+                = time_ago_in_words(post.updated_at)
                 | 前
         = render "end_user/posts/comment_modal", post: post, post_comment: @post_comment
       .skill-list

@@ -43,6 +43,7 @@
 
 .item-sidebar-container {
   position: sticky;
+  margin-top: 80px;
   top: 100px;
 }
 
