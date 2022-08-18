@@ -6,7 +6,7 @@
           .col-6
             = link_to admin_group_path(@group)
               = image_tag @group.group_icon(56, 56), class: "rounded-circle pt-2"
-              = link_to @group.name, admin_group_path(@group), class: "group-show-name-link text-black"
+              = link_to @group.name, admin_group_path(@group), class: "show-name text-black"
           .col-6.row
             .col-8
               table.table
@@ -33,19 +33,19 @@
           ul.col-12
             li.card-text.tag-icon-item
               i.fas.fa-tags
-              span
+              span.between-text-icon
                 | 趣味タグ：
               - @group.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.tag-icon-item
               i.fas.fa-chess
-              span
+              span.between-text-icon
                 | ゲームジャンル：
               - @group.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.card-text.tag-icon-item
               i.fas.fa-gamepad
-              span
+              span.between-text-icon
                 | ゲーム：
               - @group.games.each do |game|
                 = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"

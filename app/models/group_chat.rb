@@ -24,7 +24,7 @@ class GroupChat < ApplicationRecord
   belongs_to :group
 
   with_options presence: true do
-    validates :end_user_id, uniqueness: { scope: [:group_id] }
+    validates :end_user_id
     validates :group_id
   end
   validates :text, presence: true, length: { maximum: 400 }

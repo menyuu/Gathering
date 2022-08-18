@@ -13,36 +13,14 @@
                 li.card-text.d-inline-block
                   = user.status_i18n
                 li.card-text.d-inline-block.delete-btn.ml-5
-                  - if user.status == "freeze"
-                    = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
-                    data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
-                  - else
-                    = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
-                    data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+                  = render "admin/users/status_btn", user: user
             .card-body
               = link_to admin_user_path(user)
                 p.card-text.introduction-text
                   = user.introduction
             .card-body
               ul.col-12
-                li.card-text
-                  i.fas.fa-user-tag
-                  span
-                    | 趣味タグ：
-                  - user.tags.each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text
-                  i.fas.fa-chess
-                  span
-                    | ゲームジャンル：
-                  - user.genres.each do |genre|
-                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text
-                  i.fas.fa-gamepad
-                  span
-                    | ゲーム：
-                  - user.games.each do |game|
-                    = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+                = render "admin/users/tags_item", user: user
               .card-body.text-right
                 = link_to "詳細を見る", admin_user_path(user), class: "btn btn-outline-dark"
             .skill-list

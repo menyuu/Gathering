@@ -1,8 +1,8 @@
 class Admin::GroupChatsController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
-    @members = @group.users
-    @chats = @group.group_chats
+    @members = @group.users.with_attached_icon
+    @chats = @group.group_chats.includes(:user)
   end
 
   def destroy

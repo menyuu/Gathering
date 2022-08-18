@@ -10,48 +10,30 @@
                   = image_tag group.group_icon(56, 56), class: "rounded-circle"
                   = link_to admin_group_path(group), class: "show-name"
                     = group.name
-              .col-6.row
-                .col-8
-                  table.table
-                    tbody
-                      tr
-                        td
-                          = link_to "オーナー：", admin_user_path(group.owner), class: "table-link"
-                        td
-                          = link_to group.owner.name, admin_user_path(group.owner), class: "table-link-count"
-                      tr.border-bottom
-                        td
-                          = link_to "メンバー：", admin_group_members_path(group), class: "table-link"
-                        td
-                          = link_to group.users.count, admin_group_members_path(group), class: "table-link-count"
-                ul.col-4.text-right
+                  = link_to admin_group_members_path(group)
+                    | (
+                    = group.users.count
+                    | )
+              .col-6.text-right
+                ul
                   li.card-text.d-inline-block.delete-btn
                     = link_to "削除する", admin_group_path(group), method: :delete, class: "btn btn-outline-danger",
                     data: {"confirm": "該当のグループを削除してよろしいですか？"}
+            .card-body.ml-auto
+              .col-12
+                table.table
+                  tbody
+                    tr.border-bottom
+                      td
+                        = link_to "オーナー：", admin_user_path(group.owner), class: "table-link"
+                      td
+                        = link_to group.owner.name, admin_user_path(group.owner), class: "table-link-count"
             .card-body
               = link_to admin_group_path(group)
                 p.card-text.group-text
                   = group.introduction
             .card-body
-              ul.col-12
-                li.card-text.tag-icon-item
-                  i.fas.fa-tags
-                  span
-                    | 趣味タグ：
-                  - group.tags.each do |tag|
-                    = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.tag-icon-item
-                  i.fas.fa-chess
-                  span
-                    | ゲームジャンル：
-                  - group.genres.each do |genre|
-                    = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                li.card-text.tag-icon-item
-                  i.fas.fa-gamepad
-                  span
-                    | ゲーム：
-                  - group.games.each do |game|
-                    = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+              = render "admin/users/tags_item", user: group
             .card-body.text-right
               = link_to "詳細を見る", admin_group_path(group), class: "btn btn-outline-dark"
           .skill-list
