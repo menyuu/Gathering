@@ -17,7 +17,7 @@ nav.navbar-light.bg-white
     - if end_user_signed_in?
       = render "end_user/searches/form", model: "post"
     - elsif admin_signed_in?
-      = render "admin/searches/form"
+      = render "admin/searches/admin_form"
     div
       = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
         i.fas.fa-search.align-self-center

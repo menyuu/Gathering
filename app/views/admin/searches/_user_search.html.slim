@@ -1,0 +1,68 @@
+- if @content == "id"
+  - if @search_result.present?
+    - @search_result.each do |user|
+      .card.shadow.rounded-0.mt-5
+        .card-body.row
+          .col-8
+            = link_to admin_user_path(user)
+              = image_tag user.user_icon(56, 56), class: "rounded-circle"
+            = link_to user.name, admin_user_path(user), class: "show-name"
+          ul.col-4.text-right
+            li.card-text.d-inline-block
+              = user.status_i18n
+            li.card-text.d-inline-block.delete-btn.ml-5
+              - if user.status == "freeze"
+                = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
+                data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
+              - else
+                = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+  - else
+    .text-center
+      h2
+        | 検索ID：
+        br
+        | "#{@word}"
+        br
+        | のユーザーは見つかりませんでした。
+    .d-flex.flex-column.align-items-center.search-form-content
+      h5.text-center
+        | ※検索する場合は画面上部にあるIDで検索を行ってください。
+        br
+        | 検索結果として表示されない場合、名前での検索を行ってください。
+    .mt-3.w-50.mx-auto
+      = render "content_form", text: "ユーザー名で検索", model: "user"
+- else
+  - if @search_result.present?
+    - @search_result.each do |user|
+      .card.shadow.rounded-0.mt-5
+        .card-body.row
+          .col-8
+            = link_to admin_user_path(user)
+              = image_tag user.user_icon(56, 56), class: "rounded-circle"
+            = link_to user.name, admin_user_path(user), class: "show-name"
+          ul.col-4.text-right
+            li.card-text.d-inline-block
+              = user.status_i18n
+            li.card-text.d-inline-block.delete-btn.ml-5
+              - if user.status == "freeze"
+                = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
+                data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
+              - else
+                = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+  - else
+    .text-center
+      h2
+        | 検索ワード：
+        br
+        | "#{@word}"
+        br
+        | のユーザーは見つかりませんでした。
+    .d-flex.flex-column.align-items-center.search-form-content
+      h5.text-center
+        | ※検索する場合は画面上部にあるIDで検索を行ってください。
+        br
+        | 検索結果として表示されない場合、名前での検索を行ってください。
+    .mt-3.w-50.mx-auto
+      = render "content_form", text: "ユーザー名で検索", model: "user"

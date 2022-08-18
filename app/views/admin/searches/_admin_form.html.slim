@@ -3,6 +3,7 @@
     .input-group.search-form-item.search-form-out
       = f.text_field :word, placeholder: "IDで検索", class: "form-control input-group-prepend col-7 col-md-9"
       = f.select :model, options_for_select({"ユーザー": "user", "投稿": "post", "グループ": "group"}), {}, class: "custom-select col-5 col-md-3"
+      = f.hidden_field :content, value: "id"
       span.input-group-append.text-right
         = button_tag(type: "submit", class: "btn btn-dark input-group")
           i.fas.fa-search.align-self-center
