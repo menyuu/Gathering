@@ -1,0 +1,22 @@
+ul.col-12
+  li.card-text
+    = link_to admin_tags_path
+      i.fas.fa-user-tag
+      span.between-text-icon
+        | 趣味タグ：
+    - user.tags.each do |tag|
+      = link_to tag.name, admin_tags_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
+  li.card-text
+    = link_to admin_genres_path
+      i.fas.fa-chess
+      span.between-text-icon
+        | ゲームジャンル：
+    - user.genres.each do |genre|
+      = link_to genre.name, admin_genres_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
+  li.card-text
+    = link_to admin_genres_path
+      i.fas.fa-gamepad
+      span.between-text-icon
+        | ゲーム：
+    - user.games.each do |game|
+      = link_to game.name, admin_games_path, class: "btn btn-sm btn-dark rounded-pill tag-item"

@@ -1,6 +1,6 @@
-.container
+.container-fluid
   .row
-    .col-10
+    .col-8.offset-1
       .card.rounded-0
         .card-body.row
           .col-8
@@ -12,35 +12,12 @@
             li.card-text.d-inline-block
               = @user.status_i18n
             li.card-text.d-inline-block.delete-btn.ml-5
-              - if @user.status == "freeze"
-                = link_to "アカウント復旧", admin_user_path(@user), method: :patch,class: "btn btn-outline-dark",
-                data: {"confirm": "該当のユーザーのアカウントを利用可能にしてよろしいですか？"}
-              - else
-                = link_to "アカウント停止", admin_user_path(@user), method: :delete, class: "btn btn-outline-danger",
-                data: {confirm: "該当のユーザーのアカウントを停止してよろしいですか？"}
+              = render "status_btn", user: @user
         .card-body
           p.card-text.introduction-text
             = @user.introduction
         .card-body
-          ul.col-12
-            li.card-text.tag-icon-item
-              i.fas.fa-user-tag
-              span.between-text-icon
-                | 趣味タグ：
-              - @user.tags.each do |tag|
-                  = link_to tag.name, admin_tags_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-text.tag-icon-item
-              i.fas.fa-chess
-              span.between-text-icon
-                |   ゲームジャンル：
-              - @user.genres.each do |genre|
-                = link_to genre.name, admin_genres_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.card-text.tag-icon-item
-              i.fas.fa-gamepad
-              span.between-text-icon
-                |   ゲーム：
-              - @user.games.each do |game|
-                = link_to game.name, admin_games_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
+          = render "tags_item", user: @user
   .row
-    .col-10
+    .col-8.offset-1
       = render "admin/posts/index", posts: @posts
