@@ -37,8 +37,11 @@ class EndUser::RelationshipsController < ApplicationController
     @user = EndUser.find(params[:user_id])
     users = []
     follower_users = @user.followers.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
-    private_users = @user.followers & current_end_user.followers
+    private_users = @user.followers.with_attached_icon.includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games) & current_end_user.followers.with_attached_icon.includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
     users.push(follower_users, private_users)
+    if @user.followers.include?(current_end_user)
+      users << current_end_user
+    end
     users.flatten!
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
