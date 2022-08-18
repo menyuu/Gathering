@@ -1,7 +1,7 @@
 .container-fluid
   .row
-    .col-8.offset-1
-      .card.rounded-0
+    .col-6.offset-2
+      .card.shadow.rounded-0
         .card-body.row
           .col-8
             = link_to @user.icon, "data-lightbox": @user.icon
@@ -19,5 +19,5 @@
         .card-body
           = render "tags_item", user: @user
   .row
-    .col-8.offset-1
+    .col-6.offset-2
       = render "admin/posts/index", posts: @posts
