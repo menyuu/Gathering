@@ -1,4 +1,6 @@
 class Admin::PostsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @posts = Post.page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end

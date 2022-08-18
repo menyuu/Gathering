@@ -1,4 +1,6 @@
 class Admin::GroupChatsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @group = Group.find(params[:group_id])
     @members = @group.users.with_attached_icon
