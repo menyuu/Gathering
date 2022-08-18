@@ -1,6 +1,6 @@
-- if @content == "id"
-  - if @search_result.present?
-    - @search_result.each do |user|
+- if content == "id"
+  - if search_result.present?
+    - search_result.each do |user|
       .card.shadow.rounded-0.mt-5
         .card-body.row
           .col-8
@@ -22,7 +22,7 @@
       h2
         | 検索ID：
         br
-        | "#{@word}"
+        | "#{word}"
         br
         | のユーザーは見つかりませんでした。
     .d-flex.flex-column.align-items-center.search-form-content
@@ -33,8 +33,8 @@
     .mt-3.w-50.mx-auto
       = render "content_form", text: "ユーザー名で検索", model: "user"
 - else
-  - if @search_result.present?
-    - @search_result.each do |user|
+  - if search_result.present?
+    - search_result.each do |user|
       .card.shadow.rounded-0.mt-5
         .card-body.row
           .col-8
@@ -56,7 +56,7 @@
       h2
         | 検索ワード：
         br
-        | "#{@word}"
+        | "#{word}"
         br
         | のユーザーは見つかりませんでした。
     .d-flex.flex-column.align-items-center.search-form-content

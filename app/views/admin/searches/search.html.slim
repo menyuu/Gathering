@@ -3,7 +3,8 @@
     .col-10.mt-5
       - case @model
       - when "user"
-        = render "user_search"
-
-
+        = render "user_search", content: @content, search_result: @search_result, word: @word
       - when "post"
+        = render "post_search", content: @content, search_result: @search_result, word: @word
+      - when "group"
+        = render "group_search", content: @content, search_result: @search_result, word: @word
