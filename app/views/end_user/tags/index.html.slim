@@ -6,4 +6,4 @@
           = render "index", tags: @tags, tag: @tag, tag_names: @tag_names
         .card-footer.bg-white
           .card-text.text-right
-            = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"
+            = link_to "マイページへ", user_path(current_end_user), class: "btn btn-dark"

@@ -6,4 +6,4 @@
           = render "index", genres: @genres, genre: @genre, genre_names: @genre_names
         .card-footer.bg-white
           .card-text.text-right
-            = link_to "戻る", 'javascript:history.back()', class: "btn btn-dark"
+            = link_to "マイページへ", user_path(current_end_user), class: "btn btn-dark"
