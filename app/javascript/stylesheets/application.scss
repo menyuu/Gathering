@@ -1,11 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import './end_user/post';
-@import './end_user/group';
-@import './end_user/group_chat';
 @import './common';
 @import './header';
 @import './loader';
+@import './btn';
+@import './bar';
+@import './end_user/home';
+@import './end_user/post';
+@import './end_user/group';
+@import './end_user/group_chat';
 
 
 textarea {
@@ -15,47 +18,7 @@ textarea {
 
 
 
-.sign-in-area {
-  top: 30%;
-}
 
-
-/*group*/
-.group-show {
-  font-size: 16px;
-  &-members {
-    &-text a, a:hover {
-      text-decoration: none;
-    }
-    &-count {
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-}
-
-
-
-.show-name {
-  margin-left: 24px;
-  font-size: 16px;
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-
-.modal-close-btn {
-  border: 1px solid #1d2124;
-  &span {
-    font-size: 16px;
-  }
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgb(29, 33, 36, 25%);
-  }
-}
 
 
 
@@ -63,9 +26,7 @@ textarea {
   margin: 8px;
 }
 
-.delete-btn a:hover {
- opacity: 1;
-}
+
 
 .table-link {
  display: inline-block;
@@ -96,22 +57,10 @@ textarea {
   margin: 8px 8px 8px 0;
 }
 
-.link-text-blue {
-  color: #007bff;
-}
-
-.link-text-blue:hover {
-  color: #007bff;
-  text-decoration: underline;
-}
 
 
-.search-bar {
-  position: sticky;
-  top: 100px;
-  padding-left: 24px;
-  font-size: 24px;
-}
+
+
 
 
 
@@ -141,38 +90,14 @@ textarea {
 }
 
 
-.sign-in-area {
-  position: sticky;
-  height: 100%;
-  z-index: 1020;
-}
+
 
 .modal {
   overflow-y: auto;
   max-height: 100%;
 }
 
-.item-sidebar {
-  overflow-y: auto;
-  height: 640px;
-}
 
-.item-sidebar-title {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: white;
-}
-
-.item-sidebar-bottom {
-  margin-top: 80px
-}
-
-.item-sidebar-container {
-  position: sticky;
-  margin-top: 80px;
-  top: 100px;
-}
 
 
 .between-text-icon {
@@ -247,9 +172,7 @@ textarea {
 
 .follows-area {
   margin-left: 30%;
-}
-@media screen and (max-width: 1200px) {
-  .follows-area {
+  @media screen and (max-width: 1200px) {
     margin-left: 0;
   }
 }
@@ -275,32 +198,6 @@ textarea {
   margin-top: 120px;
 }
 
-.errors {
-  color: red;
-}
 
 
-/*.sidebar-item {*/
-/*  padding: 0;*/
-/*}*/
 
-/*.sidebar-item:hover {*/
-/*  background-color: black;*/
-/*  color: white;*/
-/*  border-radius: 8px;*/
-/*  opacity: 0.8;*/
-/*}*/
-
-/*.sidebar-item a {*/
-/*  display: inline-block;*/
-/*  padding: 8px;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.sidebar-item a:hover {*/
-/*  color: white;*/
-/*}*/
-
-/*.sidebar-item span:hover {*/
-/*  color: white;*/
-/*}*/

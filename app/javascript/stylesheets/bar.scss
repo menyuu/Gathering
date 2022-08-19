@@ -1,0 +1,36 @@
+.sidebar {
+  position: sticky;
+  height: 100%;
+  margin-top: 80px;
+  top: 160px;
+  padding-left: 24px;
+  font-size: 24px;
+}
+
+.search-bar {
+  position: sticky;
+  top: 100px;
+  padding-left: 24px;
+  font-size: 24px;
+}
+
+
+
+.item-sidebar {
+  overflow-y: auto;
+  height: 640px;
+  &-container {
+    position: sticky;
+    margin-top: 80px;
+    top: 100px;
+  }
+  &-title {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+  }
+  &-bottom {
+    margin-top: 80px
+  }
+}

@@ -42,25 +42,27 @@ i {
   }
 }
 
-.sidebar {
-  position: sticky;
-  height: 100%;
-  margin-top: 80px;
-  top: 160px;
-  padding-left: 24px;
-  font-size: 24px;
+.errors {
+  color: red;
 }
 
-.btn-outline-dark:hover, .btn-dark:hover {
-  background-color: #23272b;
-  opacity: 1;
-}
-
-.btn-danger:hover, .btn-outline-danger:hover {
-  background-color: #c82333;
-  opacity: 1;
+.show-name {
+  margin-left: 24px;
+  font-size: 16px;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .text-danger:hover {
   opacity: 1;
+}
+
+
+.link-text-blue {
+  color: #007bff;
+  &:hover {
+    color: #007bff;
+    text-decoration: underline;
+  }
 }
