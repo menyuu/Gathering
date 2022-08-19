@@ -52,7 +52,7 @@ class Group < ApplicationRecord
   def includesUser?(user)
     user_groups.exists?(end_user_id: user.id)
   end
-  
+
   # ユーザーがグループと同じタグを所持しているかどうかを判定
   def sameHasTag?(user)
     tags.includes(:group_tags).any? { |i| user.tags.includes(:tags).include?(i) }
@@ -65,7 +65,7 @@ class Group < ApplicationRecord
   def sameHasGame?(user)
     games.includes(:group_games).any? { |i| user.games.includes(:games).include?(i) }
   end
-  
+
   # グループ検索用(application_recordに記載)
   def self.search_for(object, word, group_id)
     case object

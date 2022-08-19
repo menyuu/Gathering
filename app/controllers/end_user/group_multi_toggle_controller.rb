@@ -1,6 +1,6 @@
 class EndUser::GroupMultiToggleController < ApplicationController
   before_action :authenticate_end_user!
-  # before_action :ensure_correct_user
+  before_action :ensure_correct_user
   before_action :forbid_guestuser
 
   # グループタグ
@@ -110,7 +110,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
     else
       redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは8個までです。"
     end
-    genres = @group.genres.all
+    genres = @group.genres
     @genre_names = []
     if genres.count > 0
       @genre_names = genres.pluck(:name).join(",") + ","
@@ -124,7 +124,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @group = Group.find(params[:group_id])
     Genre.destroy_genre(params[:name], @group)
     @genres = Genre.display_show_type(params[:model])
-    genres = @group.genres.all
+    genres = @group.genres
     @genre_names = []
     if genres.count > 0
       @genre_names = genres.pluck(:name).join(",") + ","
@@ -200,10 +200,10 @@ class EndUser::GroupMultiToggleController < ApplicationController
 
   private
 
-  # def ensure_correct_user
-  #   group = Group.find(params[:group_id])
-  #   unless current_ end_user.id == group.owner_id
-  #     redirect_to groups_path, alert: "オーナーではないため編集できません。"
-  #   end
-  # end
+  def ensure_correct_user
+    group = Group.find(params[:group_id])
+    unless current_end_user.id == group.owner_id
+      redirect_to groups_path, alert: "オーナーではないため編集できません。"
+    end
+  end
 end

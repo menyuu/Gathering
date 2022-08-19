@@ -1,10 +1,11 @@
 .card.shadow.group-sidebar-container
   h6.card-title.text-center.mx-auto.p-3
-    = group.name
-    | (
-    span
-      = group.users.count
-    | )
+    = link_to group_path(group)
+      = group.name
+      | (
+      span
+        = group.users.count
+      | )
   .card-body.group-sidebar.overflow-auto
     .scroll-list.jscroll
       - members.each do |member|

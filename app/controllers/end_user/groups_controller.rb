@@ -5,15 +5,22 @@ class EndUser::GroupsController < ApplicationController
   before_action :prohibit_other_user, only: [:complete]
 
   def index
-    @groups = Group.with_attached_icon.page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
     @group = Group.new
+    @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
   end
 
   def show
     @group = Group.find(params[:id])
-    @group_chat = GroupChat.new
-    @members = @group.users.where(status: "published").with_attached_icon.page(params[:page]).without_count.per(1).order(name: :ASC)
+    users = []
+    published_users = @group.users.where(status: "published")
+    users.push(published_users)
+    if @group.users.include?(current_end_user)
+      users << current_end_user
+    end
+    users.flatten!
+    users = users.uniq { |user| user.id }
+    @members = Kaminari.paginate_array(users).page(params[:page]).per(1).order(name: :ASC)
   end
 
   def create
@@ -24,8 +31,8 @@ class EndUser::GroupsController < ApplicationController
       @group.users << current_end_user
       redirect_to group_complete_path(@group), notice: "グループを作成しました。"
     else
-      @groups = Group.with_attached_icon.page(params[:page]).without_count.per(1).order(created_at: :DESC)
-      @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
+      @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
+      @join_group = current_end_user.groups
       render :index
     end
   end
@@ -58,7 +65,7 @@ class EndUser::GroupsController < ApplicationController
     end
     @genre = Genre.new
     @genres = Genre.display_show_type("group")
-    genres = @group.genres.all
+    genres = @group.genres
     @genre_names = []
     if genres.count > 0
       @genre_names = genres.pluck(:name).join(",") + ","
