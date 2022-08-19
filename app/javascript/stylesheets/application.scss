@@ -16,18 +16,6 @@ textarea {
   height: 120px;
 }
 
-
-
-
-
-
-
-.tag-item {
-  margin: 8px;
-}
-
-
-
 .table-link {
  display: inline-block;
  width: 100%;
@@ -46,7 +34,6 @@ textarea {
 }
 
 
-
 .icon-item {
  font-size: 24px;
  cursor: pointer;
@@ -57,16 +44,9 @@ textarea {
   margin: 8px 8px 8px 0;
 }
 
-
-
-
-
-
-
-
-
-
-.modal{
+.modal {
+  overflow-y: auto;
+  max-height: 100%;
   margin: 0 auto;
 }
 
@@ -75,72 +55,45 @@ textarea {
   cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
 .item-bar {
   height: 560px;
 }
 
 
-
-
-.modal {
-  overflow-y: auto;
-  max-height: 100%;
-}
-
-
-
-
-.between-text-icon {
-  margin-left: 8px;
-}
 .user-item a:hover {
   text-decoration: none;
 }
 
-
-.introduction-area {
-  padding: 0 16px;
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.introduction {
+  &-text {
+    padding: 16px 16px;
+  }
+  &-area {
+    padding: 0 16px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &-container a:hover {
+      text-decoration: none;
+    }
+  }
 }
-
-.introduction-area-container a:hover {
-  text-decoration: none;
-}
-
-.introduction-text {
-  padding: 16px 16px;
-}
-
 
 .tag-icon-item {
   font-size: 16px;
   margin: 8px 8px 16px 0;
   cursor: pointer;
-}
-
-.tag-icon-item a:hover {
-  text-decoration: none;
-}
-
-.tag-icon-item-delete {
-  margin-left: 16px;
-  cursor: pointer;
-}
-.tag-icon-item-delete a:hover {
-  color: red;
+  & a:hover {
+    text-decoration: none;
+  }
+  &-delete {
+    margin-left: 16px;
+    cursor: pointer;
+    & a:hover {
+      color: red;
+    }
+  }
 }
 
 .other-group-members {
