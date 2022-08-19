@@ -13,14 +13,14 @@ class EndUser::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     users = []
-    published_users = @group.users.where(status: "published")
+    published_users = @group.users.where(status: "published").order(name: :ASC)
     users.push(published_users)
     if @group.users.include?(current_end_user)
       users << current_end_user
     end
     users.flatten!
     users = users.uniq { |user| user.id }
-    @members = Kaminari.paginate_array(users).page(params[:page]).per(1).order(name: :ASC)
+    @members = Kaminari.paginate_array(users).page(params[:page]).per(1)
   end
 
   def create
