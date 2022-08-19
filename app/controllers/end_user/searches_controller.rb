@@ -35,6 +35,7 @@ class EndUser::SearchesController < ApplicationController
       @post_comment = PostComment.new
     when "post_tag"
       search_result = PostingTag.search_for(@word)
+      @tags = PostingTag.display_show_type("post", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.posts.with_attached_images.includes(:user, :tags, :post_tags)).page(params[:page]).per(1)
       end

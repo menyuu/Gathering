@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @users = EndUser.page(params[:page]).per(1).order(created_at: :DESC)
   end
@@ -19,7 +19,13 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = EndUser.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path, alert: "該当のユーザーのアカウントを削除しました。"
+  end
+
+  def freeze
+    @user = EndUser.find(params[:id])
     @user.update(status: "freeze")
-    redirect_to request.referer, alert: "該当のユーザーのアカウント停止をしました。"
+    redirect_to request.referer, alert: "該当のユーザーのアカウント停止にしました。"
   end
 end

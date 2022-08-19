@@ -65,7 +65,9 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comments, only: [:destroy], as: "comment"
     end
-    resources :users, only: [:index, :show, :update, :destroy]
+    resources :users, only: [:index, :show, :update, :destroy] do
+      patch "freeze", on: :member
+    end
     resources :groups, only: [:index, :show, :destroy] do
       resources :group_chats, only: [:index, :destroy], as: "chats"
       get "members"

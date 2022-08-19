@@ -15,8 +15,11 @@
                 = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
                 data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
               - else
-                = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                = link_to "アカウント停止", freeze_admin_user_path(user), method: :patch, class: "btn btn-outline-danger",
                 data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+                .mt-3
+                  = link_to "アカウント削除", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                  data: {"confirm": "該当のユーザーのアカウントを削除してよろしいですか？"}
   - else
     .text-center
       h2
@@ -49,8 +52,11 @@
                 = link_to "アカウント復旧", admin_user_path(user), method: :patch,class: "btn btn-outline-dark",
                 data: {"confirm": "該当のユーザーのアカウントを利用可能してよろしいですか？"}
               - else
-                = link_to "アカウント停止", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                = link_to "アカウント停止", freeze_admin_user_path(user), method: :patch, class: "btn btn-outline-danger",
                 data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
+                .mt-3
+                  = link_to "アカウント削除削除", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                  data: {"confirm": "該当のユーザーのアカウントを削除してよろしいですか？"}
   - else
     .text-center
       h2

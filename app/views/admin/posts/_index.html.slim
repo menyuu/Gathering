@@ -34,6 +34,11 @@
                 | 前
             li.card-text.d-inline-block.post-item
               = link_to admin_post_path(post)
+                |コメント(
+                = post.post_comments.count
+                | )
+            li.card-text.d-inline-block.post-item
+              = link_to admin_post_path(post)
                 = post.status_i18n
         .skill-list
           = link_to_prev_page posts, "前のページ", class: "prev d-none"
