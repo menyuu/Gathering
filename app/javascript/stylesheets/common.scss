@@ -3,9 +3,11 @@ body {
   background-color: white;
   margin-bottom: 80px;
 }
-
-ul,ol,li {
-  list-style: none;
+ul {
+  padding-left: 0;
+  &,ol,li {
+    list-style: none;
+  }
 }
 
 a {

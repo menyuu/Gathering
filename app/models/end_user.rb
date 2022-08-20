@@ -83,11 +83,11 @@ class EndUser < ApplicationRecord
   def self.search_for(object, word, user_id)
     case object
     when "id"
-      EndUser.search_id_match(word, user_id)
+      self.search_id_match(word, user_id)
     when "user"
-      EndUser.search_match(word, status: "published")
+      self.search_match(word, status: "published")
     when "user_keyword"
-      EndUser.search_keyword_match(word, status: "published")
+      self.search_keyword_match(word, status: "published")
     end
   end
 
@@ -96,7 +96,7 @@ class EndUser < ApplicationRecord
     self.find_or_create_by!(name: "ゲストユーザー", email: "guest_user@example.com") do |guest|
       guest.password = SecureRandom.urlsafe_base64
       guest.email = "guest_user@example.com"
-      guest.introduction = "こちらは閲覧用のアカウントでございます。投稿や編集などを行うことができないため、ご容赦ください。"
+      guest.introduction = "こちらは閲覧用のアカウントでございます。\r\n投稿や編集などを行うことができないため、ご容赦ください。"
     end
   end
 end

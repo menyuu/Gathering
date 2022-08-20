@@ -12,9 +12,11 @@ class EndUser::UsersController < ApplicationController
       if params[:end_user][:password] && params[:end_user][:password_confirmation]
         sign_in(@user, bypass: true)
       end
-      redirect_to user_path(@user), notice: "編集内容が正常に変更されました。"
+      redirect_to request.referer, notice: "正常に編集が完了しました。"
+    elsif params[:end_user][:password] && params[:end_user][:password_confirmation]
+      render :password_error
     else
-      render :show
+      render :error
     end
   end
 

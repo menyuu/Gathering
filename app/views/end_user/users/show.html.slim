@@ -2,8 +2,6 @@
   .row
     .col-10.col-md-8.offset-1
       .card.shadow.rounded-0
-        .errors
-          = render "layouts/errors", obj: @user
         .card-body.row
           .col-6
             = link_to @user.icon, "data-lightbox": @user.icon
@@ -21,8 +19,6 @@
                     i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" data-placement="right" title="クリックしてユーザーを編集"
                   = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ml-5",
                   data: {confirm: "本当にログアウトしますか？"}
-                span.text-center
-                  = render "user_modal", user: @user
             .row.mt-5 class="follow_count_#{@user.id}"
               = render "follows", user: @user
         .card-body
@@ -70,3 +66,6 @@
                   span.between-text-icon
                     | 下書き
       = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
+.text-center
+  = render "user_edit", user: @user
+  = render "user_password_edit", user: @user
