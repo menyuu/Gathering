@@ -43,7 +43,7 @@ class EndUser::PostsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.save
         @post.tag_save(tags)
-        redirect_to posts_path, notice: "正常に投稿されました。"
+        redirect_to request.referer, notice: "正常に投稿されました。"
       else
         @tag_names = tags.join(",") + ","
         render :error
@@ -60,12 +60,15 @@ class EndUser::PostsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.update(post_params)
         @post.tag_save(tags)
+        redirect_to request.referer, notice: "投稿の編集が完了しました。"
+      else
+        @tag_names = @post.tag_names
+        render :error
       end
-      redirect_to request.referer, notice: "投稿の編集が完了しました。"
     else
-      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+      @tag_names = @post.tag_names
+      render :tag_error
     end
-    @tag_names = @post.tag_names
   end
 
   def destroy
@@ -88,10 +91,12 @@ class EndUser::PostsController < ApplicationController
     end
   end
 
+  # タグのサイドバー表示用
   def tag_items
     @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
   end
 
+  # 新規コメントの作成
   def post_comment_new
     @post_comment = PostComment.new
   end

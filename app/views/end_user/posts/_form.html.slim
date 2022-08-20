@@ -1,6 +1,6 @@
 = form_with model: post, local: false do |f|
-  .col-12.shadow.ml-auto.border
-    .errors.mt-3
+  .col-12
+    .errors.mt-3.text-left
       = render "layouts/errors", obj: @post
     = f.text_area :text, placeholder: "入力して投稿",
     class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-area", rows: 5

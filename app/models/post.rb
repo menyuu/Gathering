@@ -45,17 +45,6 @@ class Post < ApplicationRecord
     favorites.exists?(end_user_id: user.id)
   end
 
-  # 持っているタグを表示
-  def tag_names
-    tags = self.tags
-    if tags.count > 0
-      # 所持しているタグの数が1つ以上あれば最後に半角カンマ(,)を表示する
-      tags.pluck(:name).join(",") + ","
-    else
-      tags.pluck(:name).join(",")
-    end
-  end
-
   # タグを保存
   def tag_save(tags)
     # 持っているタグを全て削除して、追加する

@@ -42,22 +42,7 @@
                         | クリックして編集
                   .accordion-collapse.collapse id="collapse#{@post.id}" aria-labelledby="heading#{@post.id}" data-parent="#accordion#{@post.id}"
                     .accordion-body
-                      = form_with model: @post, local: false do |f|
-                        .col-12.ml-auto
-                          = f.text_area :text, placeholder: "入力して投稿", class: "form-control border-top rounded-0 post-input-area", rows: 5;
-                          .text-right.post-input-item.mt-3
-                            .form-group.d-sm-inline-block
-                              = f.label :images, for: "post_images_#{@post.id}"
-                                i.fas.fa-image.form-item.post-item-icon
-                              = f.file_field :images, name: "post[images][]", multiple: true, id: "post_images_#{@post.id}", style: "display: none;"
-                            .form-check.form-switch.d-sm-inline-block
-                              = f.check_box :status, {class: "form-check-input form-item", id: "post-status-#{@post.id}"}, "published", "draft"
-                              = f.label :status, "投稿を公開", class: "form-check-label form-item", for: "post-status-#{@post.id}"
-                          .col-10.form-group
-                            = f.text_field :name, value:  @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
-                            class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
-                          .form-group.mt-3.text-right.post-input-item
-                            = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+                      = render "form", post: @post
         - if @post.status == "published"
           .card-body
             = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|

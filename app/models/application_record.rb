@@ -1,6 +1,36 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  # 持っているタグを表示
+  def tag_names
+    tags = self.tags
+    if tags.count > 0
+      # 所持しているタグの数が1つ以上あれば最後に半角カンマ(,)を表示する
+      tags.pluck(:name).join(",") + ","
+    else
+      tags.pluck(:name).join(",")
+    end
+  end
+
+  # 持っているジャンルを表示
+  def genre_names
+    genres = self.genres
+    if genres.count > 0
+      genres.pluck(:name).join(",") + ","
+    else
+      genres.pluck(:name).join(",")
+    end
+  end
+
+  def game_names
+    games = self.games
+    if games.count > 0
+      games.pluck(:name).join(",") + ","
+    else
+      games.pluck(:name).join(",")
+    end
+  end
+
   # タグをつけている人数が多い順にソート
   def self.display_show_type(object, range = 30)
     case object

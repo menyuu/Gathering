@@ -3,6 +3,7 @@
 class EndUser::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+  before_action :limit_transitions_user, only: [:complete]
 
   # GET /resource/sign_up
   # def new
@@ -30,33 +31,18 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # end
 
   def complete
+    # タグの表示
     @tag = Tag.new
     @tags = Tag.display_show_type("user")
-    tags = current_end_user.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = current_end_user.tag_names
+    # ジャンルの表示
     @genre = Genre.new
     @genres = Genre.display_show_type("user")
-    genres = current_end_user.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genre_names = current_end_user.genre_names
+    # ゲームの表示
     @game = Game.new
     @games = Game.display_show_type("user")
-    games = current_end_user.games
-    @game_names = []
-    if games.count > 0
-      @game_names = games.pluck(:name).join(",") + ","
-    else
-      @game_names = games.pluck(:name).join(",")
-    end
+    @game_names = current_end_user.game_names
   end
 
   # GET /resource/cancel
@@ -89,4 +75,10 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def limit_transitions_user
+    if params[:id] == "posts"
+      redirect_to posts_path, alert: "実行できませんでした。"
+    end
+  end
 end
