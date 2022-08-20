@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-8.offset-1
+    .col-7.offset-1.mt-5
       .card.shadow.posts-area.rounded-0
         .card-body.row
           .col-8
@@ -90,5 +90,5 @@
               = link_to_prev_page @comments, "前のページ", class: "prev d-none"
               = link_to_next_page @comments, "次のページ", class: "next d-none"
         = render "comment_modal", post: @post, post_comment: @post_comment
-    .col-3.d-none.d-md-block
+    .col-3.offset-1.d-none.d-md-block
       = render "item_sidebar", post_tags: @post_tags, tags: @tags, genres: @genres, games: @games

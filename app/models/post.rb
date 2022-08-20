@@ -41,6 +41,29 @@ class Post < ApplicationRecord
     favorites.exists?(end_user_id: user.id)
   end
 
+  # 持っているタグを表示
+  def tag_names
+    tags = self.tags
+    tag_names =[]
+    if tags.count > 0
+      # 所持しているタグの数が1つ以上あれば最後に半角カンマ(,)を表示する
+      tag_names = tags.pluck(:name).join(",") + ","
+    else
+      tag_names = tags.pluck(:name).join(",")
+    end
+  end
+
+  # タグを保存
+  def tag_save(tags)
+    # 持っているタグを全て削除して、追加する
+    self.tags.destroy_all
+    tags.each do |tag|
+        # タグが既に存在するかを探して存在しなければ作成する
+      tag = PostingTag.find_or_create_by(name: tag)
+      self.tags << tag
+    end
+  end
+
   # 完全一致、後方、前方、部分、に当てはまる投稿を配列に直し重複しているものを除外
   def self.search_for(word)
     # 公開されているユーザーを取得
