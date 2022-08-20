@@ -2,17 +2,11 @@ class EndUser::PostsController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :destroy]
   before_action :tag_items, only: [:index, :show, :index_all, :draft, :create]
   before_action :forbid_guestuser, only: [:create, :update, :destroy]
-  before_action :post_comment_new, only: [:index, :index_all, :show]
+  before_action :post_comment_new, only: [:index, :index_all, :show, :create]
+  before_action :post_index, only: [:index, :create]
 
   def index
     @post = Post.new
-    posts = Post.includes(:user)
-    # フォロー中のユーザーとログイン中のユーザーを配列にする
-    users = []
-    users.push(current_end_user.followings, current_end_user)
-    # 一次元配列に整理する
-    users.flatten!
-    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
   end
 
   def index_all
@@ -46,21 +40,24 @@ class EndUser::PostsController < ApplicationController
       @post.status = "draft"
     end
     tags = params[:post][:name].split(",")
-    if tags.size < 9 && params[:post][:name].length < 51
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.save
         @post.tag_save(tags)
         redirect_to posts_path, notice: "正常に投稿されました。"
       else
-        @tag_names = tags
-        render :index
+        @tag_names = tags.join(",") + ","
+        render :error
       end
+    else
+      @tag_names = tags.join(",") + ","
+      render :tag_error
     end
   end
 
   def update
     @post = Post.find(params[:id])
     tags = params[:post][:name].split(",")
-    if @post.tags.size < 9 && params[:post][:name].length < 51
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.update(post_params)
         @post.tag_save(tags)
       end
@@ -80,7 +77,7 @@ class EndUser::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:text, :status, images: [])
+    params.require(:post).permit(:text, :status, :name, images: [])
   end
 
   def ensure_correct_user
@@ -97,5 +94,15 @@ class EndUser::PostsController < ApplicationController
 
   def post_comment_new
     @post_comment = PostComment.new
+  end
+
+  def post_index
+    posts = Post.includes(:user)
+    # フォロー中のユーザーとログイン中のユーザーを配列にする
+    users = []
+    users.push(current_end_user.followings, current_end_user)
+    # 一次元配列に整理する
+    users.flatten!
+    @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)
   end
 end

@@ -23,7 +23,7 @@ class EndUserTag < ApplicationRecord
   belongs_to :tag
 
   with_options presence: true do
-    validates :end_user_id, uniqueness: { scope: [:tag_id] }
+    validates :end_user_id
     validates :tag_id
   end
   validate :tags_limit_count

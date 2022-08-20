@@ -17,7 +17,7 @@ class EndUser::TagsController < ApplicationController
   def create
     @tag = Tag.new
     tags = params[:tag][:name].split(",")
-    if tags.size < 9  && params[:tag][:name].length < 51
+    if tags.size < 9  && tags.all? { |tag| tag.length < 51 }
       Tag.create_tag(tags, current_end_user)
       @tags = Tag.display_show_type(params[:tag][:model])
     else

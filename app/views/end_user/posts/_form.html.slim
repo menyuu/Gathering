@@ -1,4 +1,4 @@
-= form_with model: post, local: true do |f|
+= form_with model: post, local: false do |f|
   .col-12.shadow.ml-auto.border
     .errors.mt-3
       = render "layouts/errors", obj: @post
@@ -12,8 +12,8 @@
       .form-check.form-switch.d-sm-inline-block
         = f.check_box :status, {class: "form-check-input"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label"
-    .col-10.form-group
-      = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。",
+    .col-12.form-group
+      = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。(最大8個まで)",
       class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"

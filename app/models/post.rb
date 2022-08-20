@@ -23,9 +23,14 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags, source: :posting_tag
+  attr_accessor :name
+  accepts_nested_attributes_for :post_tags
+  accepts_nested_attributes_for :tags
   has_many_attached :images
 
   enum status: { published: 0, draft: 1 }
+
+  IMAGE_LIMITED = 4
 
   with_options presence: true do
     validates :text, length: { maximum: 200 }
@@ -33,7 +38,6 @@ class Post < ApplicationRecord
   end
   validate :images_length
 
-  IMAGE_LIMITED = 4
   before_create -> { self.id = SecureRandom.random_number(10000000) }
 
   # 投稿にcurrent_end_userのいいねがあるかどうかを判定
@@ -44,12 +48,11 @@ class Post < ApplicationRecord
   # 持っているタグを表示
   def tag_names
     tags = self.tags
-    tag_names =[]
     if tags.count > 0
       # 所持しているタグの数が1つ以上あれば最後に半角カンマ(,)を表示する
-      tag_names = tags.pluck(:name).join(",") + ","
+      tags.pluck(:name).join(",") + ","
     else
-      tag_names = tags.pluck(:name).join(",")
+      tags.pluck(:name).join(",")
     end
   end
 
@@ -57,7 +60,7 @@ class Post < ApplicationRecord
   def tag_save(tags)
     # 持っているタグを全て削除して、追加する
     self.tags.destroy_all
-    tags.each do |tag|
+    tags.uniq.map do |tag|
         # タグが既に存在するかを探して存在しなければ作成する
       tag = PostingTag.find_or_create_by(name: tag)
       self.tags << tag
