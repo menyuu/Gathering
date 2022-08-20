@@ -1,6 +1,20 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
-
+  
+  # 画面上に表示するタグ類
+  # タグをつけている人数が多い順にソート
+  def self.display_show_type(object, range = 30)
+    case object
+      when "user"
+        where(status: "prepared").sort { |a,b| b.users.size <=> a.users.size}.first(range)
+      when "group"
+        where(status: "prepared").sort { |a,b| b.groups.size <=> a.groups.size}.first(range)
+      when "post"
+        all.sort{ |a,b| b.posts.size <=> a.posts.size}.first(range)
+    end
+  end
+  
+  # タグ類のformへの表示
   # 持っているタグを表示
   def tag_names
     tags = self.tags
@@ -31,6 +45,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # タグの作成
   # タグを保存
   def tag_save(tags, class_name)
     # 持っているタグを全て削除して、追加する
@@ -42,18 +57,9 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  # タグをつけている人数が多い順にソート
-  def self.display_show_type(object, range = 30)
-    case object
-      when "user"
-        where(status: "prepared").sort { |a,b| b.users.size <=> a.users.size}.first(range)
-      when "group"
-        where(status: "prepared").sort { |a,b| b.groups.size <=> a.groups.size}.first(range)
-      when "post"
-        all.sort{ |a,b| b.posts.size <=> a.posts.size}.first(range)
-    end
-  end
-
+  
+  
+  # 検索用
   # ユーザーとグループのid検索
   def self.search_id_match(word, id)
     # idが存在するかどうかを判定
