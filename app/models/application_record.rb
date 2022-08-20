@@ -31,6 +31,17 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # タグを保存
+  def tag_save(tags, class_name)
+    # 持っているタグを全て削除して、追加する
+    self.tags.destroy_all
+    tags.uniq.map do |tag|
+        # タグが既に存在するかを探して存在しなければ作成する
+      tag = class_name.find_or_create_by(name: tag)
+      self.tags << tag
+    end
+  end
+
   # タグをつけている人数が多い順にソート
   def self.display_show_type(object, range = 30)
     case object

@@ -11,6 +11,10 @@ class PostingTag < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :posts, through: :post_tags
 
+  with_options presence: true do
+    validates :name, uniqueness: true, length: { maximum: 50 }
+  end
+
   def self.search_for(word)
     PostingTag.find_by(name: word)
   end

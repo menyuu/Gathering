@@ -7,25 +7,14 @@ class EndUser::PostingTagsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_tags = PostingTag.display_show_type("post")
     @post_tag = PostingTag.new
-    tags = @post.tags.all
-    @tag_names = []
-    if tags.count > 0
-      # 所持しているタグの数が1つ以上あれば最後に半角カンマ(,)を表示する
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = @post.tag_names
   end
 
   def create
     @post = Post.find(params[:post_id])
     tags = params[:posting_tag][:name].split(",")
-    if tags.size < 9  && params[:posting_tag][:name].length < 51
-      @post.tags.destroy_all
-      tags.each do |tag|
-        tag = PostingTag.find_or_create_by(name: tag)
-        @post.tags << tag
-      end
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
+      @post.tag_save(tags, PostingTag)
     else
       redirect_to request.referer, alert: "追加できるタグは50文字以内、もしくは8個までです。ご注意ください。"
     end
