@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       collection do
         get "draft"
         get "index_all"
+        get "hashtag/:name" => "posts#hashtag"
       end
     end
     resources :groups, except: [:edit, :new] do

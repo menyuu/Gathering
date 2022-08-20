@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_124653) do
+ActiveRecord::Schema.define(version: 2022_08_20_013405) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -172,6 +172,13 @@ ActiveRecord::Schema.define(version: 2022_07_26_124653) do
     t.index ["owner_id"], name: "index_groups_on_owner_id"
   end
 
+  create_table "hashtags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_hashtags_on_name", unique: true
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "post_id", null: false
@@ -180,6 +187,15 @@ ActiveRecord::Schema.define(version: 2022_07_26_124653) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_post_comments_on_end_user_id"
     t.index ["post_id"], name: "index_post_comments_on_post_id"
+  end
+
+  create_table "post_hashtags", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "hashtag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["hashtag_id"], name: "index_post_hashtags_on_hashtag_id"
+    t.index ["post_id"], name: "index_post_hashtags_on_post_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -245,6 +261,8 @@ ActiveRecord::Schema.define(version: 2022_07_26_124653) do
   add_foreign_key "groups", "end_users", column: "owner_id"
   add_foreign_key "post_comments", "end_users"
   add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_hashtags", "hashtags"
+  add_foreign_key "post_hashtags", "posts"
   add_foreign_key "post_tags", "posting_tags"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "posts", "end_users"

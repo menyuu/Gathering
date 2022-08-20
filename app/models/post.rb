@@ -23,6 +23,8 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags, source: :posting_tag
+  has_many :post_hashtags, dependent: :destroy
+  has_many :hashtags, through: :post_hashtags
   has_many_attached :images
 
   enum status: { published: 0, draft: 1 }
@@ -58,6 +60,26 @@ class Post < ApplicationRecord
     return unique_posts
   end
 
+  after_create do
+    post = Post.find_by(id: self.id)
+    hashtags  = self.text.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    post.hashtags = []
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(name: hashtag.downcase.delete('#'))
+      post.hashtags << tag
+    end
+  end
+  
+  before_update do 
+    post = Post.find_by(id: self.id)
+    post.hashtags.clear
+    hashtags = self.caption.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+    hashtags.uniq.map do |hashtag|
+      tag = Hashtag.find_or_create_by(hashname: hashtag.downcase.delete('#'))
+      post.hashtags << tag
+    end
+  end
+  
   private
 
   def images_length
