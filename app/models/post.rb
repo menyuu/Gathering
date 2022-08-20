@@ -80,6 +80,15 @@ class Post < ApplicationRecord
     end
   end
   
+  # def hashtag_create(text)
+  #   hashtags = []
+  #   hashtags = text.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
+  #   hashtags.uniq.map do |hashtag|
+  #     tag = Hashtag.find_or_create_by(name: hashtag.downcase.delete("#{/[#＃]/}"))
+  #     self.hashtags << tag
+  #   end
+  # end
+  
   private
 
   def images_length
