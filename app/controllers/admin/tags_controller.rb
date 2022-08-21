@@ -8,21 +8,21 @@ class Admin::TagsController < ApplicationController
 
   def create
     @tag = Tag.find_or_initialize_by(tag_params)
-    @tag.save
-    @tag.update(status: "hide")
-    flash[:notice] =  "タグを作成しました。"
+    if @tag.save
+      @tag.update(status: "hide")
+    else
+      render "layouts/error"
+    end
   end
 
   def update
     @tag = Tag.find(params[:id])
     @tag.update(status: params[:status])
-    flash[:notice] = "タグの情報を更新しました。"
   end
 
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
-    flash[:notice] = "タグを削除しました。"
   end
 
   def search

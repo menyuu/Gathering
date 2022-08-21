@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-8.mt-5.mx-auto
+    .col-8.offset-1.mt-5
       h5.mb-3
         | タグの検索
       = form_with url: search_admin_post_tags_path, method: :get, local: false do |f|
@@ -11,14 +11,14 @@
             = button_tag(type: "submit", class: "btn btn-dark input-group")
               i.fas.fa-search.align-self-center
   .row
-    .col-8.mt-5.mx-auto
+    .col-8.offset-1.mt-5
       h4.mb-3
         | 検索結果
       .card
         .card-body
           .search_result
   .row.mt-5.tags-area
-    .col-8.mt-5.mx-auto.item-bar.overflow-auto
+    .col-8.offset-1.mt-5.item-bar.overflow-auto
       table.table
         thead
           tr
