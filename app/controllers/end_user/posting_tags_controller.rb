@@ -16,7 +16,7 @@ class EndUser::PostingTagsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       PostingTag.create_tag(tags, @post)
     else
-      render :error
+      render "layouts/error"
     end
     @post_tag = PostingTag.new
     @post_tags = PostingTag.display_show_type("post")
@@ -30,7 +30,7 @@ class EndUser::PostingTagsController < ApplicationController
       @post.tags.delete(tag)
       @post.tags << tag
     else
-      render :error
+      render "layouts/error"
     end
     @post_tag = PostingTag.new
     @post_tags = PostingTag.display_show_type("post")

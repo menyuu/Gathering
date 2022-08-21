@@ -33,7 +33,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
       Tag.create_tag(tags, @group)
       @tags = Tag.display_show_type(params[:tag][:model])
     else
-      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+      render "layouts/error"
     end
     @tag_names = @group.tag_names
   end

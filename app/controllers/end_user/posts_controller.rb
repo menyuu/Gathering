@@ -50,7 +50,7 @@ class EndUser::PostsController < ApplicationController
       end
     else
       @tag_names = tags.join(",") + ","
-      render :tag_error
+      render "layouts/error"
     end
   end
 
@@ -67,7 +67,7 @@ class EndUser::PostsController < ApplicationController
       end
     else
       @tag_names = @post.tag_names
-      render :tag_error
+      render "layouts/error"
     end
   end
 
