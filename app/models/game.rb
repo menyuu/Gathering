@@ -25,6 +25,16 @@ class Game < ApplicationRecord
     Game.find_by(name: word)
   end
 
+  # 持っているゲームを表示
+  def game_names
+    games = self.games
+    if games.count > 0
+      games.pluck(:name).join(",") + ","
+    else
+      games.pluck(:name).join(",")
+    end
+  end
+
   def self.create_game(game_names, create_game_model)
     create_game_model.games.destroy_all
     game_names.each do |game|
