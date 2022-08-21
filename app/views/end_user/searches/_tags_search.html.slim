@@ -9,7 +9,7 @@
         = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
-        |人気のタグから探す：
+        |人気のタグからユーザーを探す：
         - @tags.each do |tag|
           = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
@@ -24,14 +24,14 @@
               br
               | "#{word}"
               br
-              | のタグは見つかりませんでした。
+              | のユーザーは見つかりませんでした。
             h4.mt-5
               | 別のキーワードで検索するか、
               br
-              | 人気のタグから探してみましょう！
+              | 人気のタグからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
             h5.text-center
-              | タグを検索
+              | タグでユーザーを検索
             = render "form", model: "tag"
 
 - when "genre"
@@ -44,7 +44,7 @@
         = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
-        |人気のジャンルから探す：
+        |人気のジャンルからユーザーを探す：
         - @genres.each do |genre|
           = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
@@ -59,14 +59,14 @@
               br
               | "#{word}"
               br
-              | のジャンルは見つかりませんでした。
+              | のユーザーは見つかりませんでした。
             h4.mt-5
               | 別のキーワードで検索するか、
               br
-              | 人気のジャンルから探してみましょう！
+              | 人気のジャンルからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
             h5.text-center
-              | ジャンルを検索
+              | ジャンルでユーザーを検索
             = render "form", model: "genre"
 
 - when "game"
@@ -79,7 +79,7 @@
         = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
-        |人気のゲームから探す：
+        |人気のゲームからユーザーを探す：
         - @games.each do |game|
           = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
@@ -94,12 +94,12 @@
               br
               | "#{word}"
               br
-              | のゲームは見つかりませんでした。
+              | のユーザーは見つかりませんでした。
             h4.mt-5
               | 別のキーワードで検索するか、
               br
-              | 人気のゲームから探してみましょう！
+              | 人気のゲームからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
             h5.text-center
-              | ゲームを検索
+              | ゲームでユーザーを検索
             = render "form", model: "game"
