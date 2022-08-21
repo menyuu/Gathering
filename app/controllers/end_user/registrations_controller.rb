@@ -3,7 +3,6 @@
 class EndUser::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :limit_transitions_user, only: [:complete]
 
   # GET /resource/sign_up
   # def new
@@ -75,10 +74,4 @@ class EndUser::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
-  def limit_transitions_user
-    if params[:id] == "posts"
-      redirect_to posts_path, alert: "実行できませんでした。"
-    end
-  end
 end
