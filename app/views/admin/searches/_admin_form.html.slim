@@ -1,8 +1,8 @@
 .search-form-container
   = form_with url: admin_search_path, method: :get, local: true do |f|
     .input-group.search-form-item.search-form-out
-      = f.text_field :word, placeholder: "IDで検索", class: "form-control input-group-prepend col-7 col-md-9"
-      = f.select :model, options_for_select({"ユーザー": "user", "投稿": "post", "グループ": "group"}), {}, class: "custom-select col-5 col-md-3"
+      = f.text_field :word, placeholder: "IDで検索", class: "form-control input-group-prepend col-6 col-md-8"
+      = f.select :model, options_for_select({"ユーザー": "user", "投稿": "post", "グループ": "group"}), { include_blank: '---選択してください---' }, class: "custom-select col-6 col-md-4"
       = f.hidden_field :content, value: "id"
       span.input-group-append.text-right
         = button_tag(type: "submit", class: "btn btn-dark input-group")

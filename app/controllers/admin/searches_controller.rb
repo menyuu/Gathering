@@ -1,12 +1,14 @@
 class Admin::SearchesController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def search
     @content = params[:content]
     @model = params[:model]
     @word = params[:word]
     if @content == "id"
       case @model
+      when ""
+        redirect_to request.referer
       when "user"
         @search_result = EndUser.where(id: @word)
       when "post"

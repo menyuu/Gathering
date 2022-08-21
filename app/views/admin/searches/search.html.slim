@@ -1,6 +1,6 @@
 .container.mt-5
   .row.mx-auto
-    .col-10.mt-5
+    .col-9.mt-5
       - case @model
       - when "user"
         = render "user_search", content: @content, search_result: @search_result, word: @word
