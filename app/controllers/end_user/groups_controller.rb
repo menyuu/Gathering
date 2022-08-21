@@ -1,6 +1,6 @@
 class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :forbid_guestuser, only: [:create, :update, :destroy]
+  # before_action :forbid_guestuser, only: [:create, :update, :destroy]
   before_action :ensure_correct_user, only: [:update, :destroy, :complete]
 
   def index

@@ -1,7 +1,7 @@
 class EndUser::GroupChatsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
-  before_action :forbid_guestuser, only: [:create, :destroy]
+  # before_action :forbid_guestuser, only: [:create, :destroy]
 
   def index
     @group = Group.find(params[:group_id])

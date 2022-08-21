@@ -1,7 +1,7 @@
 class EndUser::GroupMultiToggleController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
-  before_action :forbid_guestuser
+  # before_action :forbid_guestuser
 
   # グループ新規作成完了後にユーザーと同様にタグ付け可能
   def complete

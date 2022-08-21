@@ -1,6 +1,6 @@
 class EndUser::EndUserGroupsController < ApplicationController
   before_action :authenticate_end_user!
-  before_action :forbid_guestuser, only: [:create, :destroy]
+  # before_action :forbid_guestuser, only: [:create, :destroy]
 
   def create
     user_group = current_end_user.user_groups.new(group_id: params[:group_id])
