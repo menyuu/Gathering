@@ -5,60 +5,36 @@ class EndUser::TagsController < ApplicationController
   def index
     @tag = Tag.new
     @tags = Tag.display_show_type("user")
-    tags = current_end_user.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = current_end_user.tag_names
   end
 
   def create
     @tag = Tag.new
     tags = params[:tag][:name].split(",")
-    if tags.size < 9  && tags.all? { |tag| tag.length < 51 }
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       Tag.create_tag(tags, current_end_user)
-      @tags = Tag.display_show_type(params[:tag][:model])
     else
-      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
+      render "layouts/error"
     end
-    tags = current_end_user.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tags = Tag.display_show_type(params[:tag][:model])
+    @tag_names = current_end_user.tag_names
   end
 
   def update
     @tag = Tag.new
-    unless current_end_user.tags.size == 8
+    if current_end_user.tags.size < 8
       Tag.update_tag(params[:name], current_end_user)
-      @tags = Tag.display_show_type(params[:model])
     else
-      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは8個までです。"
+      render "layouts/error"
     end
-    tags = current_end_user.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tags = Tag.display_show_type(params[:model])
+    @tag_names = current_end_user.tag_names
   end
 
   def destroy
     @tag = Tag.new
     Tag.destroy_tag(params[:name], current_end_user)
     @tags = Tag.display_show_type(params[:model])
-    tags = current_end_user.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = current_end_user.tag_names
   end
 end
