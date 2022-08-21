@@ -4,7 +4,8 @@ class EndUser::FavoritesController < ApplicationController
 
   def index
     @user = EndUser.find(params[:user_id])
-    @posts = @user.favorite_posts.with_attached_images.page(params[:page]).without_count.per(1)
+    freeze_user = EndUser.where(status: "freeze")
+    @posts = @user.favorite_posts.where.not(end_user_id: freeze_user).with_attached_images.page(params[:page]).without_count.per(1)
     @post_comment = PostComment.new
     @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
   end

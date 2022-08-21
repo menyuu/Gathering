@@ -23,7 +23,10 @@
               = render "follows", user: @user
         .card-body
           p.card-text.introduction-text
-            = @user.introduction
+            - if @user.status == "published"
+              = @user.introduction
+            - else
+              | このユーザーは凍結されています。
         .card-body
           ul.col-12
             li.card-text.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
@@ -65,7 +68,8 @@
                   i.fa.fa-edit
                   span.between-text-icon
                     | 下書き
-      = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
+      - if @user.status == "published"
+        = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
 .text-center
   = render "user_edit", user: @user
   = render "user_password_edit", user: @user

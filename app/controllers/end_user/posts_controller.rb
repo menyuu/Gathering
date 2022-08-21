@@ -12,8 +12,10 @@ class EndUser::PostsController < ApplicationController
   def index_all
     # パブリックユーザーとフォロー中のユーザーとログイン中のユーザーを配列にする
     users = []
+    # パブリックユーザーの配列からログイン中のユーザーを省いた配列にする
     other_published_users = EndUser.where(status: "published").reject { |user| user == current_end_user }
-    users.push(other_published_users, current_end_user.followings, current_end_user)
+    # パブリックユーザーと凍結されていないフォロー中のユーザーと現在ログイン中のユーザーを配列に代入する
+    users.push(other_published_users, current_end_user.followings.where.not(status: "freeze"), current_end_user)
     users.flatten!
     # idが重複しているユーザーを取り除く
     unique_users = users.uniq { |user| user.id }
@@ -105,7 +107,7 @@ class EndUser::PostsController < ApplicationController
     posts = Post.includes(:user)
     # フォロー中のユーザーとログイン中のユーザーを配列にする
     users = []
-    users.push(current_end_user.followings, current_end_user)
+    users.push(current_end_user.followings.where.not(status: "freeze"), current_end_user)
     # 一次元配列に整理する
     users.flatten!
     @posts = posts.where(end_user_id: users, status: "published").with_attached_images.includes(:user).page(params[:page]).without_count.per(1).order(updated_at: :DESC)

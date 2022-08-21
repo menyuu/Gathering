@@ -1,4 +1,7 @@
 - if current_end_user.following?(user)
   = link_to "フォローを外す", user_follows_path(user), method: :delete, remote: true, class: "btn btn-dark rounded-pill"
 - else
-  = link_to "フォローする", user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill"
+  - if user.status == "published"
+    = link_to "フォローする", user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill"
+  - else
+    | 凍結済みのためフォローできません。
