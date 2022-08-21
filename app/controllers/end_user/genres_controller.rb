@@ -11,10 +11,10 @@ class EndUser::GenresController < ApplicationController
   def create
     @genre = Genre.new
     genres = params[:genre][:name].split(",")
-    if genres.size <= 8 && genres.all? { |genre| genre.length <= 50 }
+    if genres.size <= 8 && genres.all? { |genre| genre.length <= 50 } && genres.all? { |genre| genre != "" }
       Genre.create_genre(genres, current_end_user)
     else
-      render "layouts/error"
+      render "layouts/genre_error"
     end
     @genres = Genre.display_show_type(params[:genre][:model])
     @genre_names = current_end_user.genre_names
@@ -22,31 +22,19 @@ class EndUser::GenresController < ApplicationController
 
   def update
     @genre = Genre.new
-    unless current_end_user.genres.size == 8
+    if current_end_user.genres.size < 8
       Genre.update_genre(params[:name], current_end_user)
-      @genres = Genre.display_show_type(params[:model])
     else
-      redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは8個までです。"
+      render "layouts/genre_error"
     end
-    genres = current_end_user.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genres = Genre.display_show_type(params[:model])
+    @genre_names = current_end_user.genre_names
   end
 
   def destroy
     @genre = Genre.new
     Genre.destroy_genre(params[:name], current_end_user)
     @genres = Genre.display_show_type(params[:model])
-    genres = current_end_user.genres.all
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genre_names = current_end_user.genre_names
   end
 end

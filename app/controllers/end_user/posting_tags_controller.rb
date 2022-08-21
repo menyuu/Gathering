@@ -14,10 +14,10 @@ class EndUser::PostingTagsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_tag = PostingTag.new
     tags = params[:posting_tag][:name].split(",")
-    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       PostingTag.create_tag(tags, @post)
     else
-      render "layouts/error"
+      render "layouts/tag_error"
     end
     @post_tags = PostingTag.display_show_type("post")
     @tag_names =  @post.tag_names
@@ -29,7 +29,7 @@ class EndUser::PostingTagsController < ApplicationController
     if @post.tags.size < 8
       PostingTag.update_tag(params[:name], @post)
     else
-      render "layouts/error"
+      render "layouts/tag_error"
     end
     @post_tags = PostingTag.display_show_type("post")
     @tag_names =  @post.tag_names

@@ -40,7 +40,7 @@ class EndUser::PostsController < ApplicationController
       @post.status = "draft"
     end
     tags = params[:post][:name].split(",")
-    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       if @post.save
         PostingTag.create_tag(tags, @post)
         redirect_to request.referer, notice: "正常に投稿されました。"
@@ -50,14 +50,14 @@ class EndUser::PostsController < ApplicationController
       end
     else
       @tag_names = tags.join(",") + ","
-      render "layouts/error"
+      render "layouts/tag_error"
     end
   end
 
   def update
     @post = Post.find(params[:id])
     tags = params[:post][:name].split(",")
-    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       if @post.update(post_params)
         PostingTag.create_tag(tags, @post)
         redirect_to request.referer, notice: "投稿の編集が完了しました。"
@@ -67,7 +67,7 @@ class EndUser::PostsController < ApplicationController
       end
     else
       @tag_names = @post.tag_names
-      render "layouts/error"
+      render "layouts/tag_error"
     end
   end
 

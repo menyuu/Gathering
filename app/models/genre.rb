@@ -24,10 +24,10 @@ class Genre < ApplicationRecord
   def self.search_for(word)
     Genre.find_by(name: word)
   end
-  
+
   def self.create_genre(genre_names, create_genre_model)
     create_genre_model.genres.destroy_all
-    genre_names.each do |genre|
+    genre_names.uniq.map do |genre|
       genre = self.find_or_create_by(name: genre)
       create_genre_model.genres << genre
     end

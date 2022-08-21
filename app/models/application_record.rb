@@ -36,6 +36,16 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # 持っているゲームを表示
+  def game_names
+    games = self.games
+    if games.count > 0
+      games.pluck(:name).join(",") + ","
+    else
+      games.pluck(:name).join(",")
+    end
+  end
+
   # タグの作成
   # タグを保存
   def self.create_tag(tag_names, create_tag_model)

@@ -29,11 +29,11 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @group = Group.find(params[:group_id])
     @tag = Tag.new
     tags = params[:tag][:name].split(",")
-    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       Tag.create_tag(tags, @group)
       @tags = Tag.display_show_type(params[:tag][:model])
     else
-      render "layouts/error"
+      render "layouts/tag_error"
     end
     @tag_names = @group.tag_names
   end
@@ -45,7 +45,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
       Tag.update_tag(params[:name], @group)
       @tags = Tag.display_show_type(params[:model])
     else
-      render "layouts/error"
+      render "layouts/tag_error"
     end
     @tag_names = @group.tag_names
   end

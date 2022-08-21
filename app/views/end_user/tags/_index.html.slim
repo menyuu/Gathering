@@ -1,7 +1,7 @@
 .errors
 .card-body.border-bottom
   .card-header.mb-5.bg-white
-    | 現在のタグ
+    | 現在のタグ(最大8個まで)
   .card-text.my-3
     - current_end_user.tags.each do |tag|
       = link_to tag.name, tag_path(current_end_user, name: tag.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
