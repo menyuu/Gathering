@@ -6,7 +6,7 @@ class EndUser::GroupsController < ApplicationController
   def index
     @group = Group.new
     @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
-    @join_group = current_end_user.groups.with_attached_icon.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
+    @join_group = current_end_user.groups.with_attached_avatar.includes(:user_groups, users: [icon_attachment: [:blob]], owner: [icon_attachment: [:blob]])
   end
 
   def show
