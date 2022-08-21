@@ -1,5 +1,5 @@
-$('#flash').html('<%= j(render "layouts/flash") %>').fadeOut(10000)
-.css({'position': 'fixed', 'z-index': '1080'});
 $('.genres-area').html("<%= j(render "index", prepared_genres: @prepared_genres, self_made_genres: @self_made_genres, hide_genres: @hide_genres) %>");
 $('.search_result').empty();
 $('.text-field').val('');
+$('.success').text('ジャンルの作成に成功しました。');
+$('.errors').empty();

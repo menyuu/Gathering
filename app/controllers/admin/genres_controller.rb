@@ -8,23 +8,23 @@ class Admin::GenresController < ApplicationController
 
   def create
     @genre = Genre.find_or_initialize_by(genre_params)
-    @genre.save
-    @genre.update(status: "hide")
-    flash[:notice] =  "ジャンルを作成しました。"
+    if @genre.save
+      @genre.update(status: "hide")
+    else
+      render "layouts/error"
+    end
   end
 
   def update
     @genre = Genre.find(params[:id])
     @genre.update(status: params[:status])
-    flash[:notice] = "ジャンルの情報を更新しました。"
   end
 
   def destroy
     @genre = Genre.find(params[:id])
     @genre.destroy
-    flash[:notice] = "ジャンルを削除しました。"
   end
-  
+
   def search
     @search_result = Genre.find_by(name: params[:name])
     @search_name = params[:name]

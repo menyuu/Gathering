@@ -7,7 +7,7 @@
     tbody
       - prepared_genres.each do |genre|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{genre.name}"
             = genre.name
           td
             = link_to "非表示", admin_genre_path(genre, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
@@ -22,7 +22,7 @@
     tbody
       - self_made_genres.each do |genre|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{genre.name}"
             = genre.name
           td
             = link_to "表示する", admin_genre_path(genre, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
@@ -37,7 +37,7 @@
     tbody
       - hide_genres.each do |genre|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{genre.name}"
             = genre.name
           td
             = link_to "表示する", admin_genre_path(genre, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"

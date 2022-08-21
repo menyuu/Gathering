@@ -1,5 +1,5 @@
 $('.tags-area').html("<%= j(render "index", prepared_tags: @prepared_tags, self_made_tags: @self_made_tags, hide_tags: @hide_tags) %>");
 $('.search_result').empty();
 $('.text-field').val('');
-$('.success').show().text('タグの作成に成功しました。');
+$('.success').text('タグの作成に成功しました。');
 $('.errors').empty();
