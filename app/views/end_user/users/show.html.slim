@@ -23,7 +23,7 @@
               = render "follows", user: @user
         .card-body
           p.card-text.introduction-text
-            - if @user.status == "published"
+            - unless @user.status == "freeze"
               = @user.introduction
             - else
               | このユーザーは凍結されています。
@@ -68,8 +68,9 @@
                   i.fa.fa-edit
                   span.between-text-icon
                     | 下書き
-      - if @user.status == "published"
-        = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
+      - unless @user.status == "freeze"
+        - if @user.status == "published" or current_end_user.following?(@user)
+          = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
 .text-center
   = render "user_edit", user: @user
   = render "user_password_edit", user: @user
