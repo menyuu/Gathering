@@ -21,8 +21,4 @@ class Tag < ApplicationRecord
     validates :status, inclusion: { in: Tag.statuses.keys }
   end
 
-  # 検索用
-  def self.search_for(word)
-    Tag.find_by(name: word)
-  end
 end

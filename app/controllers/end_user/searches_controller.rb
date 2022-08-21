@@ -38,48 +38,48 @@ class EndUser::SearchesController < ApplicationController
       @tags = PostingTag.display_show_type("post", 15)
       if search_result.present?
         users = EndUser.where(status: "published")
-        @search_result = Kaminari.paginate_array(search_result.posts.where(status: "published", end_user_id: users).with_attached_images.includes(:user, :tags, :post_tags)).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.posts.where(status: "published", end_user_id: users).with_attached_images.includes(:user, :tags, :post_tags).order(created_at: :DESC)).page(params[:page]).per(1)
       end
       @post_comment = PostComment.new
 
     # ユーザータグ検索用
     when "tag"
-      search_result = Tag.search_for(@word)
+      search_result = Tag.find_by(name: @word)
       @tags = Tag.display_show_type("user", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published")).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "genre"
-      search_result = Genre.search_for(@word)
+      search_result = Genre.find_by(name: @word)
       @genres = Genre.display_show_type("user", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published")).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "game"
-      search_result = Game.search_for(@word)
+      search_result = Game.find_by(name: @word)
       @games = Game.display_show_type("user", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published")).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
 
     # グループタグ検索用
     when "group_tag"
-      search_result = Tag.search_for(@word)
+      search_result = Tag.find_by(name: @word)
       @tags = Tag.display_show_type("group", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "group_genre"
-      search_result = Genre.search_for(@word)
+      search_result = Genre.find_by(name: @word)
       @genres = Genre.display_show_type("group", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "group_game"
-      search_result = Game.search_for(@word)
+      search_result = Game.find_by(name: @word)
       @games = Game.display_show_type("group", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.groups).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     end
   end

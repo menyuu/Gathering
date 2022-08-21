@@ -21,10 +21,6 @@ class Genre < ApplicationRecord
     validates :status, inclusion: { in: Genre.statuses.keys }
   end
 
-  def self.search_for(word)
-    Genre.find_by(name: word)
-  end
-
   def self.create_genre(genre_names, create_genre_model)
     create_genre_model.genres.destroy_all
     genre_names.uniq.map do |genre|

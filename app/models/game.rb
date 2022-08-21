@@ -21,10 +21,6 @@ class Game < ApplicationRecord
     validates :status, inclusion: { in: Game.statuses.keys }
   end
 
-  def self.search_for(word)
-    Game.find_by(name: word)
-  end
-
   def self.create_game(game_names, create_game_model)
     create_game_model.games.destroy_all
     game_names.uniq.map do |game|
