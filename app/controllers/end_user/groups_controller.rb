@@ -32,7 +32,7 @@ class EndUser::GroupsController < ApplicationController
     else
       @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
       @join_group = current_end_user.groups
-      render :index
+      render :error
     end
   end
 
@@ -41,7 +41,7 @@ class EndUser::GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to group_path(@group), notice: "グループが正常に編集されました。"
     else
-      render :edit
+      render :error
     end
   end
 

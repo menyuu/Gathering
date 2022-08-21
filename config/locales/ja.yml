@@ -11,6 +11,9 @@ ja:
       post:
         text: "投稿内容"
         images: "画像"
+      group:
+        name: "グループ名"
+        introduction: "グループ紹介文"
       group_chat:
         text: "内容"
   enums:
