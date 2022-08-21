@@ -26,6 +26,16 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # 持っているジャンルを表示
+  def genre_names
+    genres = self.genres
+    if genres.count > 0
+      genres.pluck(:name).join(",") + ","
+    else
+      genres.pluck(:name).join(",")
+    end
+  end
+
   # タグの作成
   # タグを保存
   def self.create_tag(tag_names, create_tag_model)

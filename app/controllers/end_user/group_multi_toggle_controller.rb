@@ -19,15 +19,15 @@ class EndUser::GroupMultiToggleController < ApplicationController
 
   # グループタグ
   def tags
-    @tag = Tag.new
     @group = Group.find(params[:group_id])
+    @tag = Tag.new
     @tags = Tag.display_show_type("group")
     @tag_names = @group.tag_names
   end
 
   def create_tags
-     @tag = Tag.new
     @group = Group.find(params[:group_id])
+    @tag = Tag.new
     tags = params[:tag][:name].split(",")
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       Tag.create_tag(tags, @group)
@@ -39,8 +39,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def update_tags
-    @tag = Tag.new
     @group = Group.find(params[:group_id])
+    @tag = Tag.new
     if @group.tags.size < 8
       Tag.update_tag(params[:name], @group)
       @tags = Tag.display_show_type(params[:model])
@@ -51,8 +51,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def destroy_tags
-    @tag = Tag.new
     @group = Group.find(params[:group_id])
+    @tag = Tag.new
     Tag.destroy_tag(params[:name], @group)
     @tags = Tag.display_show_type(params[:model])
     @tag_names = @group.tag_names
@@ -60,8 +60,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
 
   # グループジャンル
   def genres
-    @genre = Genre.new
     @group = Group.find(params[:group_id])
+    @genre = Genre.new
     @genres = Genre.display_show_type("group")
     genres = @group.genres
     @genre_names = []
@@ -73,8 +73,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def create_genres
-    @genre = Genre.new
     @group = Group.find(params[:group_id])
+    @genre = Genre.new
     genres = params[:genre][:name].split(",")
     if genres.size < 9  && params[:genre][:name].length < 51
       Genre.create_genre(genres, @group)
@@ -92,8 +92,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def update_genres
-    @genre = Genre.new
     @group = Group.find(params[:group_id])
+    @genre = Genre.new
     unless @group.genres.size == 8
       Genre.update_genre(params[:name], @group)
       @genres = Genre.display_show_type(params[:model])
@@ -110,8 +110,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def destroy_genres
-    @genre = Genre.new
     @group = Group.find(params[:group_id])
+    @genre = Genre.new
     Genre.destroy_genre(params[:name], @group)
     @genres = Genre.display_show_type(params[:model])
     genres = @group.genres
@@ -125,8 +125,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
 
   # グループゲーム
   def games
-    @game = Game.new
     @group = Group.find(params[:group_id])
+    @game = Game.new
     @games = Game.display_show_type("group")
     games = @group.games
     @game_names = []
@@ -138,8 +138,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def create_games
-    @game = Game.new
     @group = Group.find(params[:group_id])
+    @game = Game.new
     games = params[:game][:name].split(",")
     if games.size < 9  && params[:game][:name].length < 51
       Game.create_game(games, @group)
@@ -157,8 +157,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def update_games
-    @game = Game.new
     @group = Group.find(params[:group_id])
+    @game = Game.new
     unless @group.games.size == 8
       Game.update_game(params[:name], @group)
       @games = Game.display_show_type(params[:model])
@@ -175,8 +175,8 @@ class EndUser::GroupMultiToggleController < ApplicationController
   end
 
   def destroy_games
-    @game = Game.new
     @group = Group.find(params[:group_id])
+    @game = Game.new
     Game.destroy_game(params[:name], @group)
     @games = Game.display_show_type(params[:model])
     games = @group.games

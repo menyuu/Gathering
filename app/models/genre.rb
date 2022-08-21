@@ -25,16 +25,6 @@ class Genre < ApplicationRecord
     Genre.find_by(name: word)
   end
   
-  # 持っているジャンルを表示
-  def genre_names
-    genres = self.genres
-    if genres.count > 0
-      genres.pluck(:name).join(",") + ","
-    else
-      genres.pluck(:name).join(",")
-    end
-  end
-
   def self.create_genre(genre_names, create_genre_model)
     create_genre_model.genres.destroy_all
     genre_names.each do |genre|
