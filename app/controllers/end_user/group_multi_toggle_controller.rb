@@ -22,20 +22,14 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @tag = Tag.new
     @group = Group.find(params[:group_id])
     @tags = Tag.display_show_type("group")
-    tags = @group.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = @group.tag_names
   end
 
   def create_tags
      @tag = Tag.new
     @group = Group.find(params[:group_id])
     tags = params[:tag][:name].split(",")
-    if tags.size < 9  && params[:tag][:name].length < 51
+    if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       Tag.create_tag(tags, @group)
       @tags = Tag.display_show_type(params[:tag][:model])
     else

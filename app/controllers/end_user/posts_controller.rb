@@ -42,7 +42,7 @@ class EndUser::PostsController < ApplicationController
     tags = params[:post][:name].split(",")
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.save
-        @post.tag_save(tags, PostingTag)
+        PostingTag.create_tag(tags, @post)
         redirect_to request.referer, notice: "正常に投稿されました。"
       else
         @tag_names = tags.join(",") + ","
@@ -59,7 +59,7 @@ class EndUser::PostsController < ApplicationController
     tags = params[:post][:name].split(",")
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
       if @post.update(post_params)
-        @post.tag_save(tags, PostingTag)
+        PostingTag.create_tag(tags, @post)
         redirect_to request.referer, notice: "投稿の編集が完了しました。"
       else
         @tag_names = @post.tag_names

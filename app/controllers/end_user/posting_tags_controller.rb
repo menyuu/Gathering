@@ -14,7 +14,7 @@ class EndUser::PostingTagsController < ApplicationController
     @post = Post.find(params[:post_id])
     tags = params[:posting_tag][:name].split(",")
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 }
-      @post.tag_save(tags, PostingTag)
+      PostingTag.create_tag(tags, @post)
     else
       render :error
     end
