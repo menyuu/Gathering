@@ -41,19 +41,13 @@ class EndUser::GroupMultiToggleController < ApplicationController
   def update_tags
     @tag = Tag.new
     @group = Group.find(params[:group_id])
-    unless @group.tags.size == 8
+    if @group.tags.size < 8
       Tag.update_tag(params[:name], @group)
       @tags = Tag.display_show_type(params[:model])
     else
-      redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは8個までです。"
+      render "layouts/error"
     end
-    tags = @group.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = @group.tag_names
   end
 
   def destroy_tags
@@ -61,13 +55,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @group = Group.find(params[:group_id])
     Tag.destroy_tag(params[:name], @group)
     @tags = Tag.display_show_type(params[:model])
-    tags = @group.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = @group.tag_names
   end
 
   # グループジャンル

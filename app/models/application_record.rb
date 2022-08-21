@@ -60,6 +60,26 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # タグの更新
+  def self.update_tag(tag_name, add_tag_model)
+    # 引数で渡されたタグを持っているか探す
+    tag = self.find_by(name: tag_name)
+    # 持っていれば削除する
+    add_tag_model.tags.delete(tag)
+    # その後タグを追加する
+    add_tag_model.tags << tag
+  end
+
+   # タグの削除
+  def self.destroy_tag(tag_name, remove_tag_model)
+    # 引数で渡されたタグを持っているか探す
+    tag = self.find_by(name: tag_name)
+    # 持っていれば削除する
+    # if remove_tag_model.tags.size > 1 (タグは最低1つ以上)
+      remove_tag_model.tags.delete(tag)
+    # end
+  end
+
   # 検索用
   # ユーザーとグループのid検索
   def self.search_id_match(word, id)

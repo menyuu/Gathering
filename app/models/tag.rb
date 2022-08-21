@@ -25,17 +25,4 @@ class Tag < ApplicationRecord
   def self.search_for(word)
     Tag.find_by(name: word)
   end
-
-  def self.update_tag(tag_name, add_tag_model)
-    tag = self.find_by(name: tag_name)
-    add_tag_model.tags.delete(tag)
-    add_tag_model.tags << tag
-  end
-
-  def self.destroy_tag(tag_name, remove_tag_model)
-    tag = self.find_by(name: tag_name)
-    if remove_tag_model.tags.size > 1
-      remove_tag_model.tags.delete(tag)
-    end
-  end
 end

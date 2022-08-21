@@ -26,9 +26,7 @@ class EndUser::PostingTagsController < ApplicationController
   def update
     @post = Post.find(params[:post_id])
     if @post.tags.size < 8
-      tag = PostingTag.find_by(name: params[:name])
-      @post.tags.delete(tag)
-      @post.tags << tag
+      PostingTag.update_tag(params[:name], @post)
     else
       render "layouts/error"
     end
@@ -39,8 +37,7 @@ class EndUser::PostingTagsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    tag = PostingTag.find_by(name: params[:name])
-    @post.tags.delete(tag)
+    PostingTag.destroy_tag(params[:name], @post)
     @post_tag = PostingTag.new
     @post_tags = PostingTag.display_show_type("post")
     @tag_names =  @post.tag_names
