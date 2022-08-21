@@ -26,15 +26,6 @@ class Tag < ApplicationRecord
     Tag.find_by(name: word)
   end
 
-  # 作成用
-  def self.create_tag(tag_names, create_tag_model)
-    create_tag_model.tags.destroy_all
-    tag_names.each do |tag|
-      tag = self.find_or_create_by(name: tag)
-      create_tag_model.tags << tag
-    end
-  end
-
   def self.update_tag(tag_name, add_tag_model)
     tag = self.find_by(name: tag_name)
     add_tag_model.tags.delete(tag)

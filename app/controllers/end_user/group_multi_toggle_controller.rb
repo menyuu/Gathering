@@ -35,13 +35,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
     else
       redirect_to request.referer, alert: "タグの追加に失敗しました。追加できるタグは50文字以内、もしくは8個までです。"
     end
-    tags = @group.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
+    @tag_names = @group.tag_names
   end
 
   def update_tags

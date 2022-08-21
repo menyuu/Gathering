@@ -36,6 +36,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  # 持っているゲームを表示
   def game_names
     games = self.games
     if games.count > 0
