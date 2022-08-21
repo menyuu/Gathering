@@ -3,7 +3,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
   before_action :ensure_correct_user
   before_action :forbid_guestuser
 
-  # 新規作成完了後にユーザーと同様にタグ付け可能
+  # グループ新規作成完了後にユーザーと同様にタグ付け可能
   def complete
     @group = Group.find(params[:group_id])
     @tag = Tag.new
