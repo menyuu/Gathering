@@ -76,7 +76,7 @@ class ApplicationRecord < ActiveRecord::Base
     tag = self.find_by(name: tag_name)
     # 持っていれば削除する
     # if remove_tag_model.tags.size > 1 (タグは最低1つ以上)
-      remove_tag_model.tags.delete(tag)
+    remove_tag_model.tags.delete(tag)
     # end
   end
 

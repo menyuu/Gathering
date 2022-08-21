@@ -41,8 +41,6 @@ class Genre < ApplicationRecord
 
   def self.destroy_genre(genre_name, remove_genre_model)
     genre = self.find_by(name: genre_name)
-    if remove_genre_model.genres.size > 1
-      remove_genre_model.genres.delete(genre)
-    end
+    remove_genre_model.genres.delete(genre)
   end
 end
