@@ -7,7 +7,7 @@
     tbody
       - prepared_games.each do |game|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{game.name}"
             = game.name
           td
             = link_to "非表示", admin_game_path(game, status: "hide"), method: :patch, remote: true, class: "btn btn-outline-dark"
@@ -22,7 +22,7 @@
     tbody
       - self_made_games.each do |game|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{game.name}"
             = game.name
           td
             = link_to "表示する", admin_game_path(game, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"
@@ -37,7 +37,7 @@
     tbody
       - hide_games.each do |game|
         tr
-          td
+          td.admin-tag-name data-toggle="tooltip" title="#{game.name}"
             = game.name
           td
             = link_to "表示する", admin_game_path(game, status: "prepared"), method: :patch, remote: true, class: "btn btn-outline-dark"

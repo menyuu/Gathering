@@ -8,21 +8,21 @@ class Admin::GamesController < ApplicationController
 
   def create
     @game = Game.find_or_initialize_by(game_params)
-    @game.save
-    @game.update(status: "hide")
-    flash[:notice] =  "ゲームを作成しました。"
+    if @game.save
+      @game.update(status: "hide")
+    else
+      render "layouts/error"
+    end
   end
 
   def update
     @game = Game.find(params[:id])
     @game.update(status: params[:status])
-    flash[:notice] = "ゲームの情報を更新しました。"
   end
 
   def destroy
     @game = Game.find(params[:id])
     @game.destroy
-    flash[:notice] = "ゲームを削除しました。"
   end
 
   def search

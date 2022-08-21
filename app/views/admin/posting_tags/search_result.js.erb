@@ -3,7 +3,7 @@ $('.search_result').html(`
   <table class="table table-borderless">
     <tbody>
       <tr>
-        <td>
+        <td class="admin-tag-name" data-toggle="tooltip" title="<%= @search_result.name %>">
           <%= @search_result.name %>
         </td>
         <td>
