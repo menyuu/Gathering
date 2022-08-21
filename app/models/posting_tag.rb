@@ -15,7 +15,4 @@ class PostingTag < ApplicationRecord
     validates :name, uniqueness: true, length: { maximum: 50 }
   end
 
-  def self.search_for(word)
-    PostingTag.find_by(name: word)
-  end
 end

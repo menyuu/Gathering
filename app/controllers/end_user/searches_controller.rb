@@ -34,10 +34,11 @@ class EndUser::SearchesController < ApplicationController
       @search_result = Kaminari.paginate_array(Post.search_for(@word)).page(params[:page]).per(1)
       @post_comment = PostComment.new
     when "post_tag"
-      search_result = PostingTag.search_for(@word)
+      search_result = PostingTag.find_by(name: @word)
       @tags = PostingTag.display_show_type("post", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.posts.with_attached_images.includes(:user, :tags, :post_tags)).page(params[:page]).per(1)
+        users = EndUser.where(status: "published")
+        @search_result = Kaminari.paginate_array(search_result.posts.where(status: "published", end_user_id: users).with_attached_images.includes(:user, :tags, :post_tags)).page(params[:page]).per(1)
       end
       @post_comment = PostComment.new
 
@@ -52,13 +53,13 @@ class EndUser::SearchesController < ApplicationController
       search_result = Genre.search_for(@word)
       @genres = Genre.display_show_type("user", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published")).page(params[:page]).per(1)
       end
     when "game"
       search_result = Game.search_for(@word)
       @games = Game.display_show_type("user", 15)
       if search_result.present?
-        @search_result = Kaminari.paginate_array(search_result.users).page(params[:page]).per(1)
+        @search_result = Kaminari.paginate_array(search_result.users.where(status: "published")).page(params[:page]).per(1)
       end
 
     # グループタグ検索用

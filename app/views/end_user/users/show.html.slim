@@ -69,7 +69,7 @@
                   span.between-text-icon
                     | 下書き
       - unless @user.status == "freeze"
-        - if @user.status == "published" or current_end_user.following?(@user)
+        - if @user.status == "published" or current_end_user.following?(@user) or @user == current_end_user
           = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
 .text-center
   = render "user_edit", user: @user
