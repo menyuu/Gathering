@@ -8,7 +8,9 @@
           span
             | ×
       .modal-body
-        = form_with model: group, url: groups_path, local: true do |f|
+        = form_with model: group, url: groups_path, local: false do |f|
+          .errors
+            = render "layouts/errors", obj: @group
           .form-group.mb-3
             = f.label :name, "グループ名"
             = f.text_field :name, placeholder: "グループ名", class: "form-control"

@@ -1,8 +1,7 @@
 class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :forbid_guestuser, only: [:create, :update, :destroy]
-  before_action :ensure_correct_user, only: [:update, :destroy]
-  before_action :prohibit_other_user, only: [:complete]
+  before_action :ensure_correct_user, only: [:update, :destroy, :complete]
 
   def index
     @group = Group.new
@@ -52,49 +51,11 @@ class EndUser::GroupsController < ApplicationController
     redirect_to groups_path, alert: "グループを削除しました。"
   end
 
-  def complete
-    @group = Group.find(params[:group_id])
-    @tag = Tag.new
-    @tags = Tag.display_show_type("group")
-    tags = @group.tags
-    @tag_names = []
-    if tags.count > 0
-      @tag_names = tags.pluck(:name).join(",") + ","
-    else
-      @tag_names = tags.pluck(:name).join(",")
-    end
-    @genre = Genre.new
-    @genres = Genre.display_show_type("group")
-    genres = @group.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
-    @game = Game.new
-    @games = Game.display_show_type("group")
-    games = @group.games
-    @game_names = []
-    if games.count > 0
-      @game_names = games.pluck(:name).join(",") + ","
-    else
-      @game_names = games.pluck(:name).join(",")
-    end
-  end
-
   private
 
   def ensure_correct_user
     group = Group.find(params[:id])
-    unless current_end_user.id == group.owner_id
-      redirect_to groups_path, alert: "オーナーではないため編集できません。"
-    end
-  end
-
-  def prohibit_other_user
-    group = Group.find(params[:group_id])
-    unless current_end_user.id == group.owner_id
+    unless group.is_ownerd_by?(current_end_user)
       redirect_to groups_path, alert: "オーナーではないため編集できません。"
     end
   end

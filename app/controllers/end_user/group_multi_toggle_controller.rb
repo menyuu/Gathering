@@ -3,6 +3,20 @@ class EndUser::GroupMultiToggleController < ApplicationController
   before_action :ensure_correct_user
   before_action :forbid_guestuser
 
+  # 新規作成完了後にユーザーと同様にタグ付け可能
+  def complete
+    @group = Group.find(params[:group_id])
+    @tag = Tag.new
+    @tags = Tag.display_show_type("group")
+    @tag_names = @group.tag_names
+    @genre = Genre.new
+    @genres = Genre.display_show_type("group")
+    @genre_names = @group.genre_names
+    @game = Game.new
+    @games = Game.display_show_type("group")
+    @game_names = @group.game_names
+  end
+
   # グループタグ
   def tags
     @tag = Tag.new
