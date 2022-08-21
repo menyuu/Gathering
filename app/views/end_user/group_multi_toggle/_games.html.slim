@@ -1,7 +1,7 @@
 .errors
 .card-body.border-bottom
   .card-header.mb-5.bg-white
-    | 現在のゲーム(最大)
+    | 現在のゲーム(最大8個まで)
   .card-text.my-3
     - group.games.each do |game|
       = link_to game.name, group_destroy_games_path(group, name: game.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
