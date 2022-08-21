@@ -63,50 +63,32 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @group = Group.find(params[:group_id])
     @genre = Genre.new
     @genres = Genre.display_show_type("group")
-    genres = @group.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genre_names = @group.genre_names
   end
 
   def create_genres
     @group = Group.find(params[:group_id])
     @genre = Genre.new
     genres = params[:genre][:name].split(",")
-    if genres.size < 9  && params[:genre][:name].length < 51
+    if genres.size <= 8 && genres.all? { |genre| genre.length <= 50 } && genres.all? { |genre| genre != "" }
       Genre.create_genre(genres, @group)
-      @genres = Genre.display_show_type(params[:genre][:model])
     else
-      redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは50文字以内、もしくは8個までです。"
+      render "layouts/genre_error"
     end
-    genres = @group.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genres = Genre.display_show_type(params[:genre][:model])
+    @genre_names = @group.genre_names
   end
 
   def update_genres
     @group = Group.find(params[:group_id])
     @genre = Genre.new
-    unless @group.genres.size == 8
+    if @group.genres.size < 8
       Genre.update_genre(params[:name], @group)
-      @genres = Genre.display_show_type(params[:model])
     else
-      redirect_to request.referer, alert: "ジャンルの追加に失敗しました。追加できるジャンルは8個までです。"
+      render "layouts/genre_error"
     end
-    genres = @group.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genres = Genre.display_show_type(params[:model])
+    @genre_names = @group.genre_names
   end
 
   def destroy_genres
@@ -114,13 +96,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
     @genre = Genre.new
     Genre.destroy_genre(params[:name], @group)
     @genres = Genre.display_show_type(params[:model])
-    genres = @group.genres
-    @genre_names = []
-    if genres.count > 0
-      @genre_names = genres.pluck(:name).join(",") + ","
-    else
-      @genre_names = genres.pluck(:name).join(",")
-    end
+    @genre_names = @group.genre_names
   end
 
   # グループゲーム
