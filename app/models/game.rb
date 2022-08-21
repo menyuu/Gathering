@@ -41,8 +41,6 @@ class Game < ApplicationRecord
 
   def self.destroy_game(game_name, remove_game_model)
     game = self.find_by(name: game_name)
-    if remove_game_model.games.size > 1
-      remove_game_model.games.delete(game)
-    end
+    remove_game_model.games.delete(game)
   end
 end
