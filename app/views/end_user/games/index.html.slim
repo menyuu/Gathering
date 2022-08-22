@@ -1,9 +1,9 @@
 .container-fluid
   .row
-    .col-7.offset-1.mt-4
+    .col-10.col-md-7.offset-1.mt-4
       .card.shadow
         .card-body.game-area
           = render "index", games: @games, game: @game, game_names: @game_names
         .card-footer.bg-white
-          .card-text.text-right.my-3
+          .text-right.my-3
             = link_to "マイページへ", user_path(current_end_user), class: "btn btn-dark"
