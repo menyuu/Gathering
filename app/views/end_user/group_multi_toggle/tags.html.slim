@@ -1,9 +1,9 @@
 .container-fluid
   .row
-    .col-8.mt-5
-      .card.shadow.offset-2
+    .col-7.offset-1.mt-4
+      .card.shadow
         .card-body.tag-area
           = render "end_user/group_multi_toggle/tags", group: @group, tags: @tags, tag: @tag, tag_names: @tag_names
         .card-footer.bg-white
-          .card-text.text-right
+          .card-text.text-right.my-3
             = link_to "グループに戻る", group_path(@group), class: "btn btn-dark"
