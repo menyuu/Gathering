@@ -17,7 +17,7 @@
         td
           = link_to "削除", admin_game_path(search_result), method: :delete, remote: true, class: "btn btn-outline-danger", data: { confirm: "本当に削除しますか？" }
 - else
-  h4
+  div
     |"
     = search_name
     |"は見つかりませんでした。

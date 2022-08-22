@@ -55,7 +55,7 @@
                 = link_to "アカウント停止", freeze_admin_user_path(user), method: :patch, class: "btn btn-outline-danger",
                 data: {"confirm": "該当のユーザーのアカウントを停止してよろしいですか？"}
                 .mt-3
-                  = link_to "アカウント削除削除", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
+                  = link_to "アカウント削除", admin_user_path(user), method: :delete, class: "btn btn-outline-danger",
                   data: {"confirm": "該当のユーザーのアカウントを削除してよろしいですか？"}
   - else
     .text-center

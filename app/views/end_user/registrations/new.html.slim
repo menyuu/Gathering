@@ -28,7 +28,7 @@
         .card-body.text-right
           button.btn.btn-dark#form data-target="#newUserConfirmModalToggle" data-toggle="modal" data-dismiss="modal" 確認
         = render "end_user/home/sign_up_confirm_modal", user: @end_user
-        .card-footer.bg-white.mt-3
+        .card-footer.bg-white.py-3
           | すでにアカウントをお持ちですか？
           = link_to "ログインする", new_end_user_session_path, class: "link-text-blue"
           .my-3

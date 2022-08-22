@@ -55,6 +55,7 @@ class Group < ApplicationRecord
 
   # ユーザーがグループと同じタグを所持しているかどうかを判定
   def sameHasTag?(user)
+    # 1つでも合致したらグループに参加できるようにする
     tags.includes(:group_tags).any? { |i| user.tags.includes(:tags).include?(i) }
   end
 
