@@ -12,7 +12,7 @@
         = link_to post.user.name, user_path(post.user), class: "show-name"
       .modal-body
         = link_to post_path(post)
-          p.card-text.post-text
+          p.card-text
             = post.text
       .modal-body.text-center
         - post.images.first(4).each do |image|

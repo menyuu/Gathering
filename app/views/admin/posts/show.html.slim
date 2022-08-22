@@ -12,7 +12,7 @@
               = link_to "削除する", admin_post_path(@post), method: :delete, class:"btn btn-outline-danger",
               data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
         .card-body
-          p.card-text.post-text
+          p.card-text
             = @post.text
         .card-body
           .card-img.text-center
@@ -43,7 +43,7 @@
                     = image_tag comment.post.user.user_icon(56, 56), class: "rounded-circle"
                   = link_to comment.user.name, user_path(comment.user), class: "show-name"
               .card-body
-                p.card-text.post-text
+                p.card-text
                   = comment.text
               ul.col-12.text-right.mb-5
                 li.card-text.d-inline-block.post-item
