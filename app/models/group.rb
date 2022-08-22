@@ -30,7 +30,7 @@ class Group < ApplicationRecord
   has_many :group_games, dependent: :destroy
   has_many :games, through: :group_games
 
-  has_one_attached :avatar
+  has_one_attached :icon
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :introduction, length: { maximum: 240 }
@@ -38,11 +38,11 @@ class Group < ApplicationRecord
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
   def group_icon(width, height)
-    unless avatar.attached?
+    unless icon.attached?
       file_path = Rails.root.join('app/assets/images/group_no_image.png')
-      avatar.attach(io: File.open(file_path), filename: 'group-default-image.png', content_type: 'image/png')
+      icon.attach(io: File.open(file_path), filename: 'group-default-image.png', content_type: 'image/png')
     end
-    avatar.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0")
+    icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0")
   end
 
   def is_ownerd_by?(user)

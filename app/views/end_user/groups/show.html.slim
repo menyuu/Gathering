@@ -4,8 +4,8 @@
       .card.shadow.rounded.mt-5
         .card-body.row
           .col-6
-            - if @group.avatar.attached?
-              = link_to @group.avatar, "data-lightbox": @group.avatar
+            - if @group.icon.attached?
+              = link_to @group.icon, "data-lightbox": @group.icon
                 = image_tag @group.group_icon(64, 64), class: "rounded-circle"
             - else
               = image_tag @group.group_icon(64, 64), class: "rounded-circle"
