@@ -20,15 +20,15 @@
       .card-text
         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
       ul.col-12.text-right.mb-5
-        li.card-text.d-inline-block.post-item
+        li.card-text.d-inline-block.option-item
           = link_to new_end_user_session_path
-            i.far.fa-comment.post-item
+            i.far.fa-comment.option-item
             = post.post_comments.count
-        li.card-text.d-inline-block.post-item
+        li.card-text.d-inline-block.option-item
           = link_to new_end_user_session_path
-            i.far.fa-heart.post-item
+            i.far.fa-heart.option-item
             = post.favorites.count
-        li.card-text.d-inline-block.post-item
+        li.card-text.d-inline-block.option-item
           = link_to new_end_user_session_path
             = time_ago_in_words(post.created_at)
             | 前

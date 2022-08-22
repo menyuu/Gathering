@@ -24,11 +24,11 @@
           .card-text
             = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
           ul.col-12.text-right.mb-5
-            li.card-text.d-inline-block.post-item
+            li.card-text.d-inline-block.option-item
               = link_to admin_post_path(post)
                 = time_ago_in_words(post.created_at)
                 | 前
-            li.card-text.d-inline-block.post-item
+            li.card-text.d-inline-block.option-item
               = link_to admin_post_path(post)
                 = post.status_i18n
   - else
@@ -72,11 +72,11 @@
           .card-text
             = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
           ul.col-12.text-right.mb-5
-            li.card-text.d-inline-block.post-item
+            li.card-text.d-inline-block.option-item
               = link_to admin_post_path(post)
                 = time_ago_in_words(post.created_at)
                 | 前
-            li.card-text.d-inline-block.post-item
+            li.card-text.d-inline-block.option-item
               = link_to admin_post_path(post)
                 = post.status_i18n
   - else

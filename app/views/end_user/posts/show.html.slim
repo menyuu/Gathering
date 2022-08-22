@@ -10,10 +10,10 @@
           ul.col-4.text-right.mb-5
             - if current_end_user == @post.user
               - if @post.status == "published" || @post.status == "draft"
-                li.card-text.d-inline-block.post-item
+                li.card-text.d-inline-block.option-item
                   = link_to post_tags_path(@post)
                     i.fas.fa-tags data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
-              li.card-text.d-inline-block.post-item-delete
+              li.card-text.d-inline-block.option-item-delete
                 = link_to post_path(@post), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
                   i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
         .card-body
@@ -34,15 +34,15 @@
         .card-body
           ul.col-12.text-right.mb-3
             - if @post.status == "published"
-              li.card-text.d-inline-block.post-item
+              li.card-text.d-inline-block.option-item
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
-                  i.far.fa-comment.post-item
+                  i.far.fa-comment.option-item
                 = @post.post_comments.count
-              li.card-text.d-inline-block.post-item
+              li.card-text.d-inline-block.option-item
                 div class="favorite_btn_#{@post.id}"
                   = render "end_user/favorites/favorite", post: @post
             - if @post.status == "published" || @post.status == "draft"
-              li.card-text.d-inline-block.post-item
+              li.card-text.d-inline-block.option-item
                 = link_to post_path(@post)
                   = time_ago_in_words(@post.updated_at)
                   | 前
@@ -75,14 +75,14 @@
                   p.card-text
                     = comment.text
                 ul.col-12.text-right.mb-5
-                  li.card-text.d-inline-block.post-item
+                  li.card-text.d-inline-block.option-item
                     = comment.updated_at.strftime("%Y年%m月%d日 %H時%M分")
-                  li.card-text.d-inline-block.post-item
+                  li.card-text.d-inline-block.option-item
                     = time_ago_in_words(comment.updated_at)
                     | 前
-                  li.card-text.d-inline-block.post-item
+                  li.card-text.d-inline-block.option-item
                     - if comment.user == current_end_user
-                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "post-item-edit-text text-danger",
+                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "text-danger",
                       data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
             .skill-list
               = link_to_prev_page @comments, "前のページ", class: "prev d-none"
