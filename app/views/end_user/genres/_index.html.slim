@@ -1,22 +1,19 @@
 .errors
-.card-body.border-bottom
-  .card-header.mb-5.bg-white
-    | 現在のジャンル(最大8個まで)
-  .card-text.my-3
+.card-body.mb-5.border-bottom
+  | 現在のジャンル(最大8個まで)
+  .my-3
     - current_end_user.genres.each do |genre|
       = link_to genre.name, genre_path(current_end_user, name: genre.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
-.card-body.border-bottom
-  .card-header.mb-5.bg-white
-    | 人気のジャンル
-  .card-text.my-3
+.card-body.mb-5.border-bottom
+  | 人気のジャンル
+  .my-3
     - genres.each do |genre|
       = link_to genre.name, genre_path(current_end_user, name: genre.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
-.card-body
-  .card-header.mb-5.bg-white
-    | 新しいジャンルを作成する
+.card-body.mb-5
+  | 新しいジャンルを作成する
   = form_with model: genre, local: false do |f|
     .input-group
       = f.text_field :name, value: genre_names, placeholder: "複数のジャンルは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
       = f.hidden_field :model, value: "user"
-      span.input-group-append.text-right
-        = f.submit "投稿ジャンル登録", class: "btn btn-outline-dark input-group"
+      span.input-group-append
+        = f.submit "ジャンルを登録", class: "btn btn-outline-dark input-group"
