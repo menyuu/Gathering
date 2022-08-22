@@ -16,11 +16,11 @@
 
 .item-sidebar {
   overflow-y: auto;
-  height: 640px;
+  height: 800px;
   &-container {
     position: sticky;
-    margin-top: 80px;
-    top: 100px;
+    margin-top: 32px;
+    top: 92px;
   }
   &-title {
     position: sticky;
@@ -31,4 +31,8 @@
   &-bottom {
     margin-top: 80px
   }
+}
+
+.item-bar {
+  height: 560px;
 }

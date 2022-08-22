@@ -7,7 +7,7 @@
             = link_to user_path(@post.user)
               = image_tag @post.user.user_icon(56, 56), class: "rounded-circle"
             = link_to @post.user.name, user_path(@post.user), class: "show-name"
-          ul.col-4.text-right.post-item-container
+          ul.col-4.text-right.mb-5
             - if current_end_user == @post.user
               - if @post.status == "published" || @post.status == "draft"
                 li.card-text.d-inline-block.post-item
@@ -16,9 +16,11 @@
               li.card-text.d-inline-block.post-item-delete
                 = link_to post_path(@post), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
                   i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
-        div
-          = render "post_body", post: @post
-          ul.col-12.text-right.post-item-container
+        .card-body.post-text
+          .card-text
+            = safe_join(@post.text.split("\n"),tag(:br))
+        = render "post_body", post: @post
+          ul.col-12.text-right.mb-5
             - if @post.status == "published"
               li.card-text.d-inline-block.post-item
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
@@ -61,7 +63,7 @@
                   .card-body
                     p.card-text.post-text
                       = comment.text
-                  ul.col-12.text-right.post-item-container
+                  ul.col-12.text-right.mb-5
                     li.card-text.d-inline-block.post-item
                       = comment.updated_at.strftime("%Y年%m月%d日 %H時%M分")
                     li.card-text.d-inline-block.post-item

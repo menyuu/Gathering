@@ -9,27 +9,18 @@
   }
 }
 
-.post-comment-container {
-  display: none;
-}
-
-.post-text {
-  padding: 0 24px;
-  margin: 24px 0;
-  & a:hover {
-    text-decoration: none;
-  }
-  @media screen and (max-width: 768px) {
-    padding: 0 16px;
-    padding: 16px 0;
-  }
-}
-
 .post-item {
   margin-right: 16px;
   cursor: pointer;
   & a:hover {
     text-decoration: none;
+  }
+  &-icon {
+    font-size: 20px;
+    margin-right: 16px;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   &-delete {
     margin-left: 16px;
@@ -38,14 +29,16 @@
   &-delete a:hover {
     color: red;
   }
-  &-container {
-    margin-bottom: 24px;
+}
+
+/*投稿本文*/
+.post-text {
+  padding: 0 24px;
+  margin: 24px 0;
+  & a:hover {
+    text-decoration: none;
   }
-  &-icon {
-    font-size: 20px;
-    margin-right: 16px;
-    &:hover {
-      opacity: 0.7;
-    }
+  @media screen and (max-width: 768px) {
+    padding: 16px 8px;
   }
 }

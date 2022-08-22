@@ -19,7 +19,7 @@
           = link_to tag.name, new_end_user_session_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
       .card-text
         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-      ul.col-12.text-right.post-item-container
+      ul.col-12.text-right.mb-5
         li.card-text.d-inline-block.post-item
           = link_to new_end_user_session_path
             i.far.fa-comment.post-item-icon

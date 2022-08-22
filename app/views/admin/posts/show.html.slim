@@ -7,7 +7,7 @@
             = link_to user_path(@post.user)
               = image_tag @post.user.user_icon(56, 56), class: "rounded-circle"
             = link_to @post.user.name, admin_user_path(@post.user), class: "show-name"
-          ul.col-4.text-right.post-item-container
+          ul.col-4.text-right.mb-5
             li.card-text.d-inline-block.delete-btn
               = link_to "削除する", admin_post_path(@post), method: :delete, class:"btn btn-outline-danger",
               data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
@@ -25,7 +25,7 @@
               = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           .card-text
             = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-        ul.col-12.text-right.post-item-container
+        ul.col-12.text-right.mb-5
           li.card-text.d-inline-block.post-item
             = link_to post_path(@post)
               = time_ago_in_words(@post.created_at)
@@ -45,7 +45,7 @@
               .card-body
                 p.card-text.post-text
                   = comment.text
-              ul.col-12.text-right.post-item-container
+              ul.col-12.text-right.mb-5
                 li.card-text.d-inline-block.post-item
                   = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
                 li.card-text.d-inline-block.post-item
