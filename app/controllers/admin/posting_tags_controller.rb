@@ -8,7 +8,6 @@ class Admin::PostingTagsController < ApplicationController
     @post_tag = PostingTag.find(params[:id])
     @post_tag.destroy
     @post_tags = PostingTag.all.sort{ |a,b| b.posts.size <=> a.posts.size}
-    flash[:notice] = "タグを削除しました。"
   end
 
   def search
