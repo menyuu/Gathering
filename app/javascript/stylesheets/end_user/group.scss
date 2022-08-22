@@ -27,6 +27,7 @@
   color: #ebd247;
 }
 
+/* グループチャット */
 
 .group-chat-balloon {
   display: inline-block;
@@ -73,17 +74,18 @@
   }
 }
 
-
-/* グループチャット */
 .group-chat{
   &-container {
     max-width: 95%;
   }
-  &-user-name {
+  &-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     text-decoration: none;
+    & a:hover {
+      text-decoration: underline;
+    }
   }
   &delete-text {
     text-decoration: none;
@@ -94,8 +96,18 @@
 }
 
 #group-chat-area {
+  overflow-y: scroll;
   height: 480px;
+  margin: 24px 8px;
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE */
+  -ms-overflow-style: none;
   &-admin {
     height: 720px;
   }
+}
+#group-chat-area::-webkit-scrollbar {
+  /* Chrome */
+  display: none;
 }

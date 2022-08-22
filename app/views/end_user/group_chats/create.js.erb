@@ -1,2 +1,8 @@
-$('#group-chat').html('<%= j(render "index", chats: @chats) %>');
-$('.text_area').val('');
+$('#group-chat-area').html('<%= j(render "index", chats: @chats) %>');
+$('.text-area').val('');
+$(document).ready(function() {
+  const chatArea = $('#group-chat-area');
+  chatArea.scrollTop(
+    chatArea[0].scrollHeight - chatArea.height()
+  );
+});

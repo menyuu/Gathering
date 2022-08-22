@@ -15,12 +15,11 @@ class EndUser::GroupChatsController < ApplicationController
     @group = Group.find(params[:group_id])
     @group_chat = current_end_user.group_chats.new(chat_params)
     @group_chat.group_id = @group.id
-    @chats = @group.group_chats.includes(user: [icon_attachment: [:blob]])
     @members = @group.users.page(params[:page]).without_count.per(1).order(name: :ASC)
     if @group_chat.save
-      redirect_to request.referer, notice: "チャットを送信しました。"
+      @chats = @group.group_chats
     else
-      render :index
+      render :error
     end
   end
 
