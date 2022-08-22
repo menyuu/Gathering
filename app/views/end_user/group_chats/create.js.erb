@@ -1,5 +1,6 @@
 $('#group-chat-area').html('<%= j(render "index", chats: @chats) %>');
 $('.text-area').val('');
+$('.errors').empty();
 $(document).ready(function() {
   const chatArea = $('#group-chat-area');
   chatArea.scrollTop(

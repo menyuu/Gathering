@@ -12,7 +12,7 @@ Admin.create(
   password: "AEIO4310"
   )
 
-5.times do |n|
+10.times do |n|
   EndUser.create(
     name: "ユーザー#{n * 1}",
     email: "test#{n * 1}@test#{n * 1}",

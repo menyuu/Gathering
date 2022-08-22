@@ -1,12 +1,8 @@
 .container-fluid
   .row
     .col-10.col-md-7.offset-1.mt-5.shadow
-      - if @chats.exists?
-        #group-chat-area
-          = render "index", chats: @chats
-      - else
-        h1.text-center.mt-3
-          | チャットをはじめよう！
+      #group-chat-area
+        = render "index", chats: @chats
       .row
         .col-8.mx-auto
           = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: false do |f|

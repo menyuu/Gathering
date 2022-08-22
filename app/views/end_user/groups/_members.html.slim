@@ -6,8 +6,8 @@
       span
         = group.users.count
       | )
-  .card-body.group-sidebar.overflow-auto
-    .scroll-list.jscroll
+  .card-body.group-sidebar
+    .jscroll
       - members.each do |member|
         = link_to user_path(member)
           table.table.table-borderless
@@ -20,6 +20,6 @@
                 td
                   - if member.id == group.owner_id
                     i.fas.fa-star.owner-icon
-            .skill-list
-              = link_to_prev_page members, "前のページ", class: "prev d-none"
-              = link_to_next_page members, "次のページ", class: "next d-none"
+      .skill-list
+        = link_to_prev_page members, "前のページ", class: "prev d-none"
+        = link_to_next_page members, "次のページ", class: "next d-none"
