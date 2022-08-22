@@ -1,5 +1,5 @@
-= render "end_user/users/item_top_bar", tags: @tags
 - if @users.present?
+  = render "end_user/users/item_top_bar", tags: @tags
   .container-fluid.mt-5
     .row
       .col-6.offset-1.mt-5
@@ -24,5 +24,5 @@
                             = link_to_prev_page @common_followings, "前のページ", class: "prev d-none"
                             = link_to_next_page @common_followings, "次のページ", class: "next d-none"
 - else
-  h1.col-10.text-center.mt-5
+  h1.col-9.text-center.mt-5
     | ユーザーはいません。
