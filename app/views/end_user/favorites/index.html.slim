@@ -1,6 +1,10 @@
 .container-fluid
   .row
     .col-10.col-md-7.offset-1
-      = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
+      .jscroll
+        = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
+        .skill-list.d-none
+          = link_to_prev_page @posts, "前のページ", class: "prev"
+          = link_to_next_page @posts, "次のページ", class: "next"
     .col-3.offset-1.d-none.d-md-block
       = render "end_user/posts/item_sidebar", post_tags: @post_tags

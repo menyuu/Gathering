@@ -3,14 +3,10 @@
     .col-10.item-sidebar
       h6.item-sidebar-title
         | 人気の投稿タグ
-      .scroll-list.postTagsJscroll
-        table.table.table-borderless
-          tbody
-            .scroll-list.PostTagJscroll
-              - post_tags.each do |tag|
-                tr
-                  td
-                    = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-                  .skill-list
-                    = link_to_prev_page post_tags, "前のページ", class: "prev d-none"
-                    = link_to_next_page post_tags, "次のページ", class: "next d-none"
+      table.table.table-borderless
+        tbody
+          .scroll-list.PostTagJscroll
+            - post_tags.each do |tag|
+              tr
+                td
+                  = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
