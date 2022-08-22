@@ -3,6 +3,7 @@
 @import './common';
 @import './header';
 @import './loader';
+@import './form';
 @import './btn';
 @import './bar';
 @import './admin/tag';
@@ -10,29 +11,6 @@
 @import './end_user/post';
 @import './end_user/group';
 @import './end_user/group_chat';
-
-
-textarea {
-  resize: none;
-  height: 120px;
-}
-
-.table-link {
- display: inline-block;
- width: 100%;
- height: 100%;
- &:hover {
-   text-decoration: none;
- }
- &-count {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    &a:hover {
-      text-decoration: underline;
-    }
-  }
-}
 
 
 .icon-item {
@@ -45,21 +23,10 @@ textarea {
   margin: 8px 8px 8px 0;
 }
 
-.modal {
-  overflow-y: auto;
-  max-height: 100%;
-  margin: 0 auto;
-}
-
-
-.form-item {
-  cursor: pointer;
-}
 
 .item-bar {
   height: 560px;
 }
-
 
 .user-item a:hover {
   text-decoration: none;
@@ -77,22 +44,6 @@ textarea {
     text-overflow: ellipsis;
     &-container a:hover {
       text-decoration: none;
-    }
-  }
-}
-
-.tag-icon-item {
-  font-size: 16px;
-  margin: 8px 8px 16px 0;
-  cursor: pointer;
-  & a:hover {
-    text-decoration: none;
-  }
-  &-delete {
-    margin-left: 16px;
-    cursor: pointer;
-    & a:hover {
-      color: red;
     }
   }
 }

@@ -14,11 +14,12 @@ nav.navbar-light.bg-white
       - else
         = link_to root_path, class:"navbar-brand"
           = image_tag asset_path("logo.png"), class: "logo"
-    - unless current_page?(users_sign_up_complete_path)
-      - if end_user_signed_in?
-        = render "end_user/searches/form", model: "post"
-      - elsif admin_signed_in?
-        = render "admin/searches/admin_form"
+    .search-form-position
+      - unless current_page?(users_sign_up_complete_path)
+        - if end_user_signed_in?
+          = render "end_user/searches/form", model: "post"
+        - elsif admin_signed_in?
+          = render "admin/searches/admin_form"
     div
       = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
         i.fas.fa-search.align-self-center

@@ -19,14 +19,23 @@ nav {
   align-items: center;
 }
 
+/* ヘッダー検索フォーム */
 .search-form {
+  &-position {
+    margin-right: 8%;
+  }
   &-container {
     display: flex;
     text-align: center;
-    margin-right: 8%;
   }
   &-item {
     width: 640px;
+    @media only screen and (max-width: 992px) {
+      width: 480px;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 320px;
+    }
   }
 }
 
@@ -35,17 +44,6 @@ nav {
   display: none;
 }
 
-@media only screen and (max-width: 992px) {
-  .search-form-item {
-    width: 480px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .search-form-item {
-    width: 320px;
-  }
-}
 
 @media only screen and (max-width: 576px) {
   .search-form-out {

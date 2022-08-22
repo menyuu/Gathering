@@ -1,12 +1,12 @@
 .row
-  .col-8.offset-1
+  .col-7.offset-1
     = render "post_search", object: @object, word: @word, search_result: @search_result, post_comment: @post_comment
     = render "user_search", object: @object, word: @word, search_result: @search_result
     = render "group_search", object: @object, word: @word, search_result: @search_result
     = render "tags_search", object: @object, word: @word, search_result: @search_result, tags: @tags, genres: @genres, games: @games
     = render "group_tags_search", object: @object, word: @word, search_result: @search_result, tags: @tags, genres: @genres, games: @games
 
-  .col-3.search-bar
+  .col-3.ml-5.search-bar
     .search-bar
       table.table.table-borderless
         tbody
