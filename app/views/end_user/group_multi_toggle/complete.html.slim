@@ -1,6 +1,6 @@
 .container-fluid.mt-5
   .row
-    .col-9.mt-5
+    .col-10.col-md-7.offset-1.mt-5
       h1.text-center
         | グループを作成しました！
       .col-10.my-5.mx-auto
@@ -8,7 +8,8 @@
           thead
             tr
               td colspan="2"
-                = image_tag @group.group_icon(80, 80), class: "rounded-circle"
+                = link_to group_path(@group)
+                  = image_tag @group.group_icon(80, 80), class: "rounded-circle"
           tbody
             tr
               td

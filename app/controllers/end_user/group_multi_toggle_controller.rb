@@ -1,27 +1,23 @@
 class EndUser::GroupMultiToggleController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
+  before_action :common_group_tag, only: [:complete, :tags]
+  before_action :common_group_genre, only: [:complete, :genres]
+  before_action :common_group_game, only: [:complete, :games]
+
   # before_action :forbid_guestuser
 
   # グループ新規作成完了後にユーザーと同様にタグ付け可能
   def complete
     @group = Group.find(params[:group_id])
-    @tag = Tag.new
-    @tags = Tag.display_show_type("group")
     @tag_names = @group.tag_names
-    @genre = Genre.new
-    @genres = Genre.display_show_type("group")
     @genre_names = @group.genre_names
-    @game = Game.new
-    @games = Game.display_show_type("group")
     @game_names = @group.game_names
   end
 
   # グループタグ
   def tags
     @group = Group.find(params[:group_id])
-    @tag = Tag.new
-    @tags = Tag.display_show_type("group")
     @tag_names = @group.tag_names
   end
 
@@ -61,8 +57,6 @@ class EndUser::GroupMultiToggleController < ApplicationController
   # グループジャンル
   def genres
     @group = Group.find(params[:group_id])
-    @genre = Genre.new
-    @genres = Genre.display_show_type("group")
     @genre_names = @group.genre_names
   end
 
@@ -102,8 +96,6 @@ class EndUser::GroupMultiToggleController < ApplicationController
   # グループゲーム
   def games
     @group = Group.find(params[:group_id])
-    @game = Game.new
-    @games = Game.display_show_type("group")
     @game_names = @group.game_names
   end
 
@@ -147,5 +139,20 @@ class EndUser::GroupMultiToggleController < ApplicationController
     unless current_end_user.id == group.owner_id
       redirect_to groups_path, alert: "オーナーではないため編集できません。"
     end
+  end
+
+  def common_group_tag
+    @tag = Tag.new
+    @tags = Tag.display_show_type("group")
+  end
+
+  def common_group_genre
+    @genre = Genre.new
+    @genres = Genre.display_show_type("group")
+  end
+
+  def common_group_game
+    @game = Game.new
+    @games = Game.display_show_type("group")
   end
 end
