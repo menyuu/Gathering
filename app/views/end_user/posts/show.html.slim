@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .col-8.ml-5
-      .card.shadow.posts-area.rounded-0
+      .card.shadow.rounded-0
         .card-body.row
           .col-8
             = link_to user_path(@post.user)
@@ -54,7 +54,7 @@
           .scroll-list.jscroll
             - @comments.each do |comment|
               #post-index
-                .card.posts-area.rounded-0
+                .card.rounded-0
                   .card-body.row
                     .col-8
                       = link_to user_path(comment.user)

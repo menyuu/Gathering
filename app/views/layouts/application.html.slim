@@ -18,8 +18,8 @@ html
     main
       #flash
         = render "layouts/flash"
-      .container-fluid.pl-5
-        .row.pl-5
+      .container-fluid
+        .row
           .col-2.sidebar
             - unless current_page?(users_sign_up_complete_path)
               - if end_user_signed_in?

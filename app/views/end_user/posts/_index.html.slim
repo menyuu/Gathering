@@ -1,7 +1,7 @@
 .scroll-list.jscroll
   - posts.each do |post|
     #post-index
-      .card.shadow.posts-area.rounded-0
+      .card.shadow.rounded-0
         .card-body
           = link_to user_path(post.user)
             = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
@@ -10,7 +10,8 @@
           = link_to post_path(post)
             .card-text
               = safe_join(post.text.split("\n"),tag(:br))
-        = render "end_user/posts/post_body", post: post
+        .my-3
+          = render "end_user/posts/post_body", post: post
           ul.col-12.text-right.mb-5
             li.card-text.d-inline-block.post-item
               a data-toggle="modal" data-target="#postComment#{post.id}ModalToggle" data-link="postComment#{post.id}ModalToggle"
