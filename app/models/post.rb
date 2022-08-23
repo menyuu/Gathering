@@ -50,10 +50,10 @@ class Post < ApplicationRecord
     # 公開されているユーザーを取得
     published_user = EndUser.where(status: "published")
     posts = []
-    perfect_match_posts = Post.where(text: word, end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
-    backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
-    prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
-    partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:user, :post_tags, :tags).order(created_at: :DESC)
+    perfect_match_posts = Post.where(text: word, end_user_id: published_user, status: "published").with_attached_images.includes(:post_tags, :tags, user: [icon_attachment: [:blob]]).order(created_at: :DESC)
+    backward_match_posts = Post.where("text LIKE ?", "#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:post_tags, :tags, user: [icon_attachment: [:blob]]).order(created_at: :DESC)
+    prefix_match_posts = Post.where("text LIKE ?", "%#{word}").where(end_user_id: published_user, status: "published").with_attached_images.includes(:post_tags, :tags, user: [icon_attachment: [:blob]]).order(created_at: :DESC)
+    partial_match_posts = Post.where("text LIKE ?", "%#{word}%").where(end_user_id: published_user, status: "published").with_attached_images.includes(:post_tags, :tags, user: [icon_attachment: [:blob]]).order(created_at: :DESC)
     posts.push(perfect_match_posts, backward_match_posts, prefix_match_posts, partial_match_posts)
     # 一次元配列にする
     posts.flatten!

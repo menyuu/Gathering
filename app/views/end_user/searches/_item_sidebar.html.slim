@@ -1,0 +1,52 @@
+.col-3.search-sidebar
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | 投稿ををタグで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - post_tags.each do |tag|
+        = link_to tag.name, search_path(object: "post_tag", word: tag.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{tag.name}"
+
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | ユーザーをタグで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - tags.each do |tag|
+        = link_to tag.name, search_path(object: "tag", word: tag.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{tag.name}"
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | ユーザーをジャンルで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - genres.each do |genre|
+        = link_to genre.name, search_path(object: "genre", word: genre.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{genre.name}"
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | ユーザーをゲームで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - games.each do |game|
+        = link_to game.name, search_path(object: "game", word: game.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{game.name}"
+
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | グループをタグで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - group_tags.each do |tag|
+        = link_to tag.name, search_path(object: "tag", word: tag.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{tag.name}"
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | グループをジャンルで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - group_genres.each do |genre|
+        = link_to genre.name, search_path(object: "genre", word: genre.name), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{genre.name}"
+  .dropdown.search-sidebar-body
+    button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      span
+        | グループをゲームで探す
+    .dropdown-menu aria-labelledby="dropdownMenuButton"
+      - group_games.each do |game|
+        = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-dark dropdown-item", data: { toggle: "tooltip" }, title: "#{game.name}"

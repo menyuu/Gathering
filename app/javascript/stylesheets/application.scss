@@ -72,7 +72,7 @@
   position: sticky;
   top: 60px;
   z-index: 100;
-  height: 100px;
+  height: 128px;
   padding: 16px 0;
 }
 
@@ -84,7 +84,31 @@
   padding: 16px 0;
 }
 
+.search-sidebar {
+  position: sticky;
+  height: 640px;
+  top: 256px;
+  z-index: 1200;
+  margin-left: 64px;
+  &-body {
+    margin-bottom: 32px;
+    & a:hover {
+      color: white;
+    }
+  }
+}
 
+.dropdown{
+  &-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  &-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
 
 
 

@@ -1,9 +1,9 @@
-- if group.sameHasItems?(current_end_user) || (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-  - if group.includesUser?(current_end_user)
+- if group.includesUser?(current_end_user)
     = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
-  - else
-    = link_to "グループに参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
 - else
+  - if group.sameHasItems?(current_end_user) || (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
+    = link_to "グループに参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
+  - else
     p
       | 条件を満たしていないため
       br

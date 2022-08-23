@@ -1,22 +1,24 @@
-- case @object
+- case object
 - when "tag"
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col.text-center.my-3
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
         |人気のタグからユーザーを探す：
-        - @tags.each do |tag|
+        - tags.each do |tag|
           = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
             h2
@@ -38,20 +40,22 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col.text-center.my-3
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
         |人気のジャンルからユーザーを探す：
-        - @genres.each do |genre|
+        - genres.each do |genre|
           = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
             h2
@@ -73,20 +77,22 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col.text-center.my-3
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
         |人気のゲームからユーザーを探す：
-        - @games.each do |game|
+        - games.each do |game|
           = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/users/index", users: @search_result
+        - if search_result.present?
+          = render "end_user/users/index", users: search_result
         - else
           .text-center
             h2

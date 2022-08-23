@@ -1,18 +1,20 @@
-- case @object
+- case object
 - when "group"
   .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "IDでグループを探す", search_path(object: "group_id", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループタグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "IDでグループを探す", search_path(object: "group_id", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/groups/index", groups: @search_result
+        - if search_result.present?
+          = render "end_user/groups/index", groups: search_result
         - else
           .text-center
             h2
@@ -34,16 +36,18 @@
   .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "グループを探す", search_path(object: "group_keyword", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループ名で探す", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループタグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/groups/index", groups: @search_result
+        - if search_result.present?
+          = render "end_user/groups/index", groups: search_result
         - else
           .text-center
             h2
@@ -64,16 +68,18 @@
   .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "IDでグループを探す", search_path(object: "group_id", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループ名で探す", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループタグ", search_path(object: "group_tag", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループジャンル", search_path(object: "group_genre", word: @word), class: "btn btn-dark rounded-pill m-2"
-        = link_to "グループゲーム", search_path(object: "group_game", word: @word), class: "btn btn-dark rounded-pill m-2"
+        = link_to "IDでグループを探す", search_path(object: "group_id", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
-        - if @search_result.present?
-          = render "end_user/groups/index", groups: @search_result
+        - if search_result.present?
+          = render "end_user/groups/index", groups: search_result
         - else
           .text-center
             h2

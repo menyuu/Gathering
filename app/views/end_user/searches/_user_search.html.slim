@@ -2,15 +2,17 @@
 - when "user"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.offset-1.text-center.my-3
         = link_to "IDでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
@@ -29,19 +31,21 @@
             h5.text-center
               | ユーザー名を検索
             = render "form", model: "user"
-
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 - when "id"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.offset-1.text-center.my-3
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
@@ -60,19 +64,22 @@
             h5.text-center
               | ユーザーIDを検索
             = render "form", model: "id"
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "user_keyword"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.offset-1.text-center.my-3
         = link_to "IDでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
@@ -91,3 +98,4 @@
             h5.text-center
               | ユーザーをキーワードから検索
             = render "form", model: "user_keyword"
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games

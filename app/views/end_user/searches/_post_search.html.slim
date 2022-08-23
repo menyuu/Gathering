@@ -3,10 +3,10 @@
   .container-fluid.bg-white.search-top-bar
     .row
       .col.text-center.my-3
-        = link_to "投稿から探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
       .col
@@ -35,12 +35,12 @@
       .col.text-center.my-3
         = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
     .row.mb-5.item-top-bar
       .col.text-center
         |人気の投稿タグから探す：
-        - @tags.each do |tag|
+        - post_tags.each do |tag|
           = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row

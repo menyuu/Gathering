@@ -1,5 +1,6 @@
 class EndUser::SearchesController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :common_search
 
   def search
     @object = params[:object]
@@ -35,7 +36,6 @@ class EndUser::SearchesController < ApplicationController
       @post_comment = PostComment.new
     when "post_tag"
       search_result = PostingTag.find_by(name: @word)
-      @tags = PostingTag.display_show_type("post", 15)
       if search_result.present?
         users = EndUser.where(status: "published")
         @search_result = Kaminari.paginate_array(search_result.posts.where(status: "published", end_user_id: users).with_attached_images.includes(:user, :tags, :post_tags).order(created_at: :DESC)).page(params[:page]).per(1)
@@ -45,19 +45,16 @@ class EndUser::SearchesController < ApplicationController
     # ユーザータグ検索用
     when "tag"
       search_result = Tag.find_by(name: @word)
-      @tags = Tag.display_show_type("user", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "genre"
       search_result = Genre.find_by(name: @word)
-      @genres = Genre.display_show_type("user", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "game"
       search_result = Game.find_by(name: @word)
-      @games = Game.display_show_type("user", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.users.where(status: "published").order(created_at: :DESC)).page(params[:page]).per(1)
       end
@@ -65,22 +62,29 @@ class EndUser::SearchesController < ApplicationController
     # グループタグ検索用
     when "group_tag"
       search_result = Tag.find_by(name: @word)
-      @tags = Tag.display_show_type("group", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "group_genre"
       search_result = Genre.find_by(name: @word)
-      @genres = Genre.display_show_type("group", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     when "group_game"
       search_result = Game.find_by(name: @word)
-      @games = Game.display_show_type("group", 15)
       if search_result.present?
         @search_result = Kaminari.paginate_array(search_result.groups.order(created_at: :DESC)).page(params[:page]).per(1)
       end
     end
+  end
+
+  def common_search
+    @post_tags = PostingTag.display_show_type("post", 10)
+    @tags = Tag.display_show_type("user", 10)
+    @genres = Genre.display_show_type("user", 10)
+    @games = Game.display_show_type("user", 10)
+    @group_tags = Tag.display_show_type("group", 10)
+    @group_genres = Genre.display_show_type("group", 10)
+    @group_games = Game.display_show_type("group", 10)
   end
 end

@@ -1,30 +1,8 @@
-.row
-  .col-7.offset-1
-    = render "post_search", object: @object, word: @word, search_result: @search_result, post_comment: @post_comment
-    = render "user_search", object: @object, word: @word, search_result: @search_result
-    = render "group_search", object: @object, word: @word, search_result: @search_result
-    = render "tags_search", object: @object, word: @word, search_result: @search_result, tags: @tags, genres: @genres, games: @games
-    = render "group_tags_search", object: @object, word: @word, search_result: @search_result, tags: @tags, genres: @genres, games: @games
-
-  .col-3.ml-5.search-bar
-    .search-bar
-      table.table.table-borderless
-        tbody
-          tr
-            td
-              = link_to "投稿", search_path(object: "post", word: @word), class: "btn btn-dark rounded-pill"
-          tr
-            td
-              = link_to "ユーザー", search_path(object: "user", word: @word), class: "btn btn-dark rounded-pill"
-          tr
-            td
-              = link_to "グループ", search_path(object: "group", word: @word), class: "btn btn-dark rounded-pill"
-          tr
-            td
-              = link_to "タグ", search_path(object: "tag", word: @word), class: "btn btn-dark rounded-pill"
-          tr
-            td
-              = link_to "ジャンル", search_path(object: "genre", word: @word), class: "btn btn-dark rounded-pill"
-          tr
-            td
-              = link_to "ゲーム", search_path(object: "game", word: @word), class: "btn btn-dark rounded-pill"
+.container-fluid
+  .row
+    .col-12
+      = render "post_search", object: @object, word: @word, search_result: @search_result, post_comment: @post_comment, post_tags: @post_tags, tags: @tags, genres: @genres, games: @games, group_tags: @group_tags, group_genres: @group_genres, group_games: @group_games
+      = render "user_search", object: @object, word: @word, search_result: @search_result, post_tags: @post_tags, tags: @tags, genres: @genres, games: @games, group_tags: @group_tags, group_genres: @group_genres, group_games: @group_games
+      = render "group_search", object: @object, word: @word, search_result: @search_result, post_tags: @post_tags, tags: @tags, genres: @genres, games: @games, group_tags: @group_tags, group_genres: @group_genres, group_games: @group_games
+      = render "tags_search", object: @object, word: @word, search_result: @search_result, post_tags: @post_tags, tags: @tags, genres: @genres, games: @games, group_tags: @group_tags, group_genres: @group_genres, group_games: @group_games
+      = render "group_tags_search", object: @object, word: @word, search_result: @search_result, post_tags: @post_tags, tags: @tags, genres: @genres, games: @games, group_tags: @group_tags, group_genres: @group_genres, group_games: @group_games
