@@ -12,10 +12,10 @@
               - if @post.status == "published" || @post.status == "draft"
                 li.d-inline-block.option-item
                   = link_to post_tags_path(@post)
-                    i.fas.fa-tags data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
+                    i.fas.fa-tags data-toggle="tooltip" title="クリックしてタグを編集"
               li.d-inline-block.option-item-delete
                 = link_to post_path(@post), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
-                  i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
+                  i.fas.fa-trash-alt data-toggle="tooltip" title="クリックして投稿を削除"
         .card-body
           
             = safe_join(@post.text.split("\n"),tag(:br))

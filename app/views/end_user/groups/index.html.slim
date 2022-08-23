@@ -15,7 +15,7 @@
             .card.shadow.mt-5.group-sidebar-body
               = link_to group_path(group)
                 .card-body
-                  .col-12 data-toggle="tooltip" data-placement="right" title="クリックして詳細を見る"
+                  .col-12 data-toggle="tooltip" title="クリックして詳細を見る"
                     = image_tag group.group_icon(40, 40), class: "rounded-circle"
                     span.show-name
                       = group.name

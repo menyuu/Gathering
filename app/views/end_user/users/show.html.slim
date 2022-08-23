@@ -16,7 +16,7 @@
                     = render "end_user/relationships/follow_btn", user: @user
                 - else
                   a data-toggle="modal" data-target="#editUserModalToggle"
-                    i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" data-placement="right" title="クリックしてユーザーを編集"
+                    i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" title="クリックしてユーザーを編集"
                   = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ml-5",
                   data: {confirm: "本当にログアウトしますか？"}
             .row.mt-5 class="follow_count_#{@user.id}"
@@ -29,21 +29,21 @@
               | このユーザーは凍結されています。
         .card-body
           ul.col-12
-            li.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
+            li.tag-icon-item data-toggle="tooltip" title="クリックしてタグを編集"
               = link_to tags_path
                 i.fas.fa-user-tag
                 span.between-text-icon
                   | 趣味タグ：
                 - @user.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてジャンルを編集"
+            li.tag-icon-item data-toggle="tooltip" title="クリックしてジャンルを編集"
               = link_to genres_path
                 i.fas.fa-chess
                 span.between-text-icon
                   | ゲームジャンル：
                 - @user.genres.each do |genre|
                   = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-            li.tag-icon-item data-toggle="tooltip" data-placement="right" title="クリックしてゲームを編集"
+            li.tag-icon-item data-toggle="tooltip" title="クリックしてゲームを編集"
               = link_to games_path
                 i.fas.fa-gamepad
                 span.between-text-icon
