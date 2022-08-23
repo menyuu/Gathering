@@ -5,8 +5,7 @@
         h5.modal-title#editGroupModalToggle
           | グループ詳細編集
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body
         = form_with model: group, url: group_path(group), method: :patch, local: false do |f|
           .errors.text-left

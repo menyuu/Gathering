@@ -31,14 +31,13 @@
         h5.modal-title
           | ステップ1：タグを追加する
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body.tag-area
         = render "end_user/group_multi_toggle/tags", group: @group, tags: @tags, tag: @tag, tag_names: @tag_names
       .modal-footer
         .modal-body
           span.text-left
-            = link_to "スキップする", group_path(@group), class: "link-text-blue"
+            = link_to "スキップする", group_path(@group), class: "link-text-blue", data: {"turbolinks" => false}
         button.btn.btn-outline-dark data-dismiss="modal" 閉じる
         button.btn.btn-dark#form data-target="#addGenreModalToggle" data-toggle="modal" data-dismiss="modal" ジャンルを追加する
 .modal.fade#addGenreModalToggle tabindex="-1" aria-labelledby="addGenreModalToggle" aria-hidden="true"
@@ -48,14 +47,13 @@
         h5.modal-title
           | ステップ2：ジャンルを追加する
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body.genre-area
         = render "end_user/group_multi_toggle/genres", group: @group, genres: @genres, genre: @genre, genre_names: @genre_names
       .modal-footer
         .modal-body
           span.text-left
-            = link_to "スキップする", group_path(@group), class: "link-text-blue"
+            = link_to "スキップする", group_path(@group), class: "link-text-blue", data: {"turbolinks" => false}
         button.btn.btn-outline-dark#form data-target="#addTagModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
         button.btn.btn-dark#form data-target="#addGameModalToggle" data-toggle="modal" data-dismiss="modal" ゲームを追加する
 .modal.fade#addGameModalToggle tabindex="-1" aria-labelledby="addGameModalToggle" aria-hidden="true"
@@ -65,13 +63,12 @@
         h5.modal-title
           | ステップ3：ゲームを追加する
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body.game-area
         = render "end_user/group_multi_toggle/games", group: @group, games: @games, game: @game, game_names: @game_names
       .modal-footer
         .modal-body
           span.text-left
-            = link_to "スキップする", group_path(@group), class: "link-text-blue"
+            = link_to "スキップする", group_path(@group), class: "link-text-blue", data: {"turbolinks" => false}
         button.btn.btn-outline-dark#form data-target="#addGenreModalToggle" data-toggle="modal" data-dismiss="modal" 戻る
-        = link_to "グループへ", group_path(@group), class: "btn btn-dark"
+        = link_to "グループへ", group_path(@group), class: "btn btn-dark", data: {"turbolinks" => false}

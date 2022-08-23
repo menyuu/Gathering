@@ -4,8 +4,7 @@
       .modal-header
         div id="#postComment#{post.id}ModalToggle"
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body
         = link_to user_path(post.user)
           = image_tag post.user.user_icon(56, 56), class: "rounded-circle"

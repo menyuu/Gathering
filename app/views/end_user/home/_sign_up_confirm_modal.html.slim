@@ -5,8 +5,7 @@
         h5.modal-title#newUserConfirmModalToggle
           | アカウントを作成(確認画面)
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body
         = form_with model: user, url: end_user_registration_path, id: "new_end_user", class: "new_end_user", local: true do |f|
           .form-group

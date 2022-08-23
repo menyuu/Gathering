@@ -5,8 +5,7 @@
         h5.modal-title#createGroupModalToggle
           | グループを作成する
         button.btn.modal-close-btn data-dismiss="modal" aria-label="close"
-          span
-            | ×
+          span aria-hidden="true" &times;
       .modal-body
         = form_with model: group, url: groups_path, local: false do |f|
           .errors
