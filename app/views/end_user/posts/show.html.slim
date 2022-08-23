@@ -10,14 +10,14 @@
           ul.col-4.text-right.mb-5
             - if current_end_user == @post.user
               - if @post.status == "published" || @post.status == "draft"
-                li.card-text.d-inline-block.option-item
+                li.d-inline-block.option-item
                   = link_to post_tags_path(@post)
                     i.fas.fa-tags data-toggle="tooltip" data-placement="right" title="クリックしてタグを編集"
-              li.card-text.d-inline-block.option-item-delete
+              li.d-inline-block.option-item-delete
                 = link_to post_path(@post), method: :delete,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
                   i.fas.fa-trash-alt data-toggle="tooltip" data-placement="right" title="クリックして投稿を削除"
         .card-body
-          .card-text
+          
             = safe_join(@post.text.split("\n"),tag(:br))
         .card-body
           .card-img.text-center
@@ -25,31 +25,31 @@
               = link_to image, "data-lightbox": image
                 = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block m-1"
         .card-body
-          .card-text
+          
             = @post.updated_at.strftime("%Y年%m月%d日 %H時%M分")
         .card-body
-          .card-text
+          
             - @post.tags.each do |tag|
               = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body
           ul.col-12.text-right.mb-3
             - if @post.status == "published"
-              li.card-text.d-inline-block.option-item
+              li.d-inline-block.option-item
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
                   i.far.fa-comment.option-item
                 = @post.post_comments.count
-              li.card-text.d-inline-block.option-item
+              li.d-inline-block.option-item
                 div class="favorite_btn_#{@post.id}"
                   = render "end_user/favorites/favorite", post: @post
             - if @post.status == "published" || @post.status == "draft"
-              li.card-text.d-inline-block.option-item
+              li.d-inline-block.option-item
                 = link_to post_path(@post)
                   = time_ago_in_words(@post.updated_at)
                   | 前
             - if @post.status == "draft"
               li.accordion id="accordion#{@post.id}" aria-multiselectable="true"
                 .accordion-item
-                  .card-text.d-inline-block.accordion-header id="heading#{@post.id}"
+                  .d-inline-block.accordion-header id="heading#{@post.id}"
                     div data-toggle="collapse" data-target="#collapse#{@post.id}" aria-expanded="false" aria-controls="collapse#{@post.id}"
                       i.fa.fa-edit
                       span.form-item
@@ -72,15 +72,15 @@
                       = image_tag comment.user.user_icon(56, 56), class: "rounded-circle"
                     = link_to comment.user.name, user_path(comment.user), class: "show-name"
                 .card-body
-                  p.card-text
+                  p
                     = comment.text
                 ul.col-12.text-right.mb-5
-                  li.card-text.d-inline-block.option-item
+                  li.d-inline-block.option-item
                     = comment.updated_at.strftime("%Y年%m月%d日 %H時%M分")
-                  li.card-text.d-inline-block.option-item
+                  li.d-inline-block.option-item
                     = time_ago_in_words(comment.updated_at)
                     | 前
-                  li.card-text.d-inline-block.option-item
+                  li.d-inline-block.option-item
                     - if comment.user == current_end_user
                       = link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "text-danger",
                       data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}

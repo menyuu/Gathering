@@ -16,7 +16,7 @@
                     | )
               .col-6.text-right
                 ul
-                  li.card-text.d-inline-block.delete-btn
+                  li.d-inline-block.delete-btn
                     = link_to "削除する", admin_group_path(group), method: :delete, class: "btn btn-outline-danger",
                     data: {"confirm": "該当のグループを削除してよろしいですか？"}
             .card-body.ml-auto
@@ -30,7 +30,7 @@
                         = link_to group.owner.name, admin_user_path(group.owner), class: "table-link-count"
             .card-body
               = link_to admin_group_path(group)
-                p.card-text.group-text
+                p.group-text
                   = group.introduction
             .card-body
               = render "admin/users/tags_item", user: group

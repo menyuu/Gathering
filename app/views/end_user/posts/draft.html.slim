@@ -11,7 +11,7 @@
                 = link_to post.user.name, user_path(post.user), class: "show-name"
               .card-body
                 = link_to post_path(post)
-                  .card-text
+                  
                     = safe_join(post.text.split("\n"),tag(:br))
               = render "post_body", post: post
               ul.col-12.text-right.mb-5

@@ -12,11 +12,14 @@ class EndUser::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     users = []
-    published_users = @group.users.where(status: "published").order(name: :ASC)
+    # パブリックユーザーを名前の順に取得し配列に代入する
+    published_users = @group.users.with_attached_icon.where(status: "published").order(name: :ASC)
     users.push(published_users)
+    # ログイン中のユーザーを配列に加える
     if @group.users.include?(current_end_user)
       users << current_end_user
     end
+    # 1次元配列にし、ログイン中のユーザーが公開だった場合、名前が被るので取り除く
     users.flatten!
     users = users.uniq { |user| user.id }
     @members = Kaminari.paginate_array(users).page(params[:page]).per(1)
@@ -30,8 +33,6 @@ class EndUser::GroupsController < ApplicationController
       @group.users << current_end_user
       redirect_to group_complete_path(@group), notice: "グループを作成しました。"
     else
-      @groups = Group.page(params[:page]).without_count.per(1).order(created_at: :DESC)
-      @join_group = current_end_user.groups
       render :error
     end
   end
@@ -46,8 +47,8 @@ class EndUser::GroupsController < ApplicationController
   end
 
   def destroy
-    @group = Group.find(params[:id])
-    @group.destroy
+    group = Group.find(params[:id])
+    group.destroy
     redirect_to groups_path, alert: "グループを削除しました。"
   end
 

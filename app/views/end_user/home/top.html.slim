@@ -25,9 +25,9 @@
       .card.shadow
         .card-body
           = form_with model: @user, url: end_user_session_path, local: true do |f|
-            .card-text.field.form-group
+            .field.form-group
               = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control"
-            .card-text.field.form-group
+            .field.form-group
               = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control mt-3"
             .actions.mt-3
                 = f.submit "ログイン", class: "btn btn-block btn-dark"

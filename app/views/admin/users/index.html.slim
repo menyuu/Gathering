@@ -10,13 +10,13 @@
                   = image_tag user.user_icon(56, 56), class: "rounded-circle"
                 = link_to user.name, admin_user_path(user), class: "show-name"
               ul.col-4.text-right
-                li.card-text.d-inline-block
+                li.d-inline-block
                   = user.status_i18n
-                li.card-text.d-inline-block.delete-btn.ml-5
+                li.d-inline-block.delete-btn.ml-5
                   = render "status_btn", user: user
             .card-body
               = link_to admin_user_path(user)
-                p.card-text.introduction-text
+                p.introduction-text
                   = user.introduction
             .card-body
               = render "tags_item", user: user

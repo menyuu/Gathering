@@ -9,12 +9,12 @@
             span.show-name
               = @user.name
           ul.col-4
-            li.card-text.d-inline-block
+            li.d-inline-block
               = @user.status_i18n
-            li.card-text.d-inline-block.delete-btn.ml-5
+            li.d-inline-block.delete-btn.ml-5
               = render "status_btn", user: @user
         .card-body
-          p.card-text.introduction-text
+          p.introduction-text
             = @user.introduction
         .card-body
           = render "tags_item", user: @user

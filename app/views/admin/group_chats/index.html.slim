@@ -11,14 +11,14 @@
                     = chat.user.name
                   .span
                     = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
-              .card-text.text-left
+              .text-left
                 = chat.text
                     = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
             .card-body.text-right
               ul.col-12
-                li.card-text.d-inline-block
+                li.d-inline-block
                   = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                li.card-text.d-inline-block.tag-icon-item-delete
+                li.d-inline-block.tag-icon-item-delete
                   = link_to "削除", admin_group_chat_path(chat.group, chat), method: :delete
   .col-3.mt-5
     .card.shadow
@@ -28,5 +28,5 @@
         .card-body
           = link_to admin_user_path(member)
             = image_tag member.user_icon(56, 56), class: "rounded-circle"
-            span.card-text.name
+            span.name
               = member.name

@@ -15,7 +15,7 @@
               tr
                 td
                   = image_tag member.user_icon(56, 56), class: "rounded-circle"
-                td.card-text.show-name
+                td.show-name
                   = member.name
                 td
                   - if member.id == group.owner_id

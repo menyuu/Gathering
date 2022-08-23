@@ -2,13 +2,13 @@
 .card-body.border-bottom
   .card-header.mb-5.bg-white
     | 現在のタグ(最大8個まで)
-  .card-text.my-3
+  .my-3
     - post.tags.each do |tag|
       = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
 .card-body.border-bottom
   .card-header.mb-5.bg-white
     | 人気のタグ
-  .card-text.my-3
+  .my-3
     - post_tags.each do |tag|
       = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
 .card-body

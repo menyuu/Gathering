@@ -14,7 +14,7 @@
                 | )
           .col-6.text-right
             ul
-              li.card-text.d-inline-block.delete-btn
+              li.d-inline-block.delete-btn
                 = link_to "削除する", admin_group_path(group), method: :delete, class: "btn btn-outline-danger",
                 data: {"confirm": "該当のグループを削除してよろしいですか？"}
   - else
@@ -48,7 +48,7 @@
                 | )
           .col-6.text-right
             ul
-              li.card-text.d-inline-block.delete-btn
+              li.d-inline-block.delete-btn
                 = link_to "削除する", admin_group_path(group), method: :delete, class: "btn btn-outline-danger",
                 data: {"confirm": "該当のグループを削除してよろしいですか？"}
   - else

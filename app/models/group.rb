@@ -56,7 +56,7 @@ class Group < ApplicationRecord
   # ユーザーがグループと同じタグを所持しているかどうかを判定
   def sameHasItems?(user)
     # 1つでも合致したらグループに参加できるようにする
-    # ユーザーのタグ類とグループのタグ類を照らし合わせ1つでも合致したらtrueを
+    # ユーザーのタグ類とグループのタグ類を照らし合わせ1つでも合致したらtrueを返す
     tags.any? { |i| user.tags.includes(:tags).include?(i) } ||
     genres.any? { |i| user.genres.includes(:genres).include?(i) } ||
     games.any? { |i| user.games.includes(:games).include?(i) }
