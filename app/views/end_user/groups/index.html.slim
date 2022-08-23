@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-7.offset-1
+    .col-10.col-md-7.offset-1
       = render "end_user/groups/index", groups: @groups
     .col-3.ml-5
       .group-sidebar-container
@@ -10,9 +10,9 @@
               | グループを作成する
         h3.text-center.mt-5
           | 参加中のグループ
-        .group-sidebar.overflow-auto
+        .group-sidebar
           - @join_group.each do |group|
-            .card.shadow.group-sidebar-body
+            .card.shadow.mt-5.group-sidebar-body
               = link_to group_path(group)
                 .card-body
                   .col-12 data-toggle="tooltip" data-placement="right" title="クリックして詳細を見る"
@@ -24,7 +24,7 @@
                     =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
                 .card-body.text-right
                   - unless group.is_ownerd_by?(current_end_user)
-                    - if group.sameHasTag?(current_end_user) or group.sameHasGenre?(current_end_user) or group.sameHasGame?(current_end_user) or (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
+                    - if group.sameHasItems?(current_end_user) || (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
                       - if group.includesUser?(current_end_user)
                         = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
                       - else

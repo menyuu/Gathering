@@ -54,17 +54,12 @@ class Group < ApplicationRecord
   end
 
   # ユーザーがグループと同じタグを所持しているかどうかを判定
-  def sameHasTag?(user)
+  def sameHasItems?(user)
     # 1つでも合致したらグループに参加できるようにする
-    tags.includes(:group_tags).any? { |i| user.tags.includes(:tags).include?(i) }
-  end
-
-  def sameHasGenre?(user)
-    genres.includes(:group_genres).any? { |i| user.genres.includes(:genres).include?(i) }
-  end
-
-  def sameHasGame?(user)
-    games.includes(:group_games).any? { |i| user.games.includes(:games).include?(i) }
+    # ユーザーのタグ類とグループのタグ類を照らし合わせ1つでも合致したらtrueを
+    tags.any? { |i| user.tags.includes(:tags).include?(i) } ||
+    genres.any? { |i| user.genres.includes(:genres).include?(i) } ||
+    games.any? { |i| user.games.includes(:games).include?(i) }
   end
 
   # グループ検索用(application_recordに記載)
