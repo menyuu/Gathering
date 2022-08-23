@@ -30,24 +30,30 @@ class EndUser::RelationshipsController < ApplicationController
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
     @tags = Tag.display_show_type("user")
     common_followings = users & current_end_user.followings
-    @common_followings = Kaminari.paginate_array(common_followings).page(params[:page]).per(1)
+    @common_followings = Kaminari.paginate_array(common_followings)
   end
 
   def followers
     @user = EndUser.find(params[:user_id])
     users = []
-    follower_users = @user.followers.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
-    private_users = @user.followers.with_attached_icon.includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games) & current_end_user.followers.with_attached_icon.includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
+    # パブリックユーザーを取得する
+    follower_users = @user.followers.with_attached_icon.where(status: "published")
+    # ページのユーザーとログイン中のユーザーのフォロワーで重複したものを変数に代入する
+    private_users = @user.followers.with_attached_icon & current_end_user.followers
+    # 上記の2つを配列に代入する
     users.push(follower_users, private_users)
+    # ページのユーザーにログイン中のユーザーが存在すればusersの配列に代入する
     if @user.followers.include?(current_end_user)
       users << current_end_user
     end
+    # 1次元配列にする
     users.flatten!
+    # idの重複するデータを
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
     @tags = Tag.display_show_type("user")
     common_followers = users & current_end_user.followers
-    @common_followers = Kaminari.paginate_array(common_followers).page(params[:page]).per(1)
+    @common_followers = Kaminari.paginate_array(common_followers)
   end
 
   private

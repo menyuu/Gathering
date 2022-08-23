@@ -22,7 +22,7 @@
             .row.mt-5 class="follow_count_#{@user.id}"
               = render "follows", user: @user
         .card-body
-          p.introduction-text
+          .introduction-text
             - unless @user.status == "freeze"
               = @user.introduction
             - else

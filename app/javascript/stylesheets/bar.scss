@@ -17,6 +17,11 @@
 .item-sidebar {
   overflow-y: auto;
   height: 800px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   &-container {
     position: sticky;
     margin-top: 32px;

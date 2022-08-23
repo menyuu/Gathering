@@ -1,20 +1,20 @@
 .jscroll
   - users.each do |user|
-    .card.shadow.rounded-0
+    .card.shadow.mt-5
       .card-body.row
         .col-6
           = link_to user_path(user)
             = image_tag user.user_icon(56, 56), class: "rounded-circle"
-          = link_to user.name, user_path(user), class: "show-name"
+            span.show-name
+              = user.name
         .col-6
           .text-right
-            - unless user.name == "ゲストユーザー"
-              - unless current_end_user == user
-                div class="follow_btn_#{user.id}"
-                  = render "end_user/relationships/follow_btn", user: user
-      .card-body.introduction-area-container
-        = link_to user_path(user)
-          p.card-tex.introduction-area
+            - unless current_end_user == user || user.name == "ゲストユーザー"
+              div class="follow_btn_#{user.id}"
+                = render "end_user/relationships/follow_btn", user: user
+      = link_to user_path(user)
+        .card-body.introduction-area-container
+          .introduction-area
             = user.introduction
       .card-body
         ul.col-12
@@ -32,7 +32,7 @@
               = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
           li.tag-icon-item
             i.fas.fa-gamepad
-            span
+            span.between-text-icon
               | ゲーム：
             - user.games.each do |game|
               = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"

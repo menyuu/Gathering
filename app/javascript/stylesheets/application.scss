@@ -17,15 +17,6 @@
  cursor: pointer;
 }
 
-.user-item {
-  font-size: 18px;
-  margin: 8px 8px 8px 0;
-  & a:hover {
-    text-decoration: none;
-  }
-}
-
-
 .introduction {
   &-text {
     padding: 16px 16px;
@@ -57,16 +48,23 @@
   }
 }
 
-
-.user-sidebar-container {
-  position: sticky;
-  top: 320px;
-}
-
-.follows-area {
-  margin-left: 30%;
-  @media screen and (max-width: 1200px) {
-    margin-left: 0;
+.user-sidebar {
+  overflow-y: auto;
+  height: 560px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &-container {
+    position: sticky;
+    top: 256px;
+  }
+  &-title {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
   }
 }
 
