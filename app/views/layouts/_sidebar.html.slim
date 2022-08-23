@@ -24,7 +24,7 @@ table.table.table-borderless
         = link_to groups_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-users
           span.between-text-icon
-            | グループを見る
+            | グループ一覧
     - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
       - if current_end_user.id == @group.owner.id
         tr
@@ -32,38 +32,23 @@ table.table.table-borderless
             = link_to group_tags_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-tags
               span.between-text-icon
-                | グループタグを見る
+                | グループタグ
         tr
           td
             = link_to group_genres_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-chess
               span.between-text-icon
-                | グループジャンルを見る
+                | グループジャンル
         tr
           td
             = link_to group_games_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-gamepad
               span.between-text-icon
-                | グループゲームを見る
+                | グループゲーム
+      - else
+        = render "layouts/sidebar_items"
     - else
-      tr
-        td
-          = link_to tags_path, class: "btn btn-dark rounded-pill"
-            i.fas.fa-tags
-            span.between-text-icon
-              | 趣味タグを見る
-      tr
-        td
-          = link_to genres_path, class: "btn btn-dark rounded-pill"
-            i.fas.fa-chess
-            span.between-text-icon
-              | ジャンルを見る
-      tr
-        td
-          = link_to games_path, class: "btn btn-dark rounded-pill"
-            i.fas.fa-gamepad
-            span.between-text-icon
-              | ゲームを見る
+      = render "layouts/sidebar_items"
     tr
       td
         = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-dark rounded-pill"
