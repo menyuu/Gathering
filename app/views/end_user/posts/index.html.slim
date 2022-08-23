@@ -1,7 +1,7 @@
 .container-fluid
   .row
-    .col-7.offset-1
-      .shadow.ml-auto.border
+    .col-10.col-md-7.offset-1
+      .shadow.border
         = render "form", post: @post
       - if @posts.present?
         = render "index", posts: @posts, post_comment: @post_comment

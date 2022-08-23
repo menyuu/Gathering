@@ -35,6 +35,7 @@ class EndUser::PostsController < ApplicationController
 
   def create
     @post = current_end_user.posts.new(post_params)
+    # 送られてきた値によってステータス値を代入する
     case params[:post][:status]
     when "0"
       @post.status = "published"
@@ -47,10 +48,12 @@ class EndUser::PostsController < ApplicationController
         PostingTag.create_tag(tags, @post)
         redirect_to request.referer, notice: "正常に投稿されました。"
       else
+        # 投稿本文のエラー
         @tag_names = tags.join(",") + ","
         render :error
       end
     else
+      # タグのエラー
       @tag_names = tags.join(",") + ","
       render "layouts/tag_error"
     end
@@ -95,7 +98,7 @@ class EndUser::PostsController < ApplicationController
 
   # タグのサイドバー表示用
   def tag_items
-    @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15)).page(params[:page]).per(5)
+    @post_tags = Kaminari.paginate_array(PostingTag.display_show_type("post", 15))
   end
 
   # 新規コメントの作成

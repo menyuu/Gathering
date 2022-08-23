@@ -33,7 +33,7 @@
           li.d-inline-block.option-item
             = link_to admin_post_path(@post)
               = @post.status_i18n
-      .scroll-list.jscroll
+      .jscroll
         - @comments.each do |comment|
           
             .card.shadow.rounded-0

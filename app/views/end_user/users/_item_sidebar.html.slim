@@ -3,10 +3,10 @@
     .col-10.item-sidebar
       h6.item-sidebar-title
         | 人気の投稿タグ
-      .scroll-list.postTagsJscroll
+      .postTagsJscroll
         table.table.table-borderless
           tbody
-            .scroll-list.PostTagJscroll
+            .PostTagJscroll
               - post_tags.each do |tag|
                 tr
                   td
@@ -17,7 +17,7 @@
     .col-5.offset-1.item-sidebar
       h6.item-sidebar-title
         | 人気の趣味タグ
-      .scroll-list.tagsJscroll
+      .tagsJscroll
         table.table.table-borderless
           tbody
             - tags.each do |tag|
@@ -31,7 +31,7 @@
     .col-5.item-sidebar
       h6.item-sidebar-title
         | 人気のジャンル
-      .scroll-list.genresJscroll
+      .genresJscroll
         table.table.table-borderless
           tbody
             - genres.each do |genre|
@@ -44,7 +44,7 @@
     .col-5.offset-1.item-sidebar
       h6.item-sidebar-title
         | 人気のゲーム
-      .scroll-list.gamesJscroll
+      .gamesJscroll
         table.table.table-borderless
           tbody
             - games.each do |game|

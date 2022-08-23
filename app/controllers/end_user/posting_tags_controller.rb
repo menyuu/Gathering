@@ -1,18 +1,15 @@
 class EndUser::PostingTagsController < ApplicationController
   before_action :authenticate_end_user!
-  # before_action :forbid_guestuser, only: [:create, :update, :destroy]
   before_action :ensure_correct_user
+  before_action :common_post_tag
+  # before_action :forbid_guestuser, only: [:create, :update, :destroy]
 
   def show
-    @post = Post.find(params[:post_id])
-    @post_tag = PostingTag.new
     @post_tags = PostingTag.display_show_type("post")
     @tag_names = @post.tag_names
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @post_tag = PostingTag.new
     tags = params[:posting_tag][:name].split(",")
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       PostingTag.create_tag(tags, @post)
@@ -24,8 +21,6 @@ class EndUser::PostingTagsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:post_id])
-    @post_tag = PostingTag.new
     if @post.tags.size < 8
       PostingTag.update_tag(params[:name], @post)
     else
@@ -36,8 +31,6 @@ class EndUser::PostingTagsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @post_tag = PostingTag.new
     PostingTag.destroy_tag(params[:name], @post)
     @post_tags = PostingTag.display_show_type("post")
     @tag_names =  @post.tag_names
@@ -50,5 +43,10 @@ class EndUser::PostingTagsController < ApplicationController
     unless current_end_user == @post.user
       redirect_to user_path(current_end_user), alert: "アカウントが違うため編集できません。"
     end
+  end
+
+  def common_post_tag
+    @post = Post.find(params[:post_id])
+    @post_tag = PostingTag.new
   end
 end
