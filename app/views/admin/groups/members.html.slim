@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-7.offset-1
+    .col-8.offset-1
       .jscroll
         - @members.each do |user|
           .card.rounded-0
@@ -10,9 +10,9 @@
                   = image_tag user.user_icon(56, 56), class: "rounded-circle"
                 = link_to user.name, admin_user_path(user), class: "show-name"
               ul.col-4.text-right
-                li.d-inline-block
+                li.mb-3
                   = user.status_i18n
-                li.d-inline-block.delete-btn.ml-5
+                li.delete-btn.ml-5
                   = render "admin/users/status_btn", user: user
             .card-body
               = link_to admin_user_path(user)
@@ -23,6 +23,6 @@
                 = render "admin/users/tags_item", user: user
               .card-body.text-right
                 = link_to "詳細を見る", admin_user_path(user), class: "btn btn-outline-dark"
-            .skill-list
-              = link_to_prev_page @members, "前のページ", class: "prev d-none"
-              = link_to_next_page @members, "次のページ", class: "next d-none"
+        .skill-list
+          = link_to_prev_page @members, "前のページ", class: "prev d-none"
+          = link_to_next_page @members, "次のページ", class: "next d-none"

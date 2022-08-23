@@ -1,6 +1,6 @@
 class Admin::GroupChatsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @group = Group.find(params[:group_id])
     @members = @group.users.with_attached_icon
@@ -10,6 +10,7 @@ class Admin::GroupChatsController < ApplicationController
   def destroy
     @group = GroupChat.find(params[:id])
     @group.destroy
-    redirect_to request.referer
+    group = Group.find(params[:group_id])
+    @chats = group.group_chats.includes(:user)
   end
 end

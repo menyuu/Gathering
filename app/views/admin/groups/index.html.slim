@@ -21,9 +21,9 @@
                     data: {"confirm": "該当のグループを削除してよろしいですか？"}
             .card-body.ml-auto
               .col-12
-                table.table
+                table.table.table-borderless
                   tbody
-                    tr.border-bottom
+                    tr
                       td
                         = link_to "オーナー：", admin_user_path(group.owner), class: "table-link"
                       td

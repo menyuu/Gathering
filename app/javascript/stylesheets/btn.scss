@@ -20,3 +20,15 @@
     box-shadow: 0 0 0 0.2rem rgb(29, 33, 36, 50%);
   }
 }
+
+.dropdown {
+  &-menu {
+    width: 100%;
+    overflow: hidden;
+  }
+  &-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

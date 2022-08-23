@@ -14,7 +14,6 @@ a {
   text-decoration: none;
   &:hover {
     color: black;
-    background-color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
   }
 }
@@ -120,6 +119,36 @@ img {
   &-delete a:hover {
     color: red;
   }
+}
+
+.icon-item {
+ font-size: 24px;
+ cursor: pointer;
+}
+
+.introduction {
+  &-text {
+    padding: 16px 16px;
+  }
+  &-area {
+    padding: 0 16px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &-container a:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+.form-item {
+  cursor: pointer;
 }
 
 /*タグのレイアウト*/

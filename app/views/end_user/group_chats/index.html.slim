@@ -8,7 +8,7 @@
           = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: false do |f|
             .errors
             .form-group
-              = f.text_area :text, placeholder: "メッセージを入力してチャットをする", class: "form-control text-area", rows: 5
+              = f.text_area :text, autofocus: true, placeholder: "メッセージを入力してチャットをする", class: "form-control text-area", rows: 5
             .form-group.text-right
               = f.submit "送信", class: "btn btn-outline-dark rounded-pill chat-btn"
     .col-3.mt-5

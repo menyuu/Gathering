@@ -1,0 +1,19 @@
+.user-sidebar {
+  overflow-y: auto;
+  height: 560px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &-container {
+    position: sticky;
+    top: 256px;
+  }
+  &-title {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+  }
+}

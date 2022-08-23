@@ -1,32 +1,14 @@
-.row
-  .col-8.mt-5.shadow.p-3
-    - if @chats.exists?
-      .overflow-auto#group-chat-area-admin
-        - @chats.each do |chat|
-          .card.border-0
-            .card-body.text-left.d-flex.justify-content-start.align-items-center
-              .col-2.group-chat-name.text-center
-                = link_to admin_user_path(chat.user), class: "group-chat-name"
-                  .span
-                    = chat.user.name
-                  .span
-                    = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
-              .text-left
-                = chat.text
-                    = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
-            .card-body.text-right
-              ul.col-12
-                li.d-inline-block
-                  = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
-                li.d-inline-block.tag-icon-item-delete
-                  = link_to "削除", admin_group_chat_path(chat.group, chat), method: :delete
-  .col-3.mt-5
-    .card.shadow
-      h6.card-title.text-center.mx-auto.p-3
-        = @group.name
-      - @members.each do |member|
-        .card-body
-          = link_to admin_user_path(member)
-            = image_tag member.user_icon(56, 56), class: "rounded-circle"
-            span.name
-              = member.name
+.container-fluid
+  .row
+    .col-7.offset-1.mt-5.shadow.p-3.admin-group-chat-area
+      = render "index", chats: @chats
+    .col-3.mt-5.admin-group-chat-member
+      .card.shadow
+        h6.card-title.text-center.mx-auto.p-3
+          = @group.name
+        - @members.each do |member|
+          .card-body
+            = link_to admin_user_path(member)
+              = image_tag member.user_icon(56, 56), class: "rounded-circle"
+              span.name
+                = member.name

@@ -5,5 +5,5 @@
       = f.select :model, options_for_select({"ユーザー": "user", "投稿": "post", "グループ": "group"}), { include_blank: '---選択してください---' }, class: "custom-select col-6 col-md-4"
       = f.hidden_field :content, value: "id"
       span.input-group-append.text-right
-        = button_tag(type: "submit", class: "btn btn-dark input-group")
+        = button_tag(type: "submit", class: "btn btn-light border input-group")
           i.fas.fa-search.align-self-center

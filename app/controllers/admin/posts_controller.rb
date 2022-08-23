@@ -6,7 +6,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.with_attached_images.find(params[:id])
     @comments = @post.post_comments.page(params[:page]).per(1).order(created_at: :DESC)
   end
 

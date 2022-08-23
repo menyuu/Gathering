@@ -1,0 +1,10 @@
+.admin-group-chat {
+  &-area {
+  overflow-y: auto;
+  height: 720px;
+  }
+  &-member {
+    overflow-y: auto;
+    height: 720px;
+  }
+}
