@@ -5,6 +5,8 @@ class EndUser::UsersController < ApplicationController
   before_action :forbid_guestuser, only: [:update, :open_user, :close_user]
 
   def show
+    @groups = current_end_user.groups.with_attached_icon.includes(:user_groups, :owner, users: [icon_attachment: [:blob]] )
+    @post_tags = PostingTag.display_show_type("post")
   end
 
   def update

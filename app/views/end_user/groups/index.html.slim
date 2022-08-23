@@ -8,27 +8,5 @@
           button.btn.btn-dark data-toggle="modal" data-target="#createGroupModalToggle"
             span
               | グループを作成する
-        h3.text-center.mt-5
-          | 参加中のグループ
-        .group-sidebar
-          - @join_group.each do |group|
-            .card.shadow.mt-5.group-sidebar-body
-              = link_to group_path(group)
-                .card-body
-                  .col-12 data-toggle="tooltip" title="クリックして詳細を見る"
-                    = image_tag group.group_icon(40, 40), class: "rounded-circle"
-                    span.show-name
-                      = group.name
-                .card-body.group-join-member-container
-                  - group.users.each do |member|
-                    =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
-                .card-body.text-right
-                  - unless group.is_ownerd_by?(current_end_user)
-                    - if group.sameHasItems?(current_end_user) || (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-                      - if group.includesUser?(current_end_user)
-                        = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
-                      - else
-                        = link_to "グループに参加する", group_user_groups_path(group), method: :post, class: "btn btn-outline-dark rounded-pill"
-                  - else
-                    | あなたがオーナーです。
+        = render "prticipation_group", groups: @join_group
 = render "end_user/groups/form_modal", group: @group
