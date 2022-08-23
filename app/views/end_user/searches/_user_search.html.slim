@@ -2,7 +2,7 @@
 - when "user"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col-10.offset-1.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "IDでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -32,10 +32,11 @@
               | ユーザー名を検索
             = render "form", model: "user"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
+
 - when "id"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col-10.offset-1.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "ユーザーを探す", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -69,7 +70,7 @@
 - when "user_keyword"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col-10.offset-1.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "IDでユーザーを探す", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"

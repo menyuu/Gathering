@@ -79,12 +79,12 @@ class EndUser::SearchesController < ApplicationController
   end
 
   def common_search
-    @post_tags = PostingTag.display_show_type("post", 10)
-    @tags = Tag.display_show_type("user", 10)
-    @genres = Genre.display_show_type("user", 10)
-    @games = Game.display_show_type("user", 10)
-    @group_tags = Tag.display_show_type("group", 10)
-    @group_genres = Genre.display_show_type("group", 10)
-    @group_games = Game.display_show_type("group", 10)
+    @post_tags = PostingTag.display_show_type("post", 15)
+    @tags = Tag.display_show_type("user", 15)
+    @genres = Genre.display_show_type("user", 15)
+    @games = Game.display_show_type("user", 15)
+    @group_tags = Tag.display_show_type("group", 15)
+    @group_genres = Genre.display_show_type("group", 15)
+    @group_games = Game.display_show_type("group", 15)
   end
 end

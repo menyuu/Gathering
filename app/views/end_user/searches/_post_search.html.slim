@@ -2,14 +2,14 @@
 - when "post"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/posts/index", posts: search_result, post_comment: post_comment
         - else
@@ -28,11 +28,12 @@
             h5.text-center
               | 投稿を検索
             = render "form", model: "post"
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "post_tag"
   .container-fluid.bg-white.search-tags-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"

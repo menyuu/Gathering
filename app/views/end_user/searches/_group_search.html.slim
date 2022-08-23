@@ -2,7 +2,7 @@
 - when "group"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "IDでグループを探す", search_path(object: "group_id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -12,7 +12,7 @@
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/groups/index", groups: search_result
         - else
@@ -31,11 +31,11 @@
             h5.text-center
               | グループ名を検索
             = render "form", model: "group"
-
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 - when "group_id"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "グループを探す", search_path(object: "group_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -45,7 +45,7 @@
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/groups/index", groups: search_result
         - else
@@ -64,10 +64,12 @@
             h5.text-center
               | グループIDを検索
             = render "form", model: "group_id"
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
+
 - when "group_keyword"
   .container-fluid.bg-white.search-top-bar
     .row
-      .col.text-center.my-3
+      .col-10.text-center.my-3
         = link_to "IDでグループを探す", search_path(object: "group_id", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "グループタグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -77,7 +79,7 @@
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col
+      .col-7.offset-1
         - if search_result.present?
           = render "end_user/groups/index", groups: search_result
         - else
@@ -96,3 +98,4 @@
             h5.text-center
               | グループをキーワードから検索
             = render "form", model: "group_keyword"
+      = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
