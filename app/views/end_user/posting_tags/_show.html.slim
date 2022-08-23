@@ -1,21 +1,18 @@
 .errors
-.card-body.border-bottom
-  .card-header.mb-5.bg-white
-    | 現在のタグ(最大8個まで)
+.card-body.mb-5.border-bottom
+  | 現在のタグ(最大8個まで)
   .my-3
     - post.tags.each do |tag|
       = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
-.card-body.border-bottom
-  .card-header.mb-5.bg-white
-    | 人気のタグ
+.card-body.mb-5.border-bottom
+  | 人気のタグ
   .my-3
     - post_tags.each do |tag|
       = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
-.card-body
-  .card-header.mb-5.bg-white
-    | タグを追加する
+.card-body.mb-5
+  | 新しいタグを作成する
   = form_with model: [post, post_tag], url: post_tags_path(post), local: false do |f|
     .input-group
       = f.text_field:name, value: tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend post-input-tag-area"
-      span.input-group-append.text-right
-        = f.submit "投稿タグ登録", class: "btn btn-outline-dark input-group"
+      span.input-group-append
+        = f.submit "投稿タグを登録", class: "btn btn-outline-dark input-group"
