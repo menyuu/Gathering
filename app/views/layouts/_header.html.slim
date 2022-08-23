@@ -1,19 +1,19 @@
-nav.navbar-light.bg-white
+nav.navbar-dark.bg-dark
   .container-fluid.header-container
     .logo-container
       - if end_user_signed_in?
         - if current_end_user.name == "ゲストユーザー"
           = link_to index_all_posts_path, class:"navbar-brand"
-            = image_tag asset_path("logo.png"), class: "logo"
+            = image_tag asset_path("logo-white.png"), class: "logo"
         - else
           = link_to posts_path, class:"navbar-brand"
-            = image_tag asset_path("logo.png"), class: "logo"
+            = image_tag asset_path("logo-white.png"), class: "logo"
       - elsif admin_signed_in?
         = link_to admin_path, class:"navbar-brand"
-            = image_tag asset_path("logo.png"), class: "logo"
+            = image_tag asset_path("logo-white.png"), class: "logo"
       - else
         = link_to root_path, class:"navbar-brand"
-          = image_tag asset_path("logo.png"), class: "logo"
+          = image_tag asset_path("logo-white.png"), class: "logo"
     .search-form-position
       - unless current_page?(users_sign_up_complete_path)
         - if end_user_signed_in?
