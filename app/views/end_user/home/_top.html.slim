@@ -1,34 +1,30 @@
 - posts.each do |post|
-  .card.shadow.rounded-0
-    .card-body
-      = link_to new_end_user_session_path
+  = link_to new_end_user_session_path
+    .card.shadow.rounded-0
+      .card-body
         = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
-      = link_to post.user.name, new_end_user_session_path, class: "show-name"
-    .card-body
-      = link_to new_end_user_session_path
-        p
-          = safe_join(post.text.split("\n"),tag(:br))
-    .card-body
-      .card-img.text-center
-        - post.images.each do |image|
-          = link_to image, "data-lightbox": image
-            = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block"
-    .card-body
-      
-        - post.tags.each do |tag|
-          = link_to tag.name, new_end_user_session_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
-      
+        span.show-name
+          = post.user.name
+      .card-body
+        = safe_join(post.text.split("\n"),tag(:br))
+      .card-body
+        .card-img.text-center
+          - post.images.each do |image|
+            = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block m-1"
+      .card-body
         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-      ul.col-12.text-right.mb-5
-        li.d-inline-block.option-item
-          = link_to new_end_user_session_path
-            i.far.fa-comment.option-item
+      .card-body
+        - post.tags.each do |tag|
+          span.btn.btn-sm.btn-dark.rounded-pill.tag-item
+            = tag.name
+      .card-body
+        ul.col-12.text-right.mb-5
+          li.d-inline-block.option-item
+            i.far.fa-comment
             = post.post_comments.count
-        li.d-inline-block.option-item
-          = link_to new_end_user_session_path
-            i.far.fa-heart.option-item
+          li.d-inline-block.option-item
+            i.far.fa-heart
             = post.favorites.count
-        li.d-inline-block.option-item
-          = link_to new_end_user_session_path
+          li.d-inline-block
             = time_ago_in_words(post.created_at)
             | 前
