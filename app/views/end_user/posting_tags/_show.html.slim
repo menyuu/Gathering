@@ -10,7 +10,7 @@
     - post_tags.each do |tag|
       = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
 .card-body.mb-5
-  | 新しいタグを作成する
+  | タグを追加する
   = form_with model: [post, post_tag], url: post_tags_path(post), local: false do |f|
     .input-group
       = f.text_field:name, value: tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend post-input-tag-area"

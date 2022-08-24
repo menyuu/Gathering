@@ -10,7 +10,7 @@
     - games.each do |game|
       = link_to game.name, game_path(current_end_user, name: game.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
 .card-body.mb-5
-  | 新しいゲームを作成する
+  | ゲームを追加する
   = form_with model: game, local: false do |f|
     .input-group
       = f.text_field :name, value: game_names, placeholder: "複数のゲームは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
