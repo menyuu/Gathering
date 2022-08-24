@@ -3,9 +3,9 @@
     .card-body.text-left.d-flex.justify-content-start.align-items-center
       .col-2.group-chat-name.text-center
         = link_to admin_user_path(chat.user), class: "group-chat-name"
-          .span
+          span data-toggle="tooltip" title="#{chat.user.name}"
             = chat.user.name
-          .span
+          span
             = image_tag chat.user.user_icon(56, 56), class: "rounded-circle"
       .text-left
         = chat.text
@@ -15,4 +15,4 @@
         li.d-inline-block
           = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
         li.d-inline-block.tag-icon-item-delete
-          = link_to "削除", admin_group_chat_path(chat.group, chat), method: :delete, remote: true
+          = link_to "削除", admin_group_chat_path(chat.group, chat), method: :delete, remote: true, data: { toggle: "tooltip" }, title: "#{chat.user.name}"

@@ -1,10 +1,10 @@
 .container-fluid
   .row
-    .col-8.ml-5
+    .col-8.offset-1
       .card.shadow.rounded-0
         .card-body.row
           .col-8
-            = link_to user_path(@post.user)
+            = link_to admin_user_path(@post.user)
               = image_tag @post.user.user_icon(56, 56), class: "rounded-circle"
             = link_to @post.user.name, admin_user_path(@post.user), class: "show-name"
           ul.col-4.text-right.mb-5
@@ -22,13 +22,18 @@
           = @post.created_at.strftime("%Y年%m月%d日 %H時%M分")
         .card-body
           - @post.tags.each do |tag|
-            = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+            = link_to tag.name, admin_post_tags_path, class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body
           ul.col-12.text-right.mb-5
             li.d-inline-block.option-item
-              = link_to post_path(@post)
+              = link_to admin_post_path(@post)
                 = time_ago_in_words(@post.created_at)
                 | 前
+            li.d-inline-block.option-item
+              = link_to admin_post_path(@post)
+                |コメント(
+                = @post.post_comments.count
+                | )
             li.d-inline-block.option-item
               = link_to admin_post_path(@post)
                 = @post.status_i18n

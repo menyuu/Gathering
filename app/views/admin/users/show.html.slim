@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-8.ml-5
+    .col-8.offset-1
       .card.shadow.rounded-0
         .card-body.row
           .col-8
@@ -8,16 +8,16 @@
               = image_tag @user.user_icon(56, 56), class: "rounded-circle"
             span.show-name
               = @user.name
-          ul.col-4
-            li.d-inline-block
+          ul.col-4.text-right
+            li.mb-3
               = @user.status_i18n
-            li.d-inline-block.delete-btn.ml-5
+            li.delete-btn.ml-5
               = render "status_btn", user: @user
         .card-body
-          p.introduction-text
+          .introduction-text
             = @user.introduction
         .card-body
           = render "tags_item", user: @user
   .row
-    .col-8.ml-5
+    .col-8.offset-1
       = render "admin/posts/index", posts: @posts

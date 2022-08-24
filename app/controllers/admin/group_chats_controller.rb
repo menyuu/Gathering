@@ -4,7 +4,7 @@ class Admin::GroupChatsController < ApplicationController
   def index
     @group = Group.find(params[:group_id])
     @members = @group.users.with_attached_icon
-    @chats = @group.group_chats.includes(:user)
+    @chats = @group.group_chats.includes(user: [icon_attachment: [:blob]])
   end
 
   def destroy

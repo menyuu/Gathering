@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = EndUser.find(params[:id])
-    @posts = Post.where(end_user_id: @user).page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @posts = Post.where(end_user_id: @user).with_attached_images.page(params[:page]).without_count.per(1).order(created_at: :DESC)
   end
 
   # 現在はupdateとdestroyに分類してステータスの変更

@@ -1,9 +1,9 @@
 .container-fluid
   .row
-    .col-7.offset-1
+    .col-8.offset-1
       .jscroll
         - @groups.each do |group|
-          .card.shadow.rounded-0
+          .card.shadow.rounded-0.mt-5
             .card-body.row
               .col-6
                 = link_to admin_group_path(group)
@@ -30,7 +30,7 @@
                         = link_to group.owner.name, admin_user_path(group.owner), class: "table-link-count"
             .card-body
               = link_to admin_group_path(group)
-                p.group-text
+                .introduction-area
                   = group.introduction
             .card-body
               = render "admin/users/tags_item", user: group
