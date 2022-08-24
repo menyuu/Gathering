@@ -11,7 +11,7 @@
                 span.show-name
                   = group.name
             .card-body.group-join-member-container
-              - group.users.each do |member|
+              - group.users.where.not(status: "freeze").each do |member|
                 =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
             .card-body.text-right
               - unless group.is_ownerd_by?(current_end_user)

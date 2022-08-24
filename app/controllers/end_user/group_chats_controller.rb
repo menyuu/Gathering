@@ -6,7 +6,7 @@ class EndUser::GroupChatsController < ApplicationController
 
   def index
     @group_chat = GroupChat.new
-    @members = @group.users.page(params[:page]).without_count.per(1).order(name: :ASC)
+    @members = @group.users.where.not(status: "freeze").page(params[:page]).without_count.per(1).order(name: :ASC)
   end
 
   def create

@@ -42,7 +42,7 @@ class EndUser::SessionsController < Devise::SessionsController
     user = EndUser.find_by(email: params[:end_user][:email])
     return if !user
     if user.valid_password?(params[:end_user][:password]) && user.status == "freeze"
-      redirect_to new_end_user_registration_path
+      redirect_to new_end_user_registration_path, alert: "アカウントが見つかりません。"
     end
   end
 end

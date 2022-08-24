@@ -13,7 +13,7 @@ class EndUser::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     users = []
     # パブリックユーザーを名前の順に取得し配列に代入する
-    published_users = @group.users.with_attached_icon.where(status: "published").order(name: :ASC)
+    published_users = @group.users.with_attached_icon.where(status: "published").where.not(status: "freeze").order(name: :ASC)
     users.push(published_users)
     # ログイン中のユーザーを配列に加える
     if @group.users.include?(current_end_user)
