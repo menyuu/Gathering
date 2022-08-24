@@ -10,7 +10,7 @@ nav.navbar-dark.bg-dark
             = image_tag asset_path("logo-white.png"), class: "logo"
       - elsif admin_signed_in?
         = link_to admin_path, class:"navbar-brand"
-            = image_tag asset_path("logo-white.png"), class: "logo"
+          = image_tag asset_path("logo-white.png"), class: "logo"
       - else
         = link_to root_path, class:"navbar-brand"
           = image_tag asset_path("logo-white.png"), class: "logo"
