@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :end_users, path: "users", controllers: {
+  devise_for :end_users, skip: [:passwords], path: "users", controllers: {
     registrations: "end_user/registrations",
-    sessions: "end_user/sessions",
-    passwords: "end_user/passwords"
+    sessions: "end_user/sessions"
   }
 
   devise_scope :end_user do
