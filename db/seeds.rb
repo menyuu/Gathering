@@ -144,110 +144,112 @@ Genre.create(name: "レトロゲーム", status: 0)
 
 Genre.create(name: "ホラーゲーム", status: 0)
 
-# ゲーム一覧
-# 30.times do |n|
-#   Game.create(
-#     name: "ゲーム#{n + 1}",
-#     status: 0
-#     )
-# end
+ゲーム一覧
+50.times do |n|
+  Game.create(
+    name: "ゲーム#{n + 1}",
+    status: 0
+    )
+end
 
-Game.create(name: "FINAL FANTASY XIV", status: 0)
+# ゲーム名の使用等の範囲を確認できれば下記を使用
 
-Game.create(name: "黒い砂漠", status: 0)
+# Game.create(name: "FINAL FANTASY XIV", status: 0)
 
-Game.create(name: "LOST ARK", status: 0)
+# Game.create(name: "黒い砂漠", status: 0)
 
-Game.create(name: "VALORANT", status: 0)
+# Game.create(name: "LOST ARK", status: 0)
 
-Game.create(name: "Apex Legends", status: 0)
+# Game.create(name: "VALORANT", status: 0)
 
-Game.create(name: "FORTNITE", status: 0)
+# Game.create(name: "Apex Legends", status: 0)
 
-Game.create(name: "Sid Meier’s Civilization VI", status: 0)
+# Game.create(name: "FORTNITE", status: 0)
 
-Game.create(name: "Dead by Daylight", status: 0)
+# Game.create(name: "Sid Meier’s Civilization VI", status: 0)
 
-Game.create(name: "Grand Theft Auto V", status: 0)
+# Game.create(name: "Dead by Daylight", status: 0)
 
-Game.create(name: "ポケットモンスター", status: 0)
+# Game.create(name: "Grand Theft Auto V", status: 0)
 
-Game.create(name: "ドラゴンクエスト", status: 0)
+# Game.create(name: "ポケットモンスター", status: 0)
 
-Game.create(name: "ファイナルファンタジー", status: 0)
+# Game.create(name: "ドラゴンクエスト", status: 0)
 
-Game.create(name: "マリオシリーズ", status: 0)
+# Game.create(name: "ファイナルファンタジー", status: 0)
 
-Game.create(name: "星のカービィ", status: 0)
+# Game.create(name: "マリオシリーズ", status: 0)
 
-Game.create(name: "ゼルダの伝説", status: 0)
+# Game.create(name: "星のカービィ", status: 0)
 
-Game.create(name: "モンスターハンター", status: 0)
+# Game.create(name: "ゼルダの伝説", status: 0)
 
-Game.create(name: "バイオハザード", status: 0)
+# Game.create(name: "モンスターハンター", status: 0)
 
-Game.create(name: "メタルギアソリッド", status: 0)
+# Game.create(name: "バイオハザード", status: 0)
 
-Game.create(name: "無双シリーズ", status: 0)
+# Game.create(name: "メタルギアソリッド", status: 0)
 
-Game.create(name: "キングダムハーツ", status: 0)
+# Game.create(name: "無双シリーズ", status: 0)
 
-Game.create(name: "テイルズ　オブシリーズ", status: 0)
+# Game.create(name: "キングダムハーツ", status: 0)
 
-Game.create(name: "ペルソナ", status: 0)
+# Game.create(name: "テイルズ　オブシリーズ", status: 0)
 
-Game.create(name: "ウイニングイレブン", status: 0)
+# Game.create(name: "ペルソナ", status: 0)
 
-Game.create(name: "パワフルプロ野球", status: 0)
+# Game.create(name: "ウイニングイレブン", status: 0)
 
-Game.create(name: "グランツーリスモ", status: 0)
+# Game.create(name: "パワフルプロ野球", status: 0)
 
-Game.create(name: "ストリートファイター", status: 0)
+# Game.create(name: "グランツーリスモ", status: 0)
 
-Game.create(name: "鉄拳", status: 0)
+# Game.create(name: "ストリートファイター", status: 0)
 
-Game.create(name: "ガンダムシリーズ", status: 0)
+# Game.create(name: "鉄拳", status: 0)
 
-Game.create(name: "スーパーロボット大戦", status: 0)
+# Game.create(name: "ガンダムシリーズ", status: 0)
 
-Game.create(name: "三國志", status: 0)
+# Game.create(name: "スーパーロボット大戦", status: 0)
 
-Game.create(name: "どうぶつの森", status: 0)
+# Game.create(name: "三國志", status: 0)
 
-Game.create(name: "テトリス", status: 0)
+# Game.create(name: "どうぶつの森", status: 0)
 
-Game.create(name: "ぷよぷよ", status: 0)
+# Game.create(name: "テトリス", status: 0)
 
-Game.create(name: "太鼓の達人", status: 0)
+# Game.create(name: "ぷよぷよ", status: 0)
 
-Game.create(name: "ぷよぷよ", status: 0)
+# Game.create(name: "太鼓の達人", status: 0)
 
-Game.create(name: "桃太郎電鉄", status: 0)
+# Game.create(name: "ぷよぷよ", status: 0)
 
-Game.create(name: "龍が如く", status: 0)
+# Game.create(name: "桃太郎電鉄", status: 0)
 
-Game.create(name: "牧場物語", status: 0)
+# Game.create(name: "龍が如く", status: 0)
 
-Game.create(name: "信長の野望", status: 0)
+# Game.create(name: "牧場物語", status: 0)
 
-Game.create(name: "アトリエシリーズ", status: 0)
+# Game.create(name: "信長の野望", status: 0)
 
-Game.create(name: "原神", status: 0)
+# Game.create(name: "アトリエシリーズ", status: 0)
 
-Game.create(name: "クロノ・トリガー", status: 0)
+# Game.create(name: "原神", status: 0)
 
-Game.create(name: "MOTHER", status: 0)
+# Game.create(name: "クロノ・トリガー", status: 0)
 
-Game.create(name: "ヴァルキリープロファイル", status: 0)
+# Game.create(name: "MOTHER", status: 0)
 
-Game.create(name: "リングフィット アドベンチャー", status: 0)
+# Game.create(name: "ヴァルキリープロファイル", status: 0)
 
-Game.create(name: "大乱闘スマッシュブラザーズ", status: 0)
+# Game.create(name: "リングフィット アドベンチャー", status: 0)
 
-Game.create(name: "遊戯王", status: 0)
+# Game.create(name: "大乱闘スマッシュブラザーズ", status: 0)
 
-Game.create(name: "スプラトゥーン", status: 0)
+# Game.create(name: "遊戯王", status: 0)
 
-Game.create(name: "デュエルマスターズ", status: 0)
+# Game.create(name: "スプラトゥーン", status: 0)
 
-Game.create(name: "マジック：ザ・ギャザリング", status: 0)
+# Game.create(name: "デュエルマスターズ", status: 0)
+
+# Game.create(name: "マジック：ザ・ギャザリング", status: 0)
