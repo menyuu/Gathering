@@ -49,6 +49,10 @@ ___
 [Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9425290/Gathering_.xlsx.pdf)
 
 ___
+アプリケーション詳細設計書
+[Gathering_アプリケーション詳細設計書.pdf](https://github.com/menyuu/Gathering/files/9425356/Gathering_.pdf)
+
+___
 テスト仕様書
 [Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9425287/Gathering_.xlsx.pdf)
 
