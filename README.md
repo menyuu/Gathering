@@ -1,5 +1,7 @@
 # Gathering
+![export1660640789327](https://user-images.githubusercontent.com/101458830/186685266-4b7c19c1-8982-4ac5-bc39-1246900ad4f9.png)
 ___
+
 ## サイト概要
 ### サイトテーマ
 
@@ -42,15 +44,19 @@ ___
 ## 設計書
 
 **ER図**
-![Gathering drawio](https://user-images.githubusercontent.com/101458830/180711703-de044303-cce0-4f3a-9c7c-7c220a4137be.png)
+![Gathering drawio](https://user-images.githubusercontent.com/101458830/186683204-90f92ef5-5ba5-4018-a648-10b15ab2fff4.png)
 
 ___
 テーブル定義書
-[Gatheringテーブル定義書.pdf](https://github.com/menyuu/Gathering/files/9423038/Gathering.pdf)
+[Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9425290/Gathering_.xlsx.pdf)
+
+___
+アプリケーション詳細設計書
+[Gathering_アプリケーション詳細設計書.pdf](https://github.com/menyuu/Gathering/files/9425356/Gathering_.pdf)
 
 ___
 テスト仕様書
-[Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9422492/Gathering_.xlsx.pdf)
+[Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9425287/Gathering_.xlsx.pdf)
 
 ___
 
@@ -71,6 +77,7 @@ ___
    gem 'enum_help'
    gem 'devise-i18n'
    gem 'rails-i18n'
+   gem 'kaminari'
  ```
  
  **デバッグ用gem**
@@ -79,7 +86,8 @@ ___
    gem 'annotate'
    gem 'better_errors'
    gem 'binding_of_caller'
-   gem 'pry-byebug'  
+   gem 'pry-byebug'
+   gem 'bullet'
   ```
 
 ## 使用素材
