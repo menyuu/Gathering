@@ -5,6 +5,9 @@
   top: 92px;
   left: 80px;
   font-size: 24px;
+  @media screen and (max-width: 992px) {
+    left: 0;
+  }
 }
 
 .item-sidebar {

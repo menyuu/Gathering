@@ -2,28 +2,27 @@ table.table.table-borderless
   tbody
     tr
       td
-        = link_to user_path(current_end_user)
+        = link_to user_path(current_end_user), class: "text-center"
           = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
-        span.ms-3.show-name
-          = link_to user_path(current_end_user)
+          span.ms-3.show-name.d-none.d-lg-inline-block
             = current_end_user.name
     tr
       td
         = link_to posts_path, class: "btn btn-dark rounded-pill"
           i.fa.fa-home
-          span.between-text-icon
+          span.between-text-icon.d-none.d-lg-inline-block
             | タイムライン
     tr
       td
         = link_to index_all_posts_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-paper-plane
-          span.between-text-icon
+          span.between-text-icon.d-none.d-lg-inline-block
             | みんなの投稿
     tr
       td
         = link_to groups_path, class: "btn btn-dark rounded-pill"
           i.fas.fa-users
-          span.between-text-icon
+          span.between-text-icon.d-none.d-lg-inline-block
             | グループ一覧
     - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
       - if current_end_user.id == @group.owner.id
@@ -31,19 +30,19 @@ table.table.table-borderless
           td
             = link_to group_tags_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-tags
-              span.between-text-icon
+              span.between-text-icon.d-none.d-lg-inline-block
                 | グループ趣味タグ
         tr
           td
             = link_to group_genres_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-chess
-              span.between-text-icon
+              span.between-text-icon.d-none.d-lg-inline-block
                 | グループジャンル
         tr
           td
             = link_to group_games_path(@group), class: "btn btn-dark rounded-pill"
               i.fas.fa-gamepad
-              span.between-text-icon
+              span.between-text-icon.d-none.d-lg-inline-block
                 | グループゲーム
       - else
         = render "layouts/sidebar_items"
@@ -53,6 +52,6 @@ table.table.table-borderless
       td
         = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-dark rounded-pill"
           i.fas.fa-sign-out-alt
-          span.between-text-icon
+          span.between-text-icon.d-none.d-lg-inline-block
             | ログアウト
 
