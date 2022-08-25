@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def freeze_user
     if current_end_user.freeze?
-      sign_out @user
+      sign_out current_end_user
       redirect_to root_path, alert: "アカウントが見つかりません。"
     end
   end
