@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :freeze_user
 
   def forbid_guestuser
     if current_end_user.name == "ゲストユーザー"
