@@ -99,10 +99,10 @@ class ApplicationRecord < ActiveRecord::Base
   def self.search_match(word, status)
     objects = []
     # 完全、後方、前方、部分一致のそれぞれから検索し配列に入れる
-    perfect_match = self.where(name: word).where(status).order(create_at: :DESC)
-    backward_match = self.where("name LIKE ?", "#{word}%").where(status).order(create_at: :DESC)
-    prefix_match = self.where("name LIKE ?", "%#{word}").where(status).order(create_at: :DESC)
-    partial_match = self.where("name LIKE ?", "%#{word}%").where(status).order(create_at: :DESC)
+    perfect_match = self.where(name: word).where(status).order(created_at: :DESC)
+    backward_match = self.where("name LIKE ?", "#{word}%").where(status).order(created_at: :DESC)
+    prefix_match = self.where("name LIKE ?", "%#{word}").where(status).order(created_at: :DESC)
+    partial_match = self.where("name LIKE ?", "%#{word}%").where(status).order(created_at: :DESC)
     objects.push(perfect_match, backward_match, prefix_match, partial_match)
     objects.flatten!
     # 重複するデータを削除
@@ -114,14 +114,14 @@ class ApplicationRecord < ActiveRecord::Base
   def self.search_keyword_match(word, status)
     objects = []
     # nameとintroductionからそれぞれに一致するデータを抽出
-    perfect_match = self.where(name: word).where(status).order(create_at: :DESC)
-    backward_match = self.where("name LIKE ?", "#{word}%").where(status).order(create_at: :DESC)
-    prefix_match = self.where("name LIKE ?", "%#{word}").where(status).order(create_at: :DESC)
-    partial_match = self.where("name LIKE ?", "%#{word}%").where(status).order(create_at: :DESC)
-    perfect_match_introduction = self.where(introduction: word).where(status).order(create_at: :DESC)
-    backward_match_introduction = self.where("introduction LIKE ?", "#{word}%").where(status).order(create_at: :DESC)
-    prefix_match_introduction = self.where("introduction LIKE ?", "%#{word}").where(status).order(create_at: :DESC)
-    partial_match_introduction = self.where("introduction LIKE ?", "%#{word}%").where(status).order(create_at: :DESC)
+    perfect_match = self.where(name: word).where(status).order(created_at: :DESC)
+    backward_match = self.where("name LIKE ?", "#{word}%").where(status).order(created_at: :DESC)
+    prefix_match = self.where("name LIKE ?", "%#{word}").where(status).order(created_at: :DESC)
+    partial_match = self.where("name LIKE ?", "%#{word}%").where(status).order(created_at: :DESC)
+    perfect_match_introduction = self.where(introduction: word).where(status).order(created_at: :DESC)
+    backward_match_introduction = self.where("introduction LIKE ?", "#{word}%").where(status).order(created_at: :DESC)
+    prefix_match_introduction = self.where("introduction LIKE ?", "%#{word}").where(status).order(created_at: :DESC)
+    partial_match_introduction = self.where("introduction LIKE ?", "%#{word}%").where(status).order(created_at: :DESC)
     objects.push(perfect_match, backward_match, prefix_match, partial_match,
     perfect_match_introduction, backward_match_introduction, prefix_match_introduction, partial_match_introduction)
     objects.flatten!
