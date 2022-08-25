@@ -26,7 +26,6 @@ class Admin::UsersController < ApplicationController
   def freeze
     @user = EndUser.find(params[:id])
     @user.update(status: "freeze")
-    sign_out @user
     redirect_to request.referer, alert: "該当のユーザーのアカウント停止にしました。"
   end
 end

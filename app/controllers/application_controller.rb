@@ -5,4 +5,11 @@ class ApplicationController < ActionController::Base
       redirect_to posts_path, alert: "ゲストユーザーでは実行できません。"
     end
   end
+
+  def freeze_user
+    if current_end_user.freeze?
+      sign_out @user
+      redirect_to root_path, alert: "アカウントが見つかりません。"
+    end
+  end
 end
