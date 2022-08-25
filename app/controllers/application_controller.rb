@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :freeze_user
 
   def forbid_guestuser
     if current_end_user.name == "ゲストユーザー"
@@ -8,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def freeze_user
-    if current_end_user.freeze?
+    if end_user_signed_id? && current_end_user.freeze?
       sign_out current_end_user
       redirect_to root_path, alert: "アカウントが見つかりません。"
     end
