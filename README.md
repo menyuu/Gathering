@@ -49,6 +49,10 @@ ___
 [Gatheringテーブル定義書.pdf](https://github.com/menyuu/Gathering/files/9178521/Gathering.pdf)
 
 ___
+テスト仕様書
+[Gathering_テスト仕様書.xlsx.pdf](https://github.com/menyuu/Gathering/files/9422492/Gathering_.xlsx.pdf)
+
+___
 
 ## 開発環境
 
@@ -57,6 +61,7 @@ ___
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- その他：Bootstrap, FontAwesome
 
 ### gems
  ``` 
@@ -81,3 +86,5 @@ ___
 
 - 通常のSNSツールとして使用するためゲーム等の著作権を侵害する画像などは一切使用しません。
 - 投稿機能などに関しても投稿される画像は著作権の侵害に抵触する可能性があるためゲーム等のキャプチャなどの利用を原則禁止、ご自身で撮影された内容等を投稿していただく目的とさせていただきます。
+
+ユーザーアイコン・グループアイコン素材：ICOOON MONO(https://icooon-mono.com/)
