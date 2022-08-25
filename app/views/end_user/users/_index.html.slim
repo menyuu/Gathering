@@ -13,9 +13,9 @@
               div class="follow_btn_#{user.id}"
                 = render "end_user/relationships/follow_btn", user: user
       = link_to user_path(user)
-        .card-body.introduction-area-container
+        .card-body
           .introduction-area
-            = user.introduction
+            = user.introduction.truncate(67)
       .card-body
         ul.col-12
           li.tag-icon-item

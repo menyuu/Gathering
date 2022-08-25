@@ -16,8 +16,8 @@
                   = render "status_btn", user: user
             .card-body
               = link_to admin_user_path(user)
-                introduction-area
-                  = user.introduction
+                .introduction-area
+                  = user.introduction.truncate(67)
             .card-body
               = render "tags_item", user: user
               .card-body.text-right

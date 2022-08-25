@@ -31,7 +31,7 @@
             .card-body
               = link_to admin_group_path(group)
                 .introduction-area
-                  = group.introduction
+                  = group.introduction.truncate(67) 
             .card-body
               = render "admin/users/tags_item", user: group
             .card-body.text-right
