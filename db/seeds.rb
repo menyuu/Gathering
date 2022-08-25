@@ -144,7 +144,7 @@ Genre.create(name: "レトロゲーム", status: 0)
 
 Genre.create(name: "ホラーゲーム", status: 0)
 
-ゲーム一覧
+# ゲーム一覧
 50.times do |n|
   Game.create(
     name: "ゲーム#{n + 1}",
