@@ -1,5 +1,7 @@
 # Gathering
+![export1660640789327](https://user-images.githubusercontent.com/101458830/186685266-4b7c19c1-8982-4ac5-bc39-1246900ad4f9.png)
 ___
+
 ## サイト概要
 ### サイトテーマ
 
