@@ -46,7 +46,7 @@ ___
 
 ___
 テーブル定義書
-[Gatheringテーブル定義書.pdf](https://github.com/menyuu/Gathering/files/9178521/Gathering.pdf)
+[Gatheringテーブル定義書.pdf](https://github.com/menyuu/Gathering/files/9423038/Gathering.pdf)
 
 ___
 テスト仕様書
