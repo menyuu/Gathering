@@ -17,7 +17,7 @@
             .card-body
               = link_to admin_user_path(user)
                 .introduction-area
-                  = user.introduction.truncate(67)
+                  = user.introduction
             .card-body
               = render "tags_item", user: user
               .card-body.text-right
