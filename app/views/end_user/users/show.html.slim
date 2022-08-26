@@ -18,7 +18,7 @@
                 - unless @user.name == "ゲストユーザー"
                   a data-toggle="modal" data-target="#editUserModalToggle"
                     i.fas.fa-user-cog.icon-item.mr-5 data-toggle="tooltip" title="クリックしてユーザーを編集"
-                = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-dark rounded-pill ml-5",
+                = link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill ml-5",
                 data: {confirm: "本当にログアウトしますか？"}
             .row.mt-5 class="follow_count_#{@user.id}"
                 = render "follows", user: @user

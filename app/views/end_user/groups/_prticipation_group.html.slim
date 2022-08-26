@@ -15,7 +15,7 @@
                 =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
             .card-body.text-right
               - unless group.is_ownerd_by?(current_end_user)
-                = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-dark rounded-pill"
+                = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-outline-danger rounded-pill"
               - else
                 | あなたがオーナーです。
   - else
