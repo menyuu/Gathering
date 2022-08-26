@@ -81,6 +81,42 @@ Tag.create(name: "資格取得", status: 0)
 
 Tag.create(name: "プログラミング", status: 0)
 
+Tag.create(name: "園芸", status: 0)
+
+Tag.create(name: "コスメ", status: 0)
+
+Tag.create(name: "ファッション", status: 0)
+
+Tag.create(name: "スキンケア", status: 0)
+
+Tag.create(name: "PC", status: 0)
+
+Tag.create(name: "アイドル", status: 0)
+
+Tag.create(name: "昆虫採集", status: 0)
+
+Tag.create(name: "ペット", status: 0)
+
+Tag.create(name: "習字", status: 0)
+
+Tag.create(name: "作曲", status: 0)
+
+Tag.create(name: "動画", status: 0)
+
+Tag.create(name: "美術館巡り", status: 0)
+
+Tag.create(name: "ゴルフ", status: 0)
+
+Tag.create(name: "盆栽", status: 0)
+
+Tag.create(name: "カラオケ", status: 0)
+
+Tag.create(name: "マンガ", status: 0)
+
+Tag.create(name: "車", status: 0)
+
+Tag.create(name: "バイク", status: 0)
+
 # ジャンル一覧
 Genre.create(name: "アクション", status: 0)
 
