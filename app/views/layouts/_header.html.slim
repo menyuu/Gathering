@@ -10,12 +10,15 @@ nav.navbar-dark.bg-dark
       - else
         = link_to root_path, class:"navbar-brand"
           = image_tag asset_path("logo-white.png"), class: "logo"
-    .search-form-position
-      - unless current_page?(users_sign_up_complete_path)
+    - unless current_page?(users_sign_up_complete_path)
+      .search-form-position
         - if end_user_signed_in?
           = render "end_user/searches/form", model: "post"
         - elsif admin_signed_in?
           = render "admin/searches/admin_form"
-    div
-      = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
-        i.fas.fa-search.align-self-center
+      - if end_user_signed_in?
+        div
+          = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
+            i.fas.fa-search.align-self-center
+      - elsif admin_signed_in?
+        div
