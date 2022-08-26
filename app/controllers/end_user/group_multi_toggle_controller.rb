@@ -5,8 +5,6 @@ class EndUser::GroupMultiToggleController < ApplicationController
   before_action :common_group_genre, only: [:complete, :genres]
   before_action :common_group_game, only: [:complete, :games]
 
-  # before_action :forbid_guestuser
-
   # グループ新規作成完了後にユーザーと同様にタグ付け可能
   def complete
     @group = Group.find(params[:group_id])

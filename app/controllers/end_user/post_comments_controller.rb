@@ -1,6 +1,5 @@
 class EndUser::PostCommentsController < ApplicationController
   before_action :authenticate_end_user!
-  # before_action :forbid_guestuser
   
   def create
     post = Post.find(params[:post_id])

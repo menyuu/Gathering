@@ -2,7 +2,6 @@ class EndUser::GroupChatsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_group_chat
-  # before_action :forbid_guestuser, only: [:create, :destroy]
 
   def index
     @group_chat = GroupChat.new

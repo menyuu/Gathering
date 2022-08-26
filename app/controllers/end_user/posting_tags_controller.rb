@@ -2,7 +2,6 @@ class EndUser::PostingTagsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_post_tag
-  # before_action :forbid_guestuser, only: [:create, :update, :destroy]
 
   def show
     @post_tags = PostingTag.display_show_type("post")
