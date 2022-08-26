@@ -6,7 +6,7 @@ class EndUser::PostCommentsController < ApplicationController
     post_comment = current_end_user.post_comments.new(comment_params)
     post_comment.post_id = post.id
     post_comment.save
-    redirect_to post_path(post)
+    redirect_to post_path(post), notice: "コメントを送信しました。"
   end
 
   def destroy
