@@ -10,7 +10,7 @@
                   = group.name
                   | (
                   span
-                    = group.users.count
+                    = group.users.where.not(status: "freeze").count
                   | )
             .col-12.col-lg-4.text-right
               - unless group.is_ownerd_by?(current_end_user)
