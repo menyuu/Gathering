@@ -11,7 +11,7 @@
           .errors.text-left
           .form-group.mt-3.text-center
             = f.label :icon, class: "mb-3"
-              = image_tag group.group_icon(56, 56), class: "rounded-circle"
+              = image_tag group.group_icon(48, 48), class: "rounded-circle"
             = f.file_field :icon, accept: "image/*", class: "form-control"
           .form-group.mt-3
             = f.text_field :name, placeholder: "グループ名", class: "form-control"

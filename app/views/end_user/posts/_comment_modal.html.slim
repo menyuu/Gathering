@@ -7,7 +7,7 @@
           span aria-hidden="true" &times;
       .modal-body
         = link_to user_path(post.user)
-          = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
+          = image_tag post.user.user_icon(48, 48), class: "rounded-circle"
         = link_to post.user.name, user_path(post.user), class: "show-name"
       .modal-body
         = link_to post_path(post)

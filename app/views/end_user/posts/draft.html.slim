@@ -6,7 +6,7 @@
           .card.shadow.rounded-0
             = link_to user_path(post.user)
               .card-body
-                = image_tag post.user.user_icon(56, 56), class: "rounded-circle"
+                = image_tag post.user.user_icon(48, 48), class: "rounded-circle"
                 span.show-name
                   = post.user.name
             = link_to post_path(post)

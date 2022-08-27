@@ -64,8 +64,23 @@ img {
 .show-name {
   margin-left: 24px;
   font-size: 16px;
+  width: 50%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:hover {
     text-decoration: underline;
+  }
+}
+
+.image-area {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  & img {
+    flex-grow: 0;
   }
 }
 

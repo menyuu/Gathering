@@ -32,3 +32,15 @@
     white-space: nowrap;
   }
 }
+
+
+.popover-btn {
+  background-color: transparent;
+  border: none;
+  &:focus {
+   outline: none;
+  }
+  &:focus-visible {
+    outline: none;
+  }
+}

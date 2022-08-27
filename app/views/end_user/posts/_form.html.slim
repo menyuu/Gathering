@@ -3,7 +3,7 @@
     .errors.mt-3.text-left
       = render "layouts/errors", obj: @post
     = f.text_area :text, placeholder: "入力して投稿",
-    class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-area", rows: 5
+    class: "form-control post-input-area", rows: 5
     .text-right.post-input-item.mt-3
       .form-group.d-sm-inline-block
         = f.label :images
@@ -12,8 +12,17 @@
       .form-check.form-switch.custom-switch.d-sm-inline-block
         = f.check_box :status, {class: "form-check-input custom-control-input"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label"
-    .col-12.form-group
-      = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。(最大8個まで)",
-      class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
+    .col-12.form-group.text-left
+      = f.label :name, "タグ(最大8個まで)"
+      button.popover-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
+        i.fas.fa-question-circle
+      = f.text_field :name, value: @tag_names, placeholder: "タグを入力",
+      class: "form-control post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
+
+script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"
+script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"
+script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
+javascript:
+  $(`[data-toggle="popover"]`).popover();

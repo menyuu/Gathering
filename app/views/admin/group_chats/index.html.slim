@@ -9,6 +9,6 @@
         - @members.each do |member|
           .card-body
             = link_to admin_user_path(member)
-              = image_tag member.user_icon(56, 56), class: "rounded-circle"
+              = image_tag member.user_icon(48, 48), class: "rounded-circle"
               span.name
                 = member.name

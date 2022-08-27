@@ -8,6 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+window.jQuery = window.$ = require('jquery')
 import "jquery";
 import "./jquery.jscroll.min.js";
 import "popper.js";

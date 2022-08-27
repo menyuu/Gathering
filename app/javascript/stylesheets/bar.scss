@@ -6,7 +6,10 @@
   left: 80px;
   font-size: 24px;
   @media screen and (max-width: 992px) {
-    left: 0;
+    left: 32px;
+  }
+  @media screen and (max-width: 576) {
+    left: 16px;
   }
 }
 

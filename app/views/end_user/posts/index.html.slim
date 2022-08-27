@@ -1,6 +1,6 @@
 .container-fluid
   .row
-    .col-10.col-md-7.offset-1
+    .col-10.col-xl-7.offset-1
       .shadow.border
         = render "form", post: @post
       - if @posts.present?
@@ -8,5 +8,5 @@
       - else
         h1.text-center.mt-5
           | 投稿してはじめる。
-    .col-3.offset-1.d-none.d-md-block
+    .col-3.offset-1.d-none.d-lg-block
       = render "item_sidebar", post_tags: @post_tags
