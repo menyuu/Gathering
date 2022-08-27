@@ -81,7 +81,7 @@ img {
 }
 
 .image-area {
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
@@ -136,11 +136,26 @@ img {
   @media screen and (max-width: 768px) {
     margin-right: 8px;
   }
+  &-container {
+    display: inline-flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    & .option-item:nth-child(3) {
+      @media screen and (max-width: 350px) {
+        display: block;
+        width: 100%;
+        margin-top: 16px;
+        text-align: right;
+      }
+    }
+  }
   &-delete {
     margin-right: 16px;
     display: inline-block;
     cursor: pointer;
-    color: red;
+    & a {
+      color: #ff3434;
+    }
   }
   &-delete a:hover {
     color: red;

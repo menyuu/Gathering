@@ -10,7 +10,7 @@
     left: 32px;
   }
   @media screen and (max-width: 576px) {
-    left: 0;
+    left: 8px;
   }
   &-name {
     margin-left: 24px;
@@ -28,7 +28,7 @@
 
 .item-sidebar {
   overflow-y: auto;
-  height: 800px;
+  height: 720px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {

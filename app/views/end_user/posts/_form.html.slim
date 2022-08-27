@@ -14,8 +14,8 @@
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
     .col-12.form-group.text-left.mt-3
       = f.label :name, "タグ(最大8個まで)"
-      button.popover-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
-        i.fas.fa-question-circle
+      button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
+        i.fas.fa-exclamation-triangle
       = f.text_field :name, value: @tag_names, placeholder: "タグを入力",
       class: "form-control post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item

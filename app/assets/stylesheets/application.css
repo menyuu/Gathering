@@ -14,21 +14,24 @@
  *= require_self
  */
 
-
-
-.option-item-container {
-  display: inline-flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
+.show-name {
+  margin-left: 24px;
+  font-size: 16px;
+  width: 80%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+@media screen and (max-width: 768px) {
+  .show-name {
+    width: 60%;
+  }
+}
 
-
-@media screen and (max-width: 350px) {
-  .option-item-container .option-item:nth-child(3) {
-    display: block;
-    width: 100%;
-    margin-top: 16px;
-    text-align: right;
+@media screen and (max-width: 576px) {
+  .show-name {
+    width: 40%;
   }
 }

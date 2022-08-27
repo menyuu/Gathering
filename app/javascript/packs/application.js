@@ -12,6 +12,7 @@ window.jQuery = window.$ = require('jquery')
 import "jquery";
 import "./jquery.jscroll.min.js";
 import "popper.js";
+import "./popper.min.js";
 import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
