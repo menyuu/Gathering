@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+.show-name {
+  width: 50%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.image-area {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.image-area img {
+  flex-grow: 0;
+}

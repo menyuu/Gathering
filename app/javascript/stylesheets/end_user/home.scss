@@ -1,9 +1,6 @@
 .sign-in-area {
-  top: 30%;
-}
-
-.sign-in-area {
   position: sticky;
-  height: 100%;
   z-index: 1020;
+  height: 100%;
+  top: 30%;
 }
