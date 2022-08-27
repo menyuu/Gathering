@@ -26,7 +26,7 @@
                       | 削除する
         .card-body
           = safe_join(@post.text.split("\n"),tag(:br))
-        .image-area.text-center
+        .image-area
           - @post.images.each do |image|
             = link_to image, "data-lightbox": image
               = image_tag image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed
