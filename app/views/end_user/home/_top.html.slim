@@ -12,10 +12,11 @@
           = image_tag image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed
       .card-body
         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
-      .card-body
-        - post.tags.each do |tag|
-          span.btn.btn-sm.btn-dark.rounded-pill.tag-item
-            = tag.name
+      - if post.tags.present?
+        .card-body
+          - post.tags.each do |tag|
+            span.btn.btn-sm.btn-dark.rounded-pill.tag-item
+              = tag.name
       .card-body
         ul.col-12.text-right.mb-5
           li.d-inline-block.option-item

@@ -9,21 +9,22 @@
               span.show-name data-toggle="tooltip" title="#{@post.user.name}"
                 = @post.user.name
           .col-2.col-sm-1
-            .dropleft
-              button.nomal-btn#dropdownMenu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                span
-                  i.fas.fa-ellipsis-v
-              .dropdown-menu aria-labelledby="dropdownMenu"
-                .dropdown-item.option-item data-toggle="tooltip" title="クリックしてタグを編集"
-                  = link_to post_tags_path(@post)
-                    i.fas.fa-tags
-                    span.between-text-icon
-                      | 編集する
-                .dropdown-item.option-item-delete data-toggle="tooltip" title="クリックして投稿を削除"
-                  = link_to post_path(@post), method: :delete ,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
-                    i.fas.fa-trash-alt
-                    span.between-text-icon
-                      | 削除する
+            - if @post.user == current_end_user
+              .dropleft
+                button.nomal-btn#dropdownMenu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  span
+                    i.fas.fa-ellipsis-v
+                .dropdown-menu aria-labelledby="dropdownMenu"
+                  .dropdown-item.option-item data-toggle="tooltip" title="クリックしてタグを編集"
+                    = link_to post_tags_path(@post)
+                      i.fas.fa-tags
+                      span.between-text-icon
+                        | 編集する
+                  .dropdown-item.option-item-delete data-toggle="tooltip" title="クリックして投稿を削除"
+                    = link_to post_path(@post), method: :delete ,data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、投稿データは完全に削除されます。"}
+                      i.fas.fa-trash-alt
+                      span.between-text-icon
+                        | 削除する
         .card-body
           = safe_join(@post.text.split("\n"),tag(:br))
         .image-area
@@ -35,9 +36,10 @@
           span
             br.d-sm-none.d-block
             = @post.updated_at.strftime(" %H時%M分")
-        .card-body
-          - @post.tags.each do |tag|
-            = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
+        - if @post.tags.present?
+          .card-body
+            - @post.tags.each do |tag|
+              = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body
           ul.col-12.option-item-container
             - if @post.status == "published"
@@ -54,7 +56,7 @@
                   = time_ago_in_words(@post.updated_at)
                   | 前
         - if @post.status == "draft"
-          .card-body.text-right.p-0.pb-3
+          .card-body.text-right.p-0.pr-3.pb-3
             .accordion id="accordion#{@post.id}" aria-multiselectable="true"
               .accordion-item
                 .accordion-header id="heading#{@post.id}"
