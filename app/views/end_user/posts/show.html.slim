@@ -8,8 +8,8 @@
               = image_tag @post.user.user_icon(48, 48), class: "rounded-circle"
               span.show-name data-toggle="tooltip" title="#{@post.user.name}"
                 = @post.user.name
-          .col-2.col-sm-1
-            - if @post.user == current_end_user
+          - if @post.user == current_end_user
+            .col-2.col-sm-1
               .dropleft
                 button.nomal-btn#dropdownMenu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                   span

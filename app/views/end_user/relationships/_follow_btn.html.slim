@@ -1,7 +1,19 @@
 - if current_end_user.following?(user)
-  = link_to "フォローを外す", user_follows_path(user), method: :delete, remote: true, class: "btn btn-dark rounded-pill"
+  = link_to user_follows_path(user), method: :delete, remote: true, class: "btn btn-dark rounded-pill removeBtn"
+    span.refollow
+      | フォロー中
 - else
   - unless user.status == "freeze"
-    = link_to "フォローする", user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill"
+    = link_to "フォロー", user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill"
   - else
     | 凍結済みのためフォローできません。
+
+javascript:
+  $('.refollow').hover(function() {
+    $(this).text("フォローを外す")
+    $(".removeBtn").removeClass("btn, btn-dark").addClass("refollow-btn");
+  }, function() {
+    $(this).text("フォロー中");
+    $(".removeBtn").removeClass("refollow-btn").addClass("btn, btn-dark");
+
+  });

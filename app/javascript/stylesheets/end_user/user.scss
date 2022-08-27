@@ -17,3 +17,21 @@
     background-color: white;
   }
 }
+
+.user {
+  &-name {
+    font-size: 16px;
+    display: inline-block;
+    &:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 500px) {
+      display: block;
+      margin-top: 8px;
+    }
+  }
+  &-icon {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+}
