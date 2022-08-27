@@ -7,10 +7,13 @@
   left: 80px;
   font-size: 24px;
   @media screen and (max-width: 992px) {
+    left: 48px;
+  }
+  @media screen and (max-width: 768px) {
     left: 32px;
   }
   @media screen and (max-width: 576px) {
-    left: 8px;
+    left: 16px;
   }
   &-name {
     margin-left: 24px;

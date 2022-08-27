@@ -54,7 +54,7 @@
                   = time_ago_in_words(@post.updated_at)
                   | 前
         - if @post.status == "draft"
-          .card-body.text-right
+          .card-body.text-right.p-0.pb-3
             .accordion id="accordion#{@post.id}" aria-multiselectable="true"
               .accordion-item
                 .accordion-header id="heading#{@post.id}"
@@ -76,7 +76,7 @@
             - @comments.each do |comment|
               .card.rounded-0
                 = link_to user_path(comment.user)
-                  .card-body.row
+                  .card-body.pb-0.row
                     .col-12
                       = image_tag comment.user.user_icon(48, 48), class: "rounded-circle"
                       span.show-name data-toggle="tooltip" title="#{comment.user.name}"

@@ -12,7 +12,7 @@
       .form-check.form-switch.custom-switch.d-inline-block
         = f.check_box :status, {class: "form-check-input custom-control-input option-item"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
-    .col-12.form-group.text-left.mt-3
+    .form-group.text-left.mt-3.p-0
       = f.label :name, "タグ(最大8個まで)"
       button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
         i.fas.fa-exclamation-triangle
