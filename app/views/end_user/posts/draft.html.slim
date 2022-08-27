@@ -7,24 +7,24 @@
             = link_to user_path(post.user)
               .card-body
                 = image_tag post.user.user_icon(48, 48), class: "rounded-circle"
-                span.show-name
+                span.show-name data-toggle="tooltip" title="#{post.user.name}"
                   = post.user.name
             = link_to post_path(post)
               .card-body
                   = safe_join(post.text.split("\n"),tag(:br))
+              .image-area
+                - post.images.each do |image|
+                  = image_tag image.variant(gravity: :center, resize:"120x120^", crop:"120x120+0+0").processed
               .card-body
-                .card-img.text-center
-                  - post.images.each do |image|
-                    = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed, class: "d-none d-sm-inline-block m-1"
-              .card-body
-                = post.updated_at.strftime("%Y年%m月%d日 %H時%M分")
-              .card-body
+                = post.updated_at.strftime("%Y年%m月%d日")
+                span
+                  br.d-sm-none.d-block
+                  = post.updated_at.strftime(" %H時%M分")
+              .card-body.py-0
                 - post.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-              .card-body
-                ul.col-12.text-right.mb-5
-                  li
-                    = link_to "詳細ページへ", post_path(post), class: "btn btn-outline-dark"
+              .card-body.text-right
+                = link_to "詳細ページへ", post_path(post), class: "btn btn-outline-dark"
           .skill-list
             = link_to_prev_page @posts, "前のページ", class: "prev d-none"
             = link_to_next_page @posts, "次のページ", class: "next d-none"

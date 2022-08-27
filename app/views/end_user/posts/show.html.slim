@@ -37,7 +37,7 @@
             br.d-sm-none.d-block
             = @post.updated_at.strftime(" %H時%M分")
         - if @post.tags.present?
-          .card-body
+          .card-body.py-0
             - @post.tags.each do |tag|
               = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body
@@ -56,11 +56,11 @@
                   = time_ago_in_words(@post.updated_at)
                   | 前
         - if @post.status == "draft"
-          .card-body.text-right.p-0.pr-3.pb-3
+          .card-body.text-right.p-0
             .accordion id="accordion#{@post.id}" aria-multiselectable="true"
               .accordion-item
                 .accordion-header id="heading#{@post.id}"
-                  div data-toggle="collapse" data-target="#collapse#{@post.id}" aria-expanded="false" aria-controls="collapse#{@post.id}"
+                  .pr-3.pb-3 data-toggle="collapse" data-target="#collapse#{@post.id}" aria-expanded="false" aria-controls="collapse#{@post.id}"
                     i.fa.fa-edit
                     span.option-item
                       | クリックして編集
