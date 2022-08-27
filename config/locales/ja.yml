@@ -11,6 +11,8 @@ ja:
       post:
         text: "投稿内容"
         images: "画像"
+      post_comment:
+        text: "コメント"
       group:
         name: "グループ名"
         introduction: "グループ紹介文"

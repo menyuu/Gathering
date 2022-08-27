@@ -1,12 +1,17 @@
 class EndUser::PostCommentsController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def create
     post = Post.find(params[:post_id])
-    post_comment = current_end_user.post_comments.new(comment_params)
-    post_comment.post_id = post.id
-    post_comment.save
-    redirect_to post_path(post), notice: "コメントを送信しました。"
+    @post_comment = current_end_user.post_comments.new(comment_params)
+    @post_comment.post_id = post.id
+    if @post_comment.save
+      redirect_to post_path(post), notice: "コメントを送信しました。"
+    else
+      puts "------------------"
+      puts @post_comment.errors.any?
+      render "end_user/posts/comment_error"
+    end
   end
 
   def destroy

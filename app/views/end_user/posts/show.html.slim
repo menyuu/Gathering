@@ -67,7 +67,9 @@
                     = render "form", post: @post
         - if @post.status == "published"
           .card-body
-            = form_with model: [@post, @post_comment], url: post_comments_path(@post) do |f|
+            = form_with model: [@post, @post_comment], url: post_comments_path(@post), local: false do |f|
+              .errors.errors-comment
+                = render "layouts/errors", obj: @post_comment
               .form-group.text-right
                 = f.text_area :text, placeholder: "コメントを入力", class: "form-control", rows: 5
                 = f.submit "コメントを送信", class: "btn btn-outline-dark rounded-pill mt-3"
