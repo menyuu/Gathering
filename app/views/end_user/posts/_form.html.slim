@@ -4,14 +4,14 @@
       = render "layouts/errors", obj: @post
     = f.text_area :text, placeholder: "入力して投稿",
     class: "form-control post-input-area", rows: 5
-    .text-right.post-input-item.mt-3
+    .text-right.mt-3
       .form-group.d-inline-block
         = f.label :images
           i.fas.fa-image.option-item
         = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
       .form-check.form-switch.custom-switch.d-inline-block
-        = f.check_box :status, {class: "form-check-input custom-control-input"}, "published", "draft"
-        = f.label :status, "投稿を公開", class: "form-check-label custom-control-label"
+        = f.check_box :status, {class: "form-check-input custom-control-input option-item"}, "published", "draft"
+        = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
     .col-12.form-group.text-left.mt-3
       = f.label :name, "タグ(最大8個まで)"
       button.popover-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"

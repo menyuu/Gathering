@@ -1,10 +1,10 @@
 .container-fluid
   .row
-    .col-10.col-md-7.offset-1
+    .col-12.col-lg-10.col-xl-8
       - if @posts.present?
         = render "index", posts: @posts, post_comment: @post_comment
       - else
         h1.text-center.mt-5
           | 現在、投稿はありません。
-    .col-3.offset-1.d-none.d-lg-block
+    .col-3.offset-1.d-none.d-xl-block
       = render "item_sidebar", post_tags: @post_tags
