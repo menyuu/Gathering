@@ -1,5 +1,6 @@
 .sidebar {
-  position: sticky;
+  position: fixed;
+  z-index: 1440;
   height: 100%;
   margin-top: 32px;
   top: 92px;
@@ -8,8 +9,8 @@
   @media screen and (max-width: 992px) {
     left: 32px;
   }
-  @media screen and (max-width: 576) {
-    left: 16px;
+  @media screen and (max-width: 576px) {
+    left: 0;
   }
 }
 

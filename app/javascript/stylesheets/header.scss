@@ -11,19 +11,21 @@ nav {
 .logo {
   width: 160px;
   height: 32px;
+  &-container {
+    position: fixed;
+    left: 15px;
+  }
 }
 
 .header-container {
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
   align-items: center;
 }
 
 /* ヘッダー検索フォーム */
 .search-form {
-  &-position {
-    margin-right: 10%;
-  }
   &-container {
     display: flex;
     text-align: center;
@@ -33,9 +35,12 @@ nav {
   }
 
   &-item {
-    width: 640px;
+    width: 560px;
     @media only screen and (max-width: 992px) {
-      width: 480px;
+      width: 400px;
+      position: absolute;
+      top: -20px;
+      right: 15px;
     }
     @media only screen and (max-width: 768px) {
       width: 320px;
@@ -47,7 +52,6 @@ nav {
   background-color: white;
   display: none;
 }
-
 
 @media only screen and (max-width: 576px) {
   .search-form-out {
@@ -63,6 +67,8 @@ nav {
 
   .search-menu-btn {
     display: block;
+    position: absolute;
+    right: 15px;
   }
 }
 

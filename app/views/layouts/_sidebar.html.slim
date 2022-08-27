@@ -2,9 +2,9 @@ table.table.table-borderless
   tbody
     tr
       td
-        = link_to user_path(current_end_user), class: "text-center"
-          = image_tag(current_end_user.user_icon(50,50), class: "rounded-circle")
-          span.ms-3.show-name.d-none.d-xl-inline-block
+        = link_to user_path(current_end_user)
+          = image_tag current_end_user.user_icon(40, 40), class: "rounded-circle"
+          span.sidebar-name.d-none.d-xl-inline-block data-toggle="tooltip" title="#{current_end_user.name}"
             = current_end_user.name
     tr
       td
