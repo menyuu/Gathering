@@ -9,9 +9,9 @@
         = f.label :images
           i.fas.fa-image.form-item.option-item
         = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
-      .form-check.form-switch.d-sm-inline-block
-        = f.check_box :status, {class: "form-check-input"}, "published", "draft"
-        = f.label :status, "投稿を公開", class: "form-check-label"
+      .form-check.form-switch.custom-switch.d-sm-inline-block
+        = f.check_box :status, {class: "form-check-input custom-control-input"}, "published", "draft"
+        = f.label :status, "投稿を公開", class: "form-check-label custom-control-label"
     .col-12.form-group
       = f.text_field :name, value: @tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。(最大8個まで)",
       class: "form-control border-top-0 border-left-0 border-right-0 rounded-0 post-input-tag-area"
