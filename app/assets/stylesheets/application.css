@@ -13,25 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.show-name {
-  margin-left: 24px;
-  font-size: 16px;
-  width: 80%;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-@media screen and (max-width: 768px) {
-  .show-name {
-    width: 60%;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .show-name {
-    width: 40%;
-  }
-}

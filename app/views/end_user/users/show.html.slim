@@ -3,37 +3,36 @@
     .col-12.col-lg-10.col-xl-8
       .card.shadow.rounded-0
         .card-body.pb-0.row
-          .col-8
+          .col-4
             = link_to @user.icon, "data-lightbox": @user.icon
               = image_tag @user.user_icon(48, 48), class: "rounded-circle user-icon"
-            span.user-name
-              = @user.name
-          .col-4
-            .text-right
-              - unless @user.name == "ゲストユーザー"
-                - unless current_end_user == @user
-                  div class="follow_btn_#{@user.id}"
-                    = render "end_user/relationships/follow_btn", user: @user
-                - else
-                  button.btn.btn-outline-dark.rounded-pill data-toggle="modal" data-target="#editUserModalToggle"
-                    i.fas.fa-user-cog data-toggle="tooltip" title="クリックしてユーザーを編集"
-                    span.between-text-icon.d-none.d-md-inline-block
-                      | ユーザー編集
-
-
-
-
-
-
-
-        .row.mt-5 class="follow_count_#{@user.id}"
-          = render "follows", user: @user
+          .col-8.text-right
+            - unless @user.name == "ゲストユーザー"
+              - unless current_end_user == @user
+                div class="follow_btn_#{@user.id}"
+                  = render "end_user/relationships/follow_btn", user: @user
+              - else
+                button.btn.btn-outline-dark.rounded-pill data-toggle="modal" data-target="#editUserModalToggle"
+                  i.fas.fa-user-cog data-toggle="tooltip" title="クリックしてユーザーを編集"
+                  span.between-text-icon.d-none.d-md-inline-block
+                    | ユーザー編集
+        .card-body.py-0.user-name
+          = @user.name
         .card-body
           .introduction-text
             - unless @user.status == "freeze"
               = @user.introduction
             - else
               | このユーザーは凍結されています。
+        div class="follow_count_#{@user.id}"
+          = render "follows", user: @user
+
+
+
+
+
+
+
         .card-body
           ul.col-12
             li.tag-icon-item data-toggle="tooltip" title="クリックしてタグを編集"
