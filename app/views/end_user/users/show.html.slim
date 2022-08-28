@@ -24,35 +24,34 @@
               = @user.introduction
             - else
               | このユーザーは凍結されています。
-        div class="follow_count_#{@user.id}"
+        .card-body class="follow_count_#{@user.id}"
           = render "follows", user: @user
-
-
-
-
-
-
-
         .card-body
           ul.col-12
             li.tag-icon-item data-toggle="tooltip" title="クリックしてタグを編集"
               = link_to tags_path
                 i.fas.fa-user-tag
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | 趣味タグ：
                 - @user.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.tag-icon-item data-toggle="tooltip" title="クリックしてジャンルを編集"
               = link_to genres_path
                 i.fas.fa-chess
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲームジャンル：
                 - @user.genres.each do |genre|
                   = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.tag-icon-item data-toggle="tooltip" title="クリックしてゲームを編集"
               = link_to games_path
                 i.fas.fa-gamepad
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲーム：
                 - @user.games.each do |game|
                   = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
@@ -62,22 +61,22 @@
               li.col-4.tag-icon-item
                 = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
-                  span.between-text-icon
+                  span.between-text-icon.d-none.d-md-inline-block
                     | タイムライン
               li.col-4.border-left.border-right.border-3.tag-icon-item
                 = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
-                  span.between-text-icon
+                  span.between-text-icon.d-none.d-md-inline-block
                     | いいね
               li.col-4.tag-icon-item
                 = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
-                  span.between-text-icon
+                  span.between-text-icon.d-none.d-md-inline-block
                     | 下書き
       - unless @user.status == "freeze"
         - if @user.status == "published" or current_end_user.following?(@user) or @user == current_end_user
           = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
-    .col-3.offset-1.d-none.d-xl-block
+    .col-4.d-none.d-xl-block
       - if @user == current_end_user
         .group-sidebar-container
           = render "end_user/groups/prticipation_group", user: @user, groups: @groups

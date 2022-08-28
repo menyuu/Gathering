@@ -1,13 +1,7 @@
-.col-8.ml-auto
-  table.table
-    tbody
-      tr
-        td
-          = link_to "フォロー中：", user_followings_path(user), class: "table-link"
-        td
-          = link_to user.followings.count, user_followings_path(user), class: "table-link table-link-count"
-      tr.border-bottom
-        td
-          = link_to "フォロワー：", user_followers_path(user), class: "table-link"
-        td
-          = link_to user.followers.count, user_followers_path(user), class: "table-link table-link-count"
+.follow-container
+  .following-count
+    = link_to "フォロー中：", user_followings_path(user)
+    = link_to user.followings.count, user_followings_path(user)
+  .follower-count
+    = link_to "フォロワー：", user_followers_path(user)
+    = link_to user.followers.count, user_followers_path(user)

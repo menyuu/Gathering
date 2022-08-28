@@ -35,3 +35,9 @@
     margin-bottom: 16px;
   }
 }
+
+.follow-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
