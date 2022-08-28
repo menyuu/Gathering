@@ -11,9 +11,11 @@
     .row
       .col-11.col-lg-7.mt-5
         = render "end_user/users/index", users: @users
-      - unless @user == current_end_user
-        .col-5.d-none.d-lg-block
-          = render "common_follows", text: "共通のフォロワー", common_follows: @common_followers
+      .col-5.d-none.d-lg-block
+        - unless @user == current_end_user
+          = render "common_follows", common_follows: @common_followers
+        - else
+          = render "end_user/posts/item_sidebar", post_tags: @post_tags
 - else
   h1.col-9.text-center.mt-5
     | ユーザーはいません。

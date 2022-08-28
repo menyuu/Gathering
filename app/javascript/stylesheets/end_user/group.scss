@@ -9,7 +9,8 @@
     display: none;
   }
   &-container {
-    position: sticky;
+    position: fixed;
+    z-index: 720;
     margin: 20px 0 0 0;
     top: 80px;
   }

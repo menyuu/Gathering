@@ -38,9 +38,10 @@
     display: none;
   }
   &-container {
-    position: sticky;
+    position: fixed;
+    z-index: 720;
     margin-top: 32px;
-    top: 92px;
+    top: 114px;
   }
   &-title {
     position: sticky;

@@ -7,6 +7,8 @@
         = render "index", posts: @posts, post_comment: @post_comment
       - else
         h1.text-center.mt-5
-          | 投稿してはじめる。
+          | 投稿して
+          br.d-sm-none.d-inline-block
+          | はじめる。
     .col-3.offset-1.d-none.d-xl-block
       = render "item_sidebar", post_tags: @post_tags

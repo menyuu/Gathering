@@ -18,7 +18,7 @@
   }
 }
 
-/*ユーザーのshowページ*/ 
+/*ユーザーのshowページ*/
 .user {
   &-name {
     font-size: 16px;
@@ -37,9 +37,9 @@
   }
 }
 
-/*_indexのユーザーステータス*/ 
+/*_indexのユーザーステータス*/
 .user-name-index {
-  width: 80%;
+  width: 70%;
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
@@ -72,14 +72,26 @@
   display: inline-flex;
   flex-wrap: nowrap;
   margin-left: 15%;
-  max-width: 560px;
+  width: 100%;
   height: 100px;
   align-items: center;
   &-user-name {
-    max-width: 400px;
+    max-width: 600px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    @media screen and (max-width: 1200px) {
+      max-width: 400px;
+    }
+    @media screen and (max-width: 992px) {
+      max-width: 320px;
+    }
+    @media screen and (max-width: 768px) {
+      max-width: 128px;
+    }
+    @media screen and (max-width: 576px) {
+      max-width: 98px;
+    }
   }
   &-container {
     position: sticky;

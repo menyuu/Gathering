@@ -27,7 +27,7 @@ class EndUser::RelationshipsController < ApplicationController
     # 重複したユーザーを除外
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
-    @tags = Tag.display_show_type("user")
+    @post_tags = PostingTag.display_show_type("post")
     common_followings = users & current_end_user.followings
     @common_followings = Kaminari.paginate_array(common_followings)
   end
@@ -50,7 +50,7 @@ class EndUser::RelationshipsController < ApplicationController
     # idの重複するデータを
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
-    @tags = Tag.display_show_type("user")
+    @post_tags = PostingTag.display_show_type("post")
     common_followers = users & current_end_user.followers
     @common_followers = Kaminari.paginate_array(common_followers)
   end

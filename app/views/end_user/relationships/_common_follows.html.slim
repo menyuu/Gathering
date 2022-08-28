@@ -2,11 +2,11 @@
   .row
     .col-10.user-sidebar
       h6.user-sidebar-title.text-center
-        = text
+        | 共通のユーザー
       - common_follows.each do |user|
-        .card.shadow.mt-3
+        .card
           = link_to user_path(user)
             .card-body
-              = image_tag user.user_icon(40, 40), class: "rounded-circle"
-              span.show-name
+              = image_tag user.user_icon(40, 40), class: "rounded-circle user-icon"
+              span.user-name-index
                 = user.name
