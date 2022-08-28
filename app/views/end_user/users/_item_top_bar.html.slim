@@ -1,9 +1,0 @@
-.container-fluid.bg-white.item-top-bar-container
-  .row
-    .col-7.offset-1.bg-white
-      h4
-        | 人気の趣味タグ
-      ul.item-top-bar
-        - @tags.each do |tag|
-          li
-            = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"

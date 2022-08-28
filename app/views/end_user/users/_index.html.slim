@@ -1,21 +1,22 @@
 .jscroll
   - users.each do |user|
     .card.shadow.mt-5
-      .card-body.row
-        .col-6
+      .card-body.row.pb-0
+        .col-8.col-md-8.col-lg-7.col-xl-8
           = link_to user_path(user)
-            = image_tag user.user_icon(48, 48), class: "rounded-circle"
-            span.show-name
+            = image_tag user.user_icon(48, 48), class: "rounded-circle user-icon"
+            .user-name-index
               = user.name
-        .col-6
+        .col-4.col-md-4.col-lg-5.col-xl-4
           .text-right
             - unless current_end_user == user || user.name == "ゲストユーザー"
               div class="follow_btn_#{user.id}"
                 = render "end_user/relationships/follow_btn", user: user
       = link_to user_path(user)
-        .card-body
-          .introduction-area
-            = user.introduction
+        - if user.introduction.present?
+          .card-body
+            .introduction-area
+              = user.introduction
       .card-body
         ul.col-12
           li.tag-icon-item
@@ -36,7 +37,7 @@
               | ゲーム：
             - user.games.each do |game|
               = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
-      .card-body.text-right
+      .card-body.text-right.pt-0
         = link_to "詳細を見る", user_path(user), class: "btn btn-outline-dark"
     .skill-list
       = link_to_prev_page users, "前のページ", class: "prev d-none"

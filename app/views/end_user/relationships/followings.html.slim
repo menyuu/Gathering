@@ -1,13 +1,19 @@
-= render "end_user/users/item_top_bar", tags: @tags
+.container-fluid.follow-top-bar-container
+  .row
+    .follow-top-bar
+      |"
+      = link_to user_path(@user)
+        .follow-top-bar-user-name
+          =  @user.name
+      | "がフォロー中
 - if @users.present?
-  .container-fluid.mt-5
+  .container-fluid
     .row
-      .col-6.offset-1.mt-5
-        h3.text-center.my-3
-          | "#{@user.name}"さんがフォロー中
+      .col-12.col-lg-7.mt-5
         = render "end_user/users/index", users: @users
       - unless @user == current_end_user
-        = render "common_follows", text: "共通のフォローしているユーザー", common_follows: @common_followings
+        .col-5.d-none.d-lg-block
+          = render "common_follows", text: "共通のフォローユーザー", common_follows: @common_followings
 - else
   h1.col-9.text-center.mt-5
     | ユーザーはいません。

@@ -17,7 +17,7 @@ class EndUser::RelationshipsController < ApplicationController
     # 空の配列を用意
     users = []
     # @userがフォローしているpublishedユーザーを取得
-    following_users = @user.followings.with_attached_icon.where(status: "published").includes(:tags, :end_user_tags, :genres, :end_user_genres, :games, :end_user_games)
+    following_users = @user.followings.with_attached_icon.where(status: "published")
     # @userがフォローしているユーザーとcurrent_end_userのフォロワーの重複しているユーザーを取得
     private_users = @user.followings & current_end_user.followings
     # 先ほど変数に代入したユーザーを用意した空の配列に代入

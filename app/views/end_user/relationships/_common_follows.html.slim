@@ -1,13 +1,12 @@
-.col-4.offset-1.d-none.d-md-block
-  .container-fluid.user-sidebar-container
-    .row
-      .col-10.user-sidebar
-        h6.user-sidebar-title.text-center
-          = text
-        - common_follows.each do |user|
-          .card.shadow.mt-3
-            = link_to user_path(user)
-              .card-body
-                = image_tag user.user_icon(40, 40), class: "rounded-circle"
-                span.show-name
-                  = user.name
+.container-fluid.user-sidebar-container
+  .row
+    .col-10.user-sidebar
+      h6.user-sidebar-title.text-center
+        = text
+      - common_follows.each do |user|
+        .card.shadow.mt-3
+          = link_to user_path(user)
+            .card-body
+              = image_tag user.user_icon(40, 40), class: "rounded-circle"
+              span.show-name
+                = user.name

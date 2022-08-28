@@ -18,6 +18,7 @@
   }
 }
 
+/*ユーザーのshowページ*/ 
 .user {
   &-name {
     font-size: 16px;
@@ -36,8 +37,54 @@
   }
 }
 
+/*_indexのユーザーステータス*/ 
+.user-name-index {
+  width: 80%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &:hover {
+    text-decoration: underline;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+}
+
+/*フォロー・フォロワー*/
 .follow-container {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+.follow-top-bar {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  margin-left: 15%;
+  max-width: 560px;
+  height: 100px;
+  align-items: center;
+  &-user-name {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &-container {
+    position: sticky;
+    z-index: 100;
+    top: 60px;
+    background-color: rgba(255, 255, 255, 0.8)
+  }
 }
