@@ -1,49 +1,27 @@
 - if current_end_user.following?(user)
-  span.unfollow data-toggle="tooltip" title="フォロー解除"
-    = link_to user_follows_path(user), method: :delete, remote: true, class: "btn btn-dark rounded-pill unfollow-btn", data: { "confirm": "フォロー解除しますか？" }
-      span.unfollow-text
+  span.unfollow-container
+    span.unfollow-active
+      button.btn.btn-dark.rounded-pill
         i.fas.fa-user-check
         span.between-text-icon.d-none.d-md-inline-block
           | フォロー中
+    span.unfollow data-toggle="tooltip" title="フォロー解除"
+      = link_to user_follows_path(user), method: :delete, remote: true, class: "btn rounded-pill unfollow-btn", data: { "confirm": "フォロー解除しますか？" }
+        i.fas.fa-user-times
+        span.between-text-icon.d-none.d-md-inline-block
+          | フォローを外す
 - else
   - unless user.status == "freeze"
-    span.follow data-toggle= "tooltip" title="フォロー"
-      = link_to user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill follow-btn"
-        span.follow-text
+    span.follow-container
+      span.follow-active
+        button.btn.btn-outline-dark.rounded-pill
           i.fas.fa-user
           span.between-text-icon.d-none.d-md-inline-block
             | フォロー
+      span.follow data-toggle= "tooltip" title="フォロー"
+        = link_to user_follows_path(user), method: :post, remote: true, class: "btn btn-outline-success rounded-pill"
+          i.fas.fa-user-plus
+          span.between-text-icon.d-none.d-md-inline-block
+            | フォローする
   - else
     | 凍結済みのためフォローできません。
-
-javascript:
-  $(function() {
-    $('.unfollow').hover(function() {
-      $(this).find('.unfollow-text').html(
-        `<i class="fas fa-user-times"></i>
-        <span class="between-text-icon d-none d-md-inline-block">フォローを外す</span>`
-        );
-      $(this).find('.unfollow-btn').removeClass('btn-dark').addClass('unfollow-active-btn');
-    }, function() {
-      $(this).find('.unfollow-text').html(
-        `<i class="fas fa-user-check"></i>
-        <span class="between-text-icon d-none d-md-inline-block">フォロー中</span>`
-        );
-      $(this).find('.unfollow-btn').removeClass('unfollow-active-btn').addClass('btn-dark');
-    });
-  });
-  $(function() {
-    $('.follow').hover(function() {
-      $(this).find('.follow-text').html(
-        `<i class="fas fa-user-plus"></i>
-        <span class="between-text-icon d-none d-md-inline-block">フォローする</span>`
-        );
-      $(this).find('.follow-btn').removeClass('btn-outline-dark').addClass('btn-outline-success');
-    }, function() {
-      $(this).find('.follow-text').html(
-        `<i class="fas fa-user"></i>
-        <span class="between-text-icon d-none d-md-inline-block">フォロー</span>`
-        );
-      $(this).find('.follow-btn').removeClass('btn-outline-success').addClass('btn-outline-dark');
-    });
-  });

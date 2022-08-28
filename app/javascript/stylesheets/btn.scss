@@ -47,12 +47,38 @@
   }
 }
 
-.unfollow-active-btn {
+.unfollow-btn {
   border-color: #dc3545;
   &:hover {
     color: #dc3545;
   }
   &:focus {
     box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5);
+  }
+}
+
+.unfollow {
+  display: none;
+}
+
+.unfollow-container:hover {
+  & .unfollow {
+    display: block;
+  }
+  & .unfollow-active {
+    display: none;
+  }
+}
+
+.follow {
+  display: none;
+}
+
+.follow-container:hover {
+  &  .follow {
+    display: block;
+  }
+  & .follow-active {
+    display: none;
   }
 }
