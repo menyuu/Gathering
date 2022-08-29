@@ -30,7 +30,22 @@
   margin-bottom: 16px;
 }
 
-.position-relative .owner-icon {
+.join-group {
+  position: relative;
+}
+
+.join-group .owner-icon {
+  position: absolute;
   top: 8px;
   right: 16px;
+}
+
+.index-group {
+  position: relative;
+}
+
+.index-group .owner-icon {
+  position: absolute;
+  top: 8px;
+  right: 32px;
 }

@@ -5,11 +5,11 @@ h4.text-center.mt-5
     - groups.each do |group|
       .card.shadow.mt-5
         = link_to group_path(group)
-          .card-body.pb-0.position-relative
+          .card-body.pb-0.join-group
             = image_tag group.group_icon(40, 40), class: "rounded-circle join-group-icon", data: { toggle: "tooltip" }, title: "クリックして詳細を見る"
             span.join-group-name data-toggle="tooltip" title="#{group.name}"
               = group.name
-            span.owner-icon.position-absolute
+            span.owner-icon
               - if group.owner == current_end_user
                 i.fas.fa-star
           .card-body.pt-0.group-join-member-container

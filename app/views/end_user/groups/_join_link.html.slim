@@ -1,10 +1,31 @@
 - if group.includesUser?(current_end_user)
-    = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, remote: true, class: "btn btn-outline-danger rounded-pill"
+  span.unfollow-container
+    span.unfollow-active
+      button.btn.btn-dark.rounded-pill
+        i.fas.fa-smile
+        span.between-text-icon.d-none.d-md-inline-block
+          | メンバー
+    span.unfollow data-toggle="tooltip" title="グループを抜ける"
+      = link_to group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, remote: true, class: "btn rounded-pill unfollow-btn"
+        i.fas.fa-sad-tear
+        span.between-text-icon.d-none.d-md-inline-block
+          | 抜ける
 - else
   - if group.sameHasItems?(current_end_user) || (group.tags.count == 0 and group.genres.count == 0 and group.games.count == 0)
-    = link_to "グループに参加する", group_user_groups_path(group), method: :post, remote: true, class: "btn btn-outline-dark rounded-pill"
+    span.follow-container
+      span.follow-active
+        button.btn.btn-outline-dark.rounded-pill
+          i.fas.fa-meh
+          span.between-text-icon.d-none.d-md-inline-block
+            | 未加入
+      span.follow data-toggle= "tooltip" title="グループに参加する"
+        = link_to group_user_groups_path(group), method: :post, remote: true, class: "btn btn-outline-success rounded-pill"
+          i.fas.fa-laugh
+          span.between-text-icon.d-none.d-md-inline-block
+            | 参加する
   - else
-    p
-      | 条件を満たしていないため
-      br
-      | 参加できません。
+    span data-toggle= "tooltip" title="条件を満たしていないため参加できません。"
+      button.btn.btn-danger.rounded-pill.disabled
+        i.fas.fa-tired
+        span.between-text-icon.d-none.d-md-inline-block
+          | 参加不可

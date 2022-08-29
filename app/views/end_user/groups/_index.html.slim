@@ -2,7 +2,7 @@
   .jscroll
     - groups.each do |group|
       .card.shadow.mt-5
-          .card-body.row
+          .card-body.row.index-group
             .col-12.col-lg-8
               = link_to group_path(group)
                 = image_tag group.group_icon(48, 48), class: "rounded-circle"
@@ -14,10 +14,11 @@
                   | )
             .col-12.col-lg-4.text-right
               - unless group.is_ownerd_by?(current_end_user)
-                div class="group_join_btn_#{group.id}"
+                span class="group_join_btn_#{group.id}"
                   = render "end_user/groups/join_link", group: group
-              - else
-               | あなたがオーナーです。
+            span.owner-icon.position-absolute
+              - if group.owner == current_end_user
+                i.fas.fa-star
           = link_to group_path(group)
             -if group.introduction.present?
               .card-body
