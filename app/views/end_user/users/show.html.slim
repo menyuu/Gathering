@@ -78,7 +78,10 @@
           = render "end_user/posts/index", posts: @posts, post_comment: @post_comment
     .col-4.d-none.d-xl-block
       - if @user == current_end_user
-          = render "end_user/groups/prticipation_group", user: @user, groups: @groups
+        .container-fluid.pr-0.group-sidebar-container
+          .row
+            .col-12.pr-0
+              = render "end_user/groups/prticipation_group", user: @user, groups: @groups
       - else
         = render "end_user/posts/item_sidebar", post_tags: @post_tags
 .text-center

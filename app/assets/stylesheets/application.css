@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+.join-group-name {
+  width: 65%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.join-group-name:hover {
+  text-decoration: underline;
+}
+
+.join-group-icon {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.position-relative .owner-icon {
+  top: 8px;
+  right: 16px;
+}
