@@ -1,7 +1,6 @@
 /*グループのみのサイドバー*/
 .group-sidebar {
   overflow-y: auto;
-  width: 100%;
   height: 640px;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -10,13 +9,9 @@
   }
   &-container {
     position: fixed;
-    z-index: 720;
+    max-width: 20%;
     margin: 20px 0 0 0;
-    top: 80px;
-  }
-  &-body {
-    width: 90%;
-    margin: 0 auto;
+    top: 114px;
   }
 }
 

@@ -14,13 +14,15 @@
                   | )
             .col-12.col-lg-4.text-right
               - unless group.is_ownerd_by?(current_end_user)
-                = render "end_user/groups/join_link", group: group
+                div class="group_join_btn_#{group.id}"
+                  = render "end_user/groups/join_link", group: group
               - else
                | あなたがオーナーです。
           = link_to group_path(group)
-            .card-body
-              .introduction-area
-                = group.introduction
+            -if group.introduction.present?
+              .card-body
+                .introduction-area
+                  = group.introduction
           .card-body
             ul.col-12
               li.tag-icon-item

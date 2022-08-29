@@ -1,23 +1,17 @@
-  h3.text-center.mt-5
-    | 参加中のグループ
+h3.text-center.mt-5
+  | 参加中のグループ
+.group-sidebar
   - if groups.present?
-    .group-sidebar
-      - groups.each do |group|
-        .card.shadow.mt-5.group-sidebar-body
-          = link_to group_path(group)
-            .card-body
-              .col-12 data-toggle="tooltip" title="クリックして詳細を見る"
-                = image_tag group.group_icon(40, 40), class: "rounded-circle"
-                span.show-name
-                  = group.name
-            .card-body.group-join-member-container
-              - group.users.where.not(status: "freeze").each do |member|
-                =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
-            .card-body.text-right
-              - unless group.is_ownerd_by?(current_end_user)
-                = link_to "グループを抜ける", group_user_groups_path(group), method: :delete, data: {confirm: "本当にグループを抜けますか？"}, class: "btn btn-outline-danger rounded-pill"
-              - else
-                | あなたがオーナーです。
+    - groups.each do |group|
+      .card.shadow.mt-5
+        = link_to group_path(group)
+          .card-body
+            = image_tag group.group_icon(40, 40), class: "rounded-circle", data: { toggle: "tooltip" }, title: "クリックして詳細を見る"
+            span.show-name data-toggle="tooltip" title="#{group.name}"
+              = group.name
+          .card-body.group-join-member-container
+            - group.users.where.not(status: "freeze").each do |member|
+              =image_tag member.user_icon(32, 32), class: "rounded-circle group-join-member", data: { toggle: "tooltip" }, data: { placement: "right" }, title: "#{member.name}"
   - else
     h6.text-center
       | 現在、参加中のグループはありません。
