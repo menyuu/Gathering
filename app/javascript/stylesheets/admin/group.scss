@@ -1,0 +1,23 @@
+.admin-group-chat {
+  &-area {
+  overflow-y: auto;
+  height: 720px;
+  }
+  &-member {
+    overflow-y: auto;
+    height: 720px;
+  }
+}
+
+.table-link {
+ display: inline-block;
+ &:hover {
+   text-decoration: none;
+ }
+ &-count {
+    display: inline-block;
+    &a:hover {
+      text-decoration: underline;
+    }
+  }
+}

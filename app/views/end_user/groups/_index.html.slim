@@ -6,8 +6,8 @@
           .col-8.col-md-8.col-lg-7.col-xl-8
             = link_to group_path(group)
               = image_tag group.group_icon(48, 48), class: "rounded-circle group-icon"
-              span.group-name-index
-                span.group-name
+              span.group-name-index-container
+                span.group-name-index
                   = group.name
                 span
                   | (

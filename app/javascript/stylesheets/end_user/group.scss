@@ -1,7 +1,7 @@
 /*グループのみのサイドバー*/
 .group-sidebar {
   overflow-y: auto;
-  height: 640px;
+  max-height: 480px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
@@ -12,6 +12,10 @@
     max-width: 20%;
     margin: 20px 0 0 0;
     top: 114px;
+    @media screen and (max-width: 1200px) {
+      position: static;
+      max-width: 100%;
+    }
   }
 }
 
@@ -110,5 +114,134 @@
   }
   &-admin {
     height: 720px;
+  }
+}
+
+.join-group {
+  position: relative;
+  &-name {
+    width: 65%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &-icon {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+  & .owner-icon {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+}
+
+.index-group {
+  position: relative;
+  & .owner-icon {
+  position: absolute;
+  top: 8px;
+  right: 32px;
+  }
+}
+
+.group-name-index {
+  max-width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  &-container {
+    max-width: 80%;
+    display: inline-flex;
+    align-items: center;
+    &:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 1200px) {
+      max-width: 70%;
+    }
+    @media screen and (max-width: 576px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.group-icon {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.group-new {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  &:hover {
+    position: relative;
+    bottom: 1px;
+  }
+  &:active {
+    position: relative;
+    top: 3px;
+    border-bottom: 1px solid #dcdcdc;
+  }
+  &-container {
+    position: fixed;
+    z-index: 760;
+    bottom: 32px;
+    right: 32px;
+  }
+  &-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.8;
+  }
+}
+
+.group {
+  &-name {
+    font-size: 16px;
+    display: inline-block;
+    &:hover {
+      text-decoration: underline;
+    }
+    @media screen and (max-width: 500px) {
+      display: block;
+      margin-top: 8px;
+    }
+  }
+  &-icon {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+  &-member-name {
+    max-width: 100%;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &-container {
+      max-width: 70%;
+      display: inline-flex;
+      align-items: center;
+      @media screen and (max-width: 1200px) {
+        max-width: 85%;
+      }
+      @media screen and (max-width: 768px) {
+        max-width: 70%;
+      }
+      @media screen and (max-width: 576px) {
+        max-width: 55%;
+      }
+    }
   }
 }

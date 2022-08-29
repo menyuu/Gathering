@@ -1,15 +1,19 @@
 .container-fluid
   .row
-    .col-10.col-md-7.offset-1.mt-5.shadow
-      #group-chat-area
-        = render "index", chats: @chats
-      .row
-        .col-8.mx-auto
-          = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: false do |f|
-            .errors
-            .form-group
-              = f.text_area :text, autofocus: true, placeholder: "メッセージを入力してチャットをする", class: "form-control text-area", rows: 5
-            .form-group.text-right
-              = f.submit "送信", class: "btn btn-outline-dark rounded-pill chat-btn"
-    .col-3.mt-5
+    .col-12.col-lg-10.col-xl-8
+      .shadow.rounded.mt-5
+        #group-chat-area
+          = render "index", chats: @chats
+        .row
+          .col-8.mx-auto
+            = form_with model: [@group, @group_chat], url: group_chats_path(@group), local: false do |f|
+              .errors
+              .form-group
+                = f.text_area :text, autofocus: true, placeholder: "メッセージを入力してチャットをする", class: "form-control text-area", rows: 5
+              .form-group.text-right
+                = f.submit "送信", class: "btn btn-outline-dark rounded-pill chat-btn"
+        .row
+          .col-12.my-5.text-right
+            = link_to "戻る", group_path(@group), class: "btn btn-dark"
+    .col-12.col-lg-10.col-xl-4
       = render "end_user/groups/members", members: @members, group: @group

@@ -99,19 +99,6 @@ img {
   }
 }
 
-.table-link {
- display: inline-block;
- &:hover {
-   text-decoration: none;
- }
- &-count {
-    display: inline-block;
-    &a:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
 .modal {
   display: none;
   overflow-y: auto;

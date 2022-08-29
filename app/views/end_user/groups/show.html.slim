@@ -1,28 +1,32 @@
 .container-fluid
   .row
-    .col-10.col-md-7.offset-1
+    .col-12.col-lg-10.col-xl-8
       .card.shadow.rounded.mt-5
-        .card-body.row
-          .col-6
-            - if @group.icon.attached?
-              = link_to @group.icon, "data-lightbox": @group.icon
-                = image_tag @group.group_icon(64, 64), class: "rounded-circle"
+        .card-body.pb-0.row
+          .col-4
+            = link_to @group.icon, "data-lightbox": @group.icon
+              = image_tag @group.group_icon(48, 48), class: "rounded-circle group-icon"
+          .col-8.text-right
+            - unless @group.is_ownerd_by?(current_end_user)
+              = render "join_link", group: @group
             - else
-              = image_tag @group.group_icon(64, 64), class: "rounded-circle"
-            span.show-name
-              = @group.name
-          .col-6
-            .row.text-right.mb-5
-              .col-12
-                - unless @group.is_ownerd_by?(current_end_user)
-                  = render "join_link", group: @group
-                - else
-                  li.d-inline-block.tag-icon-item data-toggle="tooltip" title="クリックしてグループを編集"
-                    i.fa.fa-edit data-toggle="modal" data-target="#editGroupModalToggle"
-                  li.d-inline-block.tag-icon-item-delete
+              .dropleft
+                button.nomal-btn#dropdownMenu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  span
+                    i.fas.fa-ellipsis-v
+                .dropdown-menu aria-labelledby="dropdownMenu"
+                  .dropdown-item.option-item.dropdown-black-color data-toggle="tooltip" title="グループを編集"
+                    a data-toggle="modal" data-target="#editGroupModalToggle"
+                      i.fa.fa-edit
+                      span.between-text-icon
+                        | 編集する
+                  .dropdown-item.option-item-delete data-toggle="tooltip" title="グループを削除"
                     = link_to group_path(@group), method: :delete, data: {"confirm": "本当に削除しますか？\r\nこの操作は取り消せません。\r\n実行後、グループは完全に削除されます。"}
-                      i.fas.fa-trash-alt data-toggle="tooltip" title="クリックしてグループを削除"
-                = render "edit_modal", group: @group
+                      i.fas.fa-trash-alt
+                      span.between-text-icon
+                        | 削除する
+        .card-body.py-0.group-name
+          = @group.name
         .card-body
           .introduction-text
             = safe_join(@group.introduction.split("\n"),tag(:br))
@@ -30,25 +34,33 @@
           ul.col-12
             li.tag-icon-item
               - if @group.is_ownerd_by?(current_end_user)
-                = link_to group_tags_path(@group), data: {toggle: "tooltip"}, title: "タグを編集"
+                = link_to group_tags_path(@group), data: {toggle: "tooltip"}, title: "グループタグを編集"
                   i.fas.fa-tags
-                  span.between-text-icon
-                    | タグ：
+                  span.d-md-none.d-inline-block
+                    |：
+                  span.between-text-icon.d-none.d-md-inline-block
+                    | グループタグ：
               - else
                 i.fas.fa-tags
-                span.between-text-icon
-                  | タグ：
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
+                  | グループタグ：
               - @group.tags.each do |tag|
                 = link_to tag.name, search_path(word: tag.name, object: "group_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
             li.tag-icon-item
               - if @group.is_ownerd_by?(current_end_user)
                 = link_to group_genres_path(@group), data: {toggle: "tooltip"}, title: "ジャンルを編集"
                   i.fas.fa-chess
-                  span.between-text-icon
+                  span.d-md-none.d-inline-block
+                    |：
+                  span.between-text-icon.d-none.d-md-inline-block
                     | ゲームジャンル：
               - else
                 i.fas.fa-chess
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲームジャンル：
               - @group.genres.each do |genre|
                 = link_to genre.name, search_path(word: genre.name, object: "group_genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
@@ -56,18 +68,27 @@
               -if @group.is_ownerd_by?(current_end_user)
                 = link_to group_games_path(@group), data: {toggle: "tooltip"}, title: "ゲームを編集"
                   i.fas.fa-gamepad
-                  span.between-text-icon
+                  span.d-md-none.d-inline-block
+                    |：
+                  span.between-text-icon.d-none.d-md-inline-block
                     | ゲーム：
               - else
                 i.fas.fa-gamepad
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲーム：
               - @group.games.each do |game|
                 = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
         .card-body.text-right
           - if @group.users.include?(current_end_user)
             .card-body.text-right
-              .col
-                = link_to "チャットをはじめる", group_chats_path(@group), class: "btn btn-outline-dark"
-    .col-3.mt-5
+              = link_to group_chats_path(@group), class: "btn btn-outline-dark"
+                i.fas.fa-comment-dots
+                span.between-text-icon
+                | チャット
+                span.d-none.d-md-inline-block
+                  | をはじめる
+    .col-12.col-lg-10.col-xl-4
       = render "members", members: @members, group: @group
+= render "edit_modal", group: @group
