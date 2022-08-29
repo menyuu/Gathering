@@ -81,3 +81,13 @@
   margin-right: 16px;
   margin-bottom: 16px;
 }
+
+
+
+
+.group-new-container {
+  position: fixed;
+  z-index: 760;
+  bottom: 32px;
+  right: 32px;
+}

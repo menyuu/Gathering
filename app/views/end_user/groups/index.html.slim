@@ -2,8 +2,10 @@
   .row
     .col-12.col-lg-10.col-xl-8
       = render "end_user/groups/index", groups: @groups
-    .d-lg-none.d-block
-      aaaaaaaaaaaaa
+      .d-xl-none.d-block.group-new-container
+        span.group-new
+          button.btn.btn-dark.group-new-btn data-toggle="modal" data-target="#createGroupModalToggle"
+            i.fas.fa-plus
     .col-4.pr-0.d-none.d-xl-block
       .container-fluid.pr-0.group-sidebar-container
         .row

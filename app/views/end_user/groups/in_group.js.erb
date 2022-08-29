@@ -1,3 +1,3 @@
 $('.group_join_btn_<%= @group.id %>').html(' <%= j(render "end_user/groups/join_link", group: @group) %> ');
-$('.group-member-count').empty();
-$('.group-member-count').append('<%= j(group.users.where.not(status: "freeze").count)%>')
+$('.group_member_count_<%= @group.id %>').empty();
+$('.group_member_count_<%= @group.id %>').append('<%= j(@group.users.where.not(status: "freeze").count)%>');
