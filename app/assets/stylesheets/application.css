@@ -49,3 +49,35 @@
   top: 8px;
   right: 32px;
 }
+
+.group-name-index {
+  max-width: 80%;
+  display: inline-flex;
+  align-items: center;
+}
+ .group-name-index:hover {
+  text-decoration: underline;
+}
+@media screen and (max-width: 1200px) {
+  .group-name-index {
+    max-width: 70%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .group-name-index {
+    max-width: 100%;
+  }
+}
+
+.group-name {
+  max-width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.group-icon {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}

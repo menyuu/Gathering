@@ -2,45 +2,54 @@
   .jscroll
     - groups.each do |group|
       .card.shadow.mt-5
-          .card-body.row.index-group
-            .col-12.col-lg-8
-              = link_to group_path(group)
-                = image_tag group.group_icon(48, 48), class: "rounded-circle"
-                span.show-name
+        .card-body.row.pb-0.index-group
+          .col-8.col-md-8.col-lg-7.col-xl-8
+            = link_to group_path(group)
+              = image_tag group.group_icon(48, 48), class: "rounded-circle group-icon"
+              span.group-name-index
+                span.group-name
                   = group.name
+                span
                   | (
-                  span
+                  span.group-member-count
                     = group.users.where.not(status: "freeze").count
                   | )
-            .col-12.col-lg-4.text-right
+          span.col-4.col-md-4.col-lg-5.col-xl-4
+            .text-right
               - unless group.is_ownerd_by?(current_end_user)
                 span class="group_join_btn_#{group.id}"
                   = render "end_user/groups/join_link", group: group
-            span.owner-icon.position-absolute
-              - if group.owner == current_end_user
-                i.fas.fa-star
-          = link_to group_path(group)
-            -if group.introduction.present?
-              .card-body
-                .introduction-area
-                  = group.introduction
+          span.owner-icon.position-absolute
+            - if group.owner == current_end_user
+              i.fas.fa-star
+        = link_to group_path(group)
+          -if group.introduction.present?
+            .card-body
+              .introduction-area
+                = group.introduction
           .card-body
             ul.col-12
               li.tag-icon-item
                 i.fas.fa-tags
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | 趣味タグ：
                 - group.tags.each do |tag|
                   = link_to tag.name, search_path(word: tag.name, object: "group_tag"), class: "btn btn-sm btn-dark rounded-pill tag-item"
               li.tag-icon-item
                 i.fas.fa-chess
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲームジャンル：
                 - group.genres.each do |genre|
                   = link_to genre.name, search_path(word: genre.name, object: "group_genre"), class: "btn btn-sm btn-dark rounded-pill tag-item"
               li.tag-icon-item
                 i.fas.fa-gamepad
-                span.between-text-icon
+                span.d-md-none.d-inline-block
+                  |：
+                span.between-text-icon.d-none.d-md-inline-block
                   | ゲーム：
                 - group.games.each do |game|
                   = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-sm btn-dark rounded-pill tag-item"
