@@ -25,11 +25,14 @@
       .modal-body
         .d-flex
           label.align-self-center for="copy_id"
-            | ユーザーID：
-          span.input-group.col-6
+            span.d-none.d-sm-inline-block
+              | ユーザー
+            | ID：
+          span.input-group.col-8.col-sm-6
             input.form-control.input-group-prepend type="text" id="copy_id" value="#{user.id}" readonly="readonly"
             span.input-group-btn.input-group-append
-              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
+              button.btn.btn-dark.border-left-0#copy_btn type="button"
+                i.fas.fa-clone
       .modal-footer
         .modal-body.user_change_status
           = render "change_status"

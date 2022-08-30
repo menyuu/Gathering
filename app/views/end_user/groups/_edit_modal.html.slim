@@ -21,11 +21,14 @@
             = f.submit "保存", class: "btn btn-dark rounded-pill"
       .modal-body.text-left
         .d-flex
-          label.col-2.align-self-center for="copy_id"
-            | グループID：
-          span.input-group.col-6
+          label.align-self-center for="copy_id"
+            span.d-none.d-sm-inline-block
+              | グループ
+            | ID：
+          span.input-group.col-8.col-sm-6
             input.form-control.input-group-prepend.p-0 type="text" id="copy_id" value="#{group.id}" readonly="readonly"
             span.input-group-btn.input-group-append.p-0
-              button.btn.btn-dark.border-left-0#copy_btn type="button" コピーする
+              button.btn.btn-dark.border-left-0#copy_btn type="button"
+                i.fas.fa-clone
       .modal-footer
         button.btn.btn-outline-dark data-dismiss="modal" 閉じる
