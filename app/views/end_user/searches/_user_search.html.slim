@@ -4,7 +4,7 @@
     .row
       .col-12.d-none.d-xl-block
         = link_to "ユーザーID", search_path(object: "id", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "キーワード", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -14,10 +14,10 @@
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             span
-              | 検索メニュー
+              | ユーザー検索
           .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
             = link_to "ユーザーID", search_path(object: "id", word: word), class: "dropdown-item dropdown-black-color"
-            = link_to "キーワード", search_path(object: "user_keyword", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ユーザー", search_path(object: "user_keyword", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "タグ", search_path(object: "tag", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "ジャンル", search_path(object: "genre", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "ゲーム", search_path(object: "game", word: word), class: "dropdown-item dropdown-black-color"
@@ -50,7 +50,7 @@
   .container-fluid.bg-white.search-top-bar
     .row
       .col-12.d-none.d-xl-block
-        = link_to "キーワード", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "ユーザー", search_path(object: "user_keyword", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -61,9 +61,9 @@
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             span
-              | 検索メニュー
+              | ユーザー検索
           .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
-            = link_to "キーワード", search_path(object: "user_keyword", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ユーザー", search_path(object: "user_keyword", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "ユーザー名", search_path(object: "user", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "タグ", search_path(object: "tag", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "ジャンル", search_path(object: "genre", word: word), class: "dropdown-item dropdown-black-color"
@@ -108,7 +108,7 @@
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             span
-              | 検索メニュー
+              | ユーザー検索
           .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
             = link_to "ユーザーID", search_path(object: "id", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "ユーザー名", search_path(object: "user", word: word), class: "dropdown-item dropdown-black-color"

@@ -2,113 +2,149 @@
 - when "tag"
   .container-fluid.bg-white.search-tags-top-bar
     .row
-      .col-10.text-center.my-3
-        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-9.text-center.d-none.d-xl-block.my-3
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
+        .dropdown
+          button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            span
+              | 投稿検索
+          .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
+            = link_to "ユーザー名", search_path(object: "user", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "タグ", search_path(object: "tag", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ジャンル", search_path(object: "genre", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ゲーム", search_path(object: "game", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "投稿", search_path(object: "post", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "グループ名", search_path(object: "group", word: word), class: "dropdown-item dropdown-black-color"
     .row.mb-5.item-top-bar
       .text-center
-        |人気のタグからユーザーを探す：
+        |人気のタグ：
         - tags.each do |tag|
           = link_to tag.name, search_path(word: tag.name, object: "tag"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col-7.offset-1
+      .col-12.col-xl-8
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h2
-              | 検索されたキーワード：
-              br
-              | "#{word}"
-              br
-              | のユーザーは見つかりませんでした。
-            h4.mt-5
+            | 検索されたキーワード：
+            br
+            | "#{word}"
+            br
+            | のユーザーは見つかりませんでした。
+            .mt-5
               | 別のキーワードで検索するか、
               br
               | 人気のタグからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
-            h5.text-center
+            .text-center
               | タグでユーザーを検索
-            = render "form", model: "tag"
+            .search-body-position
+              = render "form", model: "tag"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "genre"
   .container-fluid.bg-white.search-tags-top-bar
     .row
-      .col-10.text-center.my-3
-        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-9.text-center.d-none.d-xl-block.my-3
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
+        .dropdown
+          button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            span
+              | 投稿検索
+          .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
+            = link_to "ユーザー名", search_path(object: "user", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "タグ", search_path(object: "tag", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ジャンル", search_path(object: "genre", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ゲーム", search_path(object: "game", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "投稿", search_path(object: "post", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "グループ名", search_path(object: "group", word: word), class: "dropdown-item dropdown-black-color"
     .row.mb-5.item-top-bar
       .text-center
-        |人気のジャンルからユーザーを探す：
+        |人気のジャンル：
         - genres.each do |genre|
           = link_to genre.name, search_path(word: genre.name, object: "genre"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col-7.offset-1
+      .col-12.col-xl-8
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h2
-              | 検索されたキーワード：
-              br
-              | "#{word}"
-              br
-              | のユーザーは見つかりませんでした。
-            h4.mt-5
+            | 検索されたキーワード：
+            br
+            | "#{word}"
+            br
+            | のユーザーは見つかりませんでした。
+            .mt-5
               | 別のキーワードで検索するか、
               br
               | 人気のジャンルからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
-            h5.text-center
+            .text-center
               | ジャンルでユーザーを検索
-            = render "form", model: "genre"
+            .search-body-position
+              = render "form", model: "genre"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "game"
   .container-fluid.bg-white.search-tags-top-bar
     .row
-      .col-10.text-center.my-3
-        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-9.text-center.d-none.d-xl-block.my-3
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "タグ", search_path(object: "tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ジャンル", search_path(object: "genre", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ゲーム", search_path(object: "game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+      .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
+        .dropdown
+          button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            span
+              | 投稿検索
+          .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
+            = link_to "ユーザー名", search_path(object: "user", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "タグ", search_path(object: "tag", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ジャンル", search_path(object: "genre", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "ゲーム", search_path(object: "game", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "投稿", search_path(object: "post", word: word), class: "dropdown-item dropdown-black-color"
+            = link_to "グループ名", search_path(object: "group", word: word), class: "dropdown-item dropdown-black-color"
     .row.mb-5.item-top-bar
       .text-center
-        |人気のゲームからユーザーを探す：
+        |人気のゲーム：
         - games.each do |game|
           = link_to game.name, search_path(word: game.name, object: "game"), class: "btn btn-dark rounded-pill tag-item"
   .container-fluid
     .row
-      .col-7.offset-1
+      .col-12.col-xl-8
         - if search_result.present?
           = render "end_user/users/index", users: search_result
         - else
           .text-center
-            h2
-              | 検索されたキーワード：
-              br
-              | "#{word}"
-              br
-              | のユーザーは見つかりませんでした。
-            h4.mt-5
+            | 検索されたキーワード：
+            br
+            | "#{word}"
+            br
+            | のユーザーは見つかりませんでした。
+            .mt-5
               | 別のキーワードで検索するか、
               br
               | 人気のゲームからユーザーを探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
-            h5.text-center
+            .text-center
               | ゲームでユーザーを検索
-            = render "form", model: "game"
+            .search-body-position
+              = render "form", model: "game"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games

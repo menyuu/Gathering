@@ -11,7 +11,7 @@
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             span
-              | 検索メニュー
+              | 投稿検索
           .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
             = link_to "投稿", search_path(object: "post", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "dropdown-item dropdown-black-color"
@@ -43,7 +43,7 @@
 - when "post_tag"
   .container-fluid.bg-white.search-tags-top-bar
     .row
-      .col-12.d-none.d-xl-block
+      .col-9.text-center.d-none.d-xl-block.my-3
         = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
         = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
@@ -52,7 +52,7 @@
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             span
-              | 検索メニュー
+              | 投稿検索
           .dropdown-menu.dropdown-item-container aria-labelledby="dropdownMenuButton"
             = link_to "投稿", search_path(object: "post", word: word), class: "dropdown-item dropdown-black-color"
             = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "dropdown-item dropdown-black-color"
@@ -81,7 +81,7 @@
               br
               | ユーザーやグループから探してみましょう！
           .d-flex.flex-column.align-items-center.search-form-content
-            text-center
+            .text-center
               | 投稿タグを検索
             .search-body-position
               = render "form", model: "post_tag"
