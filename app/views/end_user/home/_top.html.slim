@@ -9,13 +9,13 @@
         = safe_join(post.text.split("\n"),tag(:br))
       .image-area
         - post.images.each do |image|
-          = image_tag image.variant(gravity: :center, resize:"100x100^", crop:"100x100+0+0").processed
+          = image_tag image.variant(gravity: :center, resize:"160x160^", crop:"160x160+0+0").processed
       .card-body
         = post.created_at.strftime("%Y年%m月%d日 %H時%M分")
       - if post.tags.present?
         .card-body.py-0
           - post.tags.each do |tag|
-            span.btn.btn-sm.btn-dark.rounded-pill.tag-item
+            span.btn.btn-sm.btn-dark.tag-item
               = tag.name
       .card-body
         ul.col-12.text-right.mb-5

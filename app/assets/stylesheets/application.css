@@ -13,17 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.search-body-position .search-form-item {
-  position: static;
-}
-
-@media screen and (max-width: 576px) {
-  .search-body-position .search-form-item {
-    width: 100%;
-  }
-}
-
-/*.rounded-pill {*/
-/*  border-radius: 2em;*/
-/*}*/

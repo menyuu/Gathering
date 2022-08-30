@@ -3,12 +3,12 @@
   | 現在のタグ(最大8個まで)
   .my-3
     - post.tags.each do |tag|
-      = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
+      = link_to tag.name, post_tags_path(post, name: tag.name), method: :delete, remote: true, class: "btn btn-sm btn-dark tag-item"
 .card-body.mb-5.border-bottom
   | 人気のタグ
   .my-3
     - post_tags.each do |tag|
-      = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+      = link_to tag.name, post_tags_path(post, name: tag.name), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark tag-item"
 .card-body.mb-5
   | タグを追加する
   = form_with model: [post, post_tag], url: post_tags_path(post), local: false do |f|

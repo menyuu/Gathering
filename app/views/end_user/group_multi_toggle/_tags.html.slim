@@ -3,12 +3,12 @@
   | 現在のタグ
   .my-3
     - group.tags.each do |tag|
-      = link_to tag.name, group_destroy_tags_path(group, name: tag.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
+      = link_to tag.name, group_destroy_tags_path(group, name: tag.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark tag-item"
 .card-body.mb-5.border-bottom
   | 人気のタグ
   .my-3
     - tags.each do |tag|
-      = link_to tag.name, group_update_tags_path(group, name: tag.name, model: "group"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+      = link_to tag.name, group_update_tags_path(group, name: tag.name, model: "group"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark tag-item"
 .card-body
   = form_with model: tag, url: group_create_tags_path, local: false do |f|
     = f.label :name, "タグ(最大8個)"
@@ -22,3 +22,5 @@
           i.fas.fa-save.align-self-center
           span.between-text-icon.d-none.d-md-inline-block
             | 保存
+javascript:
+  $(`[data-toggle="popover"]`).popover();

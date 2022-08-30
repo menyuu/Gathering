@@ -3,10 +3,10 @@
   .container-fluid.bg-white.search-top-bar
     .row
       .col-9.text-center.d-none.d-xl-block
-        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark tag-item"
+        = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark tag-item"
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark tag-item"
       .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -44,10 +44,10 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col-9.text-center.d-none.d-xl-block.my-3
-        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "投稿を探す", search_path(object: "post", word: word), class: "btn btn-dark tag-item"
+        = link_to "投稿タグ", search_path(object: "post_tag", word: word), class: "btn btn-dark tag-item"
+        = link_to "ユーザー名で探す", search_path(object: "user", word: word), class: "btn btn-dark tag-item"
+        = link_to "グループ名で探す", search_path(object: "group", word: word), class: "btn btn-dark tag-item"
       .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -63,7 +63,7 @@
         span.d-none.d-md-inline-block
           |人気の投稿タグ：
         - post_tags.each do |tag|
-          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-dark rounded-pill tag-item"
+          = link_to tag.name, search_path(word: tag.name, object: "post_tag"), class: "btn btn-dark tag-item"
   .container-fluid
     .row
       .col-12.col-xl-8

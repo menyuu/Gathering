@@ -3,12 +3,12 @@
   | 現在のゲーム
   .my-3
     - current_end_user.games.each do |game|
-      = link_to game.name, game_path(current_end_user, name: game.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
+      = link_to game.name, game_path(current_end_user, name: game.name, model: "user"), method: :delete, remote: true, class: "btn btn-sm btn-dark tag-item"
 .card-body.mb-5.border-bottom.px-0
   | 人気のゲーム
   .my-3
     - games.each do |game|
-      = link_to game.name, game_path(current_end_user, name: game.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+      = link_to game.name, game_path(current_end_user, name: game.name, model: "user"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark tag-item"
 .card-body.px-0
   = form_with model: game, local: false do |f|
     = f.label :name, "ゲーム(最大8個)"
@@ -22,3 +22,5 @@
           i.fas.fa-save.align-self-center
           span.between-text-icon.d-none.d-md-inline-block
             | 保存
+javascript:
+  $(`[data-toggle="popover"]`).popover();

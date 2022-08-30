@@ -3,12 +3,12 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col-9.text-center.d-none.d-xl-block.my-3
-        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark tag-item"
+        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark tag-item"
+        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark tag-item"
+        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark tag-item"
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark tag-item"
       .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -25,7 +25,7 @@
       .text-center
         |人気のタグ：
         - group_tags.each do |tag|
-          = link_to tag.name, search_path(word: tag.name, object: "group_tag"), class: "btn btn-dark rounded-pill tag-item"
+          = link_to tag.name, search_path(word: tag.name, object: "group_tag"), class: "btn btn-dark tag-item"
   .container-fluid
     .row
       .col-12.col-xl-8
@@ -53,12 +53,12 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col-9.text-center.d-none.d-xl-block.my-3
-        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark tag-item"
+        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark tag-item"
+        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark tag-item"
+        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark tag-item"
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark tag-item"
       .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -75,7 +75,7 @@
       .text-center
         |人気のジャンル：
         - group_genres.each do |genre|
-          = link_to genre.name, search_path(word: genre.name, object: "group_genre"), class: "btn btn-dark rounded-pill tag-item"
+          = link_to genre.name, search_path(word: genre.name, object: "group_genre"), class: "btn btn-dark tag-item"
   .container-fluid
     .row
       .col-12.col-xl-8
@@ -103,12 +103,12 @@
   .container-fluid.bg-white.search-tags-top-bar
     .row
       .col-9.text-center.d-none.d-xl-block.my-3
-        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark rounded-pill tag-item"
-        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark rounded-pill tag-item"
+        = link_to "グループ名", search_path(object: "group", word: word), class: "btn btn-dark tag-item"
+        = link_to "タグ", search_path(object: "group_tag", word: word), class: "btn btn-dark tag-item"
+        = link_to "ジャンル", search_path(object: "group_genre", word: word), class: "btn btn-dark tag-item"
+        = link_to "ゲーム", search_path(object: "group_game", word: word), class: "btn btn-dark tag-item"
+        = link_to "投稿", search_path(object: "post", word: word), class: "btn btn-dark tag-item"
+        = link_to "ユーザー名", search_path(object: "user", word: word), class: "btn btn-dark tag-item"
       .col-11.col-lg-9.mx-auto.d-xl-none.d-block.py-3
         .dropdown
           button.btn.btn-block.btn-dark.dropdown-toggle#dropdownMenuButton type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -125,7 +125,7 @@
       .text-center
         |人気のゲーム：
         - group_games.each do |game|
-          = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-dark rounded-pill tag-item"
+          = link_to game.name, search_path(word: game.name, object: "group_game"), class: "btn btn-dark tag-item"
   .container-fluid
     .row
       .col-12.col-xl-8

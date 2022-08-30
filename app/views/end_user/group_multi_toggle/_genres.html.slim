@@ -3,12 +3,12 @@
   | 現在のジャンル
   .my-3
     - group.genres.each do |genre|
-      = link_to genre.name, group_destroy_genres_path(group, name: genre.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
+      = link_to genre.name, group_destroy_genres_path(group, name: genre.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark tag-item"
 .card-body.mb-5.border-bottom.px-0
   | 人気のジャンル
   .my-3
     - genres.each do |genre|
-      = link_to genre.name, group_update_genres_path(group, name: genre.name, model: "group"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
+      = link_to genre.name, group_update_genres_path(group, name: genre.name, model: "group"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark tag-item"
 .card-body.px-0
   = form_with model: genre, url: group_create_genres_path, local: false do |f|
     = f.label :name, "ジャンル(最大8個)"
@@ -22,3 +22,5 @@
           i.fas.fa-save.align-self-center
           span.between-text-icon.d-none.d-md-inline-block
             | 保存
+javascript:
+  $(`[data-toggle="popover"]`).popover();
