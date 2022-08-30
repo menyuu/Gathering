@@ -1,6 +1,6 @@
 .errors
-.card-body.mb-5.border-bottom
-  | 現在のタグ(最大8個まで)
+.card-body.mb-5.border-bottom.px-0
+  | 現在のタグ
   .my-3
     - group.tags.each do |tag|
       = link_to tag.name, group_destroy_tags_path(group, name: tag.name, model: "group"), method: :delete, remote: true, class: "btn btn-sm btn-dark rounded-pill tag-item"
@@ -9,11 +9,16 @@
   .my-3
     - tags.each do |tag|
       = link_to tag.name, group_update_tags_path(group, name: tag.name, model: "group"), method: :patch, remote: true, class: "btn btn-sm btn-outline-dark rounded-pill tag-item"
-.card-body.mb-5
-  | タグを追加する
+.card-body
   = form_with model: tag, url: group_create_tags_path, local: false do |f|
+    = f.label :name, "タグ(最大8個)"
+    button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
+      i.fas.fa-exclamation-triangle
     .input-group
-      = f.text_field :name, value: tag_names, placeholder: "複数のタグは半角のカンマ(,)で区切って入力してください。", class: "form-control input-group-prepend"
+      = f.text_field :name, value: tag_names, placeholder: "タグを入力", class: "form-control input-group-prepend"
       = f.hidden_field :model, value: "group"
       span.input-group-append
-        = f.submit "タグを登録", class: "btn btn-outline-dark input-group"
+        = button_tag(type: "submit", class: "btn btn-outline-dark input-group")
+          i.fas.fa-save.align-self-center
+          span.between-text-icon.d-none.d-md-inline-block
+            | 保存

@@ -13,12 +13,10 @@
         = f.check_box :status, {class: "form-check-input custom-control-input option-item"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
     .form-group.text-left.mt-3.p-0
-      = f.label :name, "タグ(最大8個まで)"
+      = f.label :name, "タグ(最大8個)"
       button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
         i.fas.fa-exclamation-triangle
       = f.text_field :name, value: @tag_names, placeholder: "タグを入力",
       class: "form-control post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
-javascript:
-  $(`[data-toggle="popover"]`).popover();

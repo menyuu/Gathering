@@ -171,6 +171,9 @@ textarea {
 .tag-item {
   margin: 8px;
   padding: 4px 12px;
+  @media screen and (max-width: 576px) {
+    margin: 4px;
+  }
 }
 
 .tag-icon-item {
