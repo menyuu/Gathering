@@ -58,17 +58,17 @@
         .card-body
           - if current_end_user == @user
             ul.text-center.d-flex.justify-content-around.p-0
-              li.col-4.tag-icon-item
+              li.col-4.tag-icon-item data-toggle="tooltip" title="タイムライン"
                 = link_to posts_path, class: "user-show-item"
                   i.fa.fa-home
                   span.between-text-icon.d-none.d-md-inline-block
                     | タイムライン
-              li.col-4.border-left.border-right.border-3.tag-icon-item
+              li.col-4.border-left.border-right.border-3.tag-icon-item data-toggle="tooltip" title="いいね"
                 = link_to user_favorites_path(@user), class: "user-show-item"
                   i.fas.fa-heart.text-danger
                   span.between-text-icon.d-none.d-md-inline-block
                     | いいね
-              li.col-4.tag-icon-item
+              li.col-4.tag-icon-item data-toggle="tooltip" title="下書き"
                 = link_to draft_posts_path, class: "user-show-item"
                   i.fa.fa-edit
                   span.between-text-icon.d-none.d-md-inline-block
