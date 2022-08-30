@@ -37,7 +37,7 @@
             .text-center
               | 投稿を検索
             .search-body-position
-              = render "form", model: "post"
+              = render "form", text: word, model: "post"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "post_tag"
@@ -84,5 +84,5 @@
             .text-center
               | 投稿タグを検索
             .search-body-position
-              = render "form", model: "post_tag"
+              = render "form", text: word, model: "post_tag"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games

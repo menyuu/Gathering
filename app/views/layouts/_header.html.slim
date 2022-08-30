@@ -13,7 +13,7 @@ nav.navbar-dark.bg-dark
     - unless current_page?(users_sign_up_complete_path)
       .search-form-position
         - if end_user_signed_in?
-          = render "end_user/searches/form", model: "post"
+          = render "end_user/searches/form", text: @word, model: "post"
         - elsif admin_signed_in?
           = render "admin/searches/admin_form"
       - if end_user_signed_in?

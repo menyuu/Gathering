@@ -1,7 +1,7 @@
 .search-form-container
   = form_with url: search_path, method: :get, local: true do |f|
     .input-group.search-form-item.search-form-out
-      = f.text_field :word, placeholder: "検索", class: "form-control input-group-prepend"
+      = f.text_field :word, value: text , placeholder: "検索", class: "form-control input-group-prepend"
       = f.hidden_field :object, value: model
       span.input-group-append.text-right
         = button_tag(type: "submit", class: "btn btn-danger border input-group")

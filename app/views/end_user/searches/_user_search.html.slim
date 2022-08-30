@@ -43,7 +43,7 @@
             .text-center
               | ユーザー名を検索
             .search-body-position
-              = render "form", model: "user"
+              = render "form", text: word, model: "user"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "id"
@@ -90,7 +90,7 @@
             .text-center
               | ユーザーIDを検索
             .search-body-position
-              = render "form", model: "id"
+              = render "form", text: word, model: "id"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
 
 - when "user_keyword"
@@ -137,5 +137,5 @@
             .text-center
               | ユーザーをキーワードから検索
             .search-body-position
-              = render "form", model: "user_keyword"
+              = render "form", text: word, model: "user_keyword"
       = render "end_user/searches/item_sidebar", post_tags: post_tags, tags: tags, genres: genres, games: games, group_tags: group_tags, group_genres: group_genres, group_games: group_games
