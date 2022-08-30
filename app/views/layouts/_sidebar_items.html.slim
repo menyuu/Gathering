@@ -1,18 +1,18 @@
 tr
   td
-    = link_to tags_path, class: "btn btn-dark rounded-pill"
+    = link_to tags_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "趣味タグ"
       i.fas.fa-user-tag
       span.between-text-icon.d-none.d-xl-inline-block
         | 趣味タグ
 tr
   td
-    = link_to genres_path, class: "btn btn-dark rounded-pill"
+    = link_to genres_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "ジャンル"
       i.fas.fa-chess
       span.between-text-icon.d-none.d-xl-inline-block
         | ジャンル
 tr
   td
-    = link_to games_path, class: "btn btn-dark rounded-pill"
+    = link_to games_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "ゲーム"
       i.fas.fa-gamepad
       span.between-text-icon.d-none.d-xl-inline-block
         | ゲーム

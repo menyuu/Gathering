@@ -8,19 +8,19 @@ table.table.table-borderless
             = current_end_user.name
     tr
       td
-        = link_to posts_path, class: "btn btn-dark rounded-pill"
+        = link_to posts_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "タイムライン"
           i.fa.fa-home
           span.between-text-icon.d-none.d-xl-inline-block
             | タイムライン
     tr
       td
-        = link_to index_all_posts_path, class: "btn btn-dark rounded-pill"
+        = link_to index_all_posts_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "みんなの投稿"
           i.fas.fa-paper-plane
           span.between-text-icon.d-none.d-xl-inline-block
             | みんなの投稿
     tr
       td
-        = link_to groups_path, class: "btn btn-dark rounded-pill"
+        = link_to groups_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "グループ一覧"
           i.fas.fa-users
           span.between-text-icon.d-none.d-xl-inline-block
             | グループ一覧
@@ -28,19 +28,19 @@ table.table.table-borderless
       - if current_end_user.id == @group.owner.id
         tr
           td
-            = link_to group_tags_path(@group), class: "btn btn-dark rounded-pill"
+            = link_to group_tags_path(@group), class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "グループ趣味タグ"
               i.fas.fa-tags
               span.between-text-icon.d-none.d-xl-inline-block
                 | グループ趣味タグ
         tr
           td
-            = link_to group_genres_path(@group), class: "btn btn-dark rounded-pill"
+            = link_to group_genres_path(@group), class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "グループジャンル"
               i.fas.fa-chess
               span.between-text-icon.d-none.d-xl-inline-block
                 | グループジャンル
         tr
           td
-            = link_to group_games_path(@group), class: "btn btn-dark rounded-pill"
+            = link_to group_games_path(@group), class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "グループゲーム"
               i.fas.fa-gamepad
               span.between-text-icon.d-none.d-xl-inline-block
                 | グループゲーム
@@ -50,7 +50,7 @@ table.table.table-borderless
       = render "layouts/sidebar_items"
     tr
       td
-        = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill"
+        = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill", data: { toggle: "tooltip" }, title: "ログアウト"
           i.fas.fa-sign-out-alt
           span.between-text-icon.d-none.d-xl-inline-block
             | ログアウト
