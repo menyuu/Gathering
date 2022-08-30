@@ -20,14 +20,14 @@ html
         = render "layouts/flash"
       .container-fluid
         .row
-          - unless current_page?(users_sign_up_complete_path)
+          - unless current_page?(users_sign_up_complete_path) || current_page?(new_end_user_session_path) || current_page?(new_end_user_registration_path)
             - if end_user_signed_in?
               .sidebar
                 = render "layouts/sidebar"
             - elsif admin_signed_in?
               .sidebar
                 = render "layouts/admin_sidebar"
-          - if current_page?(root_path)
+          - if current_page?(root_path) || current_page?(new_end_user_session_path) || current_page?(new_end_user_registration_path)
             .col-12
               = yield
           - else

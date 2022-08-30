@@ -1,7 +1,7 @@
 .container-fluid.mt-5
   .row
-    .col-8.mx-auto.mt-5
-      .card.shadow.col-8
+    .col-12.col-sm-10.col-md-8.col-lg-6.col-xl-5.mx-auto.mt-5
+      .card.shadow
         .card-header.bg-white
           h5.card-title
             | ログイン
@@ -21,4 +21,5 @@
               = f.submit "ログイン", class: "btn btn-block btn-dark"
         .card-footer.bg-white.py-3
           | 初めてご利用ですか？
+          br.d-sm-none.d-block
           = link_to "アカウントを作成する", new_end_user_registration_path, class: "link-text-blue"

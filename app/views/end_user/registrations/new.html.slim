@@ -1,7 +1,7 @@
 .container-fluid.mt-5
   .row
-    .col-8.mx-auto.mt-5
-      .card.shadow.col-8
+    .col-12.col-sm-10.col-md-8.col-lg-6.col-xl-5.mx-auto.mt-5
+      .card.shadow
         .card-header.bg-white
           h5.card-title
             | アカウントを作成
@@ -30,6 +30,7 @@
         = render "end_user/home/sign_up_confirm_modal", user: @end_user
         .card-footer.bg-white.py-3
           | すでにアカウントをお持ちですか？
+          br.d-sm-none.d-block
           = link_to "ログインする", new_end_user_session_path, class: "link-text-blue"
           .my-3
             | ゲストユーザーで

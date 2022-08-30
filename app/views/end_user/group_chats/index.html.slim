@@ -13,7 +13,7 @@
               .form-group.text-right
                 = f.submit "送信", class: "btn btn-outline-dark rounded-pill chat-btn"
         .row
-          .col-12.my-5.text-right
+          .col-11.my-5.text-right
             = link_to "戻る", group_path(@group), class: "btn btn-dark"
     .col-12.col-lg-10.col-xl-4
       = render "end_user/groups/members", members: @members, group: @group
