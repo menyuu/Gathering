@@ -41,7 +41,7 @@
   border-radius: 50px;
   position: relative;
   background-color: #8de055;
-  max-width: 60%;
+  max-width: 100%;
   &::after {
     content: "";
     position: absolute;
@@ -62,7 +62,7 @@
     border-radius: 50px;
     position: relative;
     background-color: #D9F0FF;
-    max-width: 60%;
+    max-width: 100%;
     &::after {
       content: "";
       position: absolute;
@@ -88,9 +88,35 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     text-decoration: none;
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
     & a:hover {
       text-decoration: underline;
     }
+  }
+  &-user-icon {
+    @media screen and (max-width: 1200px) {
+      width: 40px;
+      height: 40px;
+    }
+    @media screen and (max-width: 576px) {
+      position: relative;
+      right: 8px;
+    }
+  }
+  &-other-user-icon {
+    @media screen and (max-width: 1200px) {
+      width: 40px;
+      height: 40px;
+      }
+    @media screen and (max-width: 576px) {
+      position: relative;
+      right: 16px;
+    }
+  }
+  &-text {
+    font-size: 14px;
   }
   &delete-text {
     text-decoration: none;
@@ -98,6 +124,12 @@
       color: red;
     }
   }
+}
+
+
+.group-chat-user-area {
+  display: inline-flex;
+  align-items: center;
 }
 
 #group-chat-area {

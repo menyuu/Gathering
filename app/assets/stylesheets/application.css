@@ -17,3 +17,8 @@
 .dropdown-black-color:active {
   color: #000;
 }
+
+.chat-user-icon {
+  width: 10px;
+  height: 10px;
+}
