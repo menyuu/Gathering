@@ -14,5 +14,10 @@
  *= require_self
  */
 
+.search-body-position .search-form-item {
+  position: static;
+}
 
-
+/*.rounded-pill {*/
+/*  border-radius: 2em;*/
+/*}*/
