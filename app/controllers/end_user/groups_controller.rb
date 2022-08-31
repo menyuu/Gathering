@@ -61,6 +61,6 @@ class EndUser::GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :introduction, :icon)
+    params.require(:group).permit(:name, :introduction, :group_image)
   end
 end

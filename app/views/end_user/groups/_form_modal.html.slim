@@ -18,7 +18,7 @@
             = f.text_area :introduction, placeholder: "グループ紹介文", class: "form-control", rows: 5
           .form-group.mb-3
             = f.label :icon, "アイコンを設定する"
-            = f.file_field :icon, accept: "image/*", class: "form-control"
+            = f.file_field :group_image, accept: "image/*", class: "form-control"
           .form-group.mb-3.text-right
             = f.submit "グループを作成", class: "btn btn-dark rounded-pill"
       .modal-footer

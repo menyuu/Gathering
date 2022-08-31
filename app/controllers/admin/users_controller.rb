@@ -19,6 +19,8 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = EndUser.find(params[:id])
+    groups = Group.where(owner_id: @user.id)
+    groups.destroy_all
     @user.destroy
     redirect_to admin_users_path, alert: "該当のユーザーのアカウントを削除しました。"
   end
