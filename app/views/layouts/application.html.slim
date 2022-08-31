@@ -27,9 +27,9 @@ html
             - elsif admin_signed_in?
               .sidebar
                 = render "layouts/admin_sidebar"
-          - if current_page?(root_path) || current_page?(new_end_user_session_path) || current_page?(new_end_user_registration_path) || current_page?(admin_session_path)
-            .col-12
+          - if signed_in?
+            .col-9.offset-3
               = yield
           - else
-            .col-9.offset-3
+            .col-12
               = yield

@@ -23,23 +23,7 @@ class EndUser::PostsController < ApplicationController
 
   def show
     @post = Post.with_attached_images.find(params[:id])
-    # 配列の初期値
-    users = []
-    # パブリックユーザーを取得
-    published_users = EndUser.where(status: "published")
-    # 投稿ユーザーがログイン中のユーザーであれば凍結ユーザーを除いたユーザーを取得
-    if current_end_user == @post.user
-      users = EndUser.where.not(status: "freeze")
-    # ログイン中のユーザーが非公開かつ投稿のコメントに含まれていれば配列にパブリックユーザーと一緒に代入する
-    elsif current_end_user.privately? && @post.post_comments.exists?(end_user_id: current_end_user)
-      users.push(published_users, current_end_user)
-      users.flatten!
-    # それ以外の場合はパブリックユーザーのみ取得
-    else
-      users << published_users
-    end
-    @comment_count = @post.post_comments.where(end_user_id: users).count
-    @comments = @post.post_comments.where(end_user_id: users).includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
+    @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(1)
     # タグの編集をするときに表示する
     @tag_names = @post.tag_names
   end

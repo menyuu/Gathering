@@ -61,9 +61,9 @@ class EndUser < ApplicationRecord
     unless icon.attached?
       # ユーザーがアイコンを持っていなかったらデフォルト画像
       file_path = Rails.root.join('app/assets/images/user_no_image.png')
-      icon.attach(io: File.open(file_path), filename: 'user-default-image.png', content_type: 'image/png')
+      icon.attach(io: File.open(file_path), filename: 'user-default-image.jpg', content_type: 'image/jpeg')
     end
-    icon.variant(gravity: "center", resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0").processed
+    icon.variant(gravity: :center, resize: "#{width}x#{height}^", crop: "#{width}x#{height}+0+0").processed
   end
 
   # フォロー用

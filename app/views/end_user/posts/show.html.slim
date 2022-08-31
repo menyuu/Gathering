@@ -46,7 +46,7 @@
               li.option-item
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
                   i.far.fa-comment.option-item
-                = @comment_count
+                = @post.post_comments.count
               li.option-item
                 div class="favorite_btn_#{@post.id}"
                   = render "end_user/favorites/favorite", post: @post
@@ -77,27 +77,32 @@
           .jscroll
             - @comments.each do |comment|
               .card.rounded-0
-                = link_to user_path(comment.user)
-                  .card-body.pb-0.row
-                    .col-12
-                      = image_tag comment.user.user_icon(48, 48), class: "rounded-circle"
-                      span.show-name data-toggle="tooltip" title="#{comment.user.name}"
-                        = comment.user.name
-                .card-body
-                  = comment.text
-                .card-body
-                    = comment.updated_at.strftime("%Y年%m月%d日")
-                    span
-                      br.d-sm-none.d-block
-                      = comment.updated_at.strftime(" %H時%M分")
-                ul.col-12.option-item-container
-                  li.option-item
-                    = time_ago_in_words(comment.updated_at)
-                    | 前
-                  li.option-item-delete.mr-3
-                    - if comment.user == current_end_user
-                      = link_to "削除", post_comment_path(comment.post, comment), method: :delete,
-                      data: {"confirm": "コメントを本当に削除しますか？"}
+                - if @post.user == current_end_user || comment.user == current_end_user || current_end_user.following?(comment.user)
+                  = link_to user_path(comment.user)
+                    .card-body.pb-0.row
+                      .col-12
+                        = image_tag comment.user.user_icon(48, 48), class: "rounded-circle"
+                        span.show-name data-toggle="tooltip" title="#{comment.user.name}"
+                          = comment.user.name
+                  .card-body
+                      = comment.text
+                  .card-body
+                      = comment.updated_at.strftime("%Y年%m月%d日")
+                      span
+                        br.d-sm-none.d-block
+                        = comment.updated_at.strftime(" %H時%M分")
+                  ul.col-12.option-item-container
+                    li.option-item
+                      = time_ago_in_words(comment.updated_at)
+                      | 前
+                    li.option-item-delete.mr-3
+                      - if comment.user == current_end_user
+                        = link_to "削除", post_comment_path(comment.post, comment), method: :delete,
+                        data: {"confirm": "コメントを本当に削除しますか？"}
+                - else
+                  .card-body
+                    - if comment.user.privately?
+                      | 非公開のアカウントです。
             .skill-list
               = link_to_prev_page @comments, "前のページ", class: "prev d-none"
               = link_to_next_page @comments, "次のページ", class: "next d-none"
