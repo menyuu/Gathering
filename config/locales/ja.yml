@@ -8,6 +8,7 @@ ja:
         remember_me: "ログインを記憶"
         name: "名前"
         introduction: "自己紹介文"
+        icon: "アイコン"
       post:
         text: "投稿内容"
         images: "画像"
@@ -16,8 +17,23 @@ ja:
       group:
         name: "グループ名"
         introduction: "グループ紹介文"
+        group_image: "アイコン"
       group_chat:
         text: "内容"
+    errors:
+      models:
+        post:
+          attributes:
+            images:
+              allowed_file_content_types: "ファイルを選択してください。"
+        end_user:
+          attributes:
+            icon:
+              allowed_file_content_types: "の画像ファイルを選択してください。"
+        group:
+          attributes:
+            group_image:
+              allowed_file_content_types: "の画像ファイルを選択してください。"
   enums:
     post:
       status:

@@ -37,6 +37,8 @@ class Post < ApplicationRecord
     validates :status, inclusion: { in: Post.statuses.keys }
   end
   validate :images_length
+  validates :images, file_content_type: { allow: /^image\/.*/ }
+
 
   before_create -> { self.id = SecureRandom.random_number(10000000) }
 

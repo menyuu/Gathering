@@ -52,6 +52,7 @@ class EndUser < ApplicationRecord
     validates :status, inclusion: { in: EndUser.statuses.keys }
   end
   validates :introduction, length: { maximum: 240 }
+  validates :icon, file_content_type: { allow: /^image\/.*/ }
 
   # アカウント作成時にランダムな数値のIDを付与
   before_create -> { self.id = SecureRandom.random_number(1000000000) }

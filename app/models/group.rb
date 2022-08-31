@@ -34,6 +34,7 @@ class Group < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :introduction, length: { maximum: 240 }
+  validates :group_image, file_content_type: { allow: /^image\/.*/ }
 
   before_create -> { self.id = SecureRandom.random_number(1000000000) }
 
