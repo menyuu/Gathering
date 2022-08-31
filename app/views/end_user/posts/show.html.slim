@@ -46,7 +46,7 @@
               li.option-item
                 a data-toggle="modal" data-target="#postComment#{@post.id}ModalToggle" data-link="postComment#{@post.id}ModalToggle"
                   i.far.fa-comment.option-item
-                = @post.post_comments.count
+                = @comment_count
               li.option-item
                 div class="favorite_btn_#{@post.id}"
                   = render "end_user/favorites/favorite", post: @post
