@@ -7,13 +7,15 @@
             .card-body.row
               .col-6
                 = link_to admin_group_path(group)
-                  = image_tag group.group_icon(48, 48), class: "rounded-circle"
-                  = link_to admin_group_path(group), class: "show-name"
-                    = group.name
-                  = link_to admin_group_members_path(group)
-                    | (
-                    = group.users.count
-                    | )
+                  = image_tag group.group_icon(48, 48), class: "rounded-circle group-icon"
+                  span.group-name-index-container
+                    span.group-name-index
+                      = group.name
+                      span
+                        = link_to admin_group_members_path(group)
+                          | (
+                          = group.users.count
+                          | )
               .col-6.text-right
                 ul
                   li.d-inline-block.delete-btn
@@ -31,7 +33,7 @@
             .card-body
               = link_to admin_group_path(group)
                 .introduction-area
-                  = group.introduction 
+                  = group.introduction
             .card-body
               = render "admin/users/tags_item", user: group
             .card-body.text-right
