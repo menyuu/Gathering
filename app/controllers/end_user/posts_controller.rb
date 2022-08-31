@@ -3,6 +3,7 @@ class EndUser::PostsController < ApplicationController
   before_action :tag_items, only: [:index, :show, :index_all, :draft, :create]
   before_action :post_comment_new, only: [:index, :index_all, :show, :create]
   before_action :post_index, only: [:index, :create]
+  before_action :disallow_draft_other_user, only: [:show]
 
   def index
     @post = Post.new
@@ -90,8 +91,14 @@ class EndUser::PostsController < ApplicationController
   def ensure_correct_user
     post = Post.find(params[:id])
     unless current_end_user == post.user
-      flash[:alert] = "アカウントが違います。"
-      redirect_to posts_path
+      redirect_to posts_path, alert: "アカウントが違います。"
+    end
+  end
+
+  def disallow_draft_other_user
+    post = Post.find(params[:id])
+    if post.draft? && (post.user != current_end_user)
+      redirect_to posts_path, alert: "アカウントが違います。"
     end
   end
 
