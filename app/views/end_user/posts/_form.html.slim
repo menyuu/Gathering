@@ -8,7 +8,7 @@
       .form-group.d-inline-block
         = f.label :images
           i.fas.fa-image.option-item
-        = f.file_field :images, name: "post[images][]", multiple: true, style: "display: none;"
+        = f.file_field :images, name: "post[images][]", multiple: true, accept: "image/*", style: "display: none;"
       .form-check.form-switch.custom-switch.d-inline-block
         = f.check_box :status, {class: "form-check-input custom-control-input option-item"}, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
