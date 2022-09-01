@@ -13,7 +13,7 @@
         = render "end_user/users/index", users: @users
       .col-5.d-none.d-lg-block
         - unless @user == current_end_user
-          = render "common_follows", common_follows: @common_followers
+          = render "common_follows", common_follows: @common_followings
         - else
           = render "end_user/posts/item_sidebar", post_tags: @post_tags
 - else

@@ -38,7 +38,7 @@ class EndUser::RelationshipsController < ApplicationController
     # パブリックユーザーを取得する
     follower_users = @user.followers.with_attached_icon.where(status: "published")
     # ページのユーザーとログイン中のユーザーのフォロワーで重複したものを変数に代入する
-    private_users = @user.followers.with_attached_icon & current_end_user.followers
+    private_users = @user.followers.with_attached_icon & current_end_user.followers.where.not(status: "freeze")
     # 上記の2つを配列に代入する
     users.push(follower_users, private_users)
     # ページのユーザーにログイン中のユーザーが存在すればusersの配列に代入する
@@ -51,8 +51,13 @@ class EndUser::RelationshipsController < ApplicationController
     users = users.uniq { |user| user.id }
     @users = Kaminari.paginate_array(users).page(params[:page]).per(1)
     @post_tags = PostingTag.display_show_type("post")
-    common_followers = users & current_end_user.followers
-    @common_followers = Kaminari.paginate_array(common_followers)
+    following_users = @user.followers.with_attached_icon.where(status: "published")
+    private_users = @user.followers & current_end_user.followings.where.not(status: "freeze")
+    users.push(following_users, private_users)
+    users.flatten!
+    users = users.uniq { |user| user.id }
+    common_followings = users & current_end_user.followings
+    @common_followings = Kaminari.paginate_array(common_followings)
   end
 
   private
