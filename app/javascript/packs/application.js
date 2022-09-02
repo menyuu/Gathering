@@ -17,6 +17,7 @@ import "bootstrap";
 import '@fortawesome/fontawesome-free/js/all';
 import "../stylesheets/application";
 import "./scroll";
+import "./counter";
 import "./menu";
 import "./flash";
 import "./input";
