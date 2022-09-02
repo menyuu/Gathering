@@ -53,10 +53,10 @@ class EndUser::PostsController < ApplicationController
         PostingTag.create_tag(tags, @post)
         @post.images.each do |image|
           vision_tags = Vision.get_image_data(image)
-          vision_tags.each do |tag|
-            @post.tags.find_or_create_by(name: tag)
-            # post_tag = PostingTag.find_or_create_by(name: tag)
-            # @post.tags << post_tag
+          vision_tags.each do |tag_name|
+            tag = PostingTag.find_or_create_by!(name: tag_name)
+            @post.tags.delete(tag)
+            @post.tags << tag
           end
         end
         redirect_to request.referer, notice: "正常に投稿されました。"

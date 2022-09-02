@@ -29,15 +29,10 @@ module Vision
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
       response_body = JSON.parse(response.body)
-      puts "============================"
-      puts response.body
-      puts response_body
-      puts response_body['responses']
-      puts "============================"
       if (error = response_body['responses'][0]['error']).present?
         raise error['message']
       else
-        response_body['responses'][0]['labelAnnotations'].pluck('description').take(3)
+        response_body['responses'][0]['labelAnnotations'].pluck('description').take(2)
       end
     end
   end
