@@ -25,11 +25,6 @@ class EndUser::PostsController < ApplicationController
   def show
     @post = Post.with_attached_images.find(params[:id])
     @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(5)
-    @comments.each do |comment|
-      puts "---------------------"
-      puts comment.user.published?
-    end
-
     # タグの編集をするときに表示する
     @tag_names = @post.tag_names
   end
@@ -51,15 +46,24 @@ class EndUser::PostsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       if @post.save
         PostingTag.create_tag(tags, @post)
-        @post.images.each do |image|
-          vision_tags = Vision.get_image_data(image)
-          vision_tags.each do |tag_name|
-            tag = PostingTag.find_or_create_by!(name: tag_name)
-            @post.tags.delete(tag)
-            @post.tags << tag
+        if params[:post][:ai_tag] == "auto"
+          @post.images.each do |image|
+            vision_tags = Vision.get_image_data(image)
+            post_tags = @post.tags.inject([]) { |result, tag| result << tag.name }
+            if (post_tags | vision_tags).size <= 8
+              vision_tags.each do |tag_name|
+                tag = PostingTag.find_or_create_by!(name: tag_name)
+                @post.tags.delete(tag)
+                @post.tags << tag
+              end
+            end
           end
         end
-        redirect_to request.referer, notice: "正常に投稿されました。"
+        if @post.published?
+          redirect_to request.referer, notice: "正常に投稿されました。"
+        elsif @post.draft?
+          redirect_to post_path(@post), notice: "下書きに保存しました。"
+        end
       else
         # 投稿本文のエラー
         @tag_names = tags.join(",") + ","
@@ -78,6 +82,19 @@ class EndUser::PostsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       if @post.update(post_params)
         PostingTag.create_tag(tags, @post)
+        if params[:post][:ai_tag] == "auto"
+          @post.images.each do |image|
+            vision_tags = Vision.get_image_data(image)
+            post_tags = @post.tags.inject([]) { |result, tag| result << tag.name }
+            if (post_tags | vision_tags).size <= 8
+              vision_tags.each do |tag_name|
+                tag = PostingTag.find_or_create_by!(name: tag_name)
+                @post.tags.delete(tag)
+                @post.tags << tag
+              end
+            end
+          end
+        end
         redirect_to request.referer, notice: "投稿の編集が完了しました。"
       else
         @tag_names = @post.tag_names
