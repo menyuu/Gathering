@@ -29,6 +29,10 @@ img {
   }
 }
 
+label {
+  cursor: pointer;
+}
+
 .flash {
   position: fixed;
   top: 60px;
@@ -79,6 +83,12 @@ img {
   @media screen and (max-width: 576px) {
     width: 40%;
   }
+}
+
+#preview img {
+  width: 100px;
+  height: 100px;
+  margin: 8px;
 }
 
 .image-area {

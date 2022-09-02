@@ -8,21 +8,41 @@
       .form-group.d-inline-block
         = f.label :images
           i.fas.fa-image.option-item
-        = f.file_field :images, name: "post[images][]", multiple: true, accept: "image/*", style: "display: none;"
+        = f.file_field :images, name: "post[images][]", multiple: true, accept: "image/*", onchange: "loadImage(this);", class: "d-none"
       .form-check.form-switch.custom-switch.d-inline-block
         = f.check_box :status, { class: "form-check-input custom-control-input option-item" }, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
+    #image_preview
+      p#preview
     .form-group.text-left.mt-3.p-0
       = f.label :name, "タグ(最大8個)"
       button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
-        i.fas.fa-question-circle
+        i.fas.fa-exclamation-triangle
       .form-check.form-check-inline
         = f.check_box :ai_tag, { class: "form-check-input" }, "auto",  "none"
         = f.label :ai_tag, "タグを自動で追加", class: "form-check-label"
-        button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="画像を添付することで最大8個(画像につき最大2個)のタグをAIが自動で選出します。複数のタグを設定して投稿した場合はタグが付与されない場合がございます。また、タグは英語のみでございます。。"
-          i.fas.fa-question-circle
+        button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="画像を添付することで最大8個(画像につき最大2個)のタグをAIが自動で選出します。複数のタグを設定して投稿した場合、タグが付与されない場合がございます。また、タグは英語のみでございます。"
+          i.fas.fa-exclamation-triangle
       = f.text_field :name, value: @tag_names, placeholder: "タグを入力", class: "form-control post-input-tag-area"
     .form-group.mt-3.text-right.post-input-item
       = f.submit "投稿する", class: "btn btn-sm btn-outline-dark rounded-pill px-sm-5 mb-3"
 javascript:
   $(`[data-toggle="popover"]`).popover();
+javascript:
+ function loadImage(obj) {
+   let allPreview = document.getElementById('image_preview');
+   let newPreview = document.createElement("p");
+   allPreview.querySelector("p").remove();
+   newPreview.setAttribute("id", "preview");
+   allPreview.insertBefore(newPreview, allPreview.firstChild);
+   document.getElementById("image_preview").style.display = "";
+   for (i = 0; i < obj.files.length; i++) {
+     let fileReader = new FileReader();
+     fileReader.onload = (function (e) {
+       let img = new Image();
+       img.src = e.target.result;
+       document.getElementById('preview').appendChild(img);
+     });
+   fileReader.readAsDataURL(obj.files[i]);
+   }
+ }
