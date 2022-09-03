@@ -63,6 +63,20 @@ class Post < ApplicationRecord
     unique_posts = posts.uniq { |post| post.id }
     return unique_posts
   end
+  
+  def set_ai_tag
+    self.images.each do |image|
+      vision_tags = Vision.get_image_data(image)
+      post_tags = self.tags.inject([]) { |result, tag| result << tag.name }
+      if (post_tags | vision_tags).size <= 8
+        vision_tags.each do |tag_name|
+          tag = PostingTag.find_or_create_by!(name: tag_name)
+          self.tags.delete(tag)
+          self.tags << tag
+        end
+      end
+    end
+  end
 
   private
 

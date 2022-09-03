@@ -47,17 +47,7 @@ class EndUser::PostsController < ApplicationController
       if @post.save
         PostingTag.create_tag(tags, @post)
         if params[:post][:ai_tag] == "auto"
-          @post.images.each do |image|
-            vision_tags = Vision.get_image_data(image)
-            post_tags = @post.tags.inject([]) { |result, tag| result << tag.name }
-            if (post_tags | vision_tags).size <= 8
-              vision_tags.each do |tag_name|
-                tag = PostingTag.find_or_create_by!(name: tag_name)
-                @post.tags.delete(tag)
-                @post.tags << tag
-              end
-            end
-          end
+          @post.set_ai_tag
         end
         if @post.published?
           redirect_to request.referer, notice: "正常に投稿されました。"
@@ -83,17 +73,7 @@ class EndUser::PostsController < ApplicationController
       if @post.update(post_params)
         PostingTag.create_tag(tags, @post)
         if params[:post][:ai_tag] == "auto"
-          @post.images.each do |image|
-            vision_tags = Vision.get_image_data(image)
-            post_tags = @post.tags.inject([]) { |result, tag| result << tag.name }
-            if (post_tags | vision_tags).size <= 8
-              vision_tags.each do |tag_name|
-                tag = PostingTag.find_or_create_by!(name: tag_name)
-                @post.tags.delete(tag)
-                @post.tags << tag
-              end
-            end
-          end
+          @post.set_ai_tag
         end
         redirect_to request.referer, notice: "投稿の編集が完了しました。"
       else

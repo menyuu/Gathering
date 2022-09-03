@@ -14,7 +14,7 @@
       .form-check.form-switch.custom-switch.d-inline-block
         = f.check_box :status, { class: "form-check-input custom-control-input option-item" }, "published", "draft"
         = f.label :status, "投稿を公開", class: "form-check-label custom-control-label option-item"
-    #image_preview
+    #image_preview.text-center
       p#preview
     .form-group.text-left.mt-3.p-0
       = f.label :name, "タグ(最大8個)"
