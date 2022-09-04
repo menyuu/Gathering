@@ -12,8 +12,10 @@
             = render "layouts/errors", obj: user
           .form-group.mt-3
             = f.label :icon, class: "mb-3"
-              = image_tag user.user_icon(48, 48), class: "rounded-circle"
-            = f.file_field :icon, accept: "image/*", class: "form-control"
+              #image_preview.edit-user-icon
+                p#preview
+                  = image_tag user.user_icon(100, 100), class: "rounded-circle"
+            = f.file_field :icon, accept: "image/*", onchange: "loadImage(this);", class: "form-control"
           .form-group.mt-3
             = f.text_field :name, placeholder: "名前", class: "form-control"
           .form-group.mt-3
@@ -38,3 +40,21 @@
           = render "change_status"
         a.link-text-blue href="" data-target="#editPasswordModalToggle" data-toggle="modal" data-dismiss="modal" パスワードを変更する
         button.btn.btn-outline-dark data-dismiss="modal" 閉じる
+javascript:
+  function loadImage(obj) {
+    let allPreview = document.getElementById('image_preview');
+    let newPreview = document.createElement('p');
+    allPreview.querySelector('p').remove();
+    newPreview.setAttribute('id', 'preview');
+    allPreview.insertBefore(newPreview, allPreview.firstChild);
+    document.getElementById('image_preview').style.display = "";
+    for (i = 0; i < obj.files.length; i++) {
+      let fileReader = new FileReader();
+      fileReader.onload = (function (e) {
+        let img = new Image();
+        img.src = e.target.result;
+        document.getElementById('preview').appendChild(img);
+      });
+      fileReader.readAsDataURL(obj.files[i]);
+    }
+  }
