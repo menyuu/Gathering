@@ -91,6 +91,10 @@ label {
   margin: 8px;
 }
 
+.edit-user-icon #preview img, .edit-group-icon #preview img {
+  border-radius: 50%;
+}
+
 .image-area {
   width: 400px;
   margin: 0 auto;

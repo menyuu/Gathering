@@ -13,7 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.edit-user-icon #preview img {
-  border-radius: 50%;
-}
