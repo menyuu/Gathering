@@ -22,14 +22,16 @@ html
         .row
           - unless current_page?(users_sign_up_complete_path) || current_page?(new_end_user_session_path) || current_page?(new_end_user_registration_path) || current_page?(admin_session_path)
             - if end_user_signed_in?
-              .sidebar
+              .sidebar.d-none.d-sm-block
                 = render "layouts/sidebar"
             - elsif admin_signed_in?
               .sidebar
                 = render "layouts/admin_sidebar"
           - if signed_in?
-            .col-9.offset-3
+            .col-12.col-sm-9.offset-sm-3
               = yield
           - else
             .col-12
               = yield
+        .row
+          = render "layouts/sidebar"
