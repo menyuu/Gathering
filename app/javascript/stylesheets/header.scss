@@ -85,6 +85,52 @@ nav {
   }
 }
 
+.menu-btn {
+  border: none;
+  background-color: transparent;
+  &:focus, :focus-visible {
+    outline: none;
+  }
+}
 
+.header-menu {
+  position: absolute;
+  width: 200px;
+  right: 0;
+  top: 48px;
+  display: none;
+  &-container {
+    position: relative;
+  }
+  &-active {
+    display: block;
+  }
+  &-item {
+    padding: 16px;
+    &:hover {
+      background-color: rgba(150, 150, 150, 0.2)
+    }
+    &:focus {
+      background-color: rgba(80, 80, 80, 0.2)
+    }
+  }
+  & a {
+    display: block;
+    width: 100%;
+  }
+}
 
-
+.menu-bar {
+  &-item {
+    display: block;
+    width: 100%;
+    padding: 24px;
+  }
+  &-container {
+    display: flex;
+    justify-content: space-around;
+    & li:nth-child(2) {
+      border-left: 1px solid #dee2e6;
+    }
+  }
+}
