@@ -1,6 +1,6 @@
 .d-sm-none.d-inline-block.header-menu-container
   = button_tag(type: "button", class: "menu-btn")
-    = image_tag current_end_user.user_icon(40, 40), class: "rounded-circle"
+    = image_tag current_end_user.user_icon(32, 32), class: "rounded-circle"
   ul.card.header-menu
     li
       = link_to user_path(current_end_user), class: "header-menu-item"
@@ -12,6 +12,11 @@
         i.fas.fa-paper-plane
         span.between-text-icon
           | みんなの投稿
+    li
+       = link_to user_join_groups_path, class: "header-menu-item"
+        i.fas.fa-users
+        span.between-text-icon
+          | マイグループ
     - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
       - if current_end_user.id == @group.owner.id
         li
@@ -50,8 +55,3 @@
         i.fas.fa-sign-out-alt
         span.between-text-icon
           | ログアウト
-
-javascript:
-  $('.menu-btn').on('click', function() {
-    $('.header-menu').toggleClass('header-menu-active');
-  });

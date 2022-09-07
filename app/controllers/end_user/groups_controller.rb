@@ -51,6 +51,11 @@ class EndUser::GroupsController < ApplicationController
     redirect_to groups_path, alert: "グループを削除しました。"
   end
 
+  def user_join_groups
+    @groups = current_end_user.groups.page(params[:page]).without_count.per(1).order(created_at: :DESC)
+    @post_tags = PostingTag.display_show_type("post")
+  end
+
   private
 
   def ensure_correct_user

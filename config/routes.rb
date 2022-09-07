@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       patch "update_games" => "group_multi_toggle"
       delete "destroy_games" => "group_multi_toggle"
       get "complete" => "group_multi_toggle"
+      get "user_join_groups", as: "user_join", on: :collection
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]

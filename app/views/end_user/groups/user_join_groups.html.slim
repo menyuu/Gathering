@@ -1,0 +1,6 @@
+.container-fluid
+  .row
+    .col-12.col-lg-10.col-xl-8
+      = render "end_user/groups/index", groups: @groups
+    .col-4.d-none.d-xl-block
+      = render "end_user/posts/item_sidebar", post_tags: @post_tags

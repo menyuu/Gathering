@@ -221,6 +221,9 @@
     z-index: 760;
     bottom: 32px;
     right: 32px;
+    @media screen and (max-width: 576px) {
+      bottom: 80px;
+    }
   }
   &-btn {
     width: 48px;
