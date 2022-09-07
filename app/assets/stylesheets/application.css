@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+
+.menu-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.menu-btn:focus, :focus-visible {
+  outline: none;
+}
+
+.header-menu-container {
+  position: relative;
+}
+
+.header-menu {
+  position: absolute;
+  width: 200px;
+  right: 0;
+  top: 48px;
+  display: none;
+}
+
+.header-menu-active {
+  display: block;
+}
+
+.header-menu-item {
+  padding: 16px;
+}
+
+.header-menu a {
+  display: block;
+  width: 100%;
+}
+
+.header-menu-item:hover {
+  background-color: rgba(150, 150, 150, 0.2)
+}
+.header-menu-item:focus {
+  background-color: rgba(80, 80, 80, 0.2)
+}

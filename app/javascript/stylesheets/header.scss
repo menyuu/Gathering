@@ -14,6 +14,10 @@ nav {
   &-container {
     position: absolute;
     left: 15px;
+    @media screen and (max-width: 576px) {
+      position: static;
+      margin-right: auto;
+    }
   }
 }
 
@@ -22,6 +26,9 @@ nav {
   justify-content: center;
   position: relative;
   align-items: center;
+  @media screen and (max-width: 576px) {
+    justify-content: flex-start;
+  }
 }
 
 /* ヘッダー検索フォーム */
@@ -48,8 +55,17 @@ nav {
 }
 
 .search-menu-btn {
-  background-color: white;
+  border: none;
+  background-color: transparent;
+  color: white;
   display: none;
+  &:focus, :focus-visible {
+    outline: none;
+  }
+  &:active {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+  }
 }
 
 @media only screen and (max-width: 576px) {
@@ -66,8 +82,6 @@ nav {
 
   .search-menu-btn {
     display: block;
-    position: absolute;
-    right: 15px;
   }
 }
 

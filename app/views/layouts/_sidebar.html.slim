@@ -50,7 +50,7 @@ table.table.table-borderless
       = render "layouts/sidebar_items"
     tr
       td
-        = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill", data: { toggle: "tooltip" }, title: "ログアウト"
+        = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill", data: { toggle: "tooltip" }, title: "ログアウト", data: {"confirm": "ログアウトしますか？"}
           i.fas.fa-sign-out-alt
           span.between-text-icon.d-none.d-xl-inline-block
             | ログアウト

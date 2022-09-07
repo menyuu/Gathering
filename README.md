@@ -67,6 +67,7 @@ ___
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- API：Google Vision API
 - その他：Bootstrap, FontAwesome
 
 ### gems

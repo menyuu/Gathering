@@ -1,0 +1,57 @@
+.d-sm-none.d-inline-block.header-menu-container
+  = button_tag(type: "button", class: "menu-btn")
+    = image_tag current_end_user.user_icon(40, 40), class: "rounded-circle"
+  ul.card.header-menu
+    li
+      = link_to user_path(current_end_user), class: "header-menu-item"
+        i.fas.fa-user
+        span.between-text-icon
+          | マイページ
+    li
+      = link_to index_all_posts_path, class: "header-menu-item"
+        i.fas.fa-paper-plane
+        span.between-text-icon
+          | みんなの投稿
+    - if (controller_path == "end_user/groups" && action_name == "show") || (controller_path == "end_user/group_multi_toggle" && (action_name == "tags" || action_name == "genres" || action_name == "games"))
+      - if current_end_user.id == @group.owner.id
+        li
+          = link_to group_tags_path(@group), class: "header-menu-item"
+            i.fas.fa-tags
+            span.between-text-icon
+              | グループ趣味タグ
+        li
+          = link_to group_genres_path(@group), class: "header-menu-item"
+            i.fas.fa-chess
+            span.between-text-icon
+              | グループジャンル
+        li
+          = link_to group_games_path(@group), class: "header-menu-item"
+            i.fas.fa-gamepad
+            span.between-text-icon
+              | グループゲーム
+    - else
+      li
+        = link_to tags_path, class: "header-menu-item"
+          i.fas.fa-user-tag
+          span.between-text-icon
+            | 趣味タグ
+      li
+        = link_to genres_path, class: "header-menu-item"
+          i.fas.fa-chess
+          span.between-text-icon
+            | ジャンル
+      li
+        = link_to games_path, class: "header-menu-item"
+          i.fas.fa-gamepad
+          span.between-text-icon
+            | ゲーム
+    li
+      = link_to destroy_end_user_session_path, method: :delete, class: "header-menu-item text-danger", data: {"confirm": "ログアウトしますか？"}
+        i.fas.fa-sign-out-alt
+        span.between-text-icon
+          | ログアウト
+
+javascript:
+  $('.menu-btn').on('click', function() {
+    $('.header-menu').toggleClass('header-menu-active');
+  });

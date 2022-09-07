@@ -17,8 +17,6 @@ nav.navbar-dark.bg-dark
         - elsif admin_signed_in?
           = render "admin/searches/admin_form"
       - if end_user_signed_in?
-          = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
-            i.fas.fa-search.align-self-center
-          span.d-sm-none.d-inline-block
-            = button_tag(type: "button")
-              = image_tag current_end_user.user_icon(40, 40), class: "rounded-circle"
+        = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
+          i.fas.fa-search.align-self-center
+        = render "layouts/menu_btn"
