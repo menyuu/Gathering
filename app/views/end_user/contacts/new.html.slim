@@ -3,7 +3,7 @@
     = form_with model: @contact, url: contacts_confirm_path, local: true do |f|
       h2
         | お問い合わせ
-      .error
+      .errors
         = render "layouts/errors", obj: @contact
       table.table.border
         tbody
