@@ -12,11 +12,11 @@ class EndUser::ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
-    if @contact.save
+    if params[:back] || !@contact.save
+      render :new and return
+    else
       ContactMailer.send_mail(@contact).deliver_now
       redirect_to contacts_done_path
-    else
-      render :new
     end
   end
 

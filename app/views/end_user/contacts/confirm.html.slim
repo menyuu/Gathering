@@ -3,33 +3,32 @@
     = form_with model: @contact, local: true do |f|
       h2
         | お問い合わせ
-      .error
-        = render "layouts/errors", obj: @contact
       table.table.border
-        tbody.contact-table
+        tbody
           tr
             th.border
               = f.label :name, "名前"
               span.text-danger
                 | *
-              = f.hidden_field :name
             td
-              = @contact.name
+              = f.text_field :name, placeholder: "太郎", class: "form-control", readonly: "readonly"
           tr
             th.border
               = f.label :email, "メールアドレス"
               span.text-danger
                 | *
-              = f.hidden_field :email
             td
-              = @contact.email
+              = f.email_field :email, placeholder: "user@example.com", class: "form-control", readonly: "readonly"
           tr
             th.border
               = f.label :message, "お問い合わせ内容"
               span.text-danger
                 | *
-              = f.hidden_field :message
             td
-              = @contact.message
-      .text-center.mt-3
-        = f.submit "送信", class: "btn btn-outline-dark rounded-pill w-75"
+              = f.text_area :message, placeholder: "お問い合わせの内容をご入力ください。", rows:"10", class: "form-control", readonly: "readonly"
+      .row
+        .col.text-center.mt-3
+          = f.submit "送信", class: "btn btn-dark rounded-pill w-75"
+      .row
+        .col.text-center.mt-3
+          = f.submit "戻る", name: :back, class: "btn btn-outline-dark rounded-pill w-75"

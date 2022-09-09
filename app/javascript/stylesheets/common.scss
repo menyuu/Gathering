@@ -23,6 +23,10 @@ i {
   color: black;
 }
 
+td {
+  word-break: break-word;
+}
+
 img {
   &:hover{
     opacity: 0.8;
@@ -247,7 +251,6 @@ textarea {
     width: 100%;
   }
 }
-
 
 footer {
   position: fixed;
