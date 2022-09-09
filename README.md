@@ -97,3 +97,4 @@ ___
 - 投稿機能などに関しても投稿される画像は著作権の侵害に抵触する可能性があるためゲーム等のキャプチャなどの利用を原則禁止、ご自身で撮影された内容等を投稿していただく目的とさせていただきます。
 
 ユーザーアイコン・グループアイコン素材：ICOOON MONO(https://icooon-mono.com/)
+favicon作成ツール：xiconeditor(https://www.xiconeditor.com/)
