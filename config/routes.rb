@@ -54,6 +54,9 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
     get "search" => "searches#search"
+    resources :contacts, only: [:new, :create]
+    post "contacts/confirm"
+    get "contacts/done"
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

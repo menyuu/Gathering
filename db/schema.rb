@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2022_09_09_050426) do
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.integer "subject", default: 0, null: false
     t.text "message", null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false

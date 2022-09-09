@@ -1,6 +1,7 @@
 class ContactMailer < ApplicationMailer
+  default from: "aiueo@example.com"
   def send_mail(contact)
     @contact = contact
-    mail to: ENV['TOMAIL'], subject: '【お問い合わせ】' + @contact.subject_i18n
+    mail to: contact.email, subject: 'お問い合わせを受信しました。'
   end
 end

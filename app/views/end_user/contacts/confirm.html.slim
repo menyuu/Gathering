@@ -1,0 +1,35 @@
+.col-12
+  .col-12.col-lg-10.col-xl-8.mt-5
+    = form_with model: @contact, local: true do |f|
+      h2
+        | お問い合わせ
+      .error
+        = render "layouts/errors", obj: @contact
+      table.table.border
+        tbody.contact-table
+          tr
+            th.border
+              = f.label :name, "名前"
+              span.text-danger
+                | *
+              = f.hidden_field :name
+            td
+              = @contact.name
+          tr
+            th.border
+              = f.label :email, "メールアドレス"
+              span.text-danger
+                | *
+              = f.hidden_field :email
+            td
+              = @contact.email
+          tr
+            th.border
+              = f.label :message, "お問い合わせ内容"
+              span.text-danger
+                | *
+              = f.hidden_field :message
+            td
+              = @contact.message
+      .text-center.mt-3
+        = f.submit "送信", class: "btn btn-outline-dark rounded-pill w-75"
