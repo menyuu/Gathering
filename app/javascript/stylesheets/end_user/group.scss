@@ -203,6 +203,7 @@
   }
 }
 
+/* 新規グループ作成ボタン */
 .group-new {
   width: 48px;
   height: 48px;
@@ -274,4 +275,14 @@
       }
     }
   }
+}
+
+.group-index {
+  margin-top: 80px;
+}
+
+.join_group_link {
+  position: sticky;
+  z-index: 100;
+  top: 96px;
 }

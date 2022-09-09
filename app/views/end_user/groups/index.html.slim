@@ -1,9 +1,10 @@
 .container-fluid
   .row
     .col-12.col-lg-10.col-xl-8
-      .d-none.d-sm-block.d-xl-none.mt-5
+      .d-none.d-sm-block.d-xl-none.join_group_link
         = link_to "マイグループを見る", user_join_groups_path, class: "btn btn-block btn-dark"
-      = render "end_user/groups/index", groups: @groups
+      .group-index
+        = render "end_user/groups/index", groups: @groups
       .d-xl-none.d-block.group-new-container
         span.group-new
           button.btn.btn-dark.group-new-btn data-toggle="modal" data-target="#createGroupModalToggle"
