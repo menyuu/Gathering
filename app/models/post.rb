@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags, source: :posting_tag
+  has_many :notifications, dependent: :destroy
   attr_accessor :name
   accepts_nested_attributes_for :post_tags
   accepts_nested_attributes_for :tags
@@ -63,7 +64,7 @@ class Post < ApplicationRecord
     unique_posts = posts.uniq { |post| post.id }
     return unique_posts
   end
-  
+
   def set_ai_tag
     self.images.each do |image|
       vision_tags = Vision.get_image_data(image)
@@ -75,6 +76,29 @@ class Post < ApplicationRecord
           self.tags << tag
         end
       end
+    end
+  end
+
+  def create_notification_favorite(current_end_user)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and post_id = ? and action = ?", current_end_user.id, end_user_id, id, "favorite"])
+    if temp.blank?
+      notification = current_end_user.active_notifications.new(post_id: id, visited_id: end_user_id, action: "favorite")
+      if notification.visiter_id == notification.visited_id
+        notification.checked = true
+      end
+      if notification.valid?
+        notification.save
+      end
+    end
+  end
+
+  def create_notification_comment(curren_end_user, comment_id, user_id)
+    notification = curren_end_user.active_notifications.new(post_id: id, comment_id: comment_id, visited_id: user_id, action: "comment")
+    if notification.visiter_id == notification.visited_id
+      notification.checked = true
+    end
+    if notification.valid?
+      notification.save
     end
   end
 

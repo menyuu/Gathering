@@ -57,6 +57,7 @@ Rails.application.routes.draw do
     resources :contacts, only: [:new, :create]
     post "contacts/confirm"
     get "contacts/done"
+    resources :notifications, only: [:index]
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {

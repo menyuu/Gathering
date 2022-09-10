@@ -22,6 +22,7 @@
 class PostComment < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :post
+  has_many :notifications, class_name: "Notification", foreign_key: :comment_id, dependent: :destroy
 
   validates :text, presence: true, length: { maximum: 240 }
 end

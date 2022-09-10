@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id         :integer          not null, primary key
+#  action     :string
+#  checked    :boolean          default(FALSE), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  comment_id :integer
+#  post_id    :integer
+#  visited_id :integer
+#  visiter_id :integer
+#
+
+one:
+  visiter_id: 1
+  visited_id: 1
+  post_id: 1
+  comment_id: 1
+  action: MyString
+  checked: false
+
+two:
+  visiter_id: 1
+  visited_id: 1
+  post_id: 1
+  comment_id: 1
+  action: MyString
+  checked: false

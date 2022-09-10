@@ -5,6 +5,7 @@ class EndUser::RelationshipsController < ApplicationController
   def create
     @user = EndUser.find(params[:user_id])
     current_end_user.follow(@user)
+    @user.create_notification_follow(current_end_user)
   end
 
   def destroy
