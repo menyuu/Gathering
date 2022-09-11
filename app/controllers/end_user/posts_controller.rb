@@ -4,6 +4,7 @@ class EndUser::PostsController < ApplicationController
   before_action :post_comment_new, only: [:index, :index_all, :show, :create]
   before_action :post_index, only: [:index, :create]
   before_action :disallow_draft_other_user, only: [:show]
+  before_action :notification_index, only: [:index, :index_all, :show, :draft]
 
   def index
     @post = Post.new

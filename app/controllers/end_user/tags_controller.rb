@@ -1,5 +1,6 @@
 class EndUser::TagsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :notification_index, only: [:index]
 
   def index
     @tag = Tag.new

@@ -4,6 +4,7 @@ class EndUser::GroupMultiToggleController < ApplicationController
   before_action :common_group_tag, only: [:complete, :tags]
   before_action :common_group_genre, only: [:complete, :genres]
   before_action :common_group_game, only: [:complete, :games]
+  before_action :notification_index, only: [:complete, :tags, :genres, :games]
 
   # グループ新規作成完了後にユーザーと同様にタグ付け可能
   def complete

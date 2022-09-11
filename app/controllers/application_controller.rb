@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :freeze_user
-  before_action :notification_index, except: [:top]
 
   def notification_index
     notifications = current_end_user.passive_notifications.page(params[:page]).per(5)

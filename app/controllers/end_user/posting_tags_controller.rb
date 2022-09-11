@@ -2,6 +2,7 @@ class EndUser::PostingTagsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_post_tag
+  before_action :notification_index, only: [:show]
 
   def show
     @post_tags = PostingTag.display_show_type("post")

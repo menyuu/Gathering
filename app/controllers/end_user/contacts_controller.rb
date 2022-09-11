@@ -1,4 +1,6 @@
 class EndUser::ContactsController < ApplicationController
+  before_action :notification_index, only: [:new, :confirm, :done]
+  
   def new
     @contact = Contact.new
   end

@@ -2,6 +2,7 @@ class EndUser::GroupChatsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_group_chat
+  before_action :notification_index, only: [:index]
 
   def index
     @group_chat = GroupChat.new
