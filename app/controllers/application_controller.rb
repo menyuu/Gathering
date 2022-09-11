@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :freeze_user
+  before_action :notification_index, except: [:top]
+
+  def notification_index
+    notifications = current_end_user.passive_notifications.page(params[:page]).per(5)
+    @notifications = notifications.where.not(visiter_id: current_end_user.id)
+  end
 
   def forbid_guestuser
     if current_end_user.name == "ゲストユーザー"

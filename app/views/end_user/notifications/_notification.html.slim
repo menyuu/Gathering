@@ -1,16 +1,27 @@
-- notifications.each do |notification|
-  = link_to user_path(notification.visiter)
-    = image_tag notification.visiter.user_icon(48, 48), class: "rounded-circle"
-    strong
-      = notification.visiter.name
-    | さんが
-  - case notification.action
-  - when "follow"
-    | あなたをフォローしました。
-  - when "favorite"
-    = link_to "あなたの投稿", notification.post, class: "link-text-blue"
-    | にいいねしました。
-  - when "comment"
-    - if notification.post.end_user_id == notification.visited.id
-      = link_to "あなたの投稿", notification.post
-      | にコメントしました。
+.notification-container
+  .notification-btn
+    i.fas.fa-bell
+  ul.card.notification-index
+    - if @notifications.exists?
+        - notifications.each do |notification|
+          li
+            = link_to user_path(notification.visiter)
+              = image_tag notification.visiter.user_icon(24, 24), class: "rounded-circle"
+              strong
+                = notification.visiter.name
+              | さんが
+            - case notification.action
+            - when "follow"
+              | あなたをフォローしました。
+            - when "favorite"
+              = link_to "あなたの投稿", notification.post, class: "link-text-blue"
+              | にいいねしました。
+            - when "comment"
+              - if notification.post.end_user_id == notification.visited.id
+                = link_to "あなたの投稿", notification.post, class: "link-text-blue"
+                | にコメントしました。
+        .notification-paginate
+          = paginate @notifications
+    - else
+      p
+        | 通知はありません
