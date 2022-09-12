@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   def notification_index
     notifications = current_end_user.passive_notifications.page(params[:page]).per(5)
     @notifications = notifications.where.not(visiter_id: current_end_user.id)
+    @notifications.each do |notification|
+      puts notification.checked
+    end
   end
 
   def forbid_guestuser

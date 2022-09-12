@@ -12,11 +12,11 @@ $(document).on('turbolinks:load', function() {
       $('.header-menu').removeClass('header-menu-active');
     }
   });
-  $('.notification-btn').on('click', function() {
+  $('.notification-btn-container').on('click', function() {
     $('.notification-index').toggleClass('notification-index-active');
   });
   $(document).on('click', function(e) {
-    if(!$(e.target).closest('.notification-btn').length) {
+    if(!$(e.target).closest('.notification-btn-container').length) {
       $('.notification-index').removeClass('notification-index-active');
     }
   });

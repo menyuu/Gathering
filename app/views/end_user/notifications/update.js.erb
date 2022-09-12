@@ -1,0 +1,2 @@
+$('.notification-btn-container').html("<%= j( render "end_user/notifications/notification_btn") %>");
+$('.notification-checked').html("<%= j(render "end_user/notifications/notification_checked", notifications: @notifications) %>")
