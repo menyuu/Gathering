@@ -54,7 +54,7 @@
   justify-content: center;
 }
 
-.notification-container>.not-checked {
+.notification-btn-checked {
   background-color: #eb0400;
   border-radius: 50%;
   width: 8px;
@@ -89,7 +89,7 @@
     width: 320px;
     top: 52px;
   }
-  .notification-container>.not-checked {
+  .notification-btn-checked {
     background-color: #eb0400;
     border-radius: 50%;
     width: 8px;

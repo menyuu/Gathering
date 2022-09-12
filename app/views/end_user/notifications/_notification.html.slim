@@ -1,6 +1,6 @@
 .notification-container
   - if notifications.any? { |notification| notification.checked == false }
-    .not-checked
+    .notification-btn-checked
   .notification-btn-container
     = render "end_user/notifications/notification_btn"
   ul.card.notification-index
