@@ -19,4 +19,5 @@ nav.navbar-dark.bg-dark
       - if end_user_signed_in?
         = button_tag(type: "button", class: "search-menu-btn", id: "searchMenuTrigger")
           i.fas.fa-search.align-self-center
+        = render "end_user/notifications/notification", notifications: @notifications
         = render "layouts/menu_btn"

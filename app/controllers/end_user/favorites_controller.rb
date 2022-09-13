@@ -1,5 +1,6 @@
 class EndUser::FavoritesController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :notification_index, only: [:index]
 
   def index
     @user = EndUser.find(params[:user_id])
@@ -12,7 +13,9 @@ class EndUser::FavoritesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @favorite = current_end_user.favorites.new(post_id: @post.id)
-    @favorite.save
+    if @favorite.save
+      @post.create_notification_favorite(current_end_user)
+    end
   end
 
   def destroy

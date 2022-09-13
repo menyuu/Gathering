@@ -1,6 +1,7 @@
 class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:update, :destroy, :complete]
+  before_action :notification_index, only: [:index, :show, :user_join_groups]
 
   def index
     @group = Group.new

@@ -3,6 +3,7 @@ class EndUser::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :open_user, :close_user]
   before_action :user_commons, only: [:show, :update]
   before_action :forbid_guestuser, only: [:update, :open_user, :close_user]
+  before_action :notification_index, only: [:show]
 
   def show
     @groups = current_end_user.groups.with_attached_group_image.includes(:owner)

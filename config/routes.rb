@@ -54,6 +54,10 @@ Rails.application.routes.draw do
     resources :games, only: [:index, :create, :update, :destroy]
     resources :genres, only: [:index, :create, :update, :destroy]
     get "search" => "searches#search"
+    resources :contacts, only: [:new, :create]
+    post "contacts/confirm"
+    get "contacts/done"
+    resource :notifications, only: [:update]
   end
 
   devise_for :admin, skip: [:registrations, :password], controllers: {
@@ -85,6 +89,7 @@ Rails.application.routes.draw do
       get "search", on: :collection
     end
     get "search" => "searches#search"
+    resources :contacts, only: [:index, :show, :update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

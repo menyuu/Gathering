@@ -1,5 +1,6 @@
 class EndUser::GenresController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :notification_index, only: [:index]
 
   def index
     @genre = Genre.new

@@ -6,6 +6,7 @@ class EndUser::PostCommentsController < ApplicationController
     @post_comment = current_end_user.post_comments.new(comment_params)
     @post_comment.post_id = post.id
     if @post_comment.save
+      post.create_notification_comment(current_end_user, @post_comment.id, post.user.id)
       redirect_to post_path(post), notice: "コメントを送信しました。"
     else
       render "end_user/posts/comment_error"

@@ -42,6 +42,8 @@ class EndUser < ApplicationRecord
   has_many :user_groups, class_name: "EndUserGroup", dependent: :destroy
   has_many :groups, through: :user_groups
   has_many :group_chats, dependent: :destroy
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   has_one_attached :icon
 
@@ -89,6 +91,16 @@ class EndUser < ApplicationRecord
       self.search_match(word, status: "published")
     when "user_keyword"
       self.search_keyword_match(word, status: "published")
+    end
+  end
+
+  def create_notification_follow(current_end_user)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_end_user.id, id, "follow"])
+    if temp.blank?
+      notification = current_end_user.active_notifications.new(visited_id: id, action: "follow")
+      if notification.valid?
+        notification.save
+      end
     end
   end
 

@@ -50,6 +50,12 @@ table.table.table-borderless
       = render "layouts/sidebar_items"
     tr
       td
+        = link_to new_contact_path, class: "btn btn-dark rounded-pill", data: { toggle: "tooltip" }, title: "お問い合わせ"
+          i.fas.fa-envelope
+          span.between-text-icon.d-none.d-xl-inline-block
+            | お問い合わせ
+    tr
+      td
         = link_to destroy_end_user_session_path, method: :delete, class: "btn btn-outline-danger rounded-pill", data: { toggle: "tooltip" }, title: "ログアウト", data: {"confirm": "ログアウトしますか？"}
           i.fas.fa-sign-out-alt
           span.between-text-icon.d-none.d-xl-inline-block

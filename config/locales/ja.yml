@@ -34,6 +34,13 @@ ja:
           attributes:
             group_image:
               allowed_file_content_types: "の画像ファイルを選択してください。"
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."
   enums:
     post:
       status:
@@ -59,3 +66,10 @@ ja:
         prepared: "公開"
         self_made: "ユーザー作成"
         hide: "非公開"
+    contact:
+      status:
+        unread: "未読"
+        read: "既読"
+        hold: "保留"
+        working: "対応中"
+        resolved: "解決済み"

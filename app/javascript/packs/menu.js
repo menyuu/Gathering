@@ -12,5 +12,14 @@ $(document).on('turbolinks:load', function() {
       $('.header-menu').removeClass('header-menu-active');
     }
   });
+  $('.notification-btn-container').on('click', function() {
+    $('.notification-index').toggleClass('notification-index-active');
+    $('.notification-btn-checked').hide();
+  });
+  $(document).on('click', function(e) {
+    if(!$(e.target).closest('.notification-btn-container').length) {
+      $('.notification-index').removeClass('notification-index-active');
+    }
+  });
 });
 

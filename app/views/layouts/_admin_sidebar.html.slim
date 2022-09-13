@@ -45,6 +45,12 @@
             | ゲーム
     tr
       td
+        = link_to admin_contacts_path, class: "btn btn-dark rounded-pill"
+          i.fas.fa-envelope
+          span.between-text-icon
+            | 問い合わせ一覧
+    tr
+      td
         = link_to destroy_admin_session_path, method: :delete, class: "btn btn-dark rounded-pill"
           i.fas.fa-sign-out-alt
           span.between-text-icon

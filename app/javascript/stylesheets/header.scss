@@ -134,3 +134,83 @@ nav {
     }
   }
 }
+
+.notification {
+  &-container {
+    position: fixed;
+    top: 16px;
+    right: 32px;
+    @media screen and (max-width: 576px) {
+      position: static;
+      top: 0;
+      right: 0;
+    }
+  }
+  &-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+    @media screen and (max-width: 576px) {
+      position: static;
+      margin: 0 8px;
+    }
+    &-container a:hover {
+      color: white;
+    }
+    &-checked {
+      background-color: #eb0400;
+      border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      display: inline-block;
+      position: relative;
+      z-index: 10;
+      top: -6px;
+      right: -2px;
+      @media screen and (max-width: 576px) {
+        background-color: #eb0400;
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+        position: absolute;
+        z-index: 10;
+        top: 12px;
+        right: 64px;
+      }
+    }
+  }
+  &-index {
+    width: 400px;
+    position: absolute;
+    top: 32px;
+    right: 0;
+    display: none;
+    @media screen and (max-width: 576px) {
+      width: 320px;
+      top: 52px;
+    }
+    & li {
+      padding: 8px;
+    }
+    &-active {
+      display: block;
+    }
+  }
+  &-paginate {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.not-checked {
+  background-color: #eb0400;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  position: relative;
+}

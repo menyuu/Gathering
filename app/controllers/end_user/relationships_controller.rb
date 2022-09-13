@@ -1,10 +1,12 @@
 class EndUser::RelationshipsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:create]
+  before_action :notification_index, only: [:followings, :followers]
 
   def create
     @user = EndUser.find(params[:user_id])
     current_end_user.follow(@user)
+    @user.create_notification_follow(current_end_user)
   end
 
   def destroy

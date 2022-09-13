@@ -1,6 +1,7 @@
 class EndUser::SearchesController < ApplicationController
   before_action :authenticate_end_user!
   before_action :common_search
+  before_action :notification_index
 
   def search
     @object = params[:object]

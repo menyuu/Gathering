@@ -1,0 +1,30 @@
+.container-fluid
+  .row
+    .col-8.mt-5
+      h2
+        | お問い合わせ詳細
+      table.table.border
+        tbody
+          tr
+            th.border
+              | 名前
+            td
+              = @contact.name
+          tr
+            th.border
+              | メールアドレス
+            td
+              = @contact.email
+          tr
+            th.border
+              | お問い合わせ情報
+            td
+              = form_with model: @contact, url: admin_contact_path(@contact), method: :patch do |f|
+                .admin-contact-status
+                  = f.select :status, options_for_select(Contact.statuses_i18n.keys.map{ |k| [Contact.statuses_i18n[k], k]}, selected: @contact.status), {}, class: "form-control"
+                  = f.submit "更新", class: "btn btn-outline-dark"
+          tr
+            th.border width="240"
+              | お問い合わせ内容
+            td
+              = @contact.message

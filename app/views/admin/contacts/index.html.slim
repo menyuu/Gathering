@@ -1,0 +1,35 @@
+.container-fluid
+  .row
+    .col-8
+      .jscroll
+        - @contacts.each do |contact|
+          = link_to admin_contact_path(contact)
+            .card.mt-5
+              .card-body
+                = contact.name
+              .card-body.admin-contact-message-index
+                = contact.message
+              .card-body
+                ul.col-12.text-right
+                  li.d-inline-block.option-item
+                    = contact.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  li.d-inline-block.option-item
+                    - case contact.status
+                      - when "unread"
+                        span.text-danger
+                          = contact.status_i18n
+                      - when "read"
+                        span.text-warning
+                          = contact.status_i18n
+                      - when "hold"
+                        span.text-success
+                          = contact.status_i18n
+                      - when "working"
+                        span.text-secondary
+                          = contact.status_i18n
+                      - when "resolved"
+                        span.text-info
+                          = contact.status_i18n
+        .skill-list
+          = link_to_prev_page @contacts, "前のページ", class: "prev d-none"
+          = link_to_next_page @contacts, "次のページ", class: "next d-none"

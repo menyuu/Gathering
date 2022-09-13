@@ -51,6 +51,11 @@
           span.between-text-icon
             | ゲーム
     li
+      = link_to new_contact_path, class: "header-menu-item"
+        i.fas.fa-envelope
+        span.between-text-icon
+          | お問い合わせ
+    li
       = link_to destroy_end_user_session_path, method: :delete, class: "header-menu-item text-danger", data: {"confirm": "ログアウトしますか？"}
         i.fas.fa-sign-out-alt
         span.between-text-icon

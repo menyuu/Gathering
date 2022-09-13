@@ -1,0 +1,32 @@
+.col-12
+  .col-12.col-lg-10.col-xl-8.mt-5
+    = form_with model: @contact, url: contacts_confirm_path, local: true do |f|
+      h2
+        | お問い合わせ
+      .errors
+        = render "layouts/errors", obj: @contact
+      table.table.border
+        tbody
+          tr
+            th.border
+              = f.label :name, "名前"
+              span.text-danger
+                | *
+            td
+              = f.text_field :name, placeholder: "太郎", class: "form-control", required: "required"
+          tr
+            th.border
+              = f.label :email, "メールアドレス"
+              span.text-danger
+                | *
+            td
+              = f.email_field :email, placeholder: "user@example.com", class: "form-control", required: "required"
+          tr
+            th.border
+              = f.label :message, "お問い合わせ内容"
+              span.text-danger
+                | *
+            td
+              = f.text_area :message, placeholder: "お問い合わせの内容をご入力ください。", rows:"10", class: "form-control", required: "required"
+      .text-center.mt-3
+        = f.submit "確認", class: "btn btn-dark rounded-pill w-75"

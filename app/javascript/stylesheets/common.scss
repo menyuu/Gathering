@@ -23,6 +23,10 @@ i {
   color: black;
 }
 
+td {
+  word-break: break-word;
+}
+
 img {
   &:hover{
     opacity: 0.8;
@@ -248,6 +252,34 @@ textarea {
   }
 }
 
+.pagination {
+  >li>a {
+    border: none;
+    color: #696969;
+  }
+  >.active>a {
+    background: #343a40;
+    border-radius: 15px;
+  }
+  >li>a:hover {
+    border-radius: 15px;
+  }
+}
+
+.page-link:hover {
+  color: #343a40;
+}
+
+.page-item.active .page-link {
+  background-color: #343a40;
+}
+
+.page-item a:focus {
+  color: #fff;
+  background-color: #23272b;
+  border-color: #1d2124;
+  box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5);
+}
 
 footer {
   position: fixed;
