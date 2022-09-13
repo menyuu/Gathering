@@ -20,7 +20,7 @@
               | お問い合わせ情報
             td
               = form_with model: @contact, url: admin_contact_path(@contact), method: :patch do |f|
-                .form-group.d-inline-flex
+                .admin-contact-status
                   = f.select :status, options_for_select(Contact.statuses_i18n.keys.map{ |k| [Contact.statuses_i18n[k], k]}, selected: @contact.status), {}, class: "form-control"
                   = f.submit "更新", class: "btn btn-outline-dark"
           tr
