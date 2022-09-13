@@ -20,6 +20,12 @@ ja:
         group_image: "アイコン"
       group_chat:
         text: "内容"
+      contact:
+        unread: "未読"
+        read: "既読"
+        hold: "保留"
+        working: "対応中"
+        resolved: "解決済み"
     errors:
       models:
         post:
