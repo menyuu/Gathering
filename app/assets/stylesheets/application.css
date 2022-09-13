@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+.contact-message {
+  width: 100%; /* 省略せずに表示するサイズを指定 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
