@@ -13,15 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.admin-contact-message-index {
-  width: 100%; /* 省略せずに表示するサイズを指定 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.admin-contact-status {
-  display: inline-flex;
-  gap: 16px;
-}

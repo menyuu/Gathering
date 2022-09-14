@@ -1,6 +1,18 @@
 .container-fluid
   .row
     .col-8
+      .admin-contact-sort
+        = link_to "すべて", admin_contacts_path, class: "link-text-blue"
+        | |
+        = link_to "未読", admin_contacts_path(contact_search: "unread"), class: "link-text-blue"
+        | |
+        = link_to "既読", admin_contacts_path(contact_search: "read"), class: "link-text-blue"
+        | |
+        = link_to "保留", admin_contacts_path(contact_search: "hold"), class: "link-text-blue"
+        | |
+        = link_to "対応中", admin_contacts_path(contact_search: "working"), class: "link-text-blue"
+        | |
+        = link_to "解決済", admin_contacts_path(contact_search: "resolved"), class: "link-text-blue"
       .jscroll
         - @contacts.each do |contact|
           = link_to admin_contact_path(contact)
