@@ -1,7 +1,7 @@
 class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:update, :destroy, :complete]
-  before_action :notification_index, only: [:index, :show, :user_join_groups]
+  before_action :notification_index, only: [:index, :show, :user_join_groups, :members]
 
   def index
     @group = Group.new
@@ -55,6 +55,11 @@ class EndUser::GroupsController < ApplicationController
   def user_join_groups
     @groups = current_end_user.groups.page(params[:page]).without_count.per(1).order(created_at: :DESC)
     @post_tags = PostingTag.display_show_type("post")
+  end
+
+  def members
+    group = Group.find(params[:id])
+    @members = group.users.page(params[:page]).without_count.per(5)
   end
 
   private

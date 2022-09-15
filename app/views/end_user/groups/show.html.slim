@@ -31,6 +31,17 @@
           .introduction-text
             = safe_join(@group.introduction.split("\n"),tag(:br))
         .card-body
+          .div
+            = link_to user_path(@group.owner)
+              | オーナー：
+              span.link-text-blue
+                = @group.owner.name
+          .div
+            = link_to members_group_path(@group)
+              | メンバー：
+              span.link-text-blue
+                = @group.users.where.not(status: "freeze").count
+        .card-body
           ul.col-12
             li.tag-icon-item
               - if @group.is_ownerd_by?(current_end_user)
