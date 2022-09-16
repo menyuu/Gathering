@@ -12,9 +12,19 @@
                       = user.name
                 .col-4.col-md-4.col-lg-5.col-xl-4
                   .text-right
-                    - unless current_end_user == user || user.name == "ゲストユーザー"
-                      div class="follow_btn_#{user.id}"
-                        = render "end_user/relationships/follow_btn", user: user
+                    - if @group.is_ownerd_by?(current_end_user)
+                      - unless user == @group.owner
+                        span.unfollow-container
+                          span.unfollow-active
+                            button.btn.btn-dark.rounded-pill
+                              i.fas.fa-smile
+                              span.between-text-icon.d-none.d-md-inline-block
+                                | メンバー
+                          span.unfollow data-toggle="tooltip" title="グループを脱退させる"
+                            = link_to group_kick_path(@group, user_id: user.id), method: :delete, data: {confirm: "本当にグループを脱退させますか？"}, class: "btn rounded-pill unfollow-btn"
+                              i.fas.fa-sad-tear
+                              span.between-text-icon.d-none.d-md-inline-block
+                                | 脱退させる
               = link_to user_path(user)
                 - if user.introduction.present?
                   .card-body

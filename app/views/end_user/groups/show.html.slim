@@ -8,7 +8,8 @@
               = image_tag @group.group_icon(48, 48), class: "rounded-circle group-icon"
           .col-8.text-right
             - unless @group.is_ownerd_by?(current_end_user)
-              = render "join_link", group: @group
+              span class="group_join_btn_#{@group.id}"
+                = render "join_link", group: @group
             - else
               .dropleft
                 button.nomal-btn#dropdownMenu type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -39,7 +40,7 @@
           .div
             = link_to members_group_path(@group)
               | メンバー：
-              span.link-text-blue
+              span.link-text-blue class="group_member_count_#{@group.id}"
                 = @group.users.where.not(status: "freeze").count
         .card-body
           ul.col-12

@@ -2,6 +2,7 @@ class EndUser::GroupsController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:update, :destroy, :complete]
   before_action :notification_index, only: [:index, :show, :user_join_groups, :members]
+  before_action :group_members, only: [:show, :members]
 
   def index
     @group = Group.new
@@ -10,19 +11,6 @@ class EndUser::GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
-    users = []
-    # パブリックユーザーを名前の順に取得し配列に代入する
-    published_users = @group.users.with_attached_icon.where(status: "published").where.not(status: "freeze").order(name: :ASC)
-    users.push(published_users)
-    # ログイン中のユーザーを配列に加える
-    if @group.users.include?(current_end_user)
-      users << current_end_user
-    end
-    # 1次元配列にし、ログイン中のユーザーが公開だった場合、名前が被るので取り除く
-    users.flatten!
-    users = users.uniq { |user| user.id }
-    @members = Kaminari.paginate_array(users).page(params[:page]).per(1)
   end
 
   def create
@@ -58,8 +46,6 @@ class EndUser::GroupsController < ApplicationController
   end
 
   def members
-    group = Group.find(params[:id])
-    @members = group.users.page(params[:page]).without_count.per(5)
   end
 
   private
@@ -73,5 +59,21 @@ class EndUser::GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :introduction, :group_image)
+  end
+
+  def group_members
+    @group = Group.find(params[:id])
+    users = []
+    # パブリックユーザーを名前の順に取得し配列に代入する
+    published_users = @group.users.with_attached_icon.where(status: "published").where.not(status: "freeze").order(name: :ASC)
+    users.push(published_users)
+    # ログイン中のユーザーを配列に加える
+    if @group.users.include?(current_end_user)
+      users << current_end_user
+    end
+    # 1次元配列にし、ログイン中のユーザーが公開だった場合、名前が被るので取り除く
+    users.flatten!
+    users = users.uniq { |user| user.id }
+    @members = Kaminari.paginate_array(users).page(params[:page]).per(1)
   end
 end

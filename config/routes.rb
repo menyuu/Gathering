@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get "complete" => "group_multi_toggle"
       get "user_join_groups", as: "user_join", on: :collection
       get "members", on: :member
+      delete "kick" => "end_user_groups"
     end
     resources :tags, only: [:index, :create, :update, :destroy]
     resources :games, only: [:index, :create, :update, :destroy]
