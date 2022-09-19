@@ -78,6 +78,8 @@ class EndUser::SearchesController < ApplicationController
       end
     end
   end
+  
+  private
 
   def common_search
     @post_tags = PostingTag.display_show_type("post", 15)
