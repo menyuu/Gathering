@@ -26,8 +26,6 @@ class EndUser::PostsController < ApplicationController
   def show
     @post = Post.with_attached_images.find(params[:id])
     @comments = @post.post_comments.includes(user: [icon_attachment: [:blob]]).page(params[:page]).without_count.per(5)
-    # タグの編集をするときに表示する
-    @tag_names = @post.tag_names
   end
 
   def draft
