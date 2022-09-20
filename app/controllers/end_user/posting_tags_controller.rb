@@ -1,4 +1,5 @@
 class EndUser::PostingTagsController < ApplicationController
+  before_action :login_admin
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_post_tag

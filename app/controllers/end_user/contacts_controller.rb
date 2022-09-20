@@ -1,4 +1,5 @@
 class EndUser::ContactsController < ApplicationController
+  before_action :login_admin
   before_action :notification_index, only: [:new, :confirm, :done]
   
   def new

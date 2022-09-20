@@ -1,4 +1,5 @@
 class EndUser::EndUserGroupsController < ApplicationController
+  before_action :login_admin
   before_action :authenticate_end_user!
 
   def create

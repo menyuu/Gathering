@@ -1,4 +1,5 @@
 class EndUser::TagsController < ApplicationController
+  before_action :login_admin
   before_action :authenticate_end_user!
   before_action :notification_index, only: [:index]
 

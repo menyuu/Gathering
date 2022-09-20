@@ -1,4 +1,5 @@
 class EndUser::HomeController < ApplicationController
+  before_action :login_admin
   before_action :user_after_signed_in_prohibit
 
   def top

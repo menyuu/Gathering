@@ -1,4 +1,5 @@
 class Admin::GenresController < ApplicationController
+  before_action :login_end_user
   before_action :authenticate_admin!
   before_action :admin_display_show_genres
 

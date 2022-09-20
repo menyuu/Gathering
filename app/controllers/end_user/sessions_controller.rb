@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class EndUser::SessionsController < Devise::SessionsController
+  before_action :login_admin
   # before_action :configure_sign_in_params, only: [:create]
   before_action :user_login_restrictions, only: [:create]
 

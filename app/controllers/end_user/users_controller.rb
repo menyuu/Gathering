@@ -1,4 +1,5 @@
 class EndUser::UsersController < ApplicationController
+  before_action :login_admin
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:edit, :update, :open_user, :close_user]
   before_action :user_commons, only: [:show, :update]
