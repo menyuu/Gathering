@@ -1,5 +1,6 @@
 class EndUser::SearchesController < ApplicationController
   before_action :login_admin
+  before_action :log_out_user
   before_action :authenticate_end_user!
   before_action :common_search
   before_action :notification_index
@@ -79,7 +80,7 @@ class EndUser::SearchesController < ApplicationController
       end
     end
   end
-  
+
   private
 
   def common_search

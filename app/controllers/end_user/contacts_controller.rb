@@ -1,7 +1,8 @@
 class EndUser::ContactsController < ApplicationController
   before_action :login_admin
+  before_action :log_out_user
   before_action :notification_index, only: [:new, :confirm, :done]
-  
+
   def new
     @contact = Contact.new
   end

@@ -1,7 +1,8 @@
 class Admin::ContactsController < ApplicationController
   before_action :login_end_user
+  before_action :log_out_user
   before_action :authenticate_admin!
-  
+
   def index
     @contacts = Contact.page(params[:page]).without_count.per(5)
     case params[:contact_search]

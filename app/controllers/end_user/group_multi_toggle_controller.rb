@@ -1,5 +1,6 @@
 class EndUser::GroupMultiToggleController < ApplicationController
   before_action :login_admin
+  before_action :log_out_user
   before_action :authenticate_end_user!
   before_action :ensure_correct_user
   before_action :common_group_tag, only: [:complete, :tags]

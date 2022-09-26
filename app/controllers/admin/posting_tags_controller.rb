@@ -1,7 +1,8 @@
 class Admin::PostingTagsController < ApplicationController
   before_action :login_end_user
+  before_action :log_out_user
   before_action :authenticate_admin!
-  
+
   def index
     @post_tags = PostingTag.all.sort{ |a,b| b.posts.size <=> a.posts.size}
   end

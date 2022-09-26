@@ -1,5 +1,6 @@
 class EndUser::RelationshipsController < ApplicationController
   before_action :login_admin
+  before_action :log_out_user
   before_action :authenticate_end_user!
   before_action :ensure_correct_user, only: [:create]
   before_action :notification_index, only: [:followings, :followers]

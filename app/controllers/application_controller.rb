@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def log_out_user
+    unless signed_in?
+      redirect_to root_path, alert: "ログインしてください。"
+    end
+  end
+
   def notification_index
     notifications = current_end_user.passive_notifications.page(params[:page]).per(5)
     @notifications = notifications.where.not(visiter_id: current_end_user.id)

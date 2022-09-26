@@ -1,5 +1,6 @@
 class EndUser::PostsController < ApplicationController
   before_action :login_admin
+  before_action :log_out_user
   before_action :ensure_correct_user, only: [:update, :destroy]
   before_action :tag_items, only: [:index, :show, :index_all, :draft, :create]
   before_action :post_comment_new, only: [:index, :index_all, :show, :create]
