@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_234333) do
+ActiveRecord::Schema.define(version: 2022_11_15_032345) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2022_09_09_234333) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "chats", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "room_id", null: false
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_chats_on_end_user_id"
+    t.index ["room_id"], name: "index_chats_on_room_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -86,6 +96,15 @@ ActiveRecord::Schema.define(version: 2022_09_09_234333) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["end_user_id"], name: "index_end_user_groups_on_end_user_id"
     t.index ["group_id"], name: "index_end_user_groups_on_group_id"
+  end
+
+  create_table "end_user_rooms", force: :cascade do |t|
+    t.integer "end_user_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_user_id"], name: "index_end_user_rooms_on_end_user_id"
+    t.index ["room_id"], name: "index_end_user_rooms_on_room_id"
   end
 
   create_table "end_user_tags", force: :cascade do |t|
@@ -235,6 +254,11 @@ ActiveRecord::Schema.define(version: 2022_09_09_234333) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.integer "status", default: 1, null: false
@@ -244,12 +268,16 @@ ActiveRecord::Schema.define(version: 2022_09_09_234333) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chats", "end_users"
+  add_foreign_key "chats", "rooms"
   add_foreign_key "end_user_games", "end_users"
   add_foreign_key "end_user_games", "games"
   add_foreign_key "end_user_genres", "end_users"
   add_foreign_key "end_user_genres", "genres"
   add_foreign_key "end_user_groups", "end_users"
   add_foreign_key "end_user_groups", "groups"
+  add_foreign_key "end_user_rooms", "end_users"
+  add_foreign_key "end_user_rooms", "rooms"
   add_foreign_key "end_user_tags", "end_users"
   add_foreign_key "end_user_tags", "tags"
   add_foreign_key "favorites", "end_users"
