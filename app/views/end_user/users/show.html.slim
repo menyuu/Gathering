@@ -11,6 +11,9 @@
               - unless current_end_user == @user
                 div class="follow_btn_#{@user.id}"
                   = render "end_user/relationships/follow_btn", user: @user
+                - if current_end_user != @user && current_end_user.following?(@user) && @user.following?(current_end_user)
+                  = link_to "chatを始める", chat_path(@user.id)
+
               - else
                 button.btn.btn-outline-dark.rounded-pill data-toggle="modal" data-target="#editUserModalToggle"
                   i.fas.fa-user-cog data-toggle="tooltip" title="クリックしてユーザーを編集"
