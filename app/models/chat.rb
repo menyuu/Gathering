@@ -20,6 +20,6 @@
 #  room_id      (room_id => rooms.id)
 #
 class Chat < ApplicationRecord
-  belongs_to :end_user
+  belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :room
 end

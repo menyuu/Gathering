@@ -1,17 +1,17 @@
-h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"
-  = @user.name
-  | さんとのチャット
-
-div class="message" style="width: 400px;"
-  - @chats.each do |chat|
-    - if chat.end_user_id == current_end_user.id
-      p style="text-align: right;"
-        = chat.message
-    - else
-      p style="text-align: left;"
-        = chat.message
-div class="errors"
-  = render "layouts/errors", obj: @chat
-= form_with model: @chat, data: {remote: true} do |f|
-  = f.text_field :message
-  = f.hidden_field :room_id
+.container-fluid
+  .row
+    .col-12.col-lg-10.col-xl-8
+      h1.text-center id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"
+        =link_to user_path(@user.id)
+          = @user.name
+        | さんとのチャット
+      .shadow.rounded.mt-5
+        #chat-area
+          = render "show", chats: @chats
+        .row
+          .col-12.text-center
+            .errors
+              = render "layouts/errors", obj: @chat
+            = form_with model: @chat, data: {remote: true} do |f|
+              = f.text_field :message, class: "text-area"
+              = f.hidden_field :room_id

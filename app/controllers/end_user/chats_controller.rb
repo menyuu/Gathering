@@ -22,6 +22,10 @@ class EndUser::ChatsController < ApplicationController
 
   def create
     @chat = current_end_user.chats.new(chat_params)
+    room = @chat.room_id
+    room = EndUserRoom.find_by(end_user_id: current_end_user, room_id: room)
+    room = room.room
+    @chats = room.chats
     unless @chat.save
       render :error
     end

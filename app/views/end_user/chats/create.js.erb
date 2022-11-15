@@ -1,2 +1,9 @@
-$('.message').append("<p style='text-align: right;'><%= @chat.message %></p>");
-$('input[type=text]').val("")
+$('#chat-area').html('<%= j(render "show", chats: @chats) %>');
+$('.text-area').val("")
+$('.errors').empty();
+$(document).ready(function() {
+  const chatArea = $('#chat-area');
+  chatArea.scrollTop(
+    chatArea[0].scrollHeight - chatArea.height()
+  );
+});
