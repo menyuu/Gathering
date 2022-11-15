@@ -3,15 +3,17 @@
     .col-12.col-lg-10.col-xl-8
       h1.text-center id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"
         =link_to user_path(@user.id)
-          = @user.name
+          span.link-text-blue
+            = @user.name
         | さんとのチャット
       .shadow.rounded.mt-5
         #chat-area
           = render "show", chats: @chats
         .row
-          .col-12.text-center
+          .col-12.mb-5.text-center
             .errors
               = render "layouts/errors", obj: @chat
             = form_with model: @chat, data: {remote: true} do |f|
               = f.text_field :message, class: "text-area"
               = f.hidden_field :room_id
+              = f.submit "送信", class: "btn btn-outline-dark rounded-pill chat-btn ml-3"

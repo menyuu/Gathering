@@ -12,7 +12,11 @@
                 div class="follow_btn_#{@user.id}"
                   = render "end_user/relationships/follow_btn", user: @user
                 - if current_end_user != @user && current_end_user.following?(@user) && @user.following?(current_end_user)
-                  = link_to "chatを始める", chat_path(@user.id)
+                  = link_to chat_path(@user.id)
+                    span.link-text-blue
+                      i.fas.fa-comments
+                      span.d-none.d-md-inline-block
+                        | メッセージを送る
               - else
                 button.btn.btn-outline-dark.rounded-pill data-toggle="modal" data-target="#editUserModalToggle"
                   i.fas.fa-user-cog data-toggle="tooltip" title="クリックしてユーザーを編集"
