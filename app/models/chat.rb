@@ -22,4 +22,10 @@
 class Chat < ApplicationRecord
   belongs_to :user, class_name: "EndUser", foreign_key: :end_user_id
   belongs_to :room
+
+  with_options presence: true do
+    validates :end_user_id
+    validates :room_id
+  end
+  validates :message, presence: true, length: { maximum: 120 }
 end

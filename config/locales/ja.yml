@@ -20,6 +20,8 @@ ja:
         group_image: "アイコン"
       group_chat:
         text: "内容"
+      chat:
+        message: "投稿内容"
     errors:
       models:
         post:

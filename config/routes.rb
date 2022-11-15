@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     end
     get "search" => "searches#search"
     resources :contacts, only: [:index, :show, :update]
+    resources :chats, only: [:show, :destroy], as: "chat"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

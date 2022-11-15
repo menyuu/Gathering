@@ -1,0 +1,21 @@
+.container-fluid
+  .row
+    .col-8.mt-5.shadow.p-3.admin-group-chat-area
+      - @chats.each do |chat|
+        .card.border-0
+          .card-body.text-left.d-flex.justify-content-start.align-items-center
+            .col-2.group-chat-name.text-center
+              = link_to admin_user_path(chat.user), class: "group-chat-name"
+                span data-toggle="tooltip" title="#{chat.user.name}"
+                  = chat.user.name
+                span
+                  = image_tag chat.user.user_icon(48, 48), class: "rounded-circle"
+            .text-left
+              = chat.message
+                  = image_tag chat.user.user_icon(48, 48), class: "rounded-circle"
+          .card-body.text-right
+            ul.col-12
+              li.d-inline-block
+                = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
+              li.d-inline-block.tag-icon-item-delete
+                = link_to "削除", admin_chat_path(chat), method: :delete, data: { toggle: "tooltip" }, title: "#{chat.user.name}"
