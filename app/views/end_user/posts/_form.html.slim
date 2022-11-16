@@ -20,7 +20,7 @@
       = f.label :name, "タグ(最大8個)"
       button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="複数のタグは半角のカンマ(,)で区切って入力してください。"
         i.fas.fa-exclamation-triangle
-      .form-check.form-check-inline
+      /.form-check.form-check-inline
         = f.check_box :ai_tag, { class: "form-check-input" }, "auto",  "none"
         = f.label :ai_tag, "タグを自動で追加", class: "form-check-label"
         button.nomal-btn type="button" data-toggle="popover" data-trigger="focus" data-content="画像を添付することで最大8個(画像につき最大2個)のタグをAIが自動で選出します。複数のタグを設定して投稿した場合、タグが付与されない場合がございます。また、タグは英語のみでございます。"
