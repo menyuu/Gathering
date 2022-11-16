@@ -80,3 +80,5 @@ gem 'net-smtp'
 gem 'net-pop'
 gem 'net-imap'
 gem 'file_validators'
+gem 'mini_magick'
+gem 'aws-sdk-s3', require: false
