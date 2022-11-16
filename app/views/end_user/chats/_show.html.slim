@@ -1,0 +1,35 @@
+.container-fluid
+  .row
+    .col-12
+      - chats.each do |chat|
+        - if chat.end_user_id == current_end_user.id
+          .card.border-0
+            .card-body.text-right.group-chat-user-area.justify-content-end.pb-0
+              .group-chat-balloon.text-left.group-chat-text
+                = chat.message
+              .col-2.text-center.pr-0 data-toggle="tooltip"
+                = link_to user_path(chat.user)
+                  .group-chat-name data-toggle="tooltip"
+                    = chat.user.name
+                  span
+                    = image_tag chat.user.user_icon(48, 48), class: "rounded-circle group-chat-user-icon"
+            .card-body.text-right.pt-0
+              ul.col-12
+                li.d-inline-block
+                  = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")
+        - else
+          - unless chat.user.freeze?
+            .card.border-0
+              .card-body.text-left.group-chat-user-area.justify-content-start.pb-0
+                .col-2.text-center.pl-0 data-toggle="tooltip" title="#{chat.user.name}"
+                  = link_to user_path(chat.user)
+                    .group-chat-name
+                      = chat.user.name
+                    span
+                      = image_tag chat.user.user_icon(48, 48), class: "rounded-circle group-chat-other-user-icon"
+                .group-chat-balloon-other.text-left.group-chat-text
+                  = chat.message
+              .card-body.pt-0
+                .col-12
+                  .d-inline-block
+                    = chat.created_at.strftime("%Y年%m月%d日 %H時%M分")

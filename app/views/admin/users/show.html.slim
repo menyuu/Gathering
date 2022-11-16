@@ -13,6 +13,9 @@
               = @user.status_i18n
             li.delete-btn.ml-5
               = render "status_btn", user: @user
+            li.mb-3
+              = link_to admin_chat_path(@user),class: "link-text-blue"
+                | チャット一覧
         .card-body
           .introduction-text
             = @user.introduction

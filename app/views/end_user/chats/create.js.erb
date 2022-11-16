@@ -1,0 +1,9 @@
+$('#chat-area').html('<%= j(render "show", chats: @chats) %>');
+$('.text-area').val("")
+$('.errors').empty();
+$(document).ready(function() {
+  const chatArea = $('#chat-area');
+  chatArea.scrollTop(
+    chatArea[0].scrollHeight - chatArea.height()
+  );
+});
