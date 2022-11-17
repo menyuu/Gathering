@@ -47,9 +47,6 @@ class EndUser::PostsController < ApplicationController
     if tags.size <= 8 && tags.all? { |tag| tag.length <= 50 } && tags.all? { |tag| tag != "" }
       if @post.save
         PostingTag.create_tag(tags, @post)
-        if params[:post][:ai_tag] == "auto"
-          @post.set_ai_tag
-        end
         if @post.published?
           redirect_to request.referer, notice: "正常に投稿されました。"
         elsif @post.draft?
